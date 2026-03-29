@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Detox 21">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>Detox 21 — Patrik Rees</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --off-white: #fafafa;
+  --muted: #999999;
+  --muted-light: #cccccc;
+  --border: #e8e8e8;
+  --border-dark: #222222;
+  --green: #3a5c45;
+  --green-subtle: #f2f5f3;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--black);
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overscroll-behavior: none;
+}
+
+/* ── HEADER ── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding-top: var(--safe-top);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  padding: 0 1.25rem;
+}
+.header-wordmark {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.header-day {
+  font-family: var(--serif);
+  font-size: .85rem;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: .05em;
+}
+
+/* ── NAV ── */
+.nav {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-tab {
+  flex: 1;
+  min-width: 60px;
+  background: none;
+  border: none;
+  padding: .7rem .5rem;
+  font-family: var(--sans);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  position: relative;
+  transition: color .2s;
+  white-space: nowrap;
+}
+.nav-tab.active { color: var(--black); }
+.nav-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--black);
+}
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── SECTIONS ── */
+.section { padding: 1.75rem 1.25rem; }
+.section + .section { border-top: 1px solid var(--border); }
+.section-label {
+  font-family: var(--sans);
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--black);
+  color: var(--white);
+  padding: 2.5rem 1.25rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-kicker {
+  font-family: var(--sans);
+  font-size: .58rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 1rem;
+}
+.hero-day-num {
+  font-family: var(--serif);
+  font-size: 5.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--white);
+}
+.hero-day-total {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.35);
+}
+.hero-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(255,255,255,.2);
+  margin: 1.25rem auto;
+}
+.hero-date {
+  font-family: var(--sans);
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-bottom: .4rem;
+}
+.hero-theme {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,.85);
+  margin-bottom: .35rem;
+}
+.hero-recipe {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.55);
+}
+
+/* ── TIMER ── */
+.timer-wrap {
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.timer-label {
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.timer-meal {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: .15rem;
+}
+.timer-countdown {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: -.01em;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* ── PROGRESS ── */
+.progress-section {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: .75rem;
+}
+.progress-label-text {
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.progress-fraction {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--black);
+}
+.progress-bar-track {
+  height: 1px;
+  background: var(--border);
+  position: relative;
+  margin-bottom: 1rem;
+}
+.progress-bar-fill {
+  position: absolute;
+  top: 0; left: 0; height: 1px;
+  background: var(--black);
+  transition: width .6s cubic-bezier(.4,0,.2,1);
+}
+.progress-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.p-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .55rem;
+  font-weight: 500;
+  color: var(--muted-light);
+  cursor: pointer;
+  transition: all .2s;
+  font-family: var(--sans);
+}
+.p-dot.done {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+.p-dot.today {
+  border-color: var(--black);
+  color: var(--black);
+  font-weight: 600;
+}
+.p-dot.today.done {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ── MEAL LIST ── */
+.meal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.meal-item:active { background: var(--off-white); }
+.meal-item.checked { background: var(--off-white); }
+.meal-check-box {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border: 1px solid var(--muted-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .65rem;
+  transition: all .2s;
+  margin-top: .15rem;
+  flex-shrink: 0;
+}
+.meal-item.checked .meal-check-box {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+.meal-item.current .meal-check-box {
+  border-color: var(--black);
+}
+.meal-body { flex: 1; min-width: 0; }
+.meal-time-row {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: .2rem;
+}
+.meal-time {
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: var(--muted);
+  font-family: var(--sans);
+}
+.meal-name {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.meal-item.checked .meal-name { color: var(--muted); }
+.meal-desc {
+  font-size: .75rem;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-top: .15rem;
+}
+.meal-badge {
+  font-size: .55rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--black);
+  border: 1px solid var(--black);
+  padding: .15rem .45rem;
+  align-self: flex-start;
+  margin-top: .15rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── DAY COMPLETE ── */
+.day-complete {
+  padding: 2rem 1.25rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.day-complete-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: .4rem;
+}
+.day-complete-sub {
+  font-size: .75rem;
+  color: var(--muted);
+  letter-spacing: .05em;
+}
+
+/* ── RECIPE PAGE ── */
+.recipe-day-nav {
+  display: flex;
+  overflow-x: auto;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.recipe-day-nav::-webkit-scrollbar { display: none; }
+.recipe-day-btn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  border-right: 1px solid var(--border);
+  padding: .65rem .9rem;
+  font-family: var(--sans);
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  transition: all .15s;
+  line-height: 1.5;
+}
+.recipe-day-btn.active {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+.recipe-header { padding: 2rem 1.25rem 1.25rem; border-bottom: 1px solid var(--border); }
+.recipe-tag {
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .75rem;
+}
+.recipe-title {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: .5rem;
+}
+.recipe-meta-row {
+  display: flex;
+  gap: 1rem;
+  font-size: .65rem;
+  color: var(--muted);
+  letter-spacing: .05em;
+}
+.recipe-note {
+  font-size: .78rem;
+  font-style: italic;
+  color: var(--muted);
+  padding: .75rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--off-white);
+}
+.recipe-section-label {
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 1.25rem 1.25rem .6rem;
+}
+.recipe-ing-list { list-style: none; }
+.recipe-ing-list li {
+  display: flex;
+  gap: .75rem;
+  padding: .65rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: .88rem;
+  line-height: 1.4;
+  align-items: flex-start;
+}
+.recipe-ing-list li::before {
+  content: '—';
+  color: var(--muted-light);
+  flex-shrink: 0;
+  font-weight: 300;
+}
+.recipe-steps-list {
+  list-style: none;
+  counter-reset: steps;
+}
+.recipe-steps-list li {
+  counter-increment: steps;
+  display: flex;
+  gap: 1rem;
+  padding: .75rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: .875rem;
+  line-height: 1.5;
+  align-items: flex-start;
+}
+.recipe-steps-list li::before {
+  content: counter(steps);
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--muted-light);
+  flex-shrink: 0;
+  min-width: 16px;
+  text-align: right;
+  margin-top: -.05rem;
+}
+
+/* ── CALENDAR PAGE ── */
+.cal-month-label {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  padding: 1.5rem 1.25rem .75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--black);
+}
+.cal-week-headers {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+.cal-wh {
+  font-size: .55rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  padding: .5rem 0;
+  border-right: 1px solid var(--border);
+}
+.cal-wh:last-child { border-right: none; }
+.cal-grid-wrap {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.cal-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: .6rem .4rem;
+  cursor: pointer;
+  transition: background .15s;
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.cal-cell:nth-child(7n) { border-right: none; }
+.cal-cell:active { background: var(--off-white); }
+.cal-cell-num {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--muted-light);
+}
+.cal-cell-date { font-size: .5rem; color: var(--muted-light); letter-spacing: .05em; }
+.cal-cell-rec {
+  font-size: .5rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  color: var(--muted-light);
+  text-transform: uppercase;
+}
+.cal-cell.done .cal-cell-num { color: var(--black); }
+.cal-cell.done .cal-cell-date,
+.cal-cell.done .cal-cell-rec { color: var(--muted); }
+.cal-cell.done { background: var(--off-white); }
+.cal-cell.today { background: var(--black); }
+.cal-cell.today .cal-cell-num,
+.cal-cell.today .cal-cell-date,
+.cal-cell.today .cal-cell-rec { color: var(--white); }
+.cal-detail {
+  border-top: 1px solid var(--border);
+}
+
+/* ── RULES PAGE ── */
+.rules-hero {
+  background: var(--black);
+  color: var(--white);
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+.rules-hero-kicker {
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: .75rem;
+}
+.rules-hero-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white);
+}
+.rule-row {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.rule-num {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--muted-light);
+  min-width: 20px;
+  flex-shrink: 0;
+}
+.rule-text {
+  font-size: .875rem;
+  line-height: 1.5;
+  padding-top: .15rem;
+}
+.rule-text strong { font-weight: 500; }
+
+/* ── FRUIT LIST ── */
+.fruit-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  padding: 0 1.25rem 1.25rem;
+}
+.fruit-tag {
+  font-size: .72rem;
+  color: var(--black);
+  border: 1px solid var(--border);
+  padding: .25rem .65rem;
+  letter-spacing: .03em;
+}
+.fruit-avoid-note {
+  font-size: .75rem;
+  color: var(--muted);
+  font-style: italic;
+  padding: 0 1.25rem 1.25rem;
+}
+
+/* ── SHOPPING PAGE ── */
+.shop-group-label {
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 1.25rem 1.25rem .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.shop-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .75rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.shop-row:active { background: var(--off-white); }
+.shop-box {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border: 1px solid var(--muted-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .6rem;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.shop-row.bought .shop-box {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+.shop-row.bought .shop-label {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+.shop-label { font-size: .875rem; line-height: 1.4; }
+.shop-reset-row {
+  padding: 1.25rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.btn-outline {
+  background: none;
+  border: 1px solid var(--black);
+  color: var(--black);
+  padding: .6rem 1.5rem;
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-outline:hover { background: var(--black); color: var(--white); }
+
+/* ── PRE-START / DONE ── */
+.pre-start {
+  padding: 3rem 1.25rem;
+  text-align: center;
+}
+.pre-start-kicker {
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.pre-start-title {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: .75rem;
+}
+.pre-start-body { font-size: .875rem; color: var(--muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <span class="header-wordmark">Detox 21</span>
+    <span class="header-day" id="header-day-label"></span>
+  </div>
+  <nav class="nav">
+    <button class="nav-tab active" onclick="showPage('today')">Idag</button>
+    <button class="nav-tab" onclick="showPage('recipe')">Recept</button>
+    <button class="nav-tab" onclick="showPage('calendar')">Kalender</button>
+    <button class="nav-tab" onclick="showPage('rules')">Regler</button>
+    <button class="nav-tab" onclick="showPage('shop')">Inkop</button>
+  </nav>
+</header>
+
+<main>
+  <div id="page-today" class="page active"></div>
+  <div id="page-recipe" class="page"></div>
+  <div id="page-calendar" class="page"></div>
+  <div id="page-rules" class="page"></div>
+  <div id="page-shop" class="page"></div>
+</main>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+
+const DAYS = [
+  { day:1,  date:'30/3',  wd:'Mån', theme:'Korn & Stärkelse', recipe:'A', protein:'',         name:'Sötpotatisskål med kikärta & grönkål' },
+  { day:2,  date:'31/3',  wd:'Tis', theme:'Soppa',            recipe:'B', protein:'',         name:'Kycklingbuljong-soppa med spenat' },
+  { day:3,  date:'1/4',   wd:'Ons', theme:'Vitt kött',        recipe:'C', protein:'Kyckling', name:'Ugnskyckling med favabönor & romansallad' },
+  { day:4,  date:'2/4',   wd:'Tor', theme:'Baljväxter',       recipe:'D', protein:'',         name:'Linsgryta med spenat & canellinibönor' },
+  { day:5,  date:'3/4',   wd:'Fre', theme:'Vegetarisk',       recipe:'E', protein:'',         name:'Butternutpumpa-gryta med grönkål' },
+  { day:6,  date:'4/4',   wd:'Lör', theme:'Ägg',              recipe:'F', protein:'Ägg',      name:'Äggpanna med grönkål & squash' },
+  { day:7,  date:'5/4',   wd:'Sön', theme:'Rött kött',        recipe:'G', protein:'Anka',     name:'Ankbröst med butternutpumpa & grönkål' },
+  { day:8,  date:'6/4',   wd:'Mån', theme:'Korn & Stärkelse', recipe:'A', protein:'',         name:'Sötpotatisskål med kikärta & grönkål' },
+  { day:9,  date:'7/4',   wd:'Tis', theme:'Soppa',            recipe:'B', protein:'',         name:'Kycklingbuljong-soppa med spenat' },
+  { day:10, date:'8/4',   wd:'Ons', theme:'Vitt kött',        recipe:'C', protein:'Kalkon',   name:'Ugnskalkon med favabönor & romansallad' },
+  { day:11, date:'9/4',   wd:'Tor', theme:'Baljväxter',       recipe:'D', protein:'',         name:'Linsgryta med spenat & canellinibönor' },
+  { day:12, date:'10/4',  wd:'Fre', theme:'Vegetarisk',       recipe:'E', protein:'',         name:'Butternutpumpa-gryta med grönkål' },
+  { day:13, date:'11/4',  wd:'Lör', theme:'Ägg & Kyckling',   recipe:'F', protein:'Kyckling', name:'Kycklingpanna med grönkål & squash' },
+  { day:14, date:'12/4',  wd:'Sön', theme:'Rött kött',        recipe:'G', protein:'Hjortkött',name:'Hjortkött med butternutpumpa & grönkål' },
+  { day:15, date:'13/4',  wd:'Mån', theme:'Korn & Stärkelse', recipe:'A', protein:'',         name:'Sötpotatisskål med kikärta & grönkål' },
+  { day:16, date:'14/4',  wd:'Tis', theme:'Soppa',            recipe:'B', protein:'',         name:'Kycklingbuljong-soppa med spenat' },
+  { day:17, date:'15/4',  wd:'Ons', theme:'Vitt kött',        recipe:'C', protein:'Kyckling', name:'Ugnskyckling med favabönor & romansallad' },
+  { day:18, date:'16/4',  wd:'Tor', theme:'Baljväxter',       recipe:'D', protein:'',         name:'Linsgryta med spenat & canellinibönor' },
+  { day:19, date:'17/4',  wd:'Fre', theme:'Vegetarisk',       recipe:'E', protein:'',         name:'Butternutpumpa-gryta med grönkål' },
+  { day:20, date:'18/4',  wd:'Lör', theme:'Ägg',              recipe:'F', protein:'Ägg',      name:'Äggpanna med grönkål & squash' },
+  { day:21, date:'19/4',  wd:'Sön', theme:'Rött kött',        recipe:'G', protein:'Anka',     name:'Ankbröst med butternutpumpa & grönkål' },
+];
+
+const RECIPES = {
+  A: {
+    title:'Sötpotatisskål med kikärta & grönkål',
+    time:'30 min', portions:'2 portioner',
+    note:'Laga dubbel portion vid lunchtid — servera identiskt till middag.',
+    ing:['2 sötpotatisar (ugnsbakade eller ångkokta)','200 g kikärtor (konserverade, sköljda)','2 nävar grönkål (ångkokt 5 min)','Romansallad','2 msk olivolja extra virgin','Ankfett till sautering','Celtic salt'],
+    steps:['Ugnsbaka sötpotatis i 200 °C i 40 min, eller ångkoka 20 min.','Ångkoka grönkålen 5 min tills den mjuknat.','Sautera kikärtorna i ankfett med celtic salt tills gyllene.','Bygg skålen: romansallad i botten, sötpotatis, kikärtor, grönkål.','Ringla olivolja och servera.'],
+  },
+  B: {
+    title:'Kycklingbuljong-soppa med spenat',
+    time:'25 min', portions:'2 portioner',
+    note:'Laga dubbel portion. Servera med bovete-knäckebröd.',
+    ing:['Vatten + 1–2 glutenfria kycklingbuljongtärningar (utan jäst)','150 g röda linser','2 nävar spenat','2 selleristjälkar (skivade)','Bovete-knäckebröd Le Pain des Fleurs','Celtic salt'],
+    steps:['Koka upp vatten med buljong och selleri.','Tillsätt linser, koka 15 min på medelvärme.','Rör ner spenat de sista 2 minuterna.','Smaka av med celtic salt.','Servera med bovete-knäckebröd.'],
+  },
+  C: {
+    title:'Ugnskyckling/Kalkon med favabönor & romansallad',
+    time:'30 min', portions:'2 portioner',
+    note:'Vecka 1+3 = Kyckling · Vecka 2 = Kalkon. Dubbel portion.',
+    ing:['2 kycklingfiléer eller kalkonfiléer','200 g favabönor (konserverade, sköljda)','1 aubergine (skivad, ugnsbakad)','Romansallad','2 msk olivolja extra virgin','Celtic salt'],
+    steps:['Värm ugnen till 200 °C.','Lägg filé på plåt, ringla olivolja och celtic salt.','Ugna kyckling 25 min, kalkon 30 min.','Ugna aubergineskivor parallellt 20 min.','Servera med favabönor och romansallad.'],
+  },
+  D: {
+    title:'Linsgryta med spenat & canellinibönor',
+    time:'15 min', portions:'2 portioner',
+    note:'Snabbaste receptet. Dubbel portion kl. 12:00.',
+    ing:['150 g röda linser','200 g canellinibönor (konserverade, sköljda)','2 nävar spenat','2 msk olivolja extra virgin','Celtic salt','Romansallad','Bovete-knäckebröd'],
+    steps:['Koka linser i vatten 12 min tills mjuka.','Tillsätt canellinibönor och spenat, värm 3 min.','Ringla olivolja och smaka av med celtic salt.','Servera med romansallad och bovete-knäckebröd.'],
+  },
+  E: {
+    title:'Butternutpumpa-gryta med grönkål',
+    time:'35 min', portions:'2 portioner',
+    note:'Ugnsbaka pumpa gärna i förväg. Dubbel portion.',
+    ing:['1 butternutpumpa (ugnsbakad, tärnad)','200 g canellinibönor (konserverade)','400 g krossad tomat','2 nävar grönkål','2 msk olivolja + ankfett','Celtic salt','Romansallad'],
+    steps:['Ugnsbaka pumpa i 200 °C, 30 min.','Fräs i ankfett, tillsätt krossad tomat.','Koka 10 min, tillsätt grönkål sista 5 min.','Smaka av med celtic salt.','Servera med romansallad.'],
+  },
+  F: {
+    title:'Äggpanna/Kycklingpanna med grönkål & squash',
+    time:'15 min', portions:'2 portioner',
+    note:'Vecka 1+3 = Ägg · Vecka 2 = Kyckling. Dubbel portion.',
+    ing:['4 ägg eller 2 kycklingfiléer (se vecka)','2 nävar grönkål (ångkokt)','1 sommarsquash (stekt i ankfett)','Romansallad','Olivolja extra virgin','Celtic salt'],
+    steps:['Ångkoka grönkål 5 min.','Stek squashskivor i ankfett tills gyllene.','Stek ägg (eller kyckling i ankfett) med celtic salt.','Servera med romansallad och ett drag olivolja.'],
+  },
+  G: {
+    title:'Ankbröst/Hjortkött med butternutpumpa & grönkål',
+    time:'35 min', portions:'2 portioner',
+    note:'Vecka 1+3 = Anka · Vecka 2 = Hjortkött. Dubbel portion.',
+    ing:['400 g ankbröst eller hjortkött','1 butternutpumpa (ugnsbakad)','2 nävar grönkål (ångkokt)','Romansallad','Olivolja extra virgin','Celtic salt'],
+    steps:['Ugnsbaka pumpa i 200 °C, 30 min.','Ångkoka grönkål 5 min.','Ankbröst: panna 3 min/sida + ugn 10 min i 200 °C.','Hjortkött: stek i ankfett 3–4 min per sida.','Servera med romansallad och olivolja.'],
+  },
+};
+
+const MEALS = [
+  { time:'06:15', name:'Frukost',    desc:'Fruktsallad · tahini · manuka honung · bovete-knäckebröd', key:'breakfast' },
+  { time:'09:00', name:'Frukt',      desc:'Valfri frukt från listan — en handfull', key:'snack1' },
+  { time:'12:00', name:'Lunch',      desc:'Dagens recept — laga dubbel portion nu', key:'lunch', isRecipe:true },
+  { time:'15:00', name:'Grönsaker',  desc:'Rå grönsaker: blomkål + selleri', key:'snack2' },
+  { time:'18:00', name:'Middag',     desc:'Samma som lunchen, tillagad kl. 12', key:'dinner', isRecipe:true },
+  { time:'21:00', name:'Kväll',      desc:'Rå grönsaker: selleri + sommarsquash', key:'snack3' },
+];
+
+const RULES = [
+  { n:1,  t:'<strong>Ät exakt var 3:e timme:</strong> 06:15 · 09:00 · 12:00 · 15:00 · 18:00 · 21:00' },
+  { n:2,  t:'Frukost är <strong>alltid densamma</strong> — fruktsallad + tahini + manuka honung + knäckebröd' },
+  { n:3,  t:'Lunch = Middag — laga <strong>alltid dubbelt kl. 12:00</strong>' },
+  { n:4,  t:'<strong>Inget mejeri</strong> — inte ens smör' },
+  { n:5,  t:'<strong>Inget gluten</strong> — bara bovete-knäckebröd (Le Pain des Fleurs)' },
+  { n:6,  t:'<strong>Inget socker</strong> — ingen agave, inget lönnsocker, inga sötningsmedel' },
+  { n:7,  t:'<strong>Ingen jäst</strong>, vinäger, vin, öl eller fermenterade produkter' },
+  { n:8,  t:'Stekfett = <strong>ankfett</strong> · Sallad = 1 msk olivolja · Salt = Celtic salt' },
+  { n:9,  t:'Drycker: <strong>bara vatten</strong> (10–12 glas) och örtte' },
+  { n:10, t:'Hungrig? <strong>Mer grönsaker</strong> — aldrig mer stärkelse eller protein efter 18:00' },
+];
+
+const FRUITS = ['Banan','Granatäpple','Grapefrukt','Kiwi','Mandarin','Honungsmelon','Mango','Persika','Melon','Papaya','Nektarin','Vattenmelon','Guava','Aprikoser','Mullbär','Citron','Plommon','Persimmon','Lime','Stjärnfrukt','Oliv','Ananas','Vindruva','Avokado','Apelsin'];
+
+const SHOP_WEEKLY = [
+  'Kyckling/kalkonfilé — ca 600 g','Ägg — 6–8 st','Grönkål — 2–3 påsar','Spenat — 2 påsar',
+  'Romansallad — 2 huvuden','Selleri — 1 knippe','Sommarsquash — 2 st','Aubergine — 1 st',
+  'Blomkål — 1 huvud','Sötpotatis — 4 st','Färsk frukt (banan, kiwi, ananas, apelsin, mandarin, persika)',
+];
+const SHOP_ONCE = [
+  'Ankbröst — 2 st','Hjortkött — 400 g','Ankfett — 1–2 burkar',
+  'Bovete-knäckebröd Le Pain des Fleurs — 3–4 förp.','Kikärtor konserverade — 6 burkar',
+  'Canellinibönor konserverade — 6 burkar','Favabönor konserverade — 3 burkar',
+  'Röda linser — 1 påse (500 g)','Gröna linser — 1 påse (500 g)',
+  'Butternutpumpa — 3 st','Krossad tomat konserverad — 3 burkar',
+  'Tahini ljus — 1 burk (300 g)','Manuka honung — 1 liten burk',
+  'Olivolja extra virgin — 1 flaska','Celtic salt — 1 förpackning',
+  'Örtte — 1 förpackning','Glutenfria kycklingbuljongtärningar — 1 förp. (utan jäst & mejeri)',
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+
+const getState = () => { try { return JSON.parse(localStorage.getItem('d21') || '{}'); } catch { return {}; } };
+const setState = s => localStorage.setItem('d21', JSON.stringify(s));
+
+function getTodayDay() {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const start = new Date(2026, 2, 30);
+  return Math.floor((today - start) / 86400000) + 1;
+}
+
+function getCurrentMealIdx() {
+  const now = new Date();
+  const mins = now.getHours() * 60 + now.getMinutes();
+  const times = [6*60+15, 9*60, 12*60, 15*60, 18*60, 21*60];
+  let idx = -1;
+  for (let i = 0; i < times.length; i++) if (mins >= times[i] - 15) idx = i;
+  return idx;
+}
+
+function getNextMealIdx() {
+  const now = new Date();
+  const mins = now.getHours() * 60 + now.getMinutes();
+  const times = [6*60+15, 9*60, 12*60, 15*60, 18*60, 21*60];
+  for (let i = 0; i < times.length; i++) if (mins < times[i]) return i;
+  return -1;
+}
+
+function getSecsToNext() {
+  const now = new Date();
+  const secs = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+  const times = [(6*60+15)*60, 9*60*60, 12*60*60, 15*60*60, 18*60*60, 21*60*60];
+  for (let i = 0; i < times.length; i++) if (secs < times[i]) return { idx: i, secs: times[i] - secs };
+  return { idx: 0, secs: 86400 - secs + (6*60+15)*60 };
+}
+
+// ─── RENDER TODAY ─────────────────────────────────────────────────────────────
+
+function renderToday() {
+  const n = getTodayDay();
+  const el = document.getElementById('page-today');
+  const headerLabel = document.getElementById('header-day-label');
+
+  if (n < 1) {
+    headerLabel.textContent = 'Imorgon startar det';
+    el.innerHTML = `
+      <div class="pre-start">
+        <div class="pre-start-kicker">30 mars 2026</div>
+        <div class="pre-start-title">Detoxen börjar imorgon</div>
+        <div class="pre-start-body">Dag 1 startar kl. 06:15.<br>Köp in maten och läs igenom alla regler idag.</div>
+      </div>`;
+    return;
+  }
+  if (n > 21) {
+    headerLabel.textContent = 'Genomfört';
+    el.innerHTML = `
+      <div class="pre-start">
+        <div class="pre-start-kicker">19 april 2026</div>
+        <div class="pre-start-title">21 dagar genomförda</div>
+        <div class="pre-start-body">Patrik Rees — du klarade hela detoxen.</div>
+      </div>`;
+    return;
+  }
+
+  const day = DAYS[n - 1];
+  const state = getState();
+  headerLabel.textContent = `Dag ${n} av 21`;
+
+  // HERO
+  let hero = `
+    <div class="hero">
+      <div class="hero-kicker">Patrik Rees · MediBalans</div>
+      <div class="hero-day-num">${n}<span class="hero-day-total"> /21</span></div>
+      <div class="hero-divider"></div>
+      <div class="hero-date">${day.wd} ${day.date}</div>
+      <div class="hero-theme">${day.theme}</div>
+      <div class="hero-recipe">${day.name}</div>
+    </div>`;
+
+  // TIMER
+  const nextInfo = getSecsToNext();
+  const nextMeal = MEALS[nextInfo.idx];
+  const h = Math.floor(nextInfo.secs / 3600);
+  const m = Math.floor((nextInfo.secs % 3600) / 60);
+  const s = nextInfo.secs % 60;
+  const timeStr = h > 0
+    ? `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`
+    : `${m}:${String(s).padStart(2,'0')}`;
+
+  let timer = `
+    <div class="timer-wrap">
+      <div>
+        <div class="timer-label">Nastan dags</div>
+        <div class="timer-meal">${nextMeal.time} — ${nextMeal.name}</div>
+      </div>
+      <div class="timer-countdown" id="timer-val">${timeStr}</div>
+    </div>`;
+
+  // PROGRESS
+  const done = Math.min(n - 1, 21);
+  const pct = Math.round(done / 21 * 100);
+  let dots = '';
+  for (let i = 1; i <= 21; i++) {
+    const isDone = getState()[`day_done_${i}`] || i < n;
+    const isToday = i === n;
+    let cls = 'p-dot';
+    if (isDone) cls += ' done';
+    if (isToday) cls += ' today';
+    dots += `<div class="${cls}" title="Dag ${i}">${i === 21 ? '★' : i}</div>`;
+  }
+  let progress = `
+    <div class="progress-section">
+      <div class="progress-meta">
+        <div class="progress-label-text">Genomfort</div>
+        <div class="progress-fraction">${done} / 21</div>
+      </div>
+      <div class="progress-bar-track"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+      <div class="progress-dots">${dots}</div>
+    </div>`;
+
+  // MEALS
+  const curIdx = getCurrentMealIdx();
+  const nxtIdx = getNextMealIdx();
+  let meals = `<div class="section-label" style="padding:1rem 1.25rem .1rem;">Dagens schema</div>`;
+
+  MEALS.forEach((meal, i) => {
+    const key = `d${n}_${meal.key}`;
+    const checked = !!state[key];
+    const isCurrent = i === curIdx;
+    const isNext = i === nxtIdx;
+    const desc = meal.isRecipe ? `${meal.desc} — ${day.name}${day.protein ? ' (' + day.protein + ')' : ''}` : meal.desc;
+
+    let cls = 'meal-item';
+    if (checked) cls += ' checked';
+    else if (isCurrent) cls += ' current';
+
+    let badge = '';
+    if (!checked && isCurrent) badge = '<div class="meal-badge">Nu</div>';
+    else if (!checked && isNext) badge = '<div class="meal-badge">Nastan</div>';
+
+    meals += `
+      <div class="${cls}" onclick="toggleMeal('${key}', ${n})">
+        <div class="meal-check-box">${checked ? '✓' : ''}</div>
+        <div class="meal-body">
+          <div class="meal-time-row">
+            <span class="meal-time">${meal.time}</span>
+          </div>
+          <div class="meal-name">${meal.name}</div>
+          <div class="meal-desc">${desc}</div>
+        </div>
+        ${badge}
+      </div>`;
+  });
+
+  // Day complete check
+  const allDone = MEALS.every(m => state[`d${n}_${m.key}`]);
+  if (allDone) {
+    const s2 = getState(); s2[`day_done_${n}`] = true; setState(s2);
+    const nextDay = n < 21 ? DAYS[n] : null;
+    meals += `
+      <div class="day-complete">
+        <div class="day-complete-title">${n === 21 ? 'Detoxen genomförd' : 'Dag ' + n + ' genomförd'}</div>
+        <div class="day-complete-sub">${nextDay ? 'Imorgon: ' + nextDay.name : 'Patrik Rees — 21 dagar klara.'}</div>
+      </div>`;
+  }
+
+  el.innerHTML = hero + timer + progress + meals;
+}
+
+window.toggleMeal = function(key, dayNum) {
+  const s = getState();
+  s[key] = !s[key];
+  setState(s);
+  renderToday();
+};
+
+// ─── RENDER RECIPE ────────────────────────────────────────────────────────────
+
+let activeRecipeDay = Math.max(1, Math.min(getTodayDay(), 21)) || 1;
+
+function renderRecipe(dayNum) {
+  if (dayNum) activeRecipeDay = dayNum;
+  const day = DAYS[activeRecipeDay - 1];
+  const rec = RECIPES[day.recipe];
+  const el = document.getElementById('page-recipe');
+
+  const nav = DAYS.map((d, i) => `
+    <button class="recipe-day-btn ${i + 1 === activeRecipeDay ? 'active' : ''}"
+      onclick="renderRecipe(${i + 1})">
+      ${d.wd}<br>${d.date}
+    </button>`).join('');
+
+  el.innerHTML = `
+    <div class="recipe-day-nav">${nav}</div>
+    <div class="recipe-header">
+      <div class="recipe-tag">Dag ${day.day} · Recept ${day.recipe} · ${day.theme}${day.protein ? ' · ' + day.protein : ''}</div>
+      <div class="recipe-title">${rec.title}</div>
+      <div class="recipe-meta-row">
+        <span>${rec.time}</span>
+        <span>${rec.portions}</span>
+      </div>
+    </div>
+    <div class="recipe-note">${rec.note}</div>
+    <div class="recipe-section-label">Ingredienser</div>
+    <ul class="recipe-ing-list">${rec.ing.map(i => `<li>${i}</li>`).join('')}</ul>
+    <div class="recipe-section-label">Tillagning</div>
+    <ol class="recipe-steps-list">${rec.steps.map(s => `<li>${s}</li>`).join('')}</ol>
+    <div style="height:2rem;"></div>`;
+
+  // Scroll active day button into view
+  setTimeout(() => {
+    const active = el.querySelector('.recipe-day-btn.active');
+    if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }, 50);
+}
+
+// ─── RENDER CALENDAR ──────────────────────────────────────────────────────────
+
+function renderCalendar() {
+  const n = getTodayDay();
+  const state = getState();
+  const el = document.getElementById('page-calendar');
+
+  const headers = ['Mån','Tis','Ons','Tor','Fre','Lör','Sön']
+    .map(h => `<div class="cal-wh">${h}</div>`).join('');
+
+  const cells = DAYS.map((d, i) => {
+    const num = i + 1;
+    const isDone = state[`day_done_${num}`] || num < n;
+    const isToday = num === n;
+    let cls = 'cal-cell';
+    if (isDone && !isToday) cls += ' done';
+    if (isToday) cls += ' today';
+    return `
+      <div class="${cls}" onclick="showCalDetail(${num})">
+        <div class="cal-cell-num">${num === 21 ? '★' : num}</div>
+        <div class="cal-cell-date">${d.date}</div>
+        <div class="cal-cell-rec">${d.recipe}</div>
+      </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="cal-month-label">Mars – April 2026</div>
+    <div class="cal-week-headers">${headers}</div>
+    <div class="cal-grid-wrap">${cells}</div>
+    <div class="cal-detail" id="cal-detail"></div>`;
+}
+
+window.showCalDetail = function(num) {
+  const day = DAYS[num - 1];
+  const rec = RECIPES[day.recipe];
+  document.getElementById('cal-detail').innerHTML = `
+    <div class="section-label" style="padding:1.25rem 1.25rem .6rem;">Dag ${num} — ${day.wd} ${day.date}</div>
+    <div class="recipe-note" style="border-top:1px solid var(--border);">${day.name}${day.protein ? ' · ' + day.protein : ''}</div>
+    <ul class="recipe-ing-list">${rec.ing.map(i => `<li>${i}</li>`).join('')}</ul>
+    <div style="height:1rem;"></div>`;
+};
+
+// ─── RENDER RULES ─────────────────────────────────────────────────────────────
+
+function renderRules() {
+  const el = document.getElementById('page-rules');
+  const rules = RULES.map(r => `
+    <div class="rule-row">
+      <div class="rule-num">${r.n}</div>
+      <div class="rule-text">${r.t}</div>
+    </div>`).join('');
+
+  const fruits = FRUITS.map(f => `<div class="fruit-tag">${f}</div>`).join('');
+
+  el.innerHTML = `
+    <div class="rules-hero">
+      <div class="rules-hero-kicker">Las varje morgon</div>
+      <div class="rules-hero-title">10 regler</div>
+    </div>
+    ${rules}
+    <div class="section-label" style="padding:1.25rem 1.25rem .6rem;">Tillåtna frukter</div>
+    <div class="fruit-grid">${fruits}</div>
+    <div class="fruit-avoid-note">Undvik äpple och päron — ALCAT-reaktion</div>
+    <div class="section-label" style="padding:1.25rem 1.25rem .5rem;">Dagligt schema</div>
+    <div style="padding:0 1.25rem 1.5rem; font-size:.875rem; line-height:2.2; color:var(--muted);">
+      <strong style="color:var(--black);">06:15</strong> Frukost &nbsp;·&nbsp;
+      <strong style="color:var(--black);">09:00</strong> Frukt &nbsp;·&nbsp;
+      <strong style="color:var(--black);">12:00</strong> Lunch &nbsp;·&nbsp;
+      <strong style="color:var(--black);">15:00</strong> Grönsaker &nbsp;·&nbsp;
+      <strong style="color:var(--black);">18:00</strong> Middag &nbsp;·&nbsp;
+      <strong style="color:var(--black);">21:00</strong> Grönsaker
+    </div>`;
+}
+
+// ─── RENDER SHOP ──────────────────────────────────────────────────────────────
+
+function renderShop() {
+  const state = getState();
+  const el = document.getElementById('page-shop');
+
+  const makeRows = (items, prefix) => items.map((item, i) => {
+    const key = `shop_${prefix}_${i}`;
+    const bought = !!state[key];
+    return `
+      <div class="shop-row ${bought ? 'bought' : ''}" onclick="toggleShop('${key}')">
+        <div class="shop-box">${bought ? '✓' : ''}</div>
+        <span class="shop-label">${item}</span>
+      </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="shop-group-label">Veckans bas — köp varje vecka (× 3)</div>
+    ${makeRows(SHOP_WEEKLY, 'w')}
+    <div class="shop-group-label">Engångsinköp — räcker hela perioden</div>
+    ${makeRows(SHOP_ONCE, 'o')}
+    <div class="shop-reset-row">
+      <button class="btn-outline" onclick="resetShop()">Nollställ listan</button>
+    </div>`;
+}
+
+window.toggleShop = function(key) {
+  const s = getState(); s[key] = !s[key]; setState(s); renderShop();
+};
+window.resetShop = function() {
+  const s = getState();
+  Object.keys(s).filter(k => k.startsWith('shop_')).forEach(k => delete s[k]);
+  setState(s); renderShop();
+};
+
+// ─── NAV ─────────────────────────────────────────────────────────────────────
+
+window.showPage = function(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  const order = ['today','recipe','calendar','rules','shop'];
+  document.querySelectorAll('.nav-tab')[order.indexOf(page)]?.classList.add('active');
+  if (page === 'recipe') renderRecipe();
+  if (page === 'calendar') renderCalendar();
+  if (page === 'rules') renderRules();
+  if (page === 'shop') renderShop();
+};
+
+// ─── TIMER TICK ──────────────────────────────────────────────────────────────
+
+function tickTimer() {
+  const el = document.getElementById('timer-val');
+  if (!el) return;
+  const { secs } = getSecsToNext();
+  const h = Math.floor(secs / 3600);
+  const m = Math.floor((secs % 3600) / 60);
+  const s = secs % 60;
+  el.textContent = h > 0
+    ? `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`
+    : `${m}:${String(s).padStart(2,'0')}`;
+}
+
+// ─── PWA ─────────────────────────────────────────────────────────────────────
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+
+renderToday();
+renderRules();
+setInterval(tickTimer, 1000);
+setInterval(() => {
+  if (document.getElementById('page-today').classList.contains('active')) renderToday();
+}, 60000);
+</script>
+</body>
+</html>
