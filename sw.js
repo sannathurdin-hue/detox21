@@ -1,5 +1,5 @@
-const CACHE = 'detox21-v1';
-const ASSETS = ['./detox21.html', './manifest.json', './icon.svg'];
+const CACHE = 'detox21-v2';
+const ASSETS = ['./index.html', './manifest.json', './icon.svg', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
