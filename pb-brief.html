@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proteinbolaget — BI-Weekly 9 april 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pb-orange: #D85A30;
+    --pb-orange-light: #F0C4B0;
+    --pb-orange-dark: #A83E1A;
+    --bg: #0F0E0C;
+    --bg2: #181714;
+    --bg3: #211F1C;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #F0EDE8;
+    --text-muted: #9E9A93;
+    --text-dim: #5C5954;
+    --neg: #E24B4A;
+    --pos: #6CB85A;
+    --warning: #E8A320;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 48px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .brand { display: flex; flex-direction: column; gap: 4px; }
+  .brand-logo { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--pb-orange); letter-spacing: -0.5px; }
+  .brand-sub { font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .header-meta { text-align: right; }
+  .header-date { font-size: 13px; color: var(--text-muted); }
+  .header-alert { font-size: 12px; font-weight: 600; color: var(--pb-orange); margin-top: 4px; letter-spacing: 0.02em; }
+
+  /* PODCAST PLAYER */
+  .podcast-bar {
+    background: linear-gradient(135deg, #1A1210 0%, #201A17 100%);
+    border-bottom: 1px solid var(--border2);
+    padding: 18px 48px;
+  }
+  .podcast-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 20px; }
+  .podcast-label {
+    display: flex; flex-direction: column; gap: 2px; min-width: 200px;
+  }
+  .podcast-title { font-size: 13px; font-weight: 600; color: var(--text); }
+  .podcast-sub { font-size: 11px; color: var(--text-muted); }
+  .podcast-inner audio {
+    flex: 1;
+    height: 36px;
+    filter: invert(1) hue-rotate(180deg) saturate(0.5);
+    opacity: 0.85;
+  }
+
+  /* MAIN LAYOUT */
+  .main { max-width: 1100px; margin: 0 auto; padding: 40px 48px; display: flex; flex-direction: column; gap: 36px; }
+
+  /* SECTION */
+  .section-label {
+    font-size: 10px; font-weight: 600; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: 14px;
+  }
+
+  /* AGENDA */
+  .agenda-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .agenda-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 20px;
+    border-left: 3px solid var(--border2); transition: border-color .15s;
+  }
+  .agenda-card:hover { border-color: rgba(216,90,48,0.5); }
+  .agenda-card.hot { border-left-color: var(--pb-orange); }
+  .agenda-card.cold { opacity: 0.65; }
+  .ag-num { font-size: 10px; font-weight: 700; color: var(--pb-orange); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .ag-head { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .ag-body { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  /* KPI ROW */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .kpi {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .kpi-label { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+  .kpi-val { font-size: 22px; font-weight: 300; color: var(--text); letter-spacing: -0.5px; }
+  .kpi-delta { font-size: 11px; font-weight: 600; margin-top: 3px; }
+  .neg-c { color: var(--neg); }
+  .pos-c { color: var(--pos); }
+  .neu-c { color: var(--text-muted); }
+
+  /* MARKET TABS */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 14px; }
+  .tab {
+    padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    background: var(--bg3); color: var(--text-muted); border: 1px solid var(--border);
+    cursor: pointer; transition: all .12s;
+  }
+  .tab.active { background: var(--pb-orange); color: #fff; border-color: var(--pb-orange); }
+  .mkt-panel { display: none; }
+  .mkt-panel.active { display: block; }
+  .mkt-row {
+    display: grid; grid-template-columns: 90px 1fr 90px 72px 200px;
+    gap: 8px; align-items: center; padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .mkt-row:last-child { border-bottom: none; }
+  .mkt-name { font-size: 13px; font-weight: 500; }
+  .bar-bg { background: rgba(255,255,255,0.06); border-radius: 4px; height: 6px; overflow: hidden; }
+  .bar-fill { height: 6px; border-radius: 4px; }
+  .neg-bar { background: var(--neg); }
+  .pos-bar { background: var(--pos); }
+  .mkt-sales { font-size: 13px; color: var(--text); text-align: right; }
+  .mkt-delta { font-size: 12px; font-weight: 600; text-align: right; }
+  .mkt-note { font-size: 11px; color: var(--text-dim); }
+
+  /* INSIGHTS */
+  .insight-list { display: flex; flex-direction: column; gap: 10px; }
+  .insight {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-left: 3px solid var(--warning); border-radius: 10px;
+    padding: 13px 18px; font-size: 13px; color: var(--text-muted); line-height: 1.55;
+  }
+  .insight.warn { border-left-color: var(--neg); }
+  .insight.ok { border-left-color: var(--pos); }
+  .insight strong { color: var(--text); font-weight: 600; }
+
+  /* FRUITS */
+  .fruit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .fruit {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px;
+  }
+  .fruit-head { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .fruit-body { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+  /* PNL ROW */
+  .pnl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+  /* BOARD CANDIDATES */
+  .board-grid { display: flex; flex-direction: column; gap: 8px; }
+  .board-row {
+    display: grid; grid-template-columns: 28px 160px 180px 1fr 60px 60px;
+    gap: 12px; align-items: center;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 16px;
+  }
+  .board-num { font-size: 11px; color: var(--text-dim); }
+  .board-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .board-role { font-size: 11px; color: var(--text-muted); }
+  .board-co { font-size: 11px; color: var(--text-dim); }
+  .board-score { font-size: 12px; font-weight: 700; text-align: right; }
+  .score-hi { color: var(--pos); }
+  .score-mid { color: var(--warning); }
+  .score-lo { color: var(--text-muted); }
+  .board-pct { font-size: 12px; font-weight: 600; text-align: right; color: var(--text-muted); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 32px 48px;
+    font-size: 11px; color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  @media (max-width: 700px) {
+    .header, .podcast-inner, .main { padding-left: 20px; padding-right: 20px; }
+    .agenda-grid, .kpi-grid, .fruit-grid, .pnl-grid { grid-template-columns: 1fr; }
+    .board-row { grid-template-columns: 28px 1fr 1fr; }
+    .board-co, .board-role { display: none; }
+    .mkt-row { grid-template-columns: 80px 1fr 70px 60px; }
+    .mkt-note { display: none; }
+    .podcast-bar { padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+    <div class="brand-logo">Proteinbolaget</div>
+    <div class="brand-sub">BI-Weekly — Intern mötesöversikt</div>
+  </div>
+  <div class="header-meta">
+    <div class="header-date">9 april 2026</div>
+    <div class="header-alert">Q1 topline: −7,5 MSEK vs BU &nbsp;|&nbsp; −12,4% från budget</div>
+  </div>
+</header>
+
+<!-- PODCAST PLAYER -->
+<div class="podcast-bar">
+  <div class="podcast-inner">
+    <div class="podcast-label">
+      <div class="podcast-title">🎙 Sanna briefar Patrik</div>
+      <div class="podcast-sub">Poddsammanfattning — 9 april 2026</div>
+    </div>
+    <audio controls src="sanna-briefar-patrik.mp3"></audio>
+  </div>
+</div>
+
+<main class="main">
+
+  <!-- AGENDA -->
+  <section>
+    <div class="section-label">Agenda</div>
+    <div class="agenda-grid">
+      <div class="agenda-card hot">
+        <div class="ag-num">Punkt 1 — Prioritet</div>
+        <div class="ag-head">Försäljningstillväxt</div>
+        <div class="ag-body">Analysera orsaken till Q1-tappet på −12,4% vs BU. Förskjutning som hämtas igen eller trendbrott? Focus: FI-marknadens kollaps och AOV-fallet.</div>
+      </div>
+      <div class="agenda-card hot">
+        <div class="ag-num">Punkt 2 — Prioritet</div>
+        <div class="ag-head">Kortsiktig actionplan PRU/LB</div>
+        <div class="ag-body">Identifiera "low hanging fruits" i integrationen. Kan integrationsvinster kompensera topline-missen och stärka likviditeten?</div>
+      </div>
+      <div class="agenda-card cold">
+        <div class="ag-num">Punkt 3 — Om tid finns</div>
+        <div class="ag-head">Styrelsekandidater</div>
+        <div class="ag-body">Genomgång av long-list (10 kandidater). Toppare: Martin Daniels & Aida Jammal (100% match), Paul "Dino" Larsson (88%).</div>
+      </div>
+      <div class="agenda-card cold">
+        <div class="ag-num">Punkt 4 — Om tid finns</div>
+        <div class="ag-head">Beslut Project Phoenix (HSNG)</div>
+        <div class="ag-body">Indikativt bud eller avvakta? Kort beslutspunkt baserat på separat underlag.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Q1 TOTALT -->
+  <section>
+    <div class="section-label">Q1 nyckeltal — PB Totalt</div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Gross sales</div><div class="kpi-val">52,8M</div><div class="kpi-delta neg-c">↓ −6,6%</div></div>
+      <div class="kpi"><div class="kpi-label">Order count</div><div class="kpi-val">102,4K</div><div class="kpi-delta pos-c">↑ +1,7%</div></div>
+      <div class="kpi"><div class="kpi-label">Visits</div><div class="kpi-val">1,5M</div><div class="kpi-delta neg-c">↓ −13,8%</div></div>
+      <div class="kpi"><div class="kpi-label">AOV</div><div class="kpi-val">515 kr</div><div class="kpi-delta neg-c">↓ −8,1%</div></div>
+      <div class="kpi"><div class="kpi-label">Unika kunder</div><div class="kpi-val">80,3K</div><div class="kpi-delta pos-c">↑ +2,9%</div></div>
+      <div class="kpi"><div class="kpi-label">Återvändande</div><div class="kpi-val">48,0K</div><div class="kpi-delta pos-c">↑ +2,2%</div></div>
+      <div class="kpi"><div class="kpi-label">Nya kunder</div><div class="kpi-val">32,3K</div><div class="kpi-delta pos-c">↑ +3,9%</div></div>
+      <div class="kpi"><div class="kpi-label">CAC</div><div class="kpi-val">181 kr</div><div class="kpi-delta pos-c">↓ −25,8%</div></div>
+    </div>
+  </section>
+
+  <!-- MARKNADER -->
+  <section>
+    <div class="section-label">Marknadsöversikt</div>
+    <div class="tab-row">
+      <div class="tab active" onclick="showMkt('all',this)">Alla</div>
+      <div class="tab" onclick="showMkt('se',this)">🇸🇪 SE</div>
+      <div class="tab" onclick="showMkt('fi',this)">🇫🇮 FI</div>
+      <div class="tab" onclick="showMkt('no',this)">🇳🇴 NO</div>
+    </div>
+
+    <div class="mkt-panel active" id="mkt-all">
+      <div class="mkt-row" style="font-size:10px;color:var(--text-dim);font-weight:600;text-transform:uppercase;letter-spacing:.08em">
+        <div>Marknad</div><div></div><div style="text-align:right">Sales</div><div style="text-align:right">Δ YoY</div><div>Notering</div>
+      </div>
+      <div class="mkt-row">
+        <div class="mkt-name">🇸🇪 Sverige</div>
+        <div class="bar-bg"><div class="bar-fill neg-bar" style="width:39%"></div></div>
+        <div class="mkt-sales">42,9M</div>
+        <div class="mkt-delta neg-c">−3,9%</div>
+        <div class="mkt-note">Störst marknad, trafik ner men orders upp</div>
+      </div>
+      <div class="mkt-row">
+        <div class="mkt-name">🇫🇮 Finland</div>
+        <div class="bar-bg"><div class="bar-fill neg-bar" style="width:100%"></div></div>
+        <div class="mkt-sales">7,0M</div>
+        <div class="mkt-delta neg-c">−22,5%</div>
+        <div class="mkt-note">⚠ Alla nyckeltal röda — primär risk</div>
+      </div>
+      <div class="mkt-row">
+        <div class="mkt-name">🇳🇴 Norge</div>
+        <div class="bar-bg"><div class="bar-fill pos-bar" style="width:25%"></div></div>
+        <div class="mkt-sales">2,8M</div>
+        <div class="mkt-delta pos-c">+2,5%</div>
+        <div class="mkt-note">Enda marknaden med tillväxt</div>
+      </div>
+    </div>
+
+    <div class="mkt-panel" id="mkt-se">
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-label">Gross sales</div><div class="kpi-val">42,9M</div><div class="kpi-delta neg-c">↓ −3,9%</div></div>
+        <div class="kpi"><div class="kpi-label">Orders</div><div class="kpi-val">85,2K</div><div class="kpi-delta pos-c">↑ +5,1%</div></div>
+        <div class="kpi"><div class="kpi-label">AOV</div><div class="kpi-val">503 kr</div><div class="kpi-delta neg-c">↓ −8,5%</div></div>
+        <div class="kpi"><div class="kpi-label">CAC</div><div class="kpi-val">173 kr</div><div class="kpi-delta pos-c">↓ −30,4%</div></div>
+      </div>
+      <p style="font-size:12px;color:var(--text-dim);margin-top:12px">Orders upp trots lägre AOV och trafik (−13%). Search Paid tappar kraftigt men CAC förbättras — tyder på effektivare kanalmix.</p>
+    </div>
+
+    <div class="mkt-panel" id="mkt-fi">
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-label">Gross sales</div><div class="kpi-val">7,0M</div><div class="kpi-delta neg-c">↓ −22,5%</div></div>
+        <div class="kpi"><div class="kpi-label">Orders</div><div class="kpi-val">12,5K</div><div class="kpi-delta neg-c">↓ −15,4%</div></div>
+        <div class="kpi"><div class="kpi-label">AOV</div><div class="kpi-val">563 kr</div><div class="kpi-delta neg-c">↓ −8,4%</div></div>
+        <div class="kpi"><div class="kpi-label">Nya kunder</div><div class="kpi-val">3,4K</div><div class="kpi-delta neg-c">↓ −26,2%</div></div>
+      </div>
+      <p style="font-size:12px;color:var(--text-dim);margin-top:12px">Alla nyckeltal röda. Störst tapp i nya kunder (−26%). Kritisk fråga: är det ett trendbrott eller marknadsspecifik störning?</p>
+    </div>
+
+    <div class="mkt-panel" id="mkt-no">
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-label">Gross sales</div><div class="kpi-val">2,8M</div><div class="kpi-delta pos-c">↑ +2,5%</div></div>
+        <div class="kpi"><div class="kpi-label">AOV</div><div class="kpi-val">606 kr</div><div class="kpi-delta pos-c">↑ +5,2%</div></div>
+        <div class="kpi"><div class="kpi-label">Återvändande</div><div class="kpi-val">1,5K</div><div class="kpi-delta pos-c">↑ +11,9%</div></div>
+        <div class="kpi"><div class="kpi-label">CAC</div><div class="kpi-val">159 kr</div><div class="kpi-delta pos-c">↓ −2,2%</div></div>
+      </div>
+      <p style="font-size:12px;color:var(--text-dim);margin-top:12px">Enda marknaden med positivt utfall. Högst AOV (606 kr) och stark lojalitet. Kan tjäna som modell för SE och FI.</p>
+    </div>
+  </section>
+
+  <!-- INSIKTER -->
+  <section>
+    <div class="section-label">Nyckelinsikter inför diskussionen</div>
+    <div class="insight-list">
+      <div class="insight warn"><strong>Paradox:</strong> Order count är upp (+1,7%) men sales är ner (−6,6%). Det är AOV (−8%) och trafik (−14%) som driver tappet — inte kundantalet. Tyder på prispress, sämre mix eller promo-tyngd trafik snarare än kundtapp.</div>
+      <div class="insight warn"><strong>Finland är problemmarknaden.</strong> −22,5% i sales och −26% i nya kunder. Avgörande fråga i mötet: är det ett strukturellt trendbrott eller kopplat till specifika kampanjer/konkurrens?</div>
+      <div class="insight ok"><strong>CAC har förbättrats dramatiskt</strong> (−25,8% totalt, −30% i SE). Vi spenderar inte fel — konverteringen per besök eller ordervärdet är lägre. Det är ett positivt strukturellt tecken.</div>
+      <div class="insight"><strong>Search Paid tappade markant</strong> vs jämförelseperiod i alla marknader. Avgörande att förstå: är det budgetnedskärning, kvalitetstapp, eller ökad CPC-konkurrens?</div>
+    </div>
+  </section>
+
+  <!-- LOW HANGING FRUITS -->
+  <section>
+    <div class="section-label">Low hanging fruits — PRU/LB integration</div>
+    <div class="fruit-grid">
+      <div class="fruit">
+        <div class="fruit-head">📧 CRM-synergier</div>
+        <div class="fruit-body">Korsförsäljning till befintliga kunder via email/CRM. Lägsta möjliga CAC. Snabbast att realisera.</div>
+      </div>
+      <div class="fruit">
+        <div class="fruit-head">📦 Gemensamma leverantörsavtal</div>
+        <div class="fruit-body">Samordnade inköpsvolymer ger direkta kostnadsbesparingar i COGS — slår snabbt på marginalen.</div>
+      </div>
+      <div class="fruit">
+        <div class="fruit-head">🏭 Delad lagerinfrastruktur</div>
+        <div class="fruit-body">Reducerade fulfillment-kostnader via samlat lager/3PL. Längre ledtid men stor potential.</div>
+      </div>
+      <div class="fruit">
+        <div class="fruit-head">📣 Gemensam marknadsföring</div>
+        <div class="fruit-body">Paketerat erbjudande och delad annonsbudget sänker CAC ytterligare och stärker varumärkena.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARS P&L -->
+  <section>
+    <div class="section-label">Mars P&L — snabbfakta</div>
+    <div class="pnl-grid">
+      <div class="kpi"><div class="kpi-label">Net sales (mars)</div><div class="kpi-val">21,2 MSEK</div><div class="kpi-delta neg-c">−10% vs LY &nbsp;|&nbsp; −10% vs BU</div></div>
+      <div class="kpi"><div class="kpi-label">EBITDA</div><div class="kpi-val">957 TSEK</div><div class="kpi-delta neu-c">4,5% marginal</div></div>
+      <div class="kpi"><div class="kpi-label">GP1-marginal</div><div class="kpi-val">43,2%</div><div class="kpi-delta neu-c">GP1: 9,1 MSEK</div></div>
+    </div>
+  </section>
+
+  <!-- STYRELSEKANDIDATER -->
+  <section>
+    <div class="section-label">Styrelsekandidater — top 5 enligt long-list</div>
+    <div class="board-grid">
+      <div class="board-row" style="background:rgba(99,185,90,0.06);border-color:rgba(99,185,90,0.2)">
+        <div class="board-num">1</div>
+        <div class="board-name">Martin Daniels</div>
+        <div class="board-role">VD</div>
+        <div class="board-co">Pet Pawr Group (Zoo.se)</div>
+        <div class="board-score score-hi">8/8</div>
+        <div class="board-pct pos-c">100%</div>
+      </div>
+      <div class="board-row" style="background:rgba(99,185,90,0.06);border-color:rgba(99,185,90,0.2)">
+        <div class="board-num">7</div>
+        <div class="board-name">Aida Jammal</div>
+        <div class="board-role">Partner</div>
+        <div class="board-co">eEquity</div>
+        <div class="board-score score-hi">8/8</div>
+        <div class="board-pct pos-c">100%</div>
+      </div>
+      <div class="board-row">
+        <div class="board-num">6</div>
+        <div class="board-name">Paul "Dino" Larsson</div>
+        <div class="board-role">Ägare ICA Maxi Visby</div>
+        <div class="board-co">ICA, Tennstopet</div>
+        <div class="board-score score-mid">7/8</div>
+        <div class="board-pct" style="color:var(--warning)">88%</div>
+      </div>
+      <div class="board-row">
+        <div class="board-num">4</div>
+        <div class="board-name">Magnus Ohlsson</div>
+        <div class="board-role">VD</div>
+        <div class="board-co">Xtreme Insight</div>
+        <div class="board-score score-mid">6/8</div>
+        <div class="board-pct" style="color:var(--warning)">75%</div>
+      </div>
+      <div class="board-row">
+        <div class="board-num">5</div>
+        <div class="board-name">Adeline Sterner</div>
+        <div class="board-role">Chairman / Board member</div>
+        <div class="board-co">Kjell och Company, GlowiD, Care of Carl</div>
+        <div class="board-score score-mid">6/8</div>
+        <div class="board-pct" style="color:var(--warning)">75%</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Proteinbolaget &nbsp;·&nbsp; BI-Weekly 9 april 2026 &nbsp;·&nbsp; Konfidentiellt — intern användning
+</footer>
+
+<script>
+function showMkt(id, el) {
+  document.querySelectorAll('.mkt-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('mkt-' + id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
