@@ -695,6 +695,143 @@ body {
 }
 .btn-outline:hover { background: var(--black); color: var(--white); }
 
+/* ── MENU PAGE ── */
+.menu-page { padding: 1.5rem 1.25rem 3rem; }
+.menu-page-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: .35rem;
+}
+.menu-page-sub {
+  font-size: .72rem;
+  color: var(--muted);
+  letter-spacing: .04em;
+  margin-bottom: 1.75rem;
+}
+.menu-upload-zone {
+  border: 1px dashed var(--muted-light);
+  border-radius: 2px;
+  padding: 2.5rem 1.25rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+.menu-upload-zone:hover { border-color: var(--black); background: var(--off-white); }
+.menu-upload-zone input[type=file] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+}
+.menu-upload-icon {
+  font-size: 2rem;
+  margin-bottom: .75rem;
+  opacity: .35;
+}
+.menu-upload-label {
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.menu-preview {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--border);
+}
+.menu-btn {
+  width: 100%;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  padding: .85rem 1.5rem;
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity .2s;
+  margin-bottom: 1.75rem;
+}
+.menu-btn:disabled { opacity: .4; cursor: default; }
+.menu-loading {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: .8rem;
+  color: var(--muted);
+  letter-spacing: .06em;
+  display: none;
+}
+.menu-loading.visible { display: block; }
+.menu-result { display: none; }
+.menu-result.visible { display: block; }
+.menu-result-section {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--border);
+}
+.menu-result-section:first-child { border-top: none; }
+.menu-result-kicker {
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .6rem;
+}
+.menu-result-body {
+  font-size: .9rem;
+  line-height: 1.65;
+  color: var(--black);
+}
+.menu-result-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu-result-list li {
+  font-size: .875rem;
+  line-height: 1.6;
+  color: var(--black);
+  padding: .2rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+.menu-result-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--muted-light);
+}
+.menu-risk-badge {
+  display: inline-block;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .3rem .75rem;
+  border-radius: 1px;
+}
+.menu-risk-badge.low { background: var(--green-subtle); color: var(--green); }
+.menu-risk-badge.medium { background: #fdf6ec; color: #9a6500; }
+.menu-risk-badge.high { background: #fdf0f0; color: #9a0000; }
+.menu-risk-text { margin-top: .5rem; font-size: .82rem; color: var(--muted); line-height: 1.55; }
+.menu-error {
+  padding: 1rem;
+  background: #fdf0f0;
+  border-radius: 2px;
+  font-size: .82rem;
+  color: #9a0000;
+  display: none;
+}
+.menu-error.visible { display: block; }
+
 /* ── PRE-START / DONE ── */
 .pre-start {
   padding: 3rem 1.25rem;
@@ -731,6 +868,7 @@ body {
     <button class="nav-tab" onclick="showPage('calendar')">Kalender</button>
     <button class="nav-tab" onclick="showPage('rules')">Regler</button>
     <button class="nav-tab" onclick="showPage('shop')">Inkop</button>
+    <button class="nav-tab" onclick="showPage('menu')">Meny</button>
   </nav>
 </header>
 
@@ -740,6 +878,7 @@ body {
   <div id="page-calendar" class="page"></div>
   <div id="page-rules" class="page"></div>
   <div id="page-shop" class="page"></div>
+  <div id="page-menu" class="page"></div>
 </main>
 
 <script>
@@ -1187,18 +1326,142 @@ window.resetShop = function() {
   setState(s); renderShop();
 };
 
+// ─── RENDER MENU ──────────────────────────────────────────────────────────────
+
+function renderMenu() {
+  const el = document.getElementById('page-menu');
+  if (el.dataset.rendered) return;
+  el.dataset.rendered = '1';
+
+  el.innerHTML = `
+    <div class="menu-page">
+      <div class="menu-page-title">Menyhjälp</div>
+      <div class="menu-page-sub">Fotografera restaurangmenyn — AI:n väljer bästa rätt enligt dina detoxregler.</div>
+
+      <div class="menu-upload-zone" id="menu-upload-zone">
+        <input type="file" id="menu-file-input" accept="image/*" capture="environment">
+        <div class="menu-upload-icon">&#9679;</div>
+        <div class="menu-upload-label">Ta foto eller välj bild</div>
+      </div>
+
+      <img id="menu-preview" class="menu-preview" style="display:none;" alt="Menyförhandsvisning">
+
+      <button class="menu-btn" id="menu-analyze-btn" disabled onclick="analyzeMenu()">Analysera meny</button>
+
+      <div class="menu-error" id="menu-error"></div>
+      <div class="menu-loading" id="menu-loading">Analyserar menyn…</div>
+
+      <div class="menu-result" id="menu-result">
+        <div class="menu-result-section">
+          <div class="menu-result-kicker">Bästa val</div>
+          <div class="menu-result-body" id="res-basta-val"></div>
+        </div>
+        <div class="menu-result-section">
+          <div class="menu-result-kicker">Be restaurangen ändra</div>
+          <ul class="menu-result-list" id="res-be-om"></ul>
+        </div>
+        <div class="menu-result-section">
+          <div class="menu-result-kicker">Undvik helt</div>
+          <ul class="menu-result-list" id="res-undvik"></ul>
+        </div>
+        <div class="menu-result-section">
+          <div class="menu-result-kicker">Risknivå</div>
+          <div id="res-risk-badge"></div>
+          <div class="menu-risk-text" id="res-risk-text"></div>
+        </div>
+        <div class="menu-result-section">
+          <div class="menu-result-kicker">Om inget funkar</div>
+          <div class="menu-result-body" id="res-fallback"></div>
+        </div>
+      </div>
+    </div>`;
+
+  document.getElementById('menu-file-input').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+    const preview = document.getElementById('menu-preview');
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = 'block';
+    document.getElementById('menu-upload-zone').style.display = 'none';
+    document.getElementById('menu-analyze-btn').disabled = false;
+    document.getElementById('menu-result').classList.remove('visible');
+    document.getElementById('menu-error').classList.remove('visible');
+  });
+}
+
+window.analyzeMenu = async function() {
+  const fileInput = document.getElementById('menu-file-input');
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  const btn = document.getElementById('menu-analyze-btn');
+  const loading = document.getElementById('menu-loading');
+  const result = document.getElementById('menu-result');
+  const errorEl = document.getElementById('menu-error');
+
+  btn.disabled = true;
+  loading.classList.add('visible');
+  result.classList.remove('visible');
+  errorEl.classList.remove('visible');
+
+  try {
+    const base64 = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+
+    const res = await fetch('/.netlify/functions/analyze-menu', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imageBase64: base64, mimeType: file.type }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || data.error) {
+      throw new Error(data.error || 'Okänt fel.');
+    }
+
+    document.getElementById('res-basta-val').textContent = data.basta_val ?? '—';
+
+    const beOm = document.getElementById('res-be-om');
+    beOm.innerHTML = (data.be_om_andring ?? []).map(t => `<li>${t}</li>`).join('') || '<li>Inga ändringar behövs.</li>';
+
+    const undvik = document.getElementById('res-undvik');
+    undvik.innerHTML = (data.undvik ?? []).map(t => `<li>${t}</li>`).join('') || '<li>—</li>';
+
+    const risk = (data.riskniva ?? 'medium').toLowerCase();
+    const riskLabel = { low: 'Låg risk', medium: 'Medel risk', high: 'Hög risk' }[risk] ?? risk;
+    document.getElementById('res-risk-badge').innerHTML = `<span class="menu-risk-badge ${risk}">${riskLabel}</span>`;
+    document.getElementById('res-risk-text').textContent = data.riskniva_motivering ?? '';
+
+    document.getElementById('res-fallback').textContent = data.om_inget_funkar ?? '—';
+
+    result.classList.add('visible');
+  } catch (err) {
+    errorEl.textContent = err.message || 'Något gick fel. Försök igen.';
+    errorEl.classList.add('visible');
+  } finally {
+    loading.classList.remove('visible');
+    btn.disabled = false;
+  }
+};
+
 // ─── NAV ─────────────────────────────────────────────────────────────────────
 
 window.showPage = function(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
-  const order = ['today','recipe','calendar','rules','shop'];
+  const order = ['today','recipe','calendar','rules','shop','menu'];
   document.querySelectorAll('.nav-tab')[order.indexOf(page)]?.classList.add('active');
   if (page === 'recipe') renderRecipe();
   if (page === 'calendar') renderCalendar();
   if (page === 'rules') renderRules();
   if (page === 'shop') renderShop();
+  if (page === 'menu') renderMenu();
 };
 
 // ─── TIMER TICK ──────────────────────────────────────────────────────────────
