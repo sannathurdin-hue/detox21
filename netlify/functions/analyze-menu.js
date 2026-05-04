@@ -8,17 +8,23 @@ exports.handler = async (event) => {
     return { statusCode: 500, body: JSON.stringify({ error: 'API-nyckel saknas på servern.' }) };
   }
 
-  let imageBase64, mimeType;
+  let image;
   try {
-    ({ imageBase64, mimeType } = JSON.parse(event.body));
+    ({ image } = JSON.parse(event.body));
   } catch {
     return { statusCode: 400, body: JSON.stringify({ error: 'Ogiltig förfrågan.' }) };
   }
 
+  if (!image || !image.startsWith('data:image')) {
+    return { statusCode: 400, body: JSON.stringify({ error: 'Bilden saknas eller har fel format.' }) };
+  }
+
+  console.log('Image prefix (50 chars):', image.slice(0, 50));
+
   const PROMPT = `Du är kostrådgivare för Patrik Rees som följer ett strikt 21-dagars detoxprotokoll.
 
 DETOXREGLER:
-- Ingen mejeriprodukter, inkl. smör.
+- Inga mejeriprodukter, inkl. smör.
 - Inget gluten.
 - Inget socker, agave, lönnsirap, sötningsmedel.
 - Ingen jäst.
@@ -33,12 +39,12 @@ DETOXREGLER:
 
 Analysera restaurangmenyn på bilden och svara ENBART med ett JSON-objekt i följande format (inga kommentarer, inga markdown-block):
 {
-  "basta_val": "Beskriv det bästa matvalet från menyn, inkl. hur man beställer det (t.ex. 'utan sås', 'grillat i olivolja').",
+  "basta_val": "Beskriv det bästa matvalet från menyn, inkl. hur man beställer det.",
   "be_om_andring": ["Konkret ändring 1 att be om", "Konkret ändring 2"],
   "undvik": ["Rätt eller ingrediens att undvika 1", "Rätt 2"],
   "riskniva": "low | medium | high",
   "riskniva_motivering": "Kort förklaring av risknivån.",
-  "om_inget_funkar": "Vad Patrik ska göra om inget passar — t.ex. beställa enkla ångade grönsaker och vatten."
+  "om_inget_funkar": "Vad Patrik ska göra om inget passar."
 }`;
 
   let openaiRes;
@@ -57,7 +63,7 @@ Analysera restaurangmenyn på bilden och svara ENBART med ett JSON-objekt i föl
             content: [
               {
                 type: 'input_image',
-                image_url: `data:${mimeType};base64,${imageBase64}`,
+                image_url: { url: image },
               },
               {
                 type: 'input_text',
@@ -70,22 +76,32 @@ Analysera restaurangmenyn på bilden och svara ENBART med ett JSON-objekt i föl
       }),
     });
   } catch (err) {
+    console.error('Fetch to OpenAI failed:', err.message);
     return { statusCode: 502, body: JSON.stringify({ error: 'Kunde inte nå OpenAI.' }) };
   }
 
+  const rawBody = await openaiRes.text();
+  console.log('OpenAI status:', openaiRes.status);
+  console.log('OpenAI response (500 chars):', rawBody.slice(0, 500));
+
   if (!openaiRes.ok) {
-    const errText = await openaiRes.text();
-    return { statusCode: 502, body: JSON.stringify({ error: `OpenAI-fel: ${openaiRes.status}`, detail: errText }) };
+    return { statusCode: 502, body: JSON.stringify({ error: `OpenAI-fel ${openaiRes.status}.`, detail: rawBody.slice(0, 300) }) };
   }
 
-  const data = await openaiRes.json();
+  let data;
+  try {
+    data = JSON.parse(rawBody);
+  } catch {
+    return { statusCode: 502, body: JSON.stringify({ error: 'Oväntat svar från OpenAI.' }) };
+  }
+
   const text = data?.output?.[0]?.content?.[0]?.text ?? '';
 
   let parsed;
   try {
     parsed = JSON.parse(text);
   } catch {
-    return { statusCode: 502, body: JSON.stringify({ error: 'Kunde inte tolka svaret från AI.', raw: text }) };
+    return { statusCode: 502, body: JSON.stringify({ error: 'Kunde inte tolka AI-svaret.', raw: text.slice(0, 300) }) };
   }
 
   return {
