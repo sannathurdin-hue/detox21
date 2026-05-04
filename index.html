@@ -1389,6 +1389,34 @@ function renderMenu() {
   });
 }
 
+function resizeImageToDataUrl(file, maxPx, quality) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error('Kunde inte läsa bildfilen.'));
+    reader.onload = () => {
+      const dataUrl = reader.result;
+      if (!dataUrl.startsWith('data:image')) {
+        return reject(new Error('Bilden har fel format. Prova ett annat foto.'));
+      }
+      const img = new Image();
+      img.onerror = () => reject(new Error('Bilden kunde inte avkodas.'));
+      img.onload = () => {
+        let w = img.naturalWidth, h = img.naturalHeight;
+        if (w > maxPx || h > maxPx) {
+          if (w > h) { h = Math.round(h * maxPx / w); w = maxPx; }
+          else       { w = Math.round(w * maxPx / h); h = maxPx; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = dataUrl;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
 window.analyzeMenu = async function() {
   const fileInput = document.getElementById('menu-file-input');
   const file = fileInput.files[0];
@@ -1405,17 +1433,13 @@ window.analyzeMenu = async function() {
   errorEl.classList.remove('visible');
 
   try {
-    const base64 = await new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result.split(',')[1]);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
+    // Resize to max 1024px and convert to JPEG to keep payload small and format consistent
+    const image = await resizeImageToDataUrl(file, 1024, 0.85);
 
     const res = await fetch('/.netlify/functions/analyze-menu', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ imageBase64: base64, mimeType: file.type }),
+      body: JSON.stringify({ image }),
     });
 
     const data = await res.json();
@@ -1432,7 +1456,7 @@ window.analyzeMenu = async function() {
     const undvik = document.getElementById('res-undvik');
     undvik.innerHTML = (data.undvik ?? []).map(t => `<li>${t}</li>`).join('') || '<li>—</li>';
 
-    const risk = (data.riskniva ?? 'medium').toLowerCase();
+    const risk = (data.riskniva ?? 'medium').toLowerCase().trim();
     const riskLabel = { low: 'Låg risk', medium: 'Medel risk', high: 'Hög risk' }[risk] ?? risk;
     document.getElementById('res-risk-badge').innerHTML = `<span class="menu-risk-badge ${risk}">${riskLabel}</span>`;
     document.getElementById('res-risk-text').textContent = data.riskniva_motivering ?? '';
