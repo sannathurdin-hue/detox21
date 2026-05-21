@@ -1083,6 +1083,109 @@ body {
   background: var(--black);
   padding: .6rem 1.25rem;
 }
+
+/* ── GUIDE PAGE ── */
+.guide-section {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.guide-section-num {
+  font-family: var(--serif);
+  font-size: .85rem;
+  font-weight: 300;
+  color: var(--green);
+  margin-bottom: .3rem;
+}
+.guide-section-title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: .9rem;
+  line-height: 1.3;
+}
+.guide-body {
+  font-size: .875rem;
+  line-height: 1.7;
+  color: var(--black);
+}
+.guide-body p { margin-bottom: .75rem; }
+.guide-body p:last-child { margin-bottom: 0; }
+.guide-list {
+  list-style: none;
+  margin-top: .5rem;
+}
+.guide-list li {
+  display: flex;
+  gap: .75rem;
+  padding: .45rem 0;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.guide-list li:last-child { border-bottom: none; }
+.guide-list li::before {
+  content: '—';
+  color: var(--muted-light);
+  flex-shrink: 0;
+  font-weight: 300;
+}
+.guide-intro {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--green-subtle);
+}
+.guide-intro-text {
+  font-size: .875rem;
+  line-height: 1.75;
+  color: var(--black);
+}
+.guide-callout {
+  background: var(--off-white);
+  border-left: 2px solid var(--green);
+  padding: 1rem 1.25rem;
+  margin-top: .75rem;
+  font-size: .82rem;
+  line-height: 1.6;
+  color: var(--black);
+}
+
+/* ── CAL DETAIL RICH ── */
+.cal-rich-section {
+  padding: .75rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.cal-rich-label {
+  font-size: .55rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .5rem;
+}
+.cal-rich-meal {
+  display: flex;
+  gap: .75rem;
+  padding: .3rem 0;
+  font-size: .82rem;
+  line-height: 1.4;
+  border-bottom: 1px solid var(--border);
+}
+.cal-rich-meal:last-child { border-bottom: none; }
+.cal-rich-time {
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  color: var(--muted);
+  min-width: 42px;
+  padding-top: .1rem;
+}
+.cal-rich-note {
+  font-size: .75rem;
+  color: var(--muted);
+  font-style: italic;
+  padding: .6rem 0 0;
+}
 </style>
 </head>
 <body>
@@ -1099,6 +1202,7 @@ body {
     <button class="nav-tab" onclick="showPage('rules')">Regler</button>
     <button class="nav-tab" onclick="showPage('shop')">Inkop</button>
     <button class="nav-tab" onclick="showPage('menu')">Meny</button>
+    <button class="nav-tab" onclick="showPage('guide')">Guide</button>
   </nav>
 </header>
 
@@ -1109,6 +1213,7 @@ body {
   <div id="page-rules" class="page"></div>
   <div id="page-shop" class="page"></div>
   <div id="page-menu" class="page"></div>
+  <div id="page-guide" class="page"></div>
 </main>
 
 <script>
@@ -1817,11 +1922,38 @@ function renderCalendar() {
 window.showCalDetail = function(num) {
   const day = DAYS[num - 1];
   const rec = RECIPES[day.recipe];
-  document.getElementById('cal-detail').innerHTML = `
-    <div class="section-label" style="padding:1.25rem 1.25rem .6rem;">Dag ${num} — ${day.wd} ${day.date}</div>
-    <div class="recipe-note" style="border-top:1px solid var(--border);">${day.name}${day.protein ? ' · ' + day.protein : ''}</div>
-    <ul class="recipe-ing-list">${rec.ing.map(i => `<li>${i}</li>`).join('')}</ul>
+  const n = getTodayDay();
+  const isFuture = num > n;
+
+  const mealRows = MEALS.map(m => {
+    const desc = m.isRecipe ? `${day.name}${day.protein ? ' (' + day.protein + ')' : ''}` : m.desc;
+    return `<div class="cal-rich-meal">
+      <span class="cal-rich-time">${m.time}</span>
+      <span><strong>${m.name}</strong> — ${desc}</span>
+    </div>`;
+  }).join('');
+
+  const futureNote = isFuture
+    ? `<div class="cal-rich-note">Planerad dag — inga avbockningar ännu.</div>` : '';
+
+  const el = document.getElementById('cal-detail');
+  el.innerHTML = `
+    <div class="cal-rich-section">
+      <div class="cal-rich-label">Detox 21 · Dag ${num}</div>
+      <div style="font-family:var(--serif);font-size:1.1rem;font-weight:400;margin-bottom:.3rem;">${day.wd} ${day.date} — ${day.theme}</div>
+      <div style="font-size:.82rem;color:var(--muted);">${day.name}${day.protein ? ' · ' + day.protein : ''}</div>
+    </div>
+    <div class="cal-rich-section">
+      <div class="cal-rich-label">Måltidsschema</div>
+      ${mealRows}${futureNote}
+    </div>
+    <div class="cal-rich-section">
+      <div class="cal-rich-label">Vattenmål & övrigt</div>
+      <div style="font-size:.82rem;line-height:1.7;">10–12 glas vatten · Örtte tillåtet<br>Ingredienser: ${rec.ing.slice(0,3).join(', ')}…</div>
+    </div>
     <div style="height:1rem;"></div>`;
+
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
 function renderCalendarGreen() {
@@ -1881,12 +2013,50 @@ window.showGPCalDetail = function(gpDay) {
   const menu = getGPDayMenu(gpDay);
   const d = gpDateFromDay(gpDay);
   const wds = ['Sön','Mån','Tis','Ons','Tor','Fre','Lör'];
-  document.getElementById('cal-detail').innerHTML = `
-    <div class="section-label" style="padding:1.25rem 1.25rem .6rem;">Green Phase Dag ${gpDay} — ${wds[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}</div>
-    <div class="recipe-note" style="border-top:1px solid var(--border);">Frukost: ${menu.f}</div>
-    <div class="recipe-note">Lunch: ${menu.l}</div>
-    <div class="recipe-note">Middag: ${menu.m}</div>
+  const todayGP = getGreenDay();
+  const isFuture = gpDay > todayGP;
+
+  const rotWarn = hasRotationWarning(gpDay)
+    ? `<div class="rotation-warning" style="margin-top:.5rem;">Rotationsvarning — ${getGPDayMenu(gpDay-1).p} användes dag ${gpDay-1}. Välj ett annat alternativ.</div>` : '';
+
+  const meals = [
+    { t:'06:15', name:'Frukost',   desc: menu.f },
+    { t:'09:00', name:'Frukt',     desc: 'Valfri Green List-frukt' },
+    { t:'12:00', name:'Lunch',     desc: menu.l },
+    { t:'15:00', name:'Mellanmål', desc: 'Grönsaker + tahini-dip' },
+    { t:'18:00', name:'Middag',    desc: menu.m },
+    { t:'21:00', name:'Kväll',     desc: 'Rå grönsaker' },
+  ];
+  const mealRows = meals.map(m => `<div class="cal-rich-meal">
+    <span class="cal-rich-time">${m.t}</span>
+    <span><strong>${m.name}</strong> — ${m.desc}</span>
+  </div>`).join('');
+
+  const futureNote = isFuture ? `<div class="cal-rich-note">Planerad dag — inga avbockningar ännu.</div>` : '';
+
+  const el = document.getElementById('cal-detail');
+  el.innerHTML = `
+    <div class="cal-rich-section">
+      <div class="cal-rich-label">Green Phase · Dag ${gpDay} av 90</div>
+      <div style="font-family:var(--serif);font-size:1.1rem;font-weight:400;margin-bottom:.3rem;">${wds[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}</div>
+      <div style="font-size:.82rem;color:var(--green);">Protein idag: ${menu.p}</div>
+    </div>
+    <div class="cal-rich-section">
+      <div class="cal-rich-label">Måltidsschema</div>
+      ${mealRows}${futureNote}
+    </div>
+    <div class="cal-rich-section">
+      <div class="cal-rich-label">Vattenmål</div>
+      <div style="font-size:.82rem;line-height:1.7;">10–12 glas vatten per dag · Örtte tillåtet</div>
+    </div>
+    <div class="cal-rich-section">
+      <div class="cal-rich-label">Kosttillskott</div>
+      <div style="font-size:.82rem;line-height:1.7;">Fyll i hela Patriks protokoll (17 preparat) under Idag-fliken.</div>
+    </div>
+    ${rotWarn ? `<div class="cal-rich-section">${rotWarn}</div>` : ''}
     <div style="height:1rem;"></div>`;
+
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
 // ─── RENDER RULES ─────────────────────────────────────────────────────────────
@@ -2212,13 +2382,107 @@ window.analyzeMenu = async function() {
   }
 };
 
+// ─── RENDER GUIDE ─────────────────────────────────────────────────────────────
+
+function renderGuide() {
+  const el = document.getElementById('page-guide');
+  if (el.dataset.rendered) return;
+  el.dataset.rendered = '1';
+
+  el.innerHTML = `
+    <div class="gp-rules-hero">
+      <div class="rules-hero-kicker">Efter dag 21</div>
+      <div class="rules-hero-title">Green Phase — de kommande 90 dagarna</div>
+    </div>
+
+    <div class="guide-intro">
+      <div class="guide-intro-text">
+        Efter 21-dagars detoxen är målet inte att gå tillbaka till vanlig kost direkt.
+        Green Phase är den strukturerade fortsättningen på programmet.
+        Under de kommande 90 dagarna ligger fokus på Green List-livsmedel, variation,
+        struktur och förberedelse inför en kontrollerad återintroduktion längre fram.
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <div class="guide-section-num">01</div>
+      <div class="guide-section-title">Vad Green Phase innebär</div>
+      <ul class="guide-list">
+        <li>Fortsätt med Green List-livsmedel — inga undantag ännu</li>
+        <li>Behåll strukturen och tiderna från detoxen</li>
+        <li>Undvik reaktiva livsmedel: gluten, mejeri, socker, jäst, alkohol</li>
+        <li>Ät inte samma livsmedel flera dagar i rad — rotera alltid</li>
+        <li>Bygg stabilitet och förutsägbarhet innan återintroduktion påbörjas</li>
+      </ul>
+    </div>
+
+    <div class="guide-section">
+      <div class="guide-section-num">02</div>
+      <div class="guide-section-title">Daglig struktur</div>
+      <ul class="guide-list">
+        <li>5–6 måltider per dag med cirka 3 timmar mellan varje</li>
+        <li>10–12 glas vatten dagligen — det är inte förhandlingsbart</li>
+        <li>Fyll i kosttillskottschecklistan varje dag under Idag-fliken</li>
+        <li>Undvik småätande och spontana val utanför den planerade strukturen</li>
+        <li>Laga från råvaror — processad mat hör inte hit, inte ens "hälsosam" processad mat</li>
+      </ul>
+    </div>
+
+    <div class="guide-section">
+      <div class="guide-section-num">03</div>
+      <div class="guide-section-title">Rotationsprincipen</div>
+      <div class="guide-body">
+        <p>Målet är inte bara att äta "godkända" livsmedel — utan att variera dem.</p>
+        <p>Proteiner, grönsaker, frukt och stärkelse ska roteras så att samma livsmedel inte upprepas för ofta. Om du äter kyckling idag, välj lax, ägg eller kalkon imorgon.</p>
+      </div>
+      <div class="guide-callout">
+        Appen visar automatisk rotationsvarning när samma protein planeras två dagar i rad. Lyssna på den varningen — det är inte detaljer, det är kärnan i Green Phase.
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <div class="guide-section-num">04</div>
+      <div class="guide-section-title">Varför detta är viktigt</div>
+      <div class="guide-body">
+        <p>Green Phase handlar om att skapa ordning och kontinuitet efter detoxen. Strukturen minskar onödig exponering mot reaktiva livsmedel och gör kroppen mer förutsägbar.</p>
+        <p>När återintroduktionen sedan börjar — efter dag 90 — är det lättare att avläsa kroppens faktiska respons om de föregående månaden har haft tydlig struktur och variation.</p>
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <div class="guide-section-num">05</div>
+      <div class="guide-section-title">Vad man inte ska göra</div>
+      <ul class="guide-list">
+        <li>Gå inte tillbaka till vanlig kost efter dag 21 — det är precis för tidigt</li>
+        <li>Introducera inte gluten, mejeri, alkohol eller socker ännu</li>
+        <li>Ät inte exakt samma måltider varje dag — variation är lika viktigt som val</li>
+        <li>Behandla inte Green Phase som en "cheat-fas" — det är ett eget program</li>
+        <li>Börja inte återintroduktion av egna livsmedel före dag 90</li>
+      </ul>
+    </div>
+
+    <div class="guide-section">
+      <div class="guide-section-num">06</div>
+      <div class="guide-section-title">Efter 90 dagar</div>
+      <div class="guide-body">
+        <p>Efter Green Phase kan återintroduktion börja — men stegvis och strukturerat.</p>
+        <p>Livsmedel testas ett i taget med tillräckligt mellanrum för att kunna avläsa kroppens respons tydligt. Ingenting introduceras i klump. Det är inte slutet på strukturen — det är nästa fas av den.</p>
+      </div>
+      <div class="guide-callout">
+        90 dagar Green Phase + strukturerad återintroduktion efteråt. Det är hela planen.
+      </div>
+    </div>
+
+    <div style="height:3rem;"></div>`;
+}
+
 // ─── NAV ─────────────────────────────────────────────────────────────────────
 
 window.showPage = function(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
-  const order = ['today','recipe','calendar','rules','shop','menu'];
+  const order = ['today','recipe','calendar','rules','shop','menu','guide'];
   document.querySelectorAll('.nav-tab')[order.indexOf(page)]?.classList.add('active');
   if (page === 'recipe') renderRecipe();
   if (page === 'calendar') renderCalendar();
@@ -2231,6 +2495,7 @@ window.showPage = function(page) {
     }
     renderMenu();
   }
+  if (page === 'guide') renderGuide();
 };
 
 // ─── TIMER TICK ──────────────────────────────────────────────────────────────
