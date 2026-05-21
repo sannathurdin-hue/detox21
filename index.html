@@ -1232,6 +1232,8 @@ const SHOP_ONCE = [
 
 // ─── GREEN PHASE DATA ─────────────────────────────────────────────────────────
 
+const FORCE_GREEN_PHASE = true; // Sätt till false för att visa Detox 21-fasen
+
 const GP_RECIPES = {
   A: {
     title:'Smoothieskål med banan & blåbär',
@@ -1392,6 +1394,7 @@ function getTodayDay() {
 }
 
 function getPhase() {
+  if (FORCE_GREEN_PHASE) return 'green';
   const n = getTodayDay();
   if (n < 1) return 'pre';
   if (n <= 21) return 'detox';
