@@ -853,13 +853,243 @@ body {
   margin-bottom: .75rem;
 }
 .pre-start-body { font-size: .875rem; color: var(--muted); line-height: 1.6; }
+
+/* ── GREEN PHASE ── */
+.gp-hero-kicker { color: rgba(255,255,255,.5); }
+.gp-transition {
+  background: var(--green);
+  color: var(--white);
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+.gp-transition-title {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: .5rem;
+}
+.gp-transition-sub { font-size: .8rem; color: rgba(255,255,255,.7); line-height: 1.6; }
+.rotation-warning {
+  background: #fdf6ec;
+  border-left: 3px solid #c97b00;
+  padding: .75rem 1.25rem;
+  font-size: .8rem;
+  color: #7a4a00;
+  line-height: 1.5;
+}
+.gp-focus {
+  background: var(--green-subtle);
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: .82rem;
+  color: var(--green);
+  line-height: 1.5;
+}
+.gp-focus strong { font-weight: 500; color: var(--black); }
+.water-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 1rem 1.25rem 1.25rem;
+}
+.water-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .6rem;
+  color: var(--muted-light);
+  cursor: pointer;
+  transition: all .2s;
+  font-family: var(--sans);
+}
+.water-dot.done { background: var(--green); border-color: var(--green); color: var(--white); }
+.supp-item {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .6rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.supp-item:active { background: var(--off-white); }
+.supp-box {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  border: 1px solid var(--muted-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .55rem;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.supp-item.done .supp-box { background: var(--green); border-color: var(--green); color: var(--white); }
+.supp-item.done .supp-name { color: var(--muted); text-decoration: line-through; }
+.supp-name { font-size: .82rem; }
+.gp-filter-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: .75rem 1.25rem;
+  gap: .4rem;
+}
+.gp-filter-row::-webkit-scrollbar { display: none; }
+.gp-filter-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--border);
+  padding: .35rem .75rem;
+  font-family: var(--sans);
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .15s;
+  border-radius: 1px;
+}
+.gp-filter-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+.gp-recipe-list { list-style: none; }
+.gp-recipe-item {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .15s;
+}
+.gp-recipe-item:active { background: var(--off-white); }
+.gp-recipe-item-tag {
+  font-size: .55rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: .3rem;
+}
+.gp-recipe-item-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: .2rem;
+}
+.gp-recipe-item-meta { font-size: .7rem; color: var(--muted); }
+.gp-recipe-detail { display: none; }
+.gp-recipe-detail.visible { display: block; }
+.gp-week-nav {
+  display: flex;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.gp-week-nav::-webkit-scrollbar { display: none; }
+.gp-week-btn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  border-right: 1px solid var(--border);
+  padding: .6rem .9rem;
+  font-family: var(--sans);
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .15s;
+}
+.gp-week-btn.active { background: var(--black); color: var(--white); }
+.gp-week-day {
+  border-bottom: 1px solid var(--border);
+  padding: .9rem 1.25rem;
+}
+.gp-week-day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: .5rem;
+}
+.gp-week-day-name {
+  font-family: var(--sans);
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.gp-week-day-num { font-family: var(--serif); font-size: .85rem; color: var(--muted); }
+.gp-meal-row { display: flex; gap: .5rem; margin-bottom: .3rem; font-size: .82rem; line-height: 1.4; }
+.gp-meal-label { font-size: .6rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); min-width: 60px; padding-top: .1rem; }
+.gp-week-day.today-gp { background: var(--off-white); border-left: 2px solid var(--green); }
+.cal-cell.gp-day { background: none; }
+.cal-cell.gp-day .cal-cell-num { color: var(--muted-light); }
+.cal-cell.gp-done { background: var(--green-subtle); }
+.cal-cell.gp-done .cal-cell-num { color: var(--green); }
+.cal-cell.gp-today { background: var(--green); }
+.cal-cell.gp-today .cal-cell-num,
+.cal-cell.gp-today .cal-cell-date { color: var(--white); }
+.gp-cal-month {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-style: italic;
+  padding: 1rem 1.25rem .5rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.gp-rules-hero {
+  background: var(--green);
+  color: var(--white);
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+.gp-food-section {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.gp-food-section-title {
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .75rem;
+}
+.gp-food-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+.gp-food-tag {
+  font-size: .72rem;
+  border: 1px solid var(--border);
+  padding: .2rem .6rem;
+  color: var(--black);
+}
+.shop-category-header {
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--black);
+  padding: .6rem 1.25rem;
+}
 </style>
 </head>
 <body>
 
 <header class="header">
   <div class="header-inner">
-    <span class="header-wordmark">Detox 21</span>
+    <span class="header-wordmark" id="header-wordmark">Detox 21</span>
     <span class="header-day" id="header-day-label"></span>
   </div>
   <nav class="nav">
@@ -1000,6 +1230,155 @@ const SHOP_ONCE = [
   'Örtte — 1 förpackning','Glutenfria kycklingbuljongtärningar — 1 förp. (utan jäst & mejeri)',
 ];
 
+// ─── GREEN PHASE DATA ─────────────────────────────────────────────────────────
+
+const GP_RECIPES = {
+  A: {
+    title:'Smoothieskål med banan & blåbär',
+    time:'10 min', portions:'1 portion',
+    category:'frukost',
+    note:'Variera frukt dagligen — prova mango, papaya eller kiwi.',
+    ing:['1 banan (fryst)','1 dl blåbär','1 msk chiafrön','1 msk hampafrön','2 msk tahini','1 msk manuka honung','Bovete-knäckebröd Le Pain des Fleurs'],
+    steps:['Mixa banan och blåbär till slät bas.','Häll i skål, toppa med chiafrön och hampafrön.','Ringla tahini och manuka honung över.','Servera med bovete-knäckebröd.'],
+  },
+  B: {
+    title:'Kycklingskål med quinoa & sparris',
+    time:'30 min', portions:'2 portioner',
+    category:'lunch',
+    note:'Dubbel portion — spara till middag.',
+    ing:['2 kycklingfiléer','1,5 dl quinoa','200 g sparris','2 nävar spenat','1 avokado','2 msk olivolja extra virgin','Celtic salt','Citronsaft'],
+    steps:['Koka quinoa enligt förpackning.','Ugna kyckling i 200°C, 25 min, med olivolja och salt.','Ångkoka sparris 5 min.','Bygg skål: quinoa, kyckling, sparris, spenat, avokado.','Pressa citron och ringla olivolja.'],
+  },
+  C: {
+    title:'Laxfilé med rödbetor & grönkål',
+    time:'25 min', portions:'2 portioner',
+    category:'middag',
+    note:'Lax max 2 gånger per vecka. Rotera med kyckling eller kalkon övriga dagar.',
+    ing:['2 laxfiléer (vild)','3 rödbetor (kokta eller ugnsbakade)','2 nävar grönkål (ångkokt)','Romansallad','2 msk olivolja','Celtic salt','Citron'],
+    steps:['Ångkoka grönkål 5 min.','Stek lax i olivolja 3–4 min per sida.','Skiva rödbetor.','Servera med romansallad, rödbetor och grönkål.','Pressa citron, salta med Celtic salt.'],
+  },
+  D: {
+    title:'Grönsaksplatta med tahini-dip',
+    time:'10 min', portions:'1 portion',
+    category:'mellanmal',
+    note:'Perfekt mellanmål — håller 3 timmar tills nästa mål.',
+    ing:['Blomkål (buketter)','Selleri (stavar)','Morötter (stavar)','2 msk tahini','Citronsaft','Celtic salt'],
+    steps:['Skär grönsaker i stavar och buketter.','Blanda tahini med citronsaft och salt till dip.','Servera direkt.'],
+  },
+  E: {
+    title:'Sardiner & bovete-knäckebröd',
+    time:'5 min', portions:'1 portion',
+    category:'resevänlig',
+    note:'Alltid redo — perfekt för resor, kontor eller när inget annat finns.',
+    ing:['1 burk sardiner i olivolja','Bovete-knäckebröd Le Pain des Fleurs','1 avokado','Celtic salt','Citron'],
+    steps:['Lägg ut knäckebröd.','Toppa med avokado och sardiner.','Pressa citron och salta.'],
+  },
+  F: {
+    title:'Ugnskyckling med grönsaker',
+    time:'35 min', portions:'2 portioner',
+    category:'restaurangsäker',
+    note:'På restaurang: beställ grillad kyckling utan sås, grönsaker ångkokta, olivolja vid sidan.',
+    ing:['2 kycklingfiléer','1 zucchini (skivad)','1 aubergine (skivad)','2 msk olivolja','Celtic salt','Timjan'],
+    steps:['Värm ugn till 200°C.','Lägg kyckling och grönsaker på plåt.','Ringla olivolja, salta, lägg på timjan.','Ugna 30 min tills kyckling är genomstekt.','Servera direkt.'],
+  },
+  G: {
+    title:'Äggröra med pak choi & bovete',
+    time:'15 min', portions:'1–2 portioner',
+    category:'snabb',
+    note:'Snabbaste Green Phase-målet — klart på 15 minuter.',
+    ing:['3–4 ägg','200 g pak choi (halverad)','1 dl bovete-gryn (kokta)','Ankfett','Celtic salt','Ingefära (riven)'],
+    steps:['Koka bovete 12 min.','Stek pak choi i ankfett 3 min.','Vispa ägg med salt, tillaga som lös äggröra.','Servera med bovete och riven ingefära.'],
+  },
+};
+
+const GP_FILTER_LABELS = {
+  frukost:'Frukost', lunch:'Lunch', middag:'Middag', mellanmal:'Mellanmål',
+  'resevänlig':'Resevänlig', 'restaurangsäker':'Restaurangsäker', snabb:'Snabb',
+};
+
+const SUPPLEMENTS = [
+  { key:'omega3_epa',   name:'Omega-3 EPA/DHA' },
+  { key:'omega3_dha',   name:'Omega-3 DHA/EPA' },
+  { key:'piperine',     name:'Piperine' },
+  { key:'tocotrienols', name:'Mixed Tocotrienols / Vitamin E' },
+  { key:'b12',          name:'Vitamin B12' },
+  { key:'ala',          name:'Alpha Lipoic Acid' },
+  { key:'lisoleucine',  name:'L-Isoleucine' },
+  { key:'lhistidine',   name:'L-Histidine' },
+  { key:'laspartic',    name:'L-Aspartic Acid' },
+  { key:'folate',       name:'Folate / L-5-Methylfolate' },
+  { key:'lthreonine',   name:'L-Threonine' },
+  { key:'lglycine',     name:'L-Glycine' },
+  { key:'betaine',      name:'Betaine / TMG' },
+  { key:'molybdenum',   name:'Molybdenum' },
+  { key:'chromium',     name:'Chromium' },
+  { key:'b6p5p',        name:'Vitamin B6 P5P' },
+  { key:'b2',           name:'Vitamin B2' },
+  { key:'b1',           name:'Vitamin B1' },
+];
+
+const GP_RULES = [
+  { n:1,  t:'<strong>Endast Green List-livsmedel</strong> — inga undantag' },
+  { n:2,  t:'<strong>5–6 måltider per dag</strong> — samma tider som under detoxen' },
+  { n:3,  t:'<strong>Cirka 3 timmar</strong> mellan varje mål' },
+  { n:4,  t:'<strong>10–12 glas vatten per dag</strong> · örtte tillåtet' },
+  { n:5,  t:'<strong>Undvik samma livsmedel flera dagar i rad</strong> — rotera alltid' },
+  { n:6,  t:'Rotera <strong>proteiner, grönsaker, frukt och stärkelse</strong> varje dag' },
+  { n:7,  t:'<strong>Undvik processad mat</strong> — laga alltid från råvaror' },
+  { n:8,  t:'Inget mejeri, gluten, socker, jäst eller fermenterade produkter' },
+  { n:9,  t:'Stekfett = <strong>ankfett eller olivolja</strong> · Salt = Celtic salt' },
+  { n:10, t:'<strong>Ingen återintroduktion</strong> av uteslutna livsmedel förrän efter 90 dagar' },
+];
+
+const GP_SHOP = [
+  { cat:'Protein', items:['Kycklingfilé — ca 600 g/v','Kalkonfilé — variera med kyckling','Ägg — 6–8 st/v','Ankbröst — vid behov','Hjortkött — vid behov','Lax (vild) — max 2 ggr/v','Sardiner i olivolja — 3–4 burkar','Kikärtor konserverade — 4 burkar','Canellinibönor konserverade — 4 burkar','Röda & gröna linser — 500 g vardera','Favabönor konserverade — 2 burkar'] },
+  { cat:'Grönsaker', items:['Grönkål — 2–3 påsar/v','Spenat — 2 påsar/v','Romansallad — 2 huvuden/v','Selleri — 1 knippe/v','Sommarsquash — 2 st/v','Aubergine — 1 st/v','Blomkål — 1 huvud/v','Broccoli — 1 huvud/v','Morötter — 1 påse/v','Rödbetor — 1 förp./v','Sparris — 1 knippe/v','Zucchini — 2 st/v','Pak choi — 1–2 huvuden/v','Butternutpumpa — 1 st/v'] },
+  { cat:'Frukt', items:['Banan — 6–8 st/v','Kiwi — 4–5 st/v','Ananas — 1 st/v','Apelsin — 4 st/v','Mandarin — 4 st/v','Mango — 2 st/v','Papaya — 1 st/v','Persika/nektarin — 4 st/v','Vindruvor — 1 knippe/v','Granatäpple — 2 st/v','Blåbär — 1 dl/v','Hallon — 1 dl/v'] },
+  { cat:'Spannmål & Stärkelse', items:['Sötpotatis — 4 st/v','Bovete-knäckebröd Le Pain des Fleurs — 2 förp./v','Quinoa — 500 g','Bovete-gryn — 500 g','Rött ris — 500 g'] },
+  { cat:'Nötter, Frön & Oljor', items:['Tahini ljus — 1 burk (300 g)','Olivolja extra virgin — 1 flaska','Ankfett — 1–2 burkar','Chiafrön — 1 påse','Hampafrön — 1 påse','Pumpafrön — 1 påse','Solrosfrön — 1 påse'] },
+  { cat:'Kryddor & Övrigt', items:['Celtic salt','Citron & lime — 4–6 st/v','Färsk ingefära — 1 bit','Manuka honung — 1 burk','Örtte — 1 förp.'] },
+  { cat:'Kosttillskott', items:SUPPLEMENTS.map(s => s.name) },
+];
+
+const GP_WEEK_TEMPLATES = [
+  [
+    { wd:'Mån', f:'Smoothieskål banan & blåbär', l:'Kycklingskål quinoa & sparris', m:'Laxfilé med rödbetor & grönkål', p:'Kyckling' },
+    { wd:'Tis', f:'Smoothieskål mango & kiwi',   l:'Ugnskyckling med zucchini & aubergine', m:'Kycklingskål quinoa & spenat', p:'Kyckling' },
+    { wd:'Ons', f:'Smoothieskål papaya & lime',  l:'Laxfilé med sparris & romansallad', m:'Äggröra pak choi & bovete', p:'Lax' },
+    { wd:'Tor', f:'Smoothieskål banan & hallon', l:'Kalkonfilé med broccoli & quinoa', m:'Ugnskyckling med blomkål', p:'Kalkon' },
+    { wd:'Fre', f:'Smoothieskål kiwi & ananas',  l:'Äggröra pak choi & grönkål', m:'Laxfilé med rödbetor', p:'Ägg' },
+    { wd:'Lör', f:'Smoothieskål mango & banan',  l:'Ugnskyckling med rödbetor & spenat', m:'Kalkonfilé med quinoa & zucchini', p:'Kyckling' },
+    { wd:'Sön', f:'Smoothieskål blåbär & banan', l:'Kycklingskål quinoa & sparris', m:'Ankbröst med butternutpumpa & grönkål', p:'Anka' },
+  ],
+  [
+    { wd:'Mån', f:'Smoothieskål papaya & lime',  l:'Kalkonfilé med broccoli & bovete', m:'Laxfilé med pak choi & spenat', p:'Kalkon' },
+    { wd:'Tis', f:'Smoothieskål banan & hallon', l:'Äggröra med spenat & zucchini', m:'Kycklingfilé med rödbetor & quinoa', p:'Ägg' },
+    { wd:'Ons', f:'Smoothieskål kiwi & mango',   l:'Laxfilé med sparris & grönkål', m:'Kalkonfilé med quinoa & blomkål', p:'Lax' },
+    { wd:'Tor', f:'Smoothieskål ananas & banan', l:'Kycklingskål pak choi & spenat', m:'Äggröra med zucchini & bovete', p:'Kyckling' },
+    { wd:'Fre', f:'Smoothieskål blåbär & lime',  l:'Hjortkött med grönkål & sötpotatis', m:'Laxfilé med blomkål', p:'Hjortkött' },
+    { wd:'Lör', f:'Smoothieskål mango & papaya', l:'Kycklingfilé med broccoli & quinoa', m:'Ankbröst med grönkål & rödbetor', p:'Kyckling' },
+    { wd:'Sön', f:'Smoothieskål hallon & kiwi',  l:'Laxfilé med quinoa & spenat', m:'Kalkonfilé med zucchini & sötpotatis', p:'Lax' },
+  ],
+  [
+    { wd:'Mån', f:'Smoothieskål banan & blåbär', l:'Hjortkött med sötpotatis & grönkål', m:'Kycklingskål quinoa & sparris', p:'Hjortkött' },
+    { wd:'Tis', f:'Smoothieskål kiwi & ananas',  l:'Kycklingfilé med aubergine & spenat', m:'Äggröra pak choi & bovete', p:'Kyckling' },
+    { wd:'Ons', f:'Smoothieskål mango & hallon', l:'Laxfilé med broccoli & quinoa', m:'Kalkonfilé med rödbetor & grönkål', p:'Lax' },
+    { wd:'Tor', f:'Smoothieskål papaya & banan', l:'Äggröra med blomkål & spenat', m:'Kycklingfilé med zucchini & sötpotatis', p:'Ägg' },
+    { wd:'Fre', f:'Smoothieskål banan & blåbär', l:'Kalkonfilé med sparris & quinoa', m:'Laxfilé med pak choi & rödbetor', p:'Kalkon' },
+    { wd:'Lör', f:'Smoothieskål lime & mango',   l:'Ankbröst med grönkål & bovete', m:'Kycklingskål quinoa & blomkål', p:'Anka' },
+    { wd:'Sön', f:'Smoothieskål hallon & banan', l:'Laxfilé med sparris & spenat', m:'Hjortkött med sötpotatis & grönkål', p:'Lax' },
+  ],
+  [
+    { wd:'Mån', f:'Smoothieskål ananas & kiwi',  l:'Kalkonfilé med zucchini & quinoa', m:'Kycklingfilé med rödbetor & spenat', p:'Kalkon' },
+    { wd:'Tis', f:'Smoothieskål banan & mango',  l:'Kycklingskål pak choi & grönkål', m:'Laxfilé med blomkål & bovete', p:'Kyckling' },
+    { wd:'Ons', f:'Smoothieskål blåbär & hallon',l:'Äggröra med spenat & sötpotatis', m:'Kalkonfilé med sparris & quinoa', p:'Ägg' },
+    { wd:'Tor', f:'Smoothieskål papaya & lime',  l:'Laxfilé med broccoli & spenat', m:'Ankbröst med butternutpumpa & pak choi', p:'Lax' },
+    { wd:'Fre', f:'Smoothieskål banan & kiwi',   l:'Kycklingfilé med rödbetor & quinoa', m:'Äggröra med zucchini & grönkål', p:'Kyckling' },
+    { wd:'Lör', f:'Smoothieskål mango & ananas', l:'Hjortkött med grönkål & sötpotatis', m:'Laxfilé med sparris & blomkål', p:'Hjortkött' },
+    { wd:'Sön', f:'Smoothieskål hallon & banan', l:'Kalkonfilé med broccoli & spenat', m:'Kycklingskål quinoa & rödbetor', p:'Kalkon' },
+  ],
+];
+
 // ─── STATE ───────────────────────────────────────────────────────────────────
 
 const getState = () => { try { return JSON.parse(localStorage.getItem('d21') || '{}'); } catch { return {}; } };
@@ -1010,6 +1389,41 @@ function getTodayDay() {
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const start = new Date(2026, 4, 3);
   return Math.floor((today - start) / 86400000) + 1;
+}
+
+function getPhase() {
+  const n = getTodayDay();
+  if (n < 1) return 'pre';
+  if (n <= 21) return 'detox';
+  return 'green';
+}
+
+function getGreenDay() {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const greenStart = new Date(2026, 4, 24);
+  return Math.floor((today - greenStart) / 86400000) + 1;
+}
+
+function getGPDayMenu(gpDay) {
+  const template = GP_WEEK_TEMPLATES[Math.floor((gpDay - 1) / 7) % 4];
+  return template[(gpDay - 1) % 7];
+}
+
+function hasRotationWarning(gpDay) {
+  if (gpDay <= 1) return false;
+  return getGPDayMenu(gpDay).p === getGPDayMenu(gpDay - 1).p;
+}
+
+function gpDateFromDay(gpDay) {
+  const d = new Date(2026, 4, 24);
+  d.setDate(d.getDate() + gpDay - 1);
+  return d;
+}
+
+function formatGPDate(gpDay) {
+  const d = gpDateFromDay(gpDay);
+  return `${d.getDate()}/${d.getMonth() + 1}`;
 }
 
 function getCurrentMealIdx() {
@@ -1055,19 +1469,14 @@ function renderToday() {
     return;
   }
   if (n > 21) {
-    headerLabel.textContent = 'Genomfört';
-    el.innerHTML = `
-      <div class="pre-start">
-        <div class="pre-start-kicker">19 april 2026</div>
-        <div class="pre-start-title">21 dagar genomförda</div>
-        <div class="pre-start-body">Patrik Rees — du klarade hela detoxen.</div>
-      </div>`;
+    renderTodayGreen();
     return;
   }
 
   const day = DAYS[n - 1];
   const state = getState();
   headerLabel.textContent = `Dag ${n} av 21`;
+  document.getElementById('header-wordmark').textContent = 'Detox 21';
 
   // HERO
   let hero = `
@@ -1170,6 +1579,113 @@ function renderToday() {
   el.innerHTML = hero + timer + progress + meals;
 }
 
+function renderTodayGreen() {
+  const gpDay = Math.min(Math.max(getGreenDay(), 1), 90);
+  const el = document.getElementById('page-today');
+  const headerLabel = document.getElementById('header-day-label');
+  const wordmark = document.getElementById('header-wordmark');
+  wordmark.textContent = 'Green Phase';
+  headerLabel.textContent = `Dag ${gpDay} av 90`;
+
+  const state = getState();
+  const menu = getGPDayMenu(gpDay);
+  const d = gpDateFromDay(gpDay);
+  const wds = ['Sön','Mån','Tis','Ons','Tor','Fre','Lör'];
+  const wd = wds[d.getDay()];
+  const dateStr = `${d.getDate()}/${d.getMonth()+1}`;
+
+  // HERO
+  let transition = '';
+  if (gpDay === 1) {
+    transition = `<div class="gp-transition">
+      <div class="gp-transition-title">Green Phase startar nu</div>
+      <div class="gp-transition-sub">Detox 21 genomförd — Patrik Rees<br>90 dagar Green List-fas börjar idag.</div>
+    </div>`;
+  }
+
+  let hero = `${transition}
+    <div class="hero">
+      <div class="hero-kicker gp-hero-kicker">Patrik Rees · Green Phase</div>
+      <div class="hero-day-num">${gpDay}<span class="hero-day-total"> /90</span></div>
+      <div class="hero-divider"></div>
+      <div class="hero-date">${wd} ${dateStr}</div>
+      <div class="hero-theme">${menu.l}</div>
+      <div class="hero-recipe">${menu.m}</div>
+    </div>`;
+
+  // ROTATION WARNING
+  let rotWarn = '';
+  if (hasRotationWarning(gpDay)) {
+    const yMenu = getGPDayMenu(gpDay - 1);
+    rotWarn = `<div class="rotation-warning">Rotationsvarning — ${yMenu.p} användes igår. Välj ett annat Green List-alternativ idag.</div>`;
+  }
+
+  // FOCUS
+  let focus = `<div class="gp-focus"><strong>Dagens fokus:</strong> Variera protein och grönsaker. Undvik samma livsmedel som igår. Drick 10–12 glas vatten.</div>`;
+
+  // MEALS
+  const gpMeals = [
+    { time:'06:15', name:'Frukost',   desc:menu.f,         key:'breakfast' },
+    { time:'09:00', name:'Frukt',     desc:'Valfri Green List-frukt', key:'snack1' },
+    { time:'12:00', name:'Lunch',     desc:menu.l,         key:'lunch' },
+    { time:'15:00', name:'Mellanmål', desc:'Grönsaker + tahini-dip', key:'snack2' },
+    { time:'18:00', name:'Middag',    desc:menu.m,         key:'dinner' },
+    { time:'21:00', name:'Kväll',     desc:'Rå grönsaker', key:'snack3' },
+  ];
+  const curIdx = getCurrentMealIdx();
+  const nxtIdx = getNextMealIdx();
+  let meals = `<div class="section-label" style="padding:1rem 1.25rem .1rem;">Dagens schema</div>`;
+  gpMeals.forEach((meal, i) => {
+    const key = `gp_d${gpDay}_${meal.key}`;
+    const checked = !!state[key];
+    const isCurrent = i === curIdx;
+    const isNext = i === nxtIdx;
+    let cls = 'meal-item'; if (checked) cls += ' checked'; else if (isCurrent) cls += ' current';
+    let badge = '';
+    if (!checked && isCurrent) badge = '<div class="meal-badge">Nu</div>';
+    else if (!checked && isNext) badge = '<div class="meal-badge">Nastan</div>';
+    meals += `<div class="${cls}" onclick="toggleGPMeal('${key}', ${gpDay})">
+      <div class="meal-check-box">${checked ? '✓' : ''}</div>
+      <div class="meal-body">
+        <div class="meal-time-row"><span class="meal-time">${meal.time}</span></div>
+        <div class="meal-name">${meal.name}</div>
+        <div class="meal-desc">${meal.desc}</div>
+      </div>${badge}</div>`;
+  });
+
+  // WATER
+  let water = `<div class="section-label" style="padding:1rem 1.25rem .3rem;border-top:1px solid var(--border);">Vattenintag — 10–12 glas</div>
+    <div class="water-grid">`;
+  for (let i = 0; i < 12; i++) {
+    const wkey = `gp_water_d${gpDay}_${i}`;
+    const done = !!state[wkey];
+    water += `<div class="water-dot${done ? ' done' : ''}" onclick="toggleWater('${wkey}', ${gpDay})">${done ? '✓' : i+1}</div>`;
+  }
+  water += `</div>`;
+
+  // SUPPLEMENTS
+  let supps = `<div class="section-label" style="padding:1rem 1.25rem .3rem;border-top:1px solid var(--border);">Kosttillskott — Patriks protokoll</div>`;
+  SUPPLEMENTS.forEach(s => {
+    const skey = `gp_supp_d${gpDay}_${s.key}`;
+    const done = !!state[skey];
+    supps += `<div class="supp-item${done ? ' done' : ''}" onclick="toggleSupp('${skey}', ${gpDay})">
+      <div class="supp-box">${done ? '✓' : ''}</div>
+      <span class="supp-name">${s.name}</span></div>`;
+  });
+
+  el.innerHTML = hero + rotWarn + focus + meals + water + supps;
+}
+
+window.toggleGPMeal = function(key, gpDay) {
+  const s = getState(); s[key] = !s[key]; setState(s); renderTodayGreen();
+};
+window.toggleWater = function(key, gpDay) {
+  const s = getState(); s[key] = !s[key]; setState(s); renderTodayGreen();
+};
+window.toggleSupp = function(key, gpDay) {
+  const s = getState(); s[key] = !s[key]; setState(s); renderTodayGreen();
+};
+
 window.toggleMeal = function(key, dayNum) {
   const s = getState();
   s[key] = !s[key];
@@ -1180,8 +1696,11 @@ window.toggleMeal = function(key, dayNum) {
 // ─── RENDER RECIPE ────────────────────────────────────────────────────────────
 
 let activeRecipeDay = Math.max(1, Math.min(getTodayDay(), 21)) || 1;
+let activeGPFilter = 'alla';
+let activeGPRecipeKey = null;
 
 function renderRecipe(dayNum) {
+  if (getPhase() === 'green') { renderRecipeGreen(); return; }
   if (dayNum) activeRecipeDay = dayNum;
   const day = DAYS[activeRecipeDay - 1];
   const rec = RECIPES[day.recipe];
@@ -1217,9 +1736,52 @@ function renderRecipe(dayNum) {
   }, 50);
 }
 
+function renderRecipeGreen(filter, recipeKey) {
+  if (filter !== undefined) activeGPFilter = filter;
+  if (recipeKey !== undefined) activeGPRecipeKey = recipeKey;
+  const el = document.getElementById('page-recipe');
+
+  const filters = ['alla', ...Object.keys(GP_FILTER_LABELS)];
+  const filterBtns = filters.map(f => {
+    const label = f === 'alla' ? 'Alla' : GP_FILTER_LABELS[f];
+    return `<button class="gp-filter-btn${activeGPFilter === f ? ' active' : ''}" onclick="renderRecipeGreen('${f}')">${label}</button>`;
+  }).join('');
+
+  const entries = Object.entries(GP_RECIPES);
+  const visible = activeGPFilter === 'alla' ? entries : entries.filter(([,r]) => r.category === activeGPFilter);
+
+  const list = visible.map(([key, r]) => {
+    const catLabel = GP_FILTER_LABELS[r.category] || r.category;
+    let detail = '';
+    if (activeGPRecipeKey === key) {
+      detail = `<div class="gp-recipe-detail visible" style="padding:.75rem 0 .5rem;">
+        <div class="recipe-note">${r.note}</div>
+        <div class="recipe-section-label" style="padding:.75rem 0 .4rem;">Ingredienser</div>
+        <ul class="recipe-ing-list">${r.ing.map(i => `<li>${i}</li>`).join('')}</ul>
+        <div class="recipe-section-label" style="padding:.75rem 0 .4rem;">Tillagning</div>
+        <ol class="recipe-steps-list">${r.steps.map(s => `<li>${s}</li>`).join('')}</ol>
+      </div>`;
+    }
+    return `<div class="gp-recipe-item" onclick="renderRecipeGreen(undefined,'${activeGPRecipeKey === key ? 'none' : key}')">
+      <div class="gp-recipe-item-tag">${catLabel}</div>
+      <div class="gp-recipe-item-title">${r.title}</div>
+      <div class="gp-recipe-item-meta">${r.time} · ${r.portions}</div>
+      ${detail}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="gp-filter-row">${filterBtns}</div>
+    <div class="gp-recipe-list">${list || '<div style="padding:2rem 1.25rem;color:var(--muted);font-size:.875rem;">Inga recept i denna kategori.</div>'}</div>
+    <div style="height:2rem;"></div>`;
+}
+
+window.renderRecipeGreen = renderRecipeGreen;
+
 // ─── RENDER CALENDAR ──────────────────────────────────────────────────────────
 
 function renderCalendar() {
+  if (getPhase() === 'green') { renderCalendarGreen(); return; }
   const n = getTodayDay();
   const state = getState();
   const el = document.getElementById('page-calendar');
@@ -1259,9 +1821,75 @@ window.showCalDetail = function(num) {
     <div style="height:1rem;"></div>`;
 };
 
+function renderCalendarGreen() {
+  const gpDay = getGreenDay();
+  const el = document.getElementById('page-calendar');
+  const headers = ['Mån','Tis','Ons','Tor','Fre','Lör','Sön']
+    .map(h => `<div class="cal-wh">${h}</div>`).join('');
+
+  // Build 90-day grid, grouped by month
+  let html = '';
+  let currentMonth = -1;
+  let cells = '';
+  let emptyCells = '';
+
+  for (let d = 1; d <= 90; d++) {
+    const date = gpDateFromDay(d);
+    const month = date.getMonth();
+    const monthNames = ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'];
+
+    if (month !== currentMonth) {
+      if (cells) {
+        html += `<div class="gp-cal-month">${monthNames[currentMonth]} 2026</div>
+          <div class="cal-week-headers">${headers}</div>
+          <div class="cal-grid-wrap">${emptyCells}${cells}</div>`;
+      }
+      currentMonth = month;
+      cells = '';
+      // Calculate offset for first day of month's first GP day
+      const firstDayDow = date.getDay(); // 0=Sun
+      const offset = firstDayDow === 0 ? 6 : firstDayDow - 1;
+      emptyCells = Array(offset).fill('<div class="cal-cell" style="pointer-events:none;border-color:transparent;background:none;"></div>').join('');
+    }
+
+    const isToday = d === gpDay;
+    const isDone = d < gpDay;
+    let cls = 'cal-cell';
+    if (isToday) cls += ' gp-today';
+    else if (isDone) cls += ' gp-done';
+    else cls += ' gp-day';
+
+    cells += `<div class="${cls}" onclick="showGPCalDetail(${d})">
+      <div class="cal-cell-num">${d === 90 ? '★' : d}</div>
+      <div class="cal-cell-date">${date.getDate()}/${date.getMonth()+1}</div>
+    </div>`;
+  }
+  if (cells) {
+    const monthNames = ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'];
+    html += `<div class="gp-cal-month">${monthNames[currentMonth]} 2026</div>
+      <div class="cal-week-headers">${headers}</div>
+      <div class="cal-grid-wrap">${emptyCells}${cells}</div>`;
+  }
+
+  el.innerHTML = html + `<div class="cal-detail" id="cal-detail"></div>`;
+}
+
+window.showGPCalDetail = function(gpDay) {
+  const menu = getGPDayMenu(gpDay);
+  const d = gpDateFromDay(gpDay);
+  const wds = ['Sön','Mån','Tis','Ons','Tor','Fre','Lör'];
+  document.getElementById('cal-detail').innerHTML = `
+    <div class="section-label" style="padding:1.25rem 1.25rem .6rem;">Green Phase Dag ${gpDay} — ${wds[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}</div>
+    <div class="recipe-note" style="border-top:1px solid var(--border);">Frukost: ${menu.f}</div>
+    <div class="recipe-note">Lunch: ${menu.l}</div>
+    <div class="recipe-note">Middag: ${menu.m}</div>
+    <div style="height:1rem;"></div>`;
+};
+
 // ─── RENDER RULES ─────────────────────────────────────────────────────────────
 
 function renderRules() {
+  if (getPhase() === 'green') { renderRulesGreen(); return; }
   const el = document.getElementById('page-rules');
   const rules = RULES.map(r => `
     <div class="rule-row">
@@ -1291,9 +1919,43 @@ function renderRules() {
     </div>`;
 }
 
+function renderRulesGreen() {
+  const el = document.getElementById('page-rules');
+  const rules = GP_RULES.map(r => `
+    <div class="rule-row">
+      <div class="rule-num">${r.n}</div>
+      <div class="rule-text">${r.t}</div>
+    </div>`).join('');
+
+  const greenListSections = [
+    { label:'Protein', items:['Kyckling','Kalkon','Ägg','Anka','Hjortkött','Lax (vild)','Sardiner','Kikärtor','Canellinibönor','Linser','Favabönor'] },
+    { label:'Grönsaker', items:['Grönkål','Spenat','Romansallad','Selleri','Squash','Aubergine','Blomkål','Broccoli','Morötter','Rödbetor','Sparris','Zucchini','Pak choi','Butternutpumpa'] },
+    { label:'Frukt', items:['Banan','Kiwi','Ananas','Apelsin','Mandarin','Mango','Papaya','Persika','Vindruvor','Granatäpple','Melon','Vattenmelon','Blåbär','Hallon','Avokado','Citron','Lime'] },
+    { label:'Stärkelse', items:['Sötpotatis','Bovete-knäckebröd','Quinoa','Bovete','Rött ris'] },
+    { label:'Fetter & Frön', items:['Olivolja','Ankfett','Tahini','Chiafrön','Hampafrön','Pumpafrön','Solrosfrön'] },
+  ];
+
+  const foodHtml = greenListSections.map(s => `
+    <div class="gp-food-section">
+      <div class="gp-food-section-title">${s.label}</div>
+      <div class="gp-food-tags">${s.items.map(i => `<div class="gp-food-tag">${i}</div>`).join('')}</div>
+    </div>`).join('');
+
+  el.innerHTML = `
+    <div class="gp-rules-hero">
+      <div class="rules-hero-kicker">Läs varje morgon</div>
+      <div class="rules-hero-title">Green Phase — 10 regler</div>
+    </div>
+    ${rules}
+    <div class="section-label" style="padding:1.25rem 1.25rem .6rem;">Green List — tillåtna livsmedel</div>
+    ${foodHtml}
+    <div class="fruit-avoid-note" style="padding:0 1.25rem 1.5rem;">Undvik äpple och päron — ALCAT-reaktion · Ingen återintroduktion före dag 90</div>`;
+}
+
 // ─── RENDER SHOP ──────────────────────────────────────────────────────────────
 
 function renderShop() {
+  if (getPhase() === 'green') { renderShopGreen(); return; }
   const state = getState();
   const el = document.getElementById('page-shop');
 
@@ -1317,6 +1979,24 @@ function renderShop() {
     </div>`;
 }
 
+function renderShopGreen() {
+  const state = getState();
+  const el = document.getElementById('page-shop');
+  let html = '';
+  GP_SHOP.forEach(section => {
+    html += `<div class="shop-category-header">${section.cat}</div>`;
+    section.items.forEach((item, i) => {
+      const key = `gpshop_${section.cat}_${i}`;
+      const bought = !!state[key];
+      html += `<div class="shop-row${bought ? ' bought' : ''}" onclick="toggleShop('${key}')">
+        <div class="shop-box">${bought ? '✓' : ''}</div>
+        <span class="shop-label">${item}</span>
+      </div>`;
+    });
+  });
+  el.innerHTML = html + `<div class="shop-reset-row"><button class="btn-outline" onclick="resetShop()">Nollställ listan</button></div>`;
+}
+
 window.toggleShop = function(key) {
   const s = getState(); s[key] = !s[key]; setState(s); renderShop();
 };
@@ -1328,7 +2008,10 @@ window.resetShop = function() {
 
 // ─── RENDER MENU ──────────────────────────────────────────────────────────────
 
+let activeGPWeek = 1;
+
 function renderMenu() {
+  if (getPhase() === 'green') { renderMenuGreen(); return; }
   const el = document.getElementById('page-menu');
   if (el.dataset.rendered) return;
   el.dataset.rendered = '1';
@@ -1388,6 +2071,59 @@ function renderMenu() {
     document.getElementById('menu-error').classList.remove('visible');
   });
 }
+
+function renderMenuGreen(week) {
+  if (week !== undefined) activeGPWeek = week;
+  const gpDay = getGreenDay();
+  const el = document.getElementById('page-menu');
+
+  // Total 13 weeks (90 days). Cap at 13.
+  const totalWeeks = 13;
+  const weekBtns = Array.from({length: totalWeeks}, (_, i) => {
+    const w = i + 1;
+    const startDay = (w - 1) * 7 + 1;
+    const isCurrent = gpDay >= startDay && gpDay < startDay + 7;
+    const isActive = activeGPWeek === w;
+    return `<button class="gp-week-btn${isActive ? ' active' : ''}" onclick="renderMenuGreen(${w})">V${w}${isCurrent ? ' ●' : ''}</button>`;
+  }).join('');
+
+  const startDay = (activeGPWeek - 1) * 7 + 1;
+  const templateIdx = (activeGPWeek - 1) % 4;
+  const template = GP_WEEK_TEMPLATES[templateIdx];
+
+  const daysHtml = template.map((day, i) => {
+    const gpDayNum = startDay + i;
+    if (gpDayNum > 90) return '';
+    const date = gpDateFromDay(gpDayNum);
+    const isToday = gpDayNum === gpDay;
+    return `<div class="gp-week-day${isToday ? ' today-gp' : ''}">
+      <div class="gp-week-day-header">
+        <span class="gp-week-day-name">${day.wd}</span>
+        <span class="gp-week-day-num">Dag ${gpDayNum} · ${date.getDate()}/${date.getMonth()+1}</span>
+      </div>
+      <div class="gp-meal-row"><span class="gp-meal-label">Frukost</span><span>${day.f}</span></div>
+      <div class="gp-meal-row"><span class="gp-meal-label">Lunch</span><span>${day.l}</span></div>
+      <div class="gp-meal-row"><span class="gp-meal-label">Middag</span><span>${day.m}</span></div>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="menu-page" style="padding:0 0 3rem;">
+      <div style="padding:1.5rem 1.25rem 1rem;">
+        <div class="menu-page-title">Veckomenyer</div>
+        <div class="menu-page-sub">Green Phase — 90 dagars måltidsplan. Automatisk rotation.</div>
+      </div>
+      <div class="gp-week-nav">${weekBtns}</div>
+      ${daysHtml}
+    </div>`;
+
+  setTimeout(() => {
+    const active = el.querySelector('.gp-week-btn.active');
+    if (active) active.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+  }, 50);
+}
+
+window.renderMenuGreen = renderMenuGreen;
 
 function resizeImageToDataUrl(file, maxPx, quality) {
   return new Promise((resolve, reject) => {
@@ -1485,7 +2221,13 @@ window.showPage = function(page) {
   if (page === 'calendar') renderCalendar();
   if (page === 'rules') renderRules();
   if (page === 'shop') renderShop();
-  if (page === 'menu') renderMenu();
+  if (page === 'menu') {
+    if (getPhase() === 'green') {
+      const gpDay = getGreenDay();
+      activeGPWeek = Math.min(Math.ceil(gpDay / 7), 13);
+    }
+    renderMenu();
+  }
 };
 
 // ─── TIMER TICK ──────────────────────────────────────────────────────────────
