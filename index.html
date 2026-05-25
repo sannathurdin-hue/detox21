@@ -619,14 +619,19 @@ body {
   color: var(--muted);
   letter-spacing: .05em;
 }
+.modal-btn-group {
+  padding: .75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
 .modal-add-btn {
   display: block;
-  width: calc(100% - 2.5rem);
-  margin: 1rem 1.25rem;
+  width: 100%;
   background: var(--black);
   color: var(--white);
   border: none;
-  padding: .75rem 1.5rem;
+  padding: .8rem 1.5rem;
   font-family: var(--sans);
   font-size: .65rem;
   font-weight: 500;
@@ -637,6 +642,23 @@ body {
   text-align: center;
 }
 .modal-add-btn.added { background: var(--green); }
+.modal-close-btn {
+  display: block;
+  width: 100%;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: .75rem 1.5rem;
+  font-family: var(--sans);
+  font-size: .65rem;
+  font-weight: 400;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: center;
+}
+.modal-close-btn:hover { border-color: var(--black); color: var(--black); }
 
 /* ── CALENDAR PAGE ── */
 .cal-month-label {
@@ -2182,34 +2204,38 @@ function getMealDetail(mealKey, dayNum) {
 }
 
 window.showMealModal = function(mealKey, dayNum) {
-  const d   = getMealDetail(mealKey, dayNum);
-  const day = DAYS[dayNum - 1];
-  const ov  = document.getElementById('modal-overlay');
+  const d    = getMealDetail(mealKey, dayNum);
+  const day  = DAYS[dayNum - 1];
+  const meal = MEALS.find(m => m.key === mealKey);
+  const ov   = document.getElementById('modal-overlay');
 
-  const metaHtml  = (d.time || d.portions)
+  const metaHtml = (d.time || d.portions)
     ? `<div class="modal-meta">${[d.time, d.portions].filter(Boolean).join(' · ')}</div>` : '';
-  const noteHtml  = d.note ? `<div class="recipe-note">${d.note}</div>` : '';
-  const ingHtml   = d.ing.map(i => `<li>${i}</li>`).join('');
-  const stepsHtml = d.steps.map(s => `<li>${s}</li>`).join('');
+  const noteHtml = d.note ? `<div class="recipe-note">${d.note}</div>` : '';
+  const ingHtml  = d.ing.map(i => `<li>${i}</li>`).join('');
+  const stepHtml = d.steps.map(s => `<li>${s}</li>`).join('');
 
   ov.innerHTML = `
     <div class="modal" role="dialog" aria-modal="true">
       <button class="modal-close" onclick="closeModal()" aria-label="Stäng">✕</button>
       <div class="modal-header">
-        <div class="modal-category">Dag ${dayNum} · ${day.wd} ${day.date} · ${d.category}</div>
-        <div class="modal-title">${d.name}</div>
+        <div class="modal-category">Dag ${dayNum} · ${day.wd} ${day.date} · ${meal.time}</div>
+        <div class="modal-title">${meal.name} — ${d.name}</div>
         ${metaHtml}
       </div>
       ${noteHtml}
-      <div class="recipe-section-label">Ingredienser</div>
+      <div class="recipe-section-label">Du behöver köpa</div>
       <ul class="recipe-ing-list">${ingHtml}</ul>
       <div class="recipe-section-label">Tillagning</div>
-      <ol class="recipe-steps-list">${stepsHtml}</ol>
-      <button class="modal-add-btn" id="modal-add-btn"
-        onclick="addMealIngToShop('${mealKey}',${dayNum},this)">
-        + Lägg till i inköpslista
-      </button>
-      <div style="height:1.5rem;"></div>
+      <ol class="recipe-steps-list">${stepHtml}</ol>
+      <div class="modal-btn-group">
+        <button class="modal-add-btn" id="modal-add-btn"
+          onclick="addMealIngToShop('${mealKey}',${dayNum},this)">
+          + Lägg till i inköpslista
+        </button>
+        <button class="modal-close-btn" onclick="closeModal()">Stäng</button>
+      </div>
+      <div style="height:.75rem;"></div>
     </div>`;
   ov.classList.add('open');
 };
@@ -2291,6 +2317,155 @@ window.toggleDayShopItem = function(key) {
   row.querySelector('.shop-box').textContent = s[key] ? '✓' : '';
 };
 
+// ─── GREEN PHASE MEAL MODAL ───────────────────────────────────────────────────
+
+function findGPRecipeForMeal(desc) {
+  const d = desc.toLowerCase();
+  if (d.includes('smoothieskål'))                          return GP_RECIPES.A;
+  if (d.includes('kycklingskål') && d.includes('quinoa')) return GP_RECIPES.B;
+  if (d.includes('räkor'))                                 return GP_RECIPES.E;
+  if (d.includes('äggröra'))                               return GP_RECIPES.G;
+  if (d.includes('grönsaksplatta'))                        return GP_RECIPES.D;
+  if (d.includes('ugnskyckling') && d.includes('rödbetor')) return GP_RECIPES.C;
+  if (d.includes('ugnskyckling'))                          return GP_RECIPES.F;
+  return null;
+}
+
+function buildGPIngFromDesc(desc) {
+  const d = desc.toLowerCase();
+  const ing = [];
+  if      (d.includes('kyckling') && !d.includes('kycklingskål')) ing.push('Kycklingfilé — 2 st');
+  else if (d.includes('kalkon'))      ing.push('Kalkonfilé — 2 st');
+  else if (d.includes('ägg'))         ing.push('Ägg — 3–4 st');
+  else if (d.includes('hjortkött'))   ing.push('Hjortkött — 400 g');
+  else if (d.includes('ankbröst') || d.includes('anka')) ing.push('Ankbröst — 2 st');
+  else if (d.includes('räkor'))       ing.push('Räkor (skalade) — 150 g');
+  else if (d.includes('kyckling'))    ing.push('Kycklingfilé — 2 st');
+  if (d.includes('quinoa'))           ing.push('Quinoa — 1,5 dl');
+  if (d.includes('bovete'))           ing.push('Bovete-gryn — 1 dl');
+  if (d.includes('rödbetor'))         ing.push('Rödbetor — 3 st');
+  if (d.includes('grönkål'))          ing.push('Grönkål — 2 nävar');
+  if (d.includes('spenat'))           ing.push('Spenat — 2 nävar');
+  if (d.includes('broccoli'))         ing.push('Broccoli — 1 huvud');
+  if (d.includes('blomkål'))          ing.push('Blomkål — ½ huvud');
+  if (d.includes('sparris'))          ing.push('Sparris — 200 g');
+  if (d.includes('zucchini'))         ing.push('Zucchini — 1 st');
+  if (d.includes('aubergine'))        ing.push('Aubergine — 1 st');
+  if (d.includes('sötpotatis'))       ing.push('Sötpotatis — 2 st');
+  if (d.includes('pak choi'))         ing.push('Pak choi — 200 g');
+  if (d.includes('butternutpumpa'))   ing.push('Butternutpumpa — 1 st');
+  if (d.includes('avokado'))          ing.push('Avokado — 1 st');
+  if (d.includes('romansallad'))      ing.push('Romansallad — 1 huvud');
+  ing.push('Olivolja extra virgin — 2 msk', 'Celtic salt', 'Citron');
+  return ing;
+}
+
+function buildGPStepsFromDesc(desc) {
+  const d = desc.toLowerCase();
+  const steps = [];
+  if (d.includes('quinoa'))           steps.push('Koka quinoa enligt förpackning (ca 15 min).');
+  if (d.includes('bovete'))           steps.push('Koka bovete-gryn 12 min.');
+  if (d.includes('sparris') || d.includes('grönkål') || d.includes('broccoli') || d.includes('blomkål'))
+    steps.push('Ångkoka grönsaker 5–7 min.');
+  if (d.includes('kyckling') || d.includes('kalkon'))
+    steps.push('Ugna kyckling/kalkon i 200°C, 25–30 min med olivolja och Celtic salt.');
+  else if (d.includes('ägg'))         steps.push('Stek ägg i ankfett med Celtic salt.');
+  else if (d.includes('hjortkött'))   steps.push('Stek hjortkött i ankfett 3–4 min per sida.');
+  else if (d.includes('ankbröst'))    steps.push('Panna 3 min/sida, sedan ugn 10 min i 200°C.');
+  else if (d.includes('räkor'))       steps.push('Räkor är redan kokta — servera kalla eller rumstempererade.');
+  steps.push('Lägg upp, ringla olivolja och salta med Celtic salt.');
+  return steps;
+}
+
+function getGPMealDetail(slotIdx, gpDay) {
+  const menu = getGPDayMenu(gpDay);
+  const slots = [
+    { name:'Frukost',   time:'06:15', desc: menu.f },
+    { name:'Frukt',     time:'09:00', desc: 'Valfri Green List-frukt' },
+    { name:'Lunch',     time:'12:00', desc: menu.l },
+    { name:'Mellanmål', time:'15:00', desc: 'Grönsaker + tahini-dip' },
+    { name:'Middag',    time:'18:00', desc: menu.m },
+    { name:'Kväll',     time:'21:00', desc: 'Rå grönsaker' },
+  ];
+  const slot = slots[slotIdx];
+
+  if (slotIdx === 0) {
+    const rec = GP_RECIPES.A;
+    return { name: slot.name, time: slot.time, label: `${slot.name} — ${slot.desc}`,
+             ing: rec.ing, steps: rec.steps, note: rec.note, meta: `${rec.time} · ${rec.portions}` };
+  }
+  if (slotIdx === 1) {
+    return { name: slot.name, time: slot.time, label: `${slot.name} — Valfri frukt`,
+             ing: ['En handfull valfri frukt från Green List (banan, kiwi, mandarin, persika, ananas, apelsin m.fl.)'],
+             steps: ['Välj en tillåten frukt.', 'Ät som den är eller skär upp.'] };
+  }
+  if (slotIdx === 3) {
+    const rec = GP_RECIPES.D;
+    return { name: slot.name, time: slot.time, label: `${slot.name} — Grönsaksplatta med tahini-dip`,
+             ing: rec.ing, steps: rec.steps, note: rec.note, meta: `${rec.time} · ${rec.portions}` };
+  }
+  if (slotIdx === 5) {
+    return { name: slot.name, time: slot.time, label: `${slot.name} — Rå grönsaker`,
+             ing: ['Selleri — 2 stjälkar', 'Sommarsquash — ½ st rå'],
+             steps: ['Skär i bitar.', 'Ät råa, utan tillsatser.'] };
+  }
+  // Lunch (2) or Middag (4): try to match a GP recipe, otherwise build from desc
+  const rec = findGPRecipeForMeal(slot.desc);
+  if (rec) {
+    return { name: slot.name, time: slot.time, label: `${slot.name} — ${slot.desc}`,
+             ing: rec.ing, steps: rec.steps, note: rec.note, meta: `${rec.time} · ${rec.portions}` };
+  }
+  return { name: slot.name, time: slot.time, label: `${slot.name} — ${slot.desc}`,
+           ing: buildGPIngFromDesc(slot.desc), steps: buildGPStepsFromDesc(slot.desc) };
+}
+
+window.showGPMealModal = function(slotIdx, gpDay) {
+  const detail = getGPMealDetail(slotIdx, gpDay);
+  const d   = gpDateFromDay(gpDay);
+  const wds = ['Sön','Mån','Tis','Ons','Tor','Fre','Lör'];
+  const ov  = document.getElementById('modal-overlay');
+
+  const metaHtml = detail.meta ? `<div class="modal-meta">${detail.meta}</div>` : '';
+  const noteHtml = detail.note ? `<div class="recipe-note">${detail.note}</div>` : '';
+  const ingHtml  = detail.ing.map(i => `<li>${i}</li>`).join('');
+  const stepHtml = detail.steps.map(s => `<li>${s}</li>`).join('');
+
+  ov.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" onclick="closeModal()" aria-label="Stäng">✕</button>
+      <div class="modal-header">
+        <div class="modal-category">Green Phase · Dag ${gpDay} · ${wds[d.getDay()]} ${d.getDate()}/${d.getMonth()+1} · ${detail.time}</div>
+        <div class="modal-title">${detail.label}</div>
+        ${metaHtml}
+      </div>
+      ${noteHtml}
+      <div class="recipe-section-label">Du behöver köpa</div>
+      <ul class="recipe-ing-list">${ingHtml}</ul>
+      <div class="recipe-section-label">Tillagning</div>
+      <ol class="recipe-steps-list">${stepHtml}</ol>
+      <div class="modal-btn-group">
+        <button class="modal-add-btn" onclick="addGPMealToShop(${slotIdx},${gpDay},this)">
+          + Lägg till i inköpslista
+        </button>
+        <button class="modal-close-btn" onclick="closeModal()">Stäng</button>
+      </div>
+      <div style="height:.75rem;"></div>
+    </div>`;
+  ov.classList.add('open');
+};
+
+window.addGPMealToShop = function(slotIdx, gpDay, btn) {
+  const detail = getGPMealDetail(slotIdx, gpDay);
+  const s = getState();
+  const existing = s.custom_shop || [];
+  detail.ing.forEach(ing => { if (!existing.includes(ing)) existing.push(ing); });
+  s.custom_shop = existing;
+  setState(s);
+  btn.textContent = '✓ Tillagd i inköpslista';
+  btn.classList.add('added');
+  btn.disabled = true;
+};
+
 function renderCalendarGreen() {
   const gpDay = getGreenDay();
   const el = document.getElementById('page-calendar');
@@ -2352,7 +2527,7 @@ window.showGPCalDetail = function(gpDay) {
   const rotWarn = hasRotationWarning(gpDay)
     ? `<div class="rotation-warning" style="margin-top:.5rem;">Rotationsvarning — ${getGPDayMenu(gpDay-1).p} användes dag ${gpDay-1}. Välj ett annat alternativ.</div>` : '';
 
-  const meals = [
+  const gpMeals = [
     { t:'06:15', name:'Frukost',   desc: menu.f },
     { t:'09:00', name:'Frukt',     desc: 'Valfri Green List-frukt' },
     { t:'12:00', name:'Lunch',     desc: menu.l },
@@ -2360,12 +2535,17 @@ window.showGPCalDetail = function(gpDay) {
     { t:'18:00', name:'Middag',    desc: menu.m },
     { t:'21:00', name:'Kväll',     desc: 'Rå grönsaker' },
   ];
-  const mealRows = meals.map(m => `<div class="cal-rich-meal">
-    <span class="cal-rich-time">${m.t}</span>
-    <span><strong>${m.name}</strong> — ${m.desc}</span>
-  </div>`).join('');
+  const mealRows = gpMeals.map((m, i) => `
+    <div class="cal-meal-row" onclick="showGPMealModal(${i},${gpDay})">
+      <div class="cal-meal-row-body">
+        <div class="cal-meal-row-time">${m.t}</div>
+        <div class="cal-meal-row-name">${m.name}</div>
+        <div class="cal-meal-row-desc">${m.desc}</div>
+      </div>
+      <div class="cal-meal-chevron">›</div>
+    </div>`).join('');
 
-  const futureNote = isFuture ? `<div class="cal-rich-note">Planerad dag — inga avbockningar ännu.</div>` : '';
+  const futureNote = isFuture ? `<div class="cal-rich-note" style="padding:.75rem 1.25rem;font-size:.78rem;color:var(--muted);font-style:italic;">Planerad dag — inga avbockningar ännu.</div>` : '';
 
   const el = document.getElementById('cal-detail');
   el.innerHTML = `
