@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Detox 21">
 <meta name="theme-color" content="#0a0a0a">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <title>Detox 21 — Patrik Rees</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1018,6 +1018,39 @@ body {
 }
 .pre-start-body { font-size: .875rem; color: var(--muted); line-height: 1.6; }
 
+/* ── PWA INSTALL BANNER ── */
+.pwa-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .75rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--off-white);
+}
+.pwa-banner-text {
+  font-size: .72rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.pwa-banner-text strong {
+  display: block;
+  font-size: .72rem;
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: .1rem;
+}
+.pwa-banner-dismiss {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--muted-light);
+  cursor: pointer;
+  padding: .25rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
 /* ── GREEN PHASE ── */
 .gp-hero-kicker { color: rgba(255,255,255,.5); }
 .gp-transition {
@@ -1369,6 +1402,15 @@ body {
     <button class="nav-tab" onclick="showPage('guide')">Guide</button>
   </nav>
 </header>
+
+<!-- PWA install banner (iOS Safari) -->
+<div class="pwa-banner" id="pwa-banner" style="display:none;">
+  <div class="pwa-banner-text">
+    <strong>Lägg till på hemskärmen</strong>
+    Tryck <span style="font-style:italic;">Dela</span> → <span style="font-style:italic;">Lägg till på hemskärmen</span> i Safari
+  </div>
+  <button class="pwa-banner-dismiss" onclick="dismissPwaBanner()" aria-label="Stäng">✕</button>
+</div>
 
 <!-- Modal overlay -->
 <div id="modal-overlay" class="modal-overlay" onclick="if(event.target===this)closeModal()"></div>
@@ -3030,6 +3072,23 @@ function tickTimer() {
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
+
+function dismissPwaBanner() {
+  document.getElementById('pwa-banner').style.display = 'none';
+  localStorage.setItem('pwa-banner-dismissed', '1');
+}
+
+(function() {
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone = window.navigator.standalone === true;
+  const dismissed = localStorage.getItem('pwa-banner-dismissed');
+  if (isIOS && !isStandalone && !dismissed) {
+    setTimeout(() => {
+      const banner = document.getElementById('pwa-banner');
+      if (banner) banner.style.display = 'flex';
+    }, 2000);
+  }
+})();
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 
