@@ -496,6 +496,148 @@ body {
   margin-top: -.05rem;
 }
 
+/* ── CALENDAR MEAL ROWS ── */
+.cal-meal-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .85rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.cal-meal-row:active { background: var(--off-white); }
+.cal-meal-row-body { flex: 1; min-width: 0; }
+.cal-meal-row-time {
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: .12rem;
+}
+.cal-meal-row-name {
+  font-family: var(--serif);
+  font-size: .95rem;
+  font-weight: 400;
+  color: var(--black);
+}
+.cal-meal-row-desc {
+  font-size: .72rem;
+  color: var(--muted);
+  margin-top: .1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100vw - 5rem);
+}
+.cal-meal-chevron {
+  font-size: 1rem;
+  color: var(--muted-light);
+  flex-shrink: 0;
+  font-weight: 300;
+}
+.cal-day-shop-btn {
+  display: block;
+  width: calc(100% - 2.5rem);
+  margin: 1rem 1.25rem .5rem;
+  background: none;
+  border: 1px solid var(--black);
+  color: var(--black);
+  padding: .65rem 1.5rem;
+  font-family: var(--sans);
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: center;
+}
+.cal-day-shop-btn:hover,
+.cal-day-shop-btn:active { background: var(--black); color: var(--white); }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 300;
+  padding: env(safe-area-inset-top, 1.5rem) 0 env(safe-area-inset-bottom, 0) 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.modal-overlay.open { display: block; }
+.modal {
+  background: var(--white);
+  width: 100%;
+  max-width: 540px;
+  margin: 4rem auto 2rem;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+@media (max-width: 580px) {
+  .modal { margin: auto; min-height: 100svh; box-shadow: none; }
+}
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--muted);
+  z-index: 2;
+  padding: .25rem;
+  line-height: 1;
+}
+.modal-header {
+  padding: 1.75rem 3rem 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.modal-category {
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .5rem;
+}
+.modal-title {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: .4rem;
+}
+.modal-meta {
+  font-size: .65rem;
+  color: var(--muted);
+  letter-spacing: .05em;
+}
+.modal-add-btn {
+  display: block;
+  width: calc(100% - 2.5rem);
+  margin: 1rem 1.25rem;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  padding: .75rem 1.5rem;
+  font-family: var(--sans);
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s;
+  text-align: center;
+}
+.modal-add-btn.added { background: var(--green); }
+
 /* ── CALENDAR PAGE ── */
 .cal-month-label {
   font-family: var(--serif);
@@ -872,6 +1014,9 @@ body {
   </nav>
 </header>
 
+<!-- Modal overlay -->
+<div id="modal-overlay" class="modal-overlay" onclick="if(event.target===this)closeModal()"></div>
+
 <main>
   <div id="page-today" class="page active"></div>
   <div id="page-recipe" class="page"></div>
@@ -980,6 +1125,7 @@ const RULES = [
   { n:8,  t:'Stekfett = <strong>ankfett</strong> · Sallad = 1 msk olivolja · Salt = Celtic salt' },
   { n:9,  t:'Drycker: <strong>bara vatten</strong> (10–12 glas) och örtte' },
   { n:10, t:'Hungrig? <strong>Mer grönsaker</strong> — aldrig mer stärkelse eller protein efter 18:00' },
+  { n:11, t:'<strong>Ingen fisk</strong> — varken lax, torsk, sill eller tonfisk. Skaldjur (räkor, hummer, krabba, musslor, pilgrimsmusslor) är OK.' },
 ];
 
 const FRUITS = ['Banan','Granatäpple','Grapefrukt','Kiwi','Mandarin','Honungsmelon','Mango','Persika','Melon','Papaya','Nektarin','Vattenmelon','Guava','Aprikoser','Mullbär','Citron','Plommon','Persimmon','Lime','Stjärnfrukt','Oliv','Ananas','Vindruva','Avokado','Apelsin'];
@@ -999,6 +1145,61 @@ const SHOP_ONCE = [
   'Olivolja extra virgin — 1 flaska','Celtic salt — 1 förpackning',
   'Örtte — 1 förpackning','Glutenfria kycklingbuljongtärningar — 1 förp. (utan jäst & mejeri)',
 ];
+
+// Detaljdata för fasta måltider (frukost, mellanmål, kvällsgrönsaker)
+// OBS: Patrik äter INTE fisk — skaldjur (räkor, hummer, krabba, musslor, pilgrimsmusslor) är OK.
+const FIXED_MEALS = {
+  breakfast: {
+    name: 'Frukost',
+    category: 'Frukost · 06:15',
+    ing: [
+      'Valfri frukt från listan — en handfull (banan, kiwi, apelsin, mandarin, persika, ananas…)',
+      'Tahini ljus — 1–2 msk',
+      'Manuka honung — 1 tsk',
+      'Bovete-knäckebröd Le Pain des Fleurs — 1–2 st',
+    ],
+    steps: [
+      'Skär frukten i bitar och lägg i skål.',
+      'Ringla tahini och manuka honung över.',
+      'Servera med bovete-knäckebröd vid sidan.',
+    ],
+  },
+  snack1: {
+    name: 'Frukt',
+    category: 'Mellanmål · 09:00',
+    ing: [
+      'En handfull valfri frukt från Green List (banan, kiwi, mandarin, persika, ananas, apelsin, m.fl.)',
+    ],
+    steps: [
+      'Välj en tillåten frukt — en handfull.',
+      'Ät som den är eller skär upp.',
+    ],
+  },
+  snack2: {
+    name: 'Grönsaker',
+    category: 'Mellanmål · 15:00',
+    ing: [
+      'Blomkål — ca 100 g rå',
+      'Selleri — 2–3 stjälkar',
+    ],
+    steps: [
+      'Skär blomkål och selleri i munsbitar.',
+      'Ät råa, utan tillsatser.',
+    ],
+  },
+  snack3: {
+    name: 'Kvällsgrönsaker',
+    category: 'Kvällsmål · 21:00',
+    ing: [
+      'Selleri — 2 stjälkar',
+      'Sommarsquash — ½ st rå',
+    ],
+    steps: [
+      'Skär i bitar.',
+      'Ät råa — inget tillsatt.',
+    ],
+  },
+};
 
 // ─── STATE ───────────────────────────────────────────────────────────────────
 
@@ -1243,7 +1444,7 @@ function renderCalendar() {
   }).join('');
 
   el.innerHTML = `
-    <div class="cal-month-label">Mars – April 2026</div>
+    <div class="cal-month-label">Maj 2026</div>
     <div class="cal-week-headers">${headers}</div>
     <div class="cal-grid-wrap">${cells}</div>
     <div class="cal-detail" id="cal-detail"></div>`;
@@ -1251,12 +1452,170 @@ function renderCalendar() {
 
 window.showCalDetail = function(num) {
   const day = DAYS[num - 1];
+  const container = document.getElementById('cal-detail');
+
+  const rows = MEALS.map(meal => {
+    const isRec = !!meal.isRecipe;
+    const name  = isRec ? day.name : meal.name;
+    const desc  = isRec
+      ? `${meal.name}${day.protein ? ' · ' + day.protein : ''}`
+      : meal.desc;
+    return `
+      <div class="cal-meal-row" onclick="showMealModal('${meal.key}',${num})">
+        <div class="cal-meal-row-body">
+          <div class="cal-meal-row-time">${meal.time}</div>
+          <div class="cal-meal-row-name">${name}</div>
+          <div class="cal-meal-row-desc">${desc}</div>
+        </div>
+        <div class="cal-meal-chevron">›</div>
+      </div>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="section-label" style="padding:1.25rem 1.25rem .5rem;">
+      Dag ${num} — ${day.wd} ${day.date} · ${day.theme}
+    </div>
+    ${rows}
+    <button class="cal-day-shop-btn" onclick="showDayShopModal(${num})">Visa inköp för denna dag</button>
+    <div style="height:.75rem;"></div>`;
+
+  container.scrollIntoView({ behavior:'smooth', block:'start' });
+};
+
+// ─── MEAL MODAL ──────────────────────────────────────────────────────────────
+
+function getMealDetail(mealKey, dayNum) {
+  const day  = DAYS[dayNum - 1];
+  const meal = MEALS.find(m => m.key === mealKey);
+  if (meal.isRecipe) {
+    const rec = RECIPES[day.recipe];
+    return {
+      name:     rec.title,
+      category: `${meal.name} · ${meal.time} · Recept ${day.recipe}`,
+      time:     rec.time,
+      portions: rec.portions,
+      note:     rec.note,
+      ing:      rec.ing,
+      steps:    rec.steps,
+    };
+  }
+  const fixed = FIXED_MEALS[mealKey];
+  return {
+    name:     fixed.name,
+    category: fixed.category,
+    ing:      fixed.ing,
+    steps:    fixed.steps,
+  };
+}
+
+window.showMealModal = function(mealKey, dayNum) {
+  const d   = getMealDetail(mealKey, dayNum);
+  const day = DAYS[dayNum - 1];
+  const ov  = document.getElementById('modal-overlay');
+
+  const metaHtml  = (d.time || d.portions)
+    ? `<div class="modal-meta">${[d.time, d.portions].filter(Boolean).join(' · ')}</div>` : '';
+  const noteHtml  = d.note ? `<div class="recipe-note">${d.note}</div>` : '';
+  const ingHtml   = d.ing.map(i => `<li>${i}</li>`).join('');
+  const stepsHtml = d.steps.map(s => `<li>${s}</li>`).join('');
+
+  ov.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" onclick="closeModal()" aria-label="Stäng">✕</button>
+      <div class="modal-header">
+        <div class="modal-category">Dag ${dayNum} · ${day.wd} ${day.date} · ${d.category}</div>
+        <div class="modal-title">${d.name}</div>
+        ${metaHtml}
+      </div>
+      ${noteHtml}
+      <div class="recipe-section-label">Ingredienser</div>
+      <ul class="recipe-ing-list">${ingHtml}</ul>
+      <div class="recipe-section-label">Tillagning</div>
+      <ol class="recipe-steps-list">${stepsHtml}</ol>
+      <button class="modal-add-btn" id="modal-add-btn"
+        onclick="addMealIngToShop('${mealKey}',${dayNum},this)">
+        + Lägg till i inköpslista
+      </button>
+      <div style="height:1.5rem;"></div>
+    </div>`;
+  ov.classList.add('open');
+};
+
+window.closeModal = function() {
+  document.getElementById('modal-overlay').classList.remove('open');
+};
+
+window.addMealIngToShop = function(mealKey, dayNum, btn) {
+  const detail = getMealDetail(mealKey, dayNum);
+  const s = getState();
+  // Append to the main shopping list as custom items
+  const existing = s.custom_shop || [];
+  detail.ing.forEach(ing => {
+    if (!existing.includes(ing)) existing.push(ing);
+  });
+  s.custom_shop = existing;
+  setState(s);
+  btn.textContent = '✓ Tillagd i inköpslista';
+  btn.classList.add('added');
+  btn.disabled = true;
+};
+
+window.showDayShopModal = function(dayNum) {
+  const day = DAYS[dayNum - 1];
   const rec = RECIPES[day.recipe];
-  document.getElementById('cal-detail').innerHTML = `
-    <div class="section-label" style="padding:1.25rem 1.25rem .6rem;">Dag ${num} — ${day.wd} ${day.date}</div>
-    <div class="recipe-note" style="border-top:1px solid var(--border);">${day.name}${day.protein ? ' · ' + day.protein : ''}</div>
-    <ul class="recipe-ing-list">${rec.ing.map(i => `<li>${i}</li>`).join('')}</ul>
-    <div style="height:1rem;"></div>`;
+  const ov  = document.getElementById('modal-overlay');
+
+  // Samla alla ingredienser för dagen (deduplicera)
+  const allIng = [
+    ...FIXED_MEALS.breakfast.ing,
+    ...FIXED_MEALS.snack1.ing,
+    ...rec.ing,
+    ...FIXED_MEALS.snack2.ing,
+    ...rec.ing,   // middag = samma recept som lunch
+    ...FIXED_MEALS.snack3.ing,
+  ];
+  const seen = new Set();
+  const unique = allIng.filter(item => {
+    const k = item.toLowerCase().slice(0, 22);
+    if (seen.has(k)) return false;
+    seen.add(k); return true;
+  });
+
+  const s = getState();
+  const rows = unique.map((item, i) => {
+    const key   = `dayshop_d${dayNum}_${i}`;
+    const bought = !!s[key];
+    return `
+      <div class="shop-row ${bought ? 'bought' : ''}" id="${key}"
+           onclick="toggleDayShopItem('${key}')">
+        <div class="shop-box">${bought ? '✓' : ''}</div>
+        <span class="shop-label">${item}</span>
+      </div>`;
+  }).join('');
+
+  ov.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" onclick="closeModal()" aria-label="Stäng">✕</button>
+      <div class="modal-header">
+        <div class="modal-category">Inköp · Dag ${dayNum} · ${day.wd} ${day.date}</div>
+        <div class="modal-title">${day.name}</div>
+        <div class="modal-meta">Alla ingredienser för hela dagen</div>
+      </div>
+      <div style="height:.25rem;"></div>
+      ${rows}
+      <div style="height:1.5rem;"></div>
+    </div>`;
+  ov.classList.add('open');
+};
+
+window.toggleDayShopItem = function(key) {
+  const s = getState();
+  s[key] = !s[key];
+  setState(s);
+  const row = document.getElementById(key);
+  if (!row) return;
+  row.classList.toggle('bought', !!s[key]);
+  row.querySelector('.shop-box').textContent = s[key] ? '✓' : '';
 };
 
 // ─── RENDER RULES ─────────────────────────────────────────────────────────────
