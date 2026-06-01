@@ -186,6 +186,15 @@ body {
   font-weight: 300;
   color: rgba(255,255,255,.55);
 }
+.hero-protocol-day {
+  font-family: var(--sans);
+  font-size: .6rem;
+  font-weight: 400;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-top: .4rem;
+}
 
 /* ── TIMER ── */
 .timer-wrap {
@@ -885,27 +894,27 @@ body {
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
 const DAYS = [
-  { day:1,  date:'3/5',   wd:'Sön', theme:'Korn & Stärkelse', recipe:'A', protein:'',         name:'Sötpotatisskål med kikärta & grönkål' },
-  { day:2,  date:'4/5',   wd:'Mån', theme:'Soppa',            recipe:'B', protein:'',         name:'Kycklingbuljong-soppa med spenat' },
-  { day:3,  date:'5/5',   wd:'Tis', theme:'Vitt kött',        recipe:'C', protein:'Kyckling', name:'Ugnskyckling med favabönor & romansallad' },
-  { day:4,  date:'6/5',   wd:'Ons', theme:'Baljväxter',       recipe:'D', protein:'',         name:'Linsgryta med spenat & canellinibönor' },
-  { day:5,  date:'7/5',   wd:'Tor', theme:'Vegetarisk',       recipe:'E', protein:'',         name:'Butternutpumpa-gryta med grönkål' },
-  { day:6,  date:'8/5',   wd:'Fre', theme:'Ägg',              recipe:'F', protein:'Ägg',      name:'Äggpanna med grönkål & squash' },
-  { day:7,  date:'9/5',   wd:'Lör', theme:'Rött kött',        recipe:'G', protein:'Anka',     name:'Ankbröst med butternutpumpa & grönkål' },
-  { day:8,  date:'10/5',  wd:'Sön', theme:'Korn & Stärkelse', recipe:'A', protein:'',         name:'Sötpotatisskål med kikärta & grönkål' },
-  { day:9,  date:'11/5',  wd:'Mån', theme:'Soppa',            recipe:'B', protein:'',         name:'Kycklingbuljong-soppa med spenat' },
-  { day:10, date:'12/5',  wd:'Tis', theme:'Vitt kött',        recipe:'C', protein:'Kalkon',   name:'Ugnskalkon med favabönor & romansallad' },
-  { day:11, date:'13/5',  wd:'Ons', theme:'Baljväxter',       recipe:'D', protein:'',         name:'Linsgryta med spenat & canellinibönor' },
-  { day:12, date:'14/5',  wd:'Tor', theme:'Vegetarisk',       recipe:'E', protein:'',         name:'Butternutpumpa-gryta med grönkål' },
-  { day:13, date:'15/5',  wd:'Fre', theme:'Ägg & Kyckling',   recipe:'F', protein:'Kyckling', name:'Kycklingpanna med grönkål & squash' },
-  { day:14, date:'16/5',  wd:'Lör', theme:'Rött kött',        recipe:'G', protein:'Hjortkött',name:'Hjortkött med butternutpumpa & grönkål' },
-  { day:15, date:'17/5',  wd:'Sön', theme:'Korn & Stärkelse', recipe:'A', protein:'',         name:'Sötpotatisskål med kikärta & grönkål' },
-  { day:16, date:'18/5',  wd:'Mån', theme:'Soppa',            recipe:'B', protein:'',         name:'Kycklingbuljong-soppa med spenat' },
-  { day:17, date:'19/5',  wd:'Tis', theme:'Vitt kött',        recipe:'C', protein:'Kyckling', name:'Ugnskyckling med favabönor & romansallad' },
-  { day:18, date:'20/5',  wd:'Ons', theme:'Baljväxter',       recipe:'D', protein:'',         name:'Linsgryta med spenat & canellinibönor' },
-  { day:19, date:'21/5',  wd:'Tor', theme:'Vegetarisk',       recipe:'E', protein:'',         name:'Butternutpumpa-gryta med grönkål' },
-  { day:20, date:'22/5',  wd:'Fre', theme:'Ägg',              recipe:'F', protein:'Ägg',      name:'Äggpanna med grönkål & squash' },
-  { day:21, date:'23/5',  wd:'Lör', theme:'Rött kött',        recipe:'G', protein:'Anka',     name:'Ankbröst med butternutpumpa & grönkål' },
+  { day:1,  date:'24/5',  wd:'Sön', theme:'Korn & Stärkelse', recipe:'A', protein:'',         name:'Sötpotatisskål med kikärta & grönkål' },
+  { day:2,  date:'25/5',  wd:'Mån', theme:'Soppa',            recipe:'B', protein:'',         name:'Kycklingbuljong-soppa med spenat' },
+  { day:3,  date:'26/5',  wd:'Tis', theme:'Vitt kött',        recipe:'C', protein:'Kyckling', name:'Ugnskyckling med favabönor & romansallad' },
+  { day:4,  date:'27/5',  wd:'Ons', theme:'Baljväxter',       recipe:'D', protein:'',         name:'Linsgryta med spenat & canellinibönor' },
+  { day:5,  date:'28/5',  wd:'Tor', theme:'Vegetarisk',       recipe:'E', protein:'',         name:'Butternutpumpa-gryta med grönkål' },
+  { day:6,  date:'29/5',  wd:'Fre', theme:'Ägg',              recipe:'F', protein:'Ägg',      name:'Äggpanna med grönkål & squash' },
+  { day:7,  date:'30/5',  wd:'Lör', theme:'Rött kött',        recipe:'G', protein:'Anka',     name:'Ankbröst med butternutpumpa & grönkål' },
+  { day:8,  date:'31/5',  wd:'Sön', theme:'Korn & Stärkelse', recipe:'A', protein:'',         name:'Sötpotatisskål med kikärta & grönkål' },
+  { day:9,  date:'1/6',   wd:'Mån', theme:'Soppa',            recipe:'B', protein:'',         name:'Kycklingbuljong-soppa med spenat' },
+  { day:10, date:'2/6',   wd:'Tis', theme:'Vitt kött',        recipe:'C', protein:'Kalkon',   name:'Ugnskalkon med favabönor & romansallad' },
+  { day:11, date:'3/6',   wd:'Ons', theme:'Baljväxter',       recipe:'D', protein:'',         name:'Linsgryta med spenat & canellinibönor' },
+  { day:12, date:'4/6',   wd:'Tor', theme:'Vegetarisk',       recipe:'E', protein:'',         name:'Butternutpumpa-gryta med grönkål' },
+  { day:13, date:'5/6',   wd:'Fre', theme:'Ägg & Kyckling',   recipe:'F', protein:'Kyckling', name:'Kycklingpanna med grönkål & squash' },
+  { day:14, date:'6/6',   wd:'Lör', theme:'Rött kött',        recipe:'G', protein:'Hjortkött',name:'Hjortkött med butternutpumpa & grönkål' },
+  { day:15, date:'7/6',   wd:'Sön', theme:'Korn & Stärkelse', recipe:'A', protein:'',         name:'Sötpotatisskål med kikärta & grönkål' },
+  { day:16, date:'8/6',   wd:'Mån', theme:'Soppa',            recipe:'B', protein:'',         name:'Kycklingbuljong-soppa med spenat' },
+  { day:17, date:'9/6',   wd:'Tis', theme:'Vitt kött',        recipe:'C', protein:'Kyckling', name:'Ugnskyckling med favabönor & romansallad' },
+  { day:18, date:'10/6',  wd:'Ons', theme:'Baljväxter',       recipe:'D', protein:'',         name:'Linsgryta med spenat & canellinibönor' },
+  { day:19, date:'11/6',  wd:'Tor', theme:'Vegetarisk',       recipe:'E', protein:'',         name:'Butternutpumpa-gryta med grönkål' },
+  { day:20, date:'12/6',  wd:'Fre', theme:'Ägg',              recipe:'F', protein:'Ägg',      name:'Äggpanna med grönkål & squash' },
+  { day:21, date:'13/6',  wd:'Lör', theme:'Rött kött',        recipe:'G', protein:'Anka',     name:'Ankbröst med butternutpumpa & grönkål' },
 ];
 
 const RECIPES = {
@@ -1005,10 +1014,17 @@ const SHOP_ONCE = [
 const getState = () => { try { return JSON.parse(localStorage.getItem('d21') || '{}'); } catch { return {}; } };
 const setState = s => localStorage.setItem('d21', JSON.stringify(s));
 
-function getTodayDay() {
+function getTotalDay() {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const start = new Date(2026, 4, 3);
+  const start = new Date(2026, 4, 3); // 3 maj — total protokollstart
+  return Math.floor((today - start) / 86400000) + 1;
+}
+
+function getGreenPhaseDay() {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const start = new Date(2026, 4, 24); // 24 maj — grön fas start
   return Math.floor((today - start) / 86400000) + 1;
 }
 
@@ -1040,40 +1056,56 @@ function getSecsToNext() {
 // ─── RENDER TODAY ─────────────────────────────────────────────────────────────
 
 function renderToday() {
-  const n = getTodayDay();
+  const totalDay = getTotalDay();
+  const greenDay = getGreenPhaseDay();
   const el = document.getElementById('page-today');
   const headerLabel = document.getElementById('header-day-label');
 
-  if (n < 1) {
-    headerLabel.textContent = 'Imorgon startar det';
+  if (totalDay < 1) {
+    headerLabel.textContent = 'Protokollet startar 3 maj';
     el.innerHTML = `
       <div class="pre-start">
-        <div class="pre-start-kicker">30 mars 2026</div>
-        <div class="pre-start-title">Detoxen börjar imorgon</div>
-        <div class="pre-start-body">Dag 1 startar kl. 06:15.<br>Köp in maten och läs igenom alla regler idag.</div>
+        <div class="pre-start-kicker">3 maj 2026</div>
+        <div class="pre-start-title">Protokollet startar 3 maj</div>
+        <div class="pre-start-body">Förberedelsefas börjar kl. 06:15.<br>Grön fas startar 24 maj.</div>
       </div>`;
     return;
   }
-  if (n > 21) {
+
+  if (greenDay < 1) {
+    const daysLeft = -greenDay + 1;
+    headerLabel.textContent = `Protokolldag ${totalDay}`;
+    el.innerHTML = `
+      <div class="pre-start">
+        <div class="pre-start-kicker">Protokolldag ${totalDay}</div>
+        <div class="pre-start-title">Grön fas om ${daysLeft} dag${daysLeft === 1 ? '' : 'ar'}</div>
+        <div class="pre-start-body">Grön fas startar 24 maj — dag 1 av 21.</div>
+      </div>`;
+    return;
+  }
+
+  if (greenDay > 21) {
     headerLabel.textContent = 'Genomfört';
     el.innerHTML = `
       <div class="pre-start">
-        <div class="pre-start-kicker">19 april 2026</div>
-        <div class="pre-start-title">21 dagar genomförda</div>
-        <div class="pre-start-body">Patrik Rees — du klarade hela detoxen.</div>
+        <div class="pre-start-kicker">13 juni 2026</div>
+        <div class="pre-start-title">Grön fas genomförd</div>
+        <div class="pre-start-body">Patrik Rees — 21 dagar klara.</div>
       </div>`;
     return;
   }
 
+  const n = greenDay; // all meal/recipe logic uses Green Phase Day
   const day = DAYS[n - 1];
   const state = getState();
-  headerLabel.textContent = `Dag ${n} av 21`;
+  headerLabel.textContent = `Grön fas dag ${n}`;
 
-  // HERO
+  // HERO — shows both Green Phase Day and Total Protocol Day
   let hero = `
     <div class="hero">
       <div class="hero-kicker">Patrik Rees · MediBalans</div>
       <div class="hero-day-num">${n}<span class="hero-day-total"> /21</span></div>
+      <div class="hero-protocol-day">Protokolldag ${totalDay}</div>
       <div class="hero-divider"></div>
       <div class="hero-date">${day.wd} ${day.date}</div>
       <div class="hero-theme">${day.theme}</div>
@@ -1179,7 +1211,7 @@ window.toggleMeal = function(key, dayNum) {
 
 // ─── RENDER RECIPE ────────────────────────────────────────────────────────────
 
-let activeRecipeDay = Math.max(1, Math.min(getTodayDay(), 21)) || 1;
+let activeRecipeDay = Math.max(1, Math.min(getGreenPhaseDay(), 21)) || 1;
 
 function renderRecipe(dayNum) {
   if (dayNum) activeRecipeDay = dayNum;
@@ -1220,7 +1252,7 @@ function renderRecipe(dayNum) {
 // ─── RENDER CALENDAR ──────────────────────────────────────────────────────────
 
 function renderCalendar() {
-  const n = getTodayDay();
+  const n = getGreenPhaseDay();
   const state = getState();
   const el = document.getElementById('page-calendar');
 
@@ -1243,7 +1275,7 @@ function renderCalendar() {
   }).join('');
 
   el.innerHTML = `
-    <div class="cal-month-label">Mars – April 2026</div>
+    <div class="cal-month-label">Maj – Juni 2026</div>
     <div class="cal-week-headers">${headers}</div>
     <div class="cal-grid-wrap">${cells}</div>
     <div class="cal-detail" id="cal-detail"></div>`;
