@@ -186,6 +186,15 @@ body {
   font-weight: 300;
   color: rgba(255,255,255,.55);
 }
+.hero-protocol-day {
+  font-family: var(--sans);
+  font-size: .6rem;
+  font-weight: 400;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-top: .4rem;
+}
 
 /* ── TIMER ── */
 .timer-wrap {
@@ -1759,10 +1768,19 @@ const GP_WEEK_TEMPLATES = [
 const getState = () => { try { return JSON.parse(localStorage.getItem('d21') || '{}'); } catch { return {}; } };
 const setState = s => localStorage.setItem('d21', JSON.stringify(s));
 
-function getTodayDay() {
+function getTotalDay() {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const start = new Date(2026, 4, 3);
+  const start = new Date(2026, 4, 3); // 3 maj — total protokollstart
+  return Math.floor((today - start) / 86400000) + 1;
+}
+
+function getTodayDay() { return getTotalDay(); } // alias for compatibility
+
+function getGreenPhaseDay() {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const start = new Date(2026, 4, 24); // 24 maj — grön fas start
   return Math.floor((today - start) / 86400000) + 1;
 }
 
@@ -1830,35 +1848,38 @@ function getSecsToNext() {
 // ─── RENDER TODAY ─────────────────────────────────────────────────────────────
 
 function renderToday() {
-  const n = getTodayDay();
+  const totalDay = getTotalDay();
+  const greenDay = getGreenPhaseDay();
   const el = document.getElementById('page-today');
   const headerLabel = document.getElementById('header-day-label');
 
-  if (n < 1) {
-    headerLabel.textContent = 'Imorgon startar det';
+  if (totalDay < 1) {
+    headerLabel.textContent = 'Protokollet startar 3 maj';
     el.innerHTML = `
       <div class="pre-start">
-        <div class="pre-start-kicker">30 mars 2026</div>
-        <div class="pre-start-title">Detoxen börjar imorgon</div>
-        <div class="pre-start-body">Dag 1 startar kl. 06:15.<br>Köp in maten och läs igenom alla regler idag.</div>
+        <div class="pre-start-kicker">3 maj 2026</div>
+        <div class="pre-start-title">Protokollet startar 3 maj</div>
+        <div class="pre-start-body">Förberedelsefas börjar kl. 06:15.<br>Grön fas startar 24 maj.</div>
       </div>`;
     return;
   }
-  if (n > 21) {
+  if (totalDay > 21) {
     renderTodayGreen();
     return;
   }
 
+  const n = totalDay; // detox phase: day 1–21
   const day = DAYS[n - 1];
   const state = getState();
   headerLabel.textContent = `Dag ${n} av 21`;
   document.getElementById('header-wordmark').textContent = 'Detox 21';
 
-  // HERO
+  // HERO — shows both Green Phase Day and Total Protocol Day
   let hero = `
     <div class="hero">
       <div class="hero-kicker">Patrik Rees · MediBalans</div>
       <div class="hero-day-num">${n}<span class="hero-day-total"> /21</span></div>
+      <div class="hero-protocol-day">Protokolldag ${totalDay}</div>
       <div class="hero-divider"></div>
       <div class="hero-date">${day.wd} ${day.date}</div>
       <div class="hero-theme">${day.theme}</div>
@@ -1961,7 +1982,7 @@ function renderTodayGreen() {
   const headerLabel = document.getElementById('header-day-label');
   const wordmark = document.getElementById('header-wordmark');
   wordmark.textContent = 'Green Phase';
-  headerLabel.textContent = `Dag ${gpDay} av 90`;
+  headerLabel.textContent = `Grön fas dag ${gpDay}`;
 
   const state = getState();
   const menu = getGPDayMenu(gpDay);
@@ -1983,6 +2004,7 @@ function renderTodayGreen() {
     <div class="hero">
       <div class="hero-kicker gp-hero-kicker">Patrik Rees · Green Phase</div>
       <div class="hero-day-num">${gpDay}<span class="hero-day-total"> /90</span></div>
+      <div class="hero-protocol-day">Protokolldag ${getTotalDay()}</div>
       <div class="hero-divider"></div>
       <div class="hero-date">${wd} ${dateStr}</div>
       <div class="hero-theme">${menu.l}</div>
