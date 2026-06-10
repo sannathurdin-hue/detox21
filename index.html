@@ -1620,7 +1620,7 @@ const BANNED_INGREDIENTS_ALCAT = [
   'gurkmeja','kardemumma','nejlika','paranöt','jästextrakt','sparris','broccoli','morot',
   'morötter','gurka','quinoa','lamm','fläsk','mandel','valnöt','blåbär','jordgubbe',
   'björnbär','körsbär','tranbär','fikon','vitlök','ingefära','lök','purjolök','salladslök',
-  'gröna ärtor','kål','endiv','mangold','zucchini','potatis','kålrabbi','pumpa','rabarber',
+  'gröna ärtor','vitkål','rödkål','spetskål','savoykål','brysselkål','endiv','mangold','zucchini','potatis','kålrabbi','halloween-pumpa','acorn squash','rabarber',
   'sorghum','tapioka','arrowroot','bison','kalvkött','krabba','pilgrimsmusslor','torsk',
   'kolja','mal','flundra','allulose','basilika','lagerblad','kummin','kamomill','kanel',
   'fänkålsfrö','linfrö','grönt te','hampa','nutritional yeast','vallmofrö','rädisa','salvia',
@@ -1645,8 +1645,8 @@ const GP_RECIPES = {
     time:'10 min', portions:'1 portion',
     category:'frukost',
     note:'Variera frukt dagligen — prova mango, papaya eller kiwi.',
-    ing:['1 banan (fryst)','1 dl mango','1 msk chiafrön','1 msk hampafrön','2 msk tahini','Bovete-knäckebröd Le Pain des Fleurs'],
-    steps:['Mixa banan och mango till slät bas.','Häll i skål, toppa med chiafrön och hampafrön.','Ringla tahini över.','Servera med bovete-knäckebröd.'],
+    ing:['1 banan (fryst)','1 dl mango','1 msk chiafrön','1 msk pumpafrön','2 msk tahini','Bovete-knäckebröd Le Pain des Fleurs'],
+    steps:['Mixa banan och mango till slät bas.','Häll i skål, toppa med chiafrön och pumpafrön.','Ringla tahini över.','Servera med bovete-knäckebröd.'],
   },
   B: {
     title:'Kycklingskål med bovete & butternutpumpa',
@@ -1685,7 +1685,7 @@ const GP_RECIPES = {
     time:'35 min', portions:'2 portioner',
     category:'restaurangsäker',
     note:'På restaurang: beställ grillad kyckling utan sås, grönsaker ångkokta, olivolja vid sidan.',
-    ing:['2 kycklingfiléer','1 aubergine (skivad)','1 aubergine (skivad)','2 msk olivolja','Celtic salt','Timjan'],
+    ing:['2 kycklingfiléer','1 aubergine (skivad)','1 blomkål (delad i buketter)','2 msk olivolja','Celtic salt','Timjan'],
     steps:['Värm ugn till 200°C.','Lägg kyckling och grönsaker på plåt.','Ringla olivolja, salta, lägg på timjan.','Ugna 30 min tills kyckling är genomstekt.','Servera direkt.'],
   },
   G: {
@@ -1736,7 +1736,7 @@ const GP_RULES = [
   { n:9,  t:'Stekfett = <strong>ankfett eller olivolja</strong> · Salt = Celtic salt' },
   { n:10, t:'<strong>Ingen återintroduktion</strong> av uteslutna livsmedel förrän efter 90 dagar' },
   { n:11, t:'<strong>Ingen fisk</strong> (lax, torsk, sill, tonfisk, sardiner). Tillåtna skaldjur (ALCAT grönt): musslor, ostron, hummer, vongole — EJ räkor, krabba eller pilgrimsmusslor.' },
-  { n:12, t:'<strong>ALCAT-protokoll dag 22–90:</strong> Endast ALCAT gröna livsmedel. Inga orange eller röda ALCAT-livsmedel — inga undantag.' },
+  { n:12, t:'<strong>ALCAT-protokoll dag 22–90:</strong> Endast ALCAT gröna livsmedel. Inga orange, röda <em>eller gula/milda</em> ALCAT-livsmedel — inga undantag. Gula/milda livsmedel återintroduceras inte förrän efter dag 90.' },
 ];
 
 const GP_SHOP = [
@@ -1744,7 +1744,7 @@ const GP_SHOP = [
   { cat:'Grönsaker', items:['Grönkål — 2–3 påsar/v','Spenat — 2 påsar/v','Romansallad — 2 huvuden/v','Selleri — 1 knippe/v','Aubergine — 2 st/v','Blomkål — 2 huvuden/v','Butternutpumpa — 1 st/v','Sötpotatis — 4 st/v','Avokado — 4 st/v'] },
   { cat:'Frukt', items:['Banan — 6–8 st/v','Kiwi — 4–5 st/v','Ananas — 1 st/v','Apelsin — 4 st/v','Mandarin — 4 st/v','Mango — 2 st/v','Papaya — 1 st/v','Persika/nektarin — 4 st/v','Vindruvor — 1 knippe/v','Granatäpple — 2 st/v'] },
   { cat:'Spannmål & Stärkelse', items:['Bovete-knäckebröd Le Pain des Fleurs — 2 förp./v','Bovete-gryn — 500 g','Rött ris — 500 g'] },
-  { cat:'Nötter, Frön & Oljor', items:['Tahini ljus — 1 burk (300 g)','Olivolja extra virgin — 1 flaska','Ankfett — 1–2 burkar','Chiafrön — 1 påse','Hampafrön — 1 påse','Pumpafrön — 1 påse','Solrosfrön — 1 påse'] },
+  { cat:'Nötter, Frön & Oljor', items:['Tahini ljus — 1 burk (300 g)','Olivolja extra virgin — 1 flaska','Ankfett — 1–2 burkar','Chiafrön — 1 påse','Pumpafrön — 1 påse','Solrosfrön — 1 påse'] },
   { cat:'Kryddor & Övrigt', items:['Celtic salt','Citron & lime — 4–6 st/v','Timjan (torkad) — 1 förp.','Örtte — 1 förp.'] },
   { cat:'Kosttillskott', items:SUPPLEMENTS.map(s => s.name) },
 ];
@@ -2177,7 +2177,12 @@ function renderRecipeGreen(filter, recipeKey) {
     const catLabel = GP_FILTER_LABELS[r.category] || r.category;
     let detail = '';
     if (activeGPRecipeKey === key) {
+      const warnings = validateRecipeIngredients(r.ing);
+      const warningHtml = warnings.length
+        ? `<div style="background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:.6rem .9rem;margin:.5rem 0;font-size:.8rem;color:#856404;">${warnings.join('<br>')}</div>`
+        : '';
       detail = `<div class="gp-recipe-detail visible" style="padding:.75rem 0 .5rem;">
+        ${warningHtml}
         <div class="recipe-note">${r.note}</div>
         <div class="recipe-section-label" style="padding:.75rem 0 .4rem;">Ingredienser</div>
         <ul class="recipe-ing-list">${r.ing.map(i => `<li>${i}</li>`).join('')}</ul>
@@ -2489,7 +2494,7 @@ function getGPMealDetail(slotIdx, gpDay) {
   }
   if (slotIdx === 5) {
     return { name: slot.name, time: slot.time, label: `${slot.name} — Rå grönsaker`,
-             ing: ['Selleri — 2 stjälkar', 'Sommarsquash — ½ st rå'],
+             ing: ['Selleri — 2 stjälkar', 'Aubergine — ½ st (skivad, rå)'],
              steps: ['Skär i bitar.', 'Ät råa, utan tillsatser.'] };
   }
   // Lunch (2) or Middag (4): try to match a GP recipe, otherwise build from desc
@@ -2701,7 +2706,7 @@ function renderRulesGreen() {
     { label:'Grönsaker', items:['Grönkål','Spenat','Romansallad','Selleri','Aubergine','Blomkål','Butternutpumpa','Sötpotatis','Avokado'] },
     { label:'Frukt', items:['Banan','Kiwi','Ananas','Apelsin','Mandarin','Mango','Papaya','Persika','Vindruvor','Granatäpple','Melon','Vattenmelon','Avokado','Citron','Lime'] },
     { label:'Stärkelse', items:['Bovete-knäckebröd','Bovete','Rött ris'] },
-    { label:'Fetter & Frön', items:['Olivolja','Ankfett','Tahini','Chiafrön','Hampafrön','Pumpafrön','Solrosfrön'] },
+    { label:'Fetter & Frön', items:['Olivolja','Ankfett','Tahini','Chiafrön','Pumpafrön','Solrosfrön'] },
   ];
 
   const foodHtml = greenListSections.map(s => `
@@ -3029,7 +3034,7 @@ function renderGuide() {
       <div class="guide-section-title">Rotationsprincipen</div>
       <div class="guide-body">
         <p>Målet är inte bara att äta "godkända" livsmedel — utan att variera dem.</p>
-        <p>Proteiner, grönsaker, frukt och stärkelse ska roteras så att samma livsmedel inte upprepas för ofta. Om du äter kyckling idag, välj lax, ägg eller kalkon imorgon.</p>
+        <p>Proteiner, grönsaker, frukt och stärkelse ska roteras så att samma livsmedel inte upprepas för ofta. Om du äter kyckling idag, välj musslor, ägg eller kalkon imorgon.</p>
       </div>
       <div class="guide-callout">
         Appen visar automatisk rotationsvarning när samma protein planeras två dagar i rad. Lyssna på den varningen — det är inte detaljer, det är kärnan i Green Phase.
