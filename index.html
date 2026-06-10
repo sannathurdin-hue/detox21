@@ -1514,7 +1514,7 @@ const RECIPES = {
 };
 
 const MEALS = [
-  { time:'06:15', name:'Frukost',    desc:'Fruktsallad · tahini · manuka honung · bovete-knäckebröd', key:'breakfast' },
+  { time:'06:15', name:'Frukost',    desc:'Fruktsallad · tahini · bovete-knäckebröd', key:'breakfast' },
   { time:'09:00', name:'Frukt',      desc:'Valfri frukt från listan — en handfull', key:'snack1' },
   { time:'12:00', name:'Lunch',      desc:'Dagens recept — laga dubbel portion nu', key:'lunch', isRecipe:true },
   { time:'15:00', name:'Grönsaker',  desc:'Rå grönsaker: blomkål + selleri', key:'snack2' },
@@ -1524,7 +1524,7 @@ const MEALS = [
 
 const RULES = [
   { n:1,  t:'<strong>Ät exakt var 3:e timme:</strong> 06:15 · 09:00 · 12:00 · 15:00 · 18:00 · 21:00' },
-  { n:2,  t:'Frukost är <strong>alltid densamma</strong> — fruktsallad + tahini + manuka honung + knäckebröd' },
+  { n:2,  t:'Frukost är <strong>alltid densamma</strong> — fruktsallad + tahini + knäckebröd' },
   { n:3,  t:'Lunch = Middag — laga <strong>alltid dubbelt kl. 12:00</strong>' },
   { n:4,  t:'<strong>Inget mejeri</strong> — inte ens smör' },
   { n:5,  t:'<strong>Inget gluten</strong> — bara bovete-knäckebröd (Le Pain des Fleurs)' },
@@ -1533,7 +1533,7 @@ const RULES = [
   { n:8,  t:'Stekfett = <strong>ankfett</strong> · Sallad = 1 msk olivolja · Salt = Celtic salt' },
   { n:9,  t:'Drycker: <strong>bara vatten</strong> (10–12 glas) och örtte' },
   { n:10, t:'Hungrig? <strong>Mer grönsaker</strong> — aldrig mer stärkelse eller protein efter 18:00' },
-  { n:11, t:'<strong>Ingen fisk</strong> — varken lax, torsk, sill eller tonfisk. Skaldjur (räkor, hummer, krabba, musslor, pilgrimsmusslor) är OK.' },
+  { n:11, t:'<strong>Ingen fisk</strong> — varken lax, torsk, sill eller tonfisk. Tillåtna skaldjur (ALCAT grönt): musslor, ostron, hummer, vongole — EJ räkor, krabba eller pilgrimsmusslor.' },
 ];
 
 const FRUITS = ['Banan','Granatäpple','Grapefrukt','Kiwi','Mandarin','Honungsmelon','Mango','Persika','Melon','Papaya','Nektarin','Vattenmelon','Guava','Aprikoser','Mullbär','Citron','Plommon','Persimmon','Lime','Stjärnfrukt','Oliv','Ananas','Vindruva','Avokado','Apelsin'];
@@ -1549,13 +1549,13 @@ const SHOP_ONCE = [
   'Canellinibönor konserverade — 6 burkar','Favabönor konserverade — 3 burkar',
   'Röda linser — 1 påse (500 g)','Gröna linser — 1 påse (500 g)',
   'Butternutpumpa — 3 st','Krossad tomat konserverad — 3 burkar',
-  'Tahini ljus — 1 burk (300 g)','Manuka honung — 1 liten burk',
+  'Tahini ljus — 1 burk (300 g)',
   'Olivolja extra virgin — 1 flaska','Celtic salt — 1 förpackning',
   'Örtte — 1 förpackning','Glutenfria kycklingbuljongtärningar — 1 förp. (utan jäst & mejeri)',
 ];
 
 // Detaljdata för fasta måltider (frukost, mellanmål, kvällsgrönsaker)
-// OBS: Patrik äter INTE fisk — skaldjur (räkor, hummer, krabba, musslor, pilgrimsmusslor) är OK.
+// OBS: Patrik äter INTE fisk. Tillåtna skaldjur (ALCAT grönt): musslor, ostron, hummer, vongole.
 const FIXED_MEALS = {
   breakfast: {
     name: 'Frukost',
@@ -1563,12 +1563,11 @@ const FIXED_MEALS = {
     ing: [
       'Valfri frukt från listan — en handfull (banan, kiwi, apelsin, mandarin, persika, ananas…)',
       'Tahini ljus — 1–2 msk',
-      'Manuka honung — 1 tsk',
       'Bovete-knäckebröd Le Pain des Fleurs — 1–2 st',
     ],
     steps: [
       'Skär frukten i bitar och lägg i skål.',
-      'Ringla tahini och manuka honung över.',
+      'Ringla tahini över.',
       'Servera med bovete-knäckebröd vid sidan.',
     ],
   },
@@ -1611,66 +1610,91 @@ const FIXED_MEALS = {
 
 // ─── GREEN PHASE DATA ─────────────────────────────────────────────────────────
 // OBS: Ingen fisk (lax, torsk, sill, tonfisk, sardiner).
-// Skaldjur (räkor, hummer, krabba, musslor, pilgrimsmusslor) är OK.
+// Tillåtna skaldjur (ALCAT grönt): musslor, ostron, hummer, vongole. EJ räkor, krabba, pilgrimsmusslor.
 
 const FORCE_GREEN_PHASE = true; // Sätt till false för att visa Detox 21-fasen
 
+const BANNED_INGREDIENTS_ALCAT = [
+  'nötkött','beef','lax','salmon','räka','shrimp','räkor','helgflundra','kakao','kokos',
+  'äpple','päron','hallon','rödbeta','paprika','brysselkål','shiitake','persilja','koriander',
+  'gurkmeja','kardemumma','nejlika','paranöt','jästextrakt','sparris','broccoli','morot',
+  'morötter','gurka','quinoa','lamm','fläsk','mandel','valnöt','blåbär','jordgubbe',
+  'björnbär','körsbär','tranbär','fikon','vitlök','ingefära','lök','purjolök','salladslök',
+  'gröna ärtor','kål','endiv','mangold','zucchini','potatis','kålrabbi','pumpa','rabarber',
+  'sorghum','tapioka','arrowroot','bison','kalvkött','krabba','pilgrimsmusslor','torsk',
+  'kolja','mal','flundra','allulose','basilika','lagerblad','kummin','kamomill','kanel',
+  'fänkålsfrö','linfrö','grönt te','hampa','nutritional yeast','vallmofrö','rädisa','salvia',
+  'safflorolja','vanilj','svarta bönor','mungböna','adobibönor','hallon','rödbetor','pak choi',
+  'manuka honung','honung',
+];
+
+function validateRecipeIngredients(ingList) {
+  const warnings = [];
+  ingList.forEach(ing => {
+    const lower = ing.toLowerCase();
+    BANNED_INGREDIENTS_ALCAT.forEach(banned => {
+      if (lower.includes(banned)) warnings.push(`⚠️ ALCAT-varning: "${ing}" innehåller "${banned}"`);
+    });
+  });
+  return warnings;
+}
+
 const GP_RECIPES = {
   A: {
-    title:'Smoothieskål med banan & blåbär',
+    title:'Smoothieskål med banan & mango',
     time:'10 min', portions:'1 portion',
     category:'frukost',
     note:'Variera frukt dagligen — prova mango, papaya eller kiwi.',
-    ing:['1 banan (fryst)','1 dl blåbär','1 msk chiafrön','1 msk hampafrön','2 msk tahini','1 msk manuka honung','Bovete-knäckebröd Le Pain des Fleurs'],
-    steps:['Mixa banan och blåbär till slät bas.','Häll i skål, toppa med chiafrön och hampafrön.','Ringla tahini och manuka honung över.','Servera med bovete-knäckebröd.'],
+    ing:['1 banan (fryst)','1 dl mango','1 msk chiafrön','1 msk hampafrön','2 msk tahini','Bovete-knäckebröd Le Pain des Fleurs'],
+    steps:['Mixa banan och mango till slät bas.','Häll i skål, toppa med chiafrön och hampafrön.','Ringla tahini över.','Servera med bovete-knäckebröd.'],
   },
   B: {
-    title:'Kycklingskål med quinoa & sparris',
+    title:'Kycklingskål med bovete & butternutpumpa',
     time:'30 min', portions:'2 portioner',
     category:'lunch',
     note:'Dubbel portion — spara till middag.',
-    ing:['2 kycklingfiléer','1,5 dl quinoa','200 g sparris','2 nävar spenat','1 avokado','2 msk olivolja extra virgin','Celtic salt','Citronsaft'],
-    steps:['Koka quinoa enligt förpackning.','Ugna kyckling i 200°C, 25 min, med olivolja och salt.','Ångkoka sparris 5 min.','Bygg skål: quinoa, kyckling, sparris, spenat, avokado.','Pressa citron och ringla olivolja.'],
+    ing:['2 kycklingfiléer','1,5 dl bovete','200 g butternutpumpa','2 nävar spenat','1 avokado','2 msk olivolja extra virgin','Celtic salt','Citronsaft'],
+    steps:['Koka bovete enligt förpackning.','Ugna kyckling i 200°C, 25 min, med olivolja och salt.','Ångkoka butternutpumpa 5 min.','Bygg skål: bovete, kyckling, butternutpumpa, spenat, avokado.','Pressa citron och ringla olivolja.'],
   },
   C: {
-    title:'Ugnskyckling med rödbetor & grönkål',
+    title:'Ugnskyckling med blomkål & grönkål',
     time:'30 min', portions:'2 portioner',
     category:'middag',
     note:'Rotera protein varje dag — prova kalkon eller ägg nästa gång.',
-    ing:['2 kycklingfiléer','3 rödbetor (kokta eller ugnsbakade)','2 nävar grönkål (ångkokt)','Romansallad','2 msk olivolja','Celtic salt','Citron'],
-    steps:['Ångkoka grönkål 5 min.','Ugna kyckling med olivolja och Celtic salt i 200°C, 25 min.','Skiva rödbetor.','Servera med romansallad, rödbetor och grönkål.','Pressa citron och ringla olivolja.'],
+    ing:['2 kycklingfiléer','1 blomkål (delad i buketter)','2 nävar grönkål (ångkokt)','Romansallad','2 msk olivolja','Celtic salt','Citron'],
+    steps:['Ångkoka grönkål 5 min.','Ugna kyckling med olivolja och Celtic salt i 200°C, 25 min.','Skiva blomkål.','Servera med romansallad, blomkål och grönkål.','Pressa citron och ringla olivolja.'],
   },
   D: {
     title:'Grönsaksplatta med tahini-dip',
     time:'10 min', portions:'1 portion',
     category:'mellanmal',
     note:'Perfekt mellanmål — håller 3 timmar tills nästa mål.',
-    ing:['Blomkål (buketter)','Selleri (stavar)','Morötter (stavar)','2 msk tahini','Citronsaft','Celtic salt'],
+    ing:['Blomkål (buketter)','Selleri (stavar)','Romansallad (blad)','2 msk tahini','Citronsaft','Celtic salt'],
     steps:['Skär grönsaker i stavar och buketter.','Blanda tahini med citronsaft och salt till dip.','Servera direkt.'],
   },
   E: {
-    title:'Räkor med avokado & bovete-knäckebröd',
+    title:'Musslor med avokado & bovete-knäckebröd',
     time:'10 min', portions:'1 portion',
     category:'resevänlig',
-    note:'Alltid redo — perfekt för resor, kontor eller när inget annat finns. Räkor är skaldjur och är OK.',
-    ing:['150 g räkor (skalade, kokta)','1 avokado','Bovete-knäckebröd Le Pain des Fleurs','Celtic salt','Citron'],
-    steps:['Lägg ut knäckebröd.','Toppa med avokado och räkor.','Pressa citron och salta med Celtic salt.'],
+    note:'Alltid redo — perfekt för resor, kontor eller när inget annat finns. Musslor är godkänt skaldjur i ALCAT grönt.',
+    ing:['150 g musslor (skalade, kokta)','1 avokado','Bovete-knäckebröd Le Pain des Fleurs','Celtic salt','Citron'],
+    steps:['Lägg ut knäckebröd.','Toppa med avokado och musslor.','Pressa citron och salta med Celtic salt.'],
   },
   F: {
     title:'Ugnskyckling med grönsaker',
     time:'35 min', portions:'2 portioner',
     category:'restaurangsäker',
     note:'På restaurang: beställ grillad kyckling utan sås, grönsaker ångkokta, olivolja vid sidan.',
-    ing:['2 kycklingfiléer','1 zucchini (skivad)','1 aubergine (skivad)','2 msk olivolja','Celtic salt','Timjan'],
+    ing:['2 kycklingfiléer','1 aubergine (skivad)','1 aubergine (skivad)','2 msk olivolja','Celtic salt','Timjan'],
     steps:['Värm ugn till 200°C.','Lägg kyckling och grönsaker på plåt.','Ringla olivolja, salta, lägg på timjan.','Ugna 30 min tills kyckling är genomstekt.','Servera direkt.'],
   },
   G: {
-    title:'Äggröra med pak choi & bovete',
+    title:'Äggröra med grönkål & bovete',
     time:'15 min', portions:'1–2 portioner',
     category:'snabb',
     note:'Snabbaste Green Phase-målet — klart på 15 minuter.',
-    ing:['3–4 ägg','200 g pak choi (halverad)','1 dl bovete-gryn (kokta)','Ankfett','Celtic salt','Ingefära (riven)'],
-    steps:['Koka bovete 12 min.','Stek pak choi i ankfett 3 min.','Vispa ägg med salt, tillaga som lös äggröra.','Servera med bovete och riven ingefära.'],
+    ing:['3–4 ägg','200 g grönkål (hackad)','1 dl bovete-gryn (kokta)','Ankfett','Celtic salt','Timjan (torkad)'],
+    steps:['Koka bovete 12 min.','Stek grönkål i ankfett 3 min.','Vispa ägg med salt, tillaga som lös äggröra.','Servera med bovete och strö timjan över.'],
   },
 };
 
@@ -1711,55 +1735,56 @@ const GP_RULES = [
   { n:8,  t:'Inget mejeri, gluten, socker, jäst eller fermenterade produkter' },
   { n:9,  t:'Stekfett = <strong>ankfett eller olivolja</strong> · Salt = Celtic salt' },
   { n:10, t:'<strong>Ingen återintroduktion</strong> av uteslutna livsmedel förrän efter 90 dagar' },
-  { n:11, t:'<strong>Ingen fisk</strong> (lax, torsk, sill, tonfisk, sardiner). Skaldjur OK: räkor, hummer, krabba, musslor, pilgrimsmusslor.' },
+  { n:11, t:'<strong>Ingen fisk</strong> (lax, torsk, sill, tonfisk, sardiner). Tillåtna skaldjur (ALCAT grönt): musslor, ostron, hummer, vongole — EJ räkor, krabba eller pilgrimsmusslor.' },
+  { n:12, t:'<strong>ALCAT-protokoll dag 22–90:</strong> Endast ALCAT gröna livsmedel. Inga orange eller röda ALCAT-livsmedel — inga undantag.' },
 ];
 
 const GP_SHOP = [
-  { cat:'Protein', items:['Kycklingfilé — ca 600 g/v','Kalkonfilé — variera med kyckling','Ägg — 6–8 st/v','Ankbröst — vid behov','Hjortkött — vid behov','Räkor (skalade, kokta) — vid behov','Pilgrimsmusslor — vid behov','Kikärtor konserverade — 4 burkar','Canellinibönor konserverade — 4 burkar','Röda & gröna linser — 500 g vardera','Favabönor konserverade — 2 burkar'] },
-  { cat:'Grönsaker', items:['Grönkål — 2–3 påsar/v','Spenat — 2 påsar/v','Romansallad — 2 huvuden/v','Selleri — 1 knippe/v','Sommarsquash — 2 st/v','Aubergine — 1 st/v','Blomkål — 1 huvud/v','Broccoli — 1 huvud/v','Morötter — 1 påse/v','Rödbetor — 1 förp./v','Sparris — 1 knippe/v','Zucchini — 2 st/v','Pak choi — 1–2 huvuden/v','Butternutpumpa — 1 st/v'] },
-  { cat:'Frukt', items:['Banan — 6–8 st/v','Kiwi — 4–5 st/v','Ananas — 1 st/v','Apelsin — 4 st/v','Mandarin — 4 st/v','Mango — 2 st/v','Papaya — 1 st/v','Persika/nektarin — 4 st/v','Vindruvor — 1 knippe/v','Granatäpple — 2 st/v','Blåbär — 1 dl/v','Hallon — 1 dl/v'] },
-  { cat:'Spannmål & Stärkelse', items:['Sötpotatis — 4 st/v','Bovete-knäckebröd Le Pain des Fleurs — 2 förp./v','Quinoa — 500 g','Bovete-gryn — 500 g','Rött ris — 500 g'] },
+  { cat:'Protein', items:['Kycklingfilé — ca 600 g/v','Kalkonfilé — variera med kyckling','Ägg — 6–8 st/v','Ankbröst — vid behov','Hjortkött — vid behov','Musslor (skalade, kokta) — vid behov','Ostron — vid behov','Kikärtor konserverade — 4 burkar','Canellinibönor konserverade — 4 burkar','Röda & gröna linser — 500 g vardera','Favabönor konserverade — 2 burkar'] },
+  { cat:'Grönsaker', items:['Grönkål — 2–3 påsar/v','Spenat — 2 påsar/v','Romansallad — 2 huvuden/v','Selleri — 1 knippe/v','Aubergine — 2 st/v','Blomkål — 2 huvuden/v','Butternutpumpa — 1 st/v','Sötpotatis — 4 st/v','Avokado — 4 st/v'] },
+  { cat:'Frukt', items:['Banan — 6–8 st/v','Kiwi — 4–5 st/v','Ananas — 1 st/v','Apelsin — 4 st/v','Mandarin — 4 st/v','Mango — 2 st/v','Papaya — 1 st/v','Persika/nektarin — 4 st/v','Vindruvor — 1 knippe/v','Granatäpple — 2 st/v'] },
+  { cat:'Spannmål & Stärkelse', items:['Bovete-knäckebröd Le Pain des Fleurs — 2 förp./v','Bovete-gryn — 500 g','Rött ris — 500 g'] },
   { cat:'Nötter, Frön & Oljor', items:['Tahini ljus — 1 burk (300 g)','Olivolja extra virgin — 1 flaska','Ankfett — 1–2 burkar','Chiafrön — 1 påse','Hampafrön — 1 påse','Pumpafrön — 1 påse','Solrosfrön — 1 påse'] },
-  { cat:'Kryddor & Övrigt', items:['Celtic salt','Citron & lime — 4–6 st/v','Färsk ingefära — 1 bit','Manuka honung — 1 burk','Örtte — 1 förp.'] },
+  { cat:'Kryddor & Övrigt', items:['Celtic salt','Citron & lime — 4–6 st/v','Timjan (torkad) — 1 förp.','Örtte — 1 förp.'] },
   { cat:'Kosttillskott', items:SUPPLEMENTS.map(s => s.name) },
 ];
 
 const GP_WEEK_TEMPLATES = [
   [
-    { wd:'Mån', f:'Smoothieskål banan & blåbär',  l:'Kycklingskål quinoa & sparris',        m:'Ugnskyckling med rödbetor & grönkål',    p:'Kyckling' },
-    { wd:'Tis', f:'Smoothieskål mango & kiwi',    l:'Ugnskyckling med zucchini & aubergine', m:'Kycklingskål quinoa & spenat',            p:'Kyckling' },
-    { wd:'Ons', f:'Smoothieskål papaya & lime',   l:'Räkor med avokado & grönkål',           m:'Äggröra pak choi & bovete',              p:'Räkor' },
-    { wd:'Tor', f:'Smoothieskål banan & hallon',  l:'Kalkonfilé med broccoli & quinoa',      m:'Ugnskyckling med blomkål',               p:'Kalkon' },
-    { wd:'Fre', f:'Smoothieskål kiwi & ananas',   l:'Äggröra pak choi & grönkål',            m:'Kalkonfilé med rödbetor',                p:'Ägg' },
-    { wd:'Lör', f:'Smoothieskål mango & banan',   l:'Ugnskyckling med rödbetor & spenat',    m:'Kalkonfilé med quinoa & zucchini',       p:'Kyckling' },
-    { wd:'Sön', f:'Smoothieskål blåbär & banan',  l:'Kycklingskål quinoa & sparris',         m:'Ankbröst med butternutpumpa & grönkål',  p:'Anka' },
+    { wd:'Mån', f:'Smoothieskål banan & mango',  l:'Kycklingskål bovete & butternutpumpa',        m:'Ugnskyckling med blomkål & grönkål',    p:'Kyckling' },
+    { wd:'Tis', f:'Smoothieskål mango & kiwi',    l:'Ugnskyckling med aubergine & blomkål', m:'Kycklingskål bovete & spenat',            p:'Kyckling' },
+    { wd:'Ons', f:'Smoothieskål papaya & lime',   l:'Musslor med avokado & grönkål',         m:'Äggröra grönkål & bovete',              p:'Musslor' },
+    { wd:'Tor', f:'Smoothieskål banan & persika',  l:'Kalkonfilé med blomkål & bovete',      m:'Ugnskyckling med blomkål',               p:'Kalkon' },
+    { wd:'Fre', f:'Smoothieskål kiwi & ananas',   l:'Äggröra spenat & grönkål',            m:'Kalkonfilé med blomkål',                p:'Ägg' },
+    { wd:'Lör', f:'Smoothieskål mango & banan',   l:'Ugnskyckling med blomkål & spenat',    m:'Kalkonfilé med bovete & aubergine',       p:'Kyckling' },
+    { wd:'Sön', f:'Smoothieskål mango & banan',  l:'Kycklingskål bovete & butternutpumpa',         m:'Ankbröst med butternutpumpa & grönkål',  p:'Anka' },
   ],
   [
-    { wd:'Mån', f:'Smoothieskål papaya & lime',   l:'Kalkonfilé med broccoli & bovete',      m:'Räkor med pak choi & spenat',            p:'Kalkon' },
-    { wd:'Tis', f:'Smoothieskål banan & hallon',  l:'Äggröra med spenat & zucchini',         m:'Kycklingfilé med rödbetor & quinoa',     p:'Ägg' },
-    { wd:'Ons', f:'Smoothieskål kiwi & mango',    l:'Kalkonfilé med sparris & grönkål',      m:'Kalkonfilé med quinoa & blomkål',        p:'Kalkon' },
-    { wd:'Tor', f:'Smoothieskål ananas & banan',  l:'Kycklingskål pak choi & spenat',        m:'Äggröra med zucchini & bovete',          p:'Kyckling' },
-    { wd:'Fre', f:'Smoothieskål blåbär & lime',   l:'Hjortkött med grönkål & sötpotatis',    m:'Kycklingfilé med blomkål',               p:'Hjortkött' },
-    { wd:'Lör', f:'Smoothieskål mango & papaya',  l:'Kycklingfilé med broccoli & quinoa',    m:'Ankbröst med grönkål & rödbetor',        p:'Kyckling' },
-    { wd:'Sön', f:'Smoothieskål hallon & kiwi',   l:'Kalkonfilé med quinoa & spenat',        m:'Kalkonfilé med zucchini & sötpotatis',   p:'Kalkon' },
+    { wd:'Mån', f:'Smoothieskål papaya & lime',   l:'Kalkonfilé med blomkål & bovete',      m:'Musslor med grönkål & spenat',          p:'Musslor' },
+    { wd:'Tis', f:'Smoothieskål banan & persika',  l:'Äggröra med spenat & aubergine',         m:'Kycklingfilé med blomkål & bovete',     p:'Ägg' },
+    { wd:'Ons', f:'Smoothieskål kiwi & mango',    l:'Kalkonfilé med butternutpumpa & grönkål',      m:'Kalkonfilé med bovete & blomkål',        p:'Kalkon' },
+    { wd:'Tor', f:'Smoothieskål ananas & banan',  l:'Kycklingskål grönkål & spenat',        m:'Äggröra med aubergine & bovete',          p:'Kyckling' },
+    { wd:'Fre', f:'Smoothieskål mango & lime',   l:'Hjortkött med grönkål & sötpotatis',    m:'Kycklingfilé med blomkål',               p:'Hjortkött' },
+    { wd:'Lör', f:'Smoothieskål mango & papaya',  l:'Kycklingfilé med blomkål & bovete',    m:'Ankbröst med grönkål & blomkål',        p:'Kyckling' },
+    { wd:'Sön', f:'Smoothieskål persika & kiwi',   l:'Kalkonfilé med bovete & spenat',        m:'Kalkonfilé med aubergine & sötpotatis',   p:'Kalkon' },
   ],
   [
-    { wd:'Mån', f:'Smoothieskål banan & blåbär',  l:'Hjortkött med sötpotatis & grönkål',   m:'Kycklingskål quinoa & sparris',          p:'Hjortkött' },
-    { wd:'Tis', f:'Smoothieskål kiwi & ananas',   l:'Kycklingfilé med aubergine & spenat',   m:'Äggröra pak choi & bovete',              p:'Kyckling' },
-    { wd:'Ons', f:'Smoothieskål mango & hallon',  l:'Kycklingfilé med broccoli & quinoa',    m:'Kalkonfilé med rödbetor & grönkål',      p:'Kyckling' },
-    { wd:'Tor', f:'Smoothieskål papaya & banan',  l:'Äggröra med blomkål & spenat',          m:'Kycklingfilé med zucchini & sötpotatis', p:'Ägg' },
-    { wd:'Fre', f:'Smoothieskål banan & blåbär',  l:'Kalkonfilé med sparris & quinoa',       m:'Räkor med pak choi & rödbetor',          p:'Kalkon' },
-    { wd:'Lör', f:'Smoothieskål lime & mango',    l:'Ankbröst med grönkål & bovete',         m:'Kycklingskål quinoa & blomkål',          p:'Anka' },
-    { wd:'Sön', f:'Smoothieskål hallon & banan',  l:'Kycklingfilé med sparris & spenat',     m:'Hjortkött med sötpotatis & grönkål',     p:'Kyckling' },
+    { wd:'Mån', f:'Smoothieskål banan & mango',  l:'Hjortkött med sötpotatis & grönkål',   m:'Kycklingskål bovete & butternutpumpa',          p:'Hjortkött' },
+    { wd:'Tis', f:'Smoothieskål kiwi & ananas',   l:'Kycklingfilé med aubergine & spenat',   m:'Äggröra grönkål & bovete',              p:'Kyckling' },
+    { wd:'Ons', f:'Smoothieskål mango & persika',  l:'Kycklingfilé med blomkål & bovete',    m:'Kalkonfilé med blomkål & grönkål',      p:'Kyckling' },
+    { wd:'Tor', f:'Smoothieskål papaya & banan',  l:'Äggröra med blomkål & spenat',          m:'Kycklingfilé med aubergine & sötpotatis', p:'Ägg' },
+    { wd:'Fre', f:'Smoothieskål banan & mango',  l:'Kalkonfilé med butternutpumpa & bovete',       m:'Musslor med grönkål & blomkål',        p:'Musslor' },
+    { wd:'Lör', f:'Smoothieskål lime & mango',    l:'Ankbröst med grönkål & bovete',         m:'Kycklingskål bovete & blomkål',          p:'Anka' },
+    { wd:'Sön', f:'Smoothieskål persika & banan',  l:'Kycklingfilé med butternutpumpa & spenat',     m:'Hjortkött med sötpotatis & grönkål',     p:'Kyckling' },
   ],
   [
-    { wd:'Mån', f:'Smoothieskål ananas & kiwi',   l:'Kalkonfilé med zucchini & quinoa',      m:'Kycklingfilé med rödbetor & spenat',     p:'Kalkon' },
-    { wd:'Tis', f:'Smoothieskål banan & mango',   l:'Kycklingskål pak choi & grönkål',       m:'Räkor med blomkål & bovete',             p:'Kyckling' },
-    { wd:'Ons', f:'Smoothieskål blåbär & hallon', l:'Äggröra med spenat & sötpotatis',       m:'Kalkonfilé med sparris & quinoa',        p:'Ägg' },
-    { wd:'Tor', f:'Smoothieskål papaya & lime',   l:'Kycklingfilé med broccoli & spenat',    m:'Ankbröst med butternutpumpa & pak choi', p:'Kyckling' },
-    { wd:'Fre', f:'Smoothieskål banan & kiwi',    l:'Kycklingfilé med rödbetor & quinoa',    m:'Äggröra med zucchini & grönkål',         p:'Kyckling' },
-    { wd:'Lör', f:'Smoothieskål mango & ananas',  l:'Hjortkött med grönkål & sötpotatis',    m:'Kycklingfilé med sparris & blomkål',     p:'Hjortkött' },
-    { wd:'Sön', f:'Smoothieskål hallon & banan',  l:'Kalkonfilé med broccoli & spenat',      m:'Kycklingskål quinoa & rödbetor',         p:'Kalkon' },
+    { wd:'Mån', f:'Smoothieskål ananas & kiwi',   l:'Kalkonfilé med aubergine & bovete',      m:'Kycklingfilé med blomkål & spenat',     p:'Kalkon' },
+    { wd:'Tis', f:'Smoothieskål banan & mango',   l:'Kycklingskål spenat & grönkål',       m:'Musslor med blomkål & bovete',           p:'Musslor' },
+    { wd:'Ons', f:'Smoothieskål mango & persika', l:'Äggröra med spenat & sötpotatis',       m:'Kalkonfilé med butternutpumpa & bovete',        p:'Ägg' },
+    { wd:'Tor', f:'Smoothieskål papaya & lime',   l:'Kycklingfilé med blomkål & spenat',    m:'Ankbröst med butternutpumpa & grönkål', p:'Kyckling' },
+    { wd:'Fre', f:'Smoothieskål banan & kiwi',    l:'Kycklingfilé med blomkål & bovete',    m:'Äggröra med aubergine & grönkål',         p:'Kyckling' },
+    { wd:'Lör', f:'Smoothieskål mango & ananas',  l:'Hjortkött med grönkål & sötpotatis',    m:'Kycklingfilé med butternutpumpa & blomkål',     p:'Hjortkött' },
+    { wd:'Sön', f:'Smoothieskål persika & banan',  l:'Kalkonfilé med blomkål & spenat',      m:'Kycklingskål bovete & blomkål',         p:'Kalkon' },
   ],
 ];
 
@@ -2386,11 +2411,11 @@ window.toggleDayShopItem = function(key) {
 function findGPRecipeForMeal(desc) {
   const d = desc.toLowerCase();
   if (d.includes('smoothieskål'))                          return GP_RECIPES.A;
-  if (d.includes('kycklingskål') && d.includes('quinoa')) return GP_RECIPES.B;
-  if (d.includes('räkor'))                                 return GP_RECIPES.E;
+  if (d.includes('kycklingskål') && d.includes('bovete')) return GP_RECIPES.B;
+  if (d.includes('musslor'))                                 return GP_RECIPES.E;
   if (d.includes('äggröra'))                               return GP_RECIPES.G;
   if (d.includes('grönsaksplatta'))                        return GP_RECIPES.D;
-  if (d.includes('ugnskyckling') && d.includes('rödbetor')) return GP_RECIPES.C;
+  if (d.includes('ugnskyckling') && d.includes('blomkål')) return GP_RECIPES.C;
   if (d.includes('ugnskyckling'))                          return GP_RECIPES.F;
   return null;
 }
@@ -2403,20 +2428,14 @@ function buildGPIngFromDesc(desc) {
   else if (d.includes('ägg'))         ing.push('Ägg — 3–4 st');
   else if (d.includes('hjortkött'))   ing.push('Hjortkött — 400 g');
   else if (d.includes('ankbröst') || d.includes('anka')) ing.push('Ankbröst — 2 st');
-  else if (d.includes('räkor'))       ing.push('Räkor (skalade) — 150 g');
+  else if (d.includes('musslor'))       ing.push('Musslor (skalade, kokta) — 150 g');
   else if (d.includes('kyckling'))    ing.push('Kycklingfilé — 2 st');
-  if (d.includes('quinoa'))           ing.push('Quinoa — 1,5 dl');
-  if (d.includes('bovete'))           ing.push('Bovete-gryn — 1 dl');
-  if (d.includes('rödbetor'))         ing.push('Rödbetor — 3 st');
+  if (d.includes('bovete'))           ing.push('Bovete-gryn — 1,5 dl');
   if (d.includes('grönkål'))          ing.push('Grönkål — 2 nävar');
   if (d.includes('spenat'))           ing.push('Spenat — 2 nävar');
-  if (d.includes('broccoli'))         ing.push('Broccoli — 1 huvud');
   if (d.includes('blomkål'))          ing.push('Blomkål — ½ huvud');
-  if (d.includes('sparris'))          ing.push('Sparris — 200 g');
-  if (d.includes('zucchini'))         ing.push('Zucchini — 1 st');
   if (d.includes('aubergine'))        ing.push('Aubergine — 1 st');
   if (d.includes('sötpotatis'))       ing.push('Sötpotatis — 2 st');
-  if (d.includes('pak choi'))         ing.push('Pak choi — 200 g');
   if (d.includes('butternutpumpa'))   ing.push('Butternutpumpa — 1 st');
   if (d.includes('avokado'))          ing.push('Avokado — 1 st');
   if (d.includes('romansallad'))      ing.push('Romansallad — 1 huvud');
@@ -2427,16 +2446,16 @@ function buildGPIngFromDesc(desc) {
 function buildGPStepsFromDesc(desc) {
   const d = desc.toLowerCase();
   const steps = [];
-  if (d.includes('quinoa'))           steps.push('Koka quinoa enligt förpackning (ca 15 min).');
+  if (d.includes('bovete'))           steps.push('Koka bovete enligt förpackning (ca 15 min).');
   if (d.includes('bovete'))           steps.push('Koka bovete-gryn 12 min.');
-  if (d.includes('sparris') || d.includes('grönkål') || d.includes('broccoli') || d.includes('blomkål'))
+  if (d.includes('butternutpumpa') || d.includes('grönkål') || d.includes('blomkål') || d.includes('blomkål'))
     steps.push('Ångkoka grönsaker 5–7 min.');
   if (d.includes('kyckling') || d.includes('kalkon'))
     steps.push('Ugna kyckling/kalkon i 200°C, 25–30 min med olivolja och Celtic salt.');
   else if (d.includes('ägg'))         steps.push('Stek ägg i ankfett med Celtic salt.');
   else if (d.includes('hjortkött'))   steps.push('Stek hjortkött i ankfett 3–4 min per sida.');
   else if (d.includes('ankbröst'))    steps.push('Panna 3 min/sida, sedan ugn 10 min i 200°C.');
-  else if (d.includes('räkor'))       steps.push('Räkor är redan kokta — servera kalla eller rumstempererade.');
+  else if (d.includes('musslor'))       steps.push('Musslor är redan kokta — servera kalla eller rumstempererade.');
   steps.push('Lägg upp, ringla olivolja och salta med Celtic salt.');
   return steps;
 }
@@ -2678,10 +2697,10 @@ function renderRulesGreen() {
     </div>`).join('');
 
   const greenListSections = [
-    { label:'Protein', items:['Kyckling','Kalkon','Ägg','Anka','Hjortkött','Räkor','Pilgrimsmusslor','Kikärtor','Canellinibönor','Linser','Favabönor'] },
-    { label:'Grönsaker', items:['Grönkål','Spenat','Romansallad','Selleri','Squash','Aubergine','Blomkål','Broccoli','Morötter','Rödbetor','Sparris','Zucchini','Pak choi','Butternutpumpa'] },
-    { label:'Frukt', items:['Banan','Kiwi','Ananas','Apelsin','Mandarin','Mango','Papaya','Persika','Vindruvor','Granatäpple','Melon','Vattenmelon','Blåbär','Hallon','Avokado','Citron','Lime'] },
-    { label:'Stärkelse', items:['Sötpotatis','Bovete-knäckebröd','Quinoa','Bovete','Rött ris'] },
+    { label:'Protein (ALCAT grönt)', items:['Kyckling','Kalkon','Ägg','Anka','Hjortkött','Musslor','Ostron','Hummer','Vongole','Kikärtor','Canellinibönor','Linser','Favabönor'] },
+    { label:'Grönsaker', items:['Grönkål','Spenat','Romansallad','Selleri','Aubergine','Blomkål','Butternutpumpa','Sötpotatis','Avokado'] },
+    { label:'Frukt', items:['Banan','Kiwi','Ananas','Apelsin','Mandarin','Mango','Papaya','Persika','Vindruvor','Granatäpple','Melon','Vattenmelon','Avokado','Citron','Lime'] },
+    { label:'Stärkelse', items:['Bovete-knäckebröd','Bovete','Rött ris'] },
     { label:'Fetter & Frön', items:['Olivolja','Ankfett','Tahini','Chiafrön','Hampafrön','Pumpafrön','Solrosfrön'] },
   ];
 
@@ -2694,7 +2713,7 @@ function renderRulesGreen() {
   el.innerHTML = `
     <div class="gp-rules-hero">
       <div class="rules-hero-kicker">Läs varje morgon</div>
-      <div class="rules-hero-title">Green Phase — 10 regler</div>
+      <div class="rules-hero-title">Green Phase — 12 regler</div>
     </div>
     ${rules}
     <div class="section-label" style="padding:1.25rem 1.25rem .6rem;">Green List — tillåtna livsmedel</div>
