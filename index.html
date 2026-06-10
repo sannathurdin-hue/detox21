@@ -304,18 +304,17 @@ body {
   gap: 1rem;
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--border);
-  cursor: pointer;
   transition: background .15s;
   -webkit-user-select: none;
   user-select: none;
 }
-.meal-item:active { background: var(--off-white); }
 .meal-item.checked { background: var(--off-white); }
 .meal-check-box {
   width: 18px;
   height: 18px;
   min-width: 18px;
   border: 1px solid var(--muted-light);
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,6 +358,14 @@ body {
   line-height: 1.4;
   margin-top: .15rem;
 }
+.meal-recipe-hint {
+  font-size: .6rem;
+  color: var(--muted-light);
+  letter-spacing: .04em;
+  margin-top: .3rem;
+}
+.meal-item.checked .meal-recipe-hint { display: none; }
+.meal-body { cursor: pointer; }
 .meal-badge {
   font-size: .55rem;
   font-weight: 500;
@@ -651,6 +658,24 @@ body {
   text-align: center;
 }
 .modal-add-btn.added { background: var(--green); }
+.modal-copy-btn {
+  display: block;
+  width: 100%;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: .8rem 1.5rem;
+  font-family: var(--sans);
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: center;
+}
+.modal-copy-btn:active { border-color: var(--black); color: var(--black); }
+.modal-copy-btn.copied { color: var(--green); border-color: var(--green); }
 .modal-close-btn {
   display: block;
   width: 100%;
@@ -1973,14 +1998,15 @@ function renderToday() {
     else if (!checked && isNext) badge = '<div class="meal-badge">Nastan</div>';
 
     meals += `
-      <div class="${cls}" onclick="toggleMeal('${key}', ${n})">
-        <div class="meal-check-box">${checked ? '✓' : ''}</div>
-        <div class="meal-body">
+      <div class="${cls}">
+        <div class="meal-check-box" onclick="toggleMeal('${key}', ${n})">${checked ? '✓' : ''}</div>
+        <div class="meal-body" onclick="showMealModal('${meal.key}', ${n})">
           <div class="meal-time-row">
             <span class="meal-time">${meal.time}</span>
           </div>
           <div class="meal-name">${meal.name}</div>
           <div class="meal-desc">${desc}</div>
+          <div class="meal-recipe-hint">Visa recept →</div>
         </div>
         ${badge}
       </div>`;
@@ -2067,12 +2093,13 @@ function renderTodayGreen() {
     let badge = '';
     if (!checked && isCurrent) badge = '<div class="meal-badge">Nu</div>';
     else if (!checked && isNext) badge = '<div class="meal-badge">Nastan</div>';
-    meals += `<div class="${cls}" onclick="toggleGPMeal('${key}', ${gpDay})">
-      <div class="meal-check-box">${checked ? '✓' : ''}</div>
-      <div class="meal-body">
+    meals += `<div class="${cls}">
+      <div class="meal-check-box" onclick="toggleGPMeal('${key}', ${gpDay})">${checked ? '✓' : ''}</div>
+      <div class="meal-body" onclick="showGPMealModal(${i}, ${gpDay})">
         <div class="meal-time-row"><span class="meal-time">${meal.time}</span></div>
         <div class="meal-name">${meal.name}</div>
         <div class="meal-desc">${meal.desc}</div>
+        <div class="meal-recipe-hint">Visa recept →</div>
       </div>${badge}</div>`;
   });
 
@@ -2311,6 +2338,7 @@ window.showMealModal = function(mealKey, dayNum) {
 
   ov.innerHTML = `
     <div class="modal" role="dialog" aria-modal="true">
+      <pre id="modal-ing-data" style="display:none">${JSON.stringify(d.ing)}</pre>
       <button class="modal-close" onclick="closeModal()" aria-label="Stäng">✕</button>
       <div class="modal-header">
         <div class="modal-category">Dag ${dayNum} · ${day.wd} ${day.date} · ${meal.time}</div>
@@ -2318,11 +2346,12 @@ window.showMealModal = function(mealKey, dayNum) {
         ${metaHtml}
       </div>
       ${noteHtml}
-      <div class="recipe-section-label">Du behöver köpa</div>
-      <ul class="recipe-ing-list">${ingHtml}</ul>
       <div class="recipe-section-label">Tillagning</div>
       <ol class="recipe-steps-list">${stepHtml}</ol>
+      <div class="recipe-section-label">Handla till detta recept</div>
+      <ul class="recipe-ing-list">${ingHtml}</ul>
       <div class="modal-btn-group">
+        <button class="modal-copy-btn" onclick="copyIngredients(this)">Kopiera ingredienslista</button>
         <button class="modal-add-btn" id="modal-add-btn"
           onclick="addMealIngToShop('${mealKey}',${dayNum},this)">
           + Lägg till i inköpslista
@@ -2337,6 +2366,30 @@ window.showMealModal = function(mealKey, dayNum) {
 window.closeModal = function() {
   document.getElementById('modal-overlay').classList.remove('open');
 };
+
+window.copyIngredients = function(btn) {
+  const pre = document.getElementById('modal-ing-data');
+  if (!pre) return;
+  let ing;
+  try { ing = JSON.parse(pre.textContent); } catch(e) { return; }
+  const text = ing.join('\n');
+  const done = () => { btn.textContent = '✓ Kopierat'; btn.classList.add('copied'); btn.disabled = true; };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+};
+
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  try { document.execCommand('copy'); cb(); } catch(e) {}
+  document.body.removeChild(ta);
+}
 
 window.addMealIngToShop = function(mealKey, dayNum, btn) {
   const detail = getMealDetail(mealKey, dayNum);
@@ -2520,6 +2573,7 @@ window.showGPMealModal = function(slotIdx, gpDay) {
 
   ov.innerHTML = `
     <div class="modal" role="dialog" aria-modal="true">
+      <pre id="modal-ing-data" style="display:none">${JSON.stringify(detail.ing)}</pre>
       <button class="modal-close" onclick="closeModal()" aria-label="Stäng">✕</button>
       <div class="modal-header">
         <div class="modal-category">Green Phase · Dag ${gpDay} · ${wds[d.getDay()]} ${d.getDate()}/${d.getMonth()+1} · ${detail.time}</div>
@@ -2527,11 +2581,12 @@ window.showGPMealModal = function(slotIdx, gpDay) {
         ${metaHtml}
       </div>
       ${noteHtml}
-      <div class="recipe-section-label">Du behöver köpa</div>
-      <ul class="recipe-ing-list">${ingHtml}</ul>
       <div class="recipe-section-label">Tillagning</div>
       <ol class="recipe-steps-list">${stepHtml}</ol>
+      <div class="recipe-section-label">Handla till detta recept</div>
+      <ul class="recipe-ing-list">${ingHtml}</ul>
       <div class="modal-btn-group">
+        <button class="modal-copy-btn" onclick="copyIngredients(this)">Kopiera ingredienslista</button>
         <button class="modal-add-btn" onclick="addGPMealToShop(${slotIdx},${gpDay},this)">
           + Lägg till i inköpslista
         </button>
