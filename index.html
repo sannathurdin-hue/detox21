@@ -1432,7 +1432,7 @@ body {
     <button class="nav-tab" onclick="showPage('calendar')">Kalender</button>
     <button class="nav-tab" onclick="showPage('rules')">Regler</button>
     <button class="nav-tab" onclick="showPage('shop')">Inkop</button>
-    <button class="nav-tab" onclick="showPage('menu')">Meny</button>
+    <button class="nav-tab" onclick="showPage('menu')">Foto</button>
     <button class="nav-tab" onclick="showPage('guide')">Guide</button>
   </nav>
 </header>
@@ -2821,7 +2821,7 @@ function renderMenu() {
 
   el.innerHTML = `
     <div class="menu-page">
-      <div class="menu-page-title">Menyhjälp</div>
+      <div class="menu-page-title">Skanna restaurangmeny</div>
       <div class="menu-page-sub">Fotografera restaurangmenyn — AI:n väljer bästa rätt enligt dina detoxregler.</div>
 
       <div class="menu-upload-zone" id="menu-upload-zone">
@@ -2912,12 +2912,9 @@ function renderMenuGreen(week) {
 
   el.innerHTML = `
     <div class="scan-section">
-      <button class="scan-toggle-btn" onclick="toggleFoodScanner()">
-        <span>Skanna livsmedel</span>
-        <span id="scan-chevron">▼</span>
-      </button>
-      <div class="scan-inner" id="scan-inner">
-        <p style="font-size:.8rem;color:var(--muted);margin:.25rem 0 .75rem;">Fotografera en produkt eller ingrediens — appen kontrollerar om det är tillåtet enligt Patriks protokoll.</p>
+      <div class="menu-page-title" style="padding:1.5rem 1.25rem .5rem;">Skanna livsmedel</div>
+      <div style="padding:0 1.25rem 1rem;">
+        <p style="font-size:.8rem;color:var(--muted);margin:0 0 .75rem;">Fotografera en produkt eller ingrediens — appen kontrollerar om det är tillåtet enligt Patriks protokoll.</p>
         <div class="menu-upload-zone" id="scan-upload-zone" onclick="document.getElementById('scan-file-input').click()" style="cursor:pointer;">
           <input type="file" id="scan-file-input" accept="image/*" capture="environment" style="display:none;" onchange="onScanFileSelect(this)">
           <div class="menu-upload-icon">&#9679;</div>
