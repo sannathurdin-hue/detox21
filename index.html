@@ -2980,10 +2980,80 @@ function renderMenu() {
 
 function renderMenuGreen(week) {
   if (week !== undefined) activeGPWeek = week;
-  const gpDay = getGreenDay();
   const el = document.getElementById('page-menu');
 
-  // Total 13 weeks (90 days). Cap at 13.
+  // If already rendered, only update the weekly section
+  if (el.dataset.rendered === '1') {
+    updateGPWeekSection();
+    return;
+  }
+  el.dataset.rendered = '1';
+
+  el.innerHTML = `
+    <div class="menu-page">
+      <div class="menu-page-title">Skanna restaurangmeny</div>
+      <div class="menu-page-sub">Fotografera restaurangmenyn — AI:n väljer bästa rätt enligt Green Phase-protokollet.</div>
+
+      <label class="menu-upload-zone" id="menu-upload-zone" for="menu-file-input" style="cursor:pointer;display:block;">
+        <input type="file" id="menu-file-input" accept="image/*" capture="environment" style="position:absolute;width:1px;height:1px;opacity:0;">
+        <div class="menu-upload-icon">&#9679;</div>
+        <div class="menu-upload-label">Ta foto eller välj bild</div>
+      </label>
+
+      <img id="menu-preview" class="menu-preview" style="display:none;" alt="Menyförhandsvisning">
+
+      <button class="menu-btn" id="menu-analyze-btn" disabled onclick="analyzeMenu()">Analysera meny</button>
+
+      <div class="menu-error" id="menu-error"></div>
+      <div class="menu-loading" id="menu-loading">Analyserar menyn…</div>
+
+      <div class="menu-result" id="menu-result">
+        <div class="menu-result-section">
+          <div class="menu-result-kicker">Bästa val</div>
+          <div class="menu-result-body" id="res-basta-val"></div>
+        </div>
+        <div class="menu-result-section">
+          <div class="menu-result-kicker">Be restaurangen ändra</div>
+          <ul class="menu-result-list" id="res-be-om"></ul>
+        </div>
+        <div class="menu-result-section">
+          <div class="menu-result-kicker">Undvik helt</div>
+          <ul class="menu-result-list" id="res-undvik"></ul>
+        </div>
+        <div class="menu-result-section">
+          <div class="menu-result-kicker">Risknivå</div>
+          <div id="res-risk-badge"></div>
+          <div class="menu-risk-text" id="res-risk-text"></div>
+        </div>
+        <div class="menu-result-section">
+          <div class="menu-result-kicker">Om inget funkar</div>
+          <div class="menu-result-body" id="res-fallback"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-page" style="padding:0 0 3rem;" id="gp-weekly-section">
+    </div>`;
+
+  document.getElementById('menu-file-input').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+    const preview = document.getElementById('menu-preview');
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = 'block';
+    document.getElementById('menu-upload-zone').style.display = 'none';
+    document.getElementById('menu-analyze-btn').disabled = false;
+    document.getElementById('menu-result').classList.remove('visible');
+    document.getElementById('menu-error').classList.remove('visible');
+  });
+
+  updateGPWeekSection();
+}
+
+function updateGPWeekSection() {
+  const section = document.getElementById('gp-weekly-section');
+  if (!section) return;
+  const gpDay = getGreenDay();
   const totalWeeks = 13;
   const weekBtns = Array.from({length: totalWeeks}, (_, i) => {
     const w = i + 1;
@@ -3013,38 +3083,16 @@ function renderMenuGreen(week) {
     </div>`;
   }).join('');
 
-  el.innerHTML = `
-    <div class="scan-section">
-      <div class="menu-page-title" style="padding:1.5rem 1.25rem .5rem;">Skanna livsmedel</div>
-      <div style="padding:0 1.25rem 1rem;">
-        <p style="font-size:.8rem;color:var(--muted);margin:0 0 .75rem;">Fotografera en produkt eller ingrediens — appen kontrollerar om det är tillåtet enligt Patriks protokoll.</p>
-        <label class="menu-upload-zone" id="scan-upload-zone" for="scan-file-input" style="cursor:pointer;display:block;">
-          <input type="file" id="scan-file-input" accept="image/*" capture="environment" style="position:absolute;width:1px;height:1px;opacity:0;" onchange="onScanFileSelect(this)">
-          <div class="menu-upload-icon">&#9679;</div>
-          <div class="menu-upload-label">Ta foto eller välj bild</div>
-        </label>
-        <img id="scan-preview" style="display:none;width:100%;max-height:180px;object-fit:contain;border-radius:3px;margin:.5rem 0;" alt="">
-        <button class="menu-btn" id="scan-btn" disabled onclick="scanFood()">Kontrollera mot protokollet</button>
-        <div id="scan-loading" class="menu-loading">Analyserar…</div>
-        <div id="scan-result" style="display:none;padding:.5rem 0;">
-          <div id="scan-status-el"></div>
-          <div id="scan-found" style="font-size:.9rem;font-weight:500;margin:.35rem 0;"></div>
-          <div id="scan-motivering" style="font-size:.8rem;color:var(--muted);line-height:1.6;"></div>
-        </div>
-        <div id="scan-error" class="menu-error"></div>
-      </div>
+  section.innerHTML = `
+    <div style="padding:1.5rem 1.25rem 1rem;">
+      <div class="menu-page-title">Veckomenyer</div>
+      <div class="menu-page-sub">Green Phase — 90 dagars måltidsplan. Automatisk rotation.</div>
     </div>
-    <div class="menu-page" style="padding:0 0 3rem;">
-      <div style="padding:1.5rem 1.25rem 1rem;">
-        <div class="menu-page-title">Veckomenyer</div>
-        <div class="menu-page-sub">Green Phase — 90 dagars måltidsplan. Automatisk rotation.</div>
-      </div>
-      <div class="gp-week-nav">${weekBtns}</div>
-      ${daysHtml}
-    </div>`;
+    <div class="gp-week-nav">${weekBtns}</div>
+    ${daysHtml}`;
 
   setTimeout(() => {
-    const active = el.querySelector('.gp-week-btn.active');
+    const active = section.querySelector('.gp-week-btn.active');
     if (active) active.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
   }, 50);
 }
