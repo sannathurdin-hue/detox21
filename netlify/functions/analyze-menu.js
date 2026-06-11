@@ -21,9 +21,10 @@ exports.handler = async (event) => {
 
   console.log('Image prefix:', image.slice(0, 60));
 
-  const PROMPT = `Du är kostrådgivare för Patrik Rees som följer ett strikt 21-dagars detoxprotokoll.
+  const PROMPT = `Du är kostrådgivare för Patrik Rees som följer ett strikt detoxprotokoll (Detox 21 / Green Phase).
 
-DETOXREGLER:
+PROTOKOLLREGLER — nolltolerans:
+- Ingen fisk (lax, torsk, sill, tonfisk, sardiner, makrill m.fl.) — Patrik äter inte fisk. Skaldjur (räkor, pilgrimsmusslor) är OK.
 - Inga mejeriprodukter, inkl. smör.
 - Inget gluten.
 - Inget socker, agave, lönnsirap, sötningsmedel.
