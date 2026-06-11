@@ -331,7 +331,7 @@ body {
 .meal-item.current .meal-check-box {
   border-color: var(--black);
 }
-.meal-body { flex: 1; min-width: 0; }
+.meal-body { flex: 1; min-width: 0; cursor: pointer; }
 .meal-time-row {
   display: flex;
   align-items: center;
@@ -1466,7 +1466,7 @@ body {
     <button class="nav-tab" onclick="showPage('calendar')">Kalender</button>
     <button class="nav-tab" onclick="showPage('rules')">Regler</button>
     <button class="nav-tab" onclick="showPage('shop')">Inkop</button>
-    <button class="nav-tab" onclick="showPage('menu')">Foto</button>
+    <button class="nav-tab" onclick="showPage('menu')">📷 Foto</button>
     <button class="nav-tab" onclick="showPage('guide')">Guide</button>
   </nav>
 </header>
@@ -2066,15 +2066,16 @@ function renderToday() {
     meals += `
       <div class="${cls}">
         <div class="meal-check-box" onclick="toggleMeal('${key}',${n})">${checked ? '✓' : ''}</div>
-        <div class="meal-body" onclick="showMealModal('${meal.key}',${n})">
-          <div class="meal-time-row">
-            <span class="meal-time">${meal.time}</span>
+        <div class="meal-body" onclick="showMealModal('${meal.key}',${n})" style="display:flex;align-items:center;gap:.35rem;">
+          <div style="flex:1;min-width:0;">
+            <div class="meal-time-row">
+              <span class="meal-time">${meal.time}</span>
+            </div>
+            <div class="meal-name">${meal.name}</div>
+            <div class="meal-desc">${desc}</div>
           </div>
-          <div class="meal-name">${meal.name}</div>
-          <div class="meal-desc">${desc}</div>
-          <div class="meal-recipe-hint">Visa recept →</div>
+          <div class="cal-meal-chevron">›</div>
         </div>
-        <div class="cal-meal-chevron">›</div>
         ${badge}
       </div>`;
   });
@@ -2162,13 +2163,14 @@ function renderTodayGreen() {
     else if (!checked && isNext) badge = '<div class="meal-badge">Nastan</div>';
     meals += `<div class="${cls}">
       <div class="meal-check-box" onclick="toggleGPMeal('${key}',${gpDay})">${checked ? '✓' : ''}</div>
-      <div class="meal-body" onclick="showGPMealModal(${i},${gpDay})">
-        <div class="meal-time-row"><span class="meal-time">${meal.time}</span></div>
-        <div class="meal-name">${meal.name}</div>
-        <div class="meal-desc">${meal.desc}</div>
-        <div class="meal-recipe-hint">Visa recept →</div>
+      <div class="meal-body" onclick="showGPMealModal(${i},${gpDay})" style="display:flex;align-items:center;gap:.35rem;">
+        <div style="flex:1;min-width:0;">
+          <div class="meal-time-row"><span class="meal-time">${meal.time}</span></div>
+          <div class="meal-name">${meal.name}</div>
+          <div class="meal-desc">${meal.desc}</div>
+        </div>
+        <div class="cal-meal-chevron">›</div>
       </div>
-      <div class="cal-meal-chevron">›</div>
       ${badge}</div>`;
   });
 
@@ -2925,11 +2927,11 @@ function renderMenu() {
       <div class="menu-page-title">Skanna restaurangmeny</div>
       <div class="menu-page-sub">Fotografera restaurangmenyn — AI:n väljer bästa rätt enligt dina detoxregler.</div>
 
-      <div class="menu-upload-zone" id="menu-upload-zone">
-        <input type="file" id="menu-file-input" accept="image/*" capture="environment">
+      <label class="menu-upload-zone" id="menu-upload-zone" for="menu-file-input" style="cursor:pointer;display:block;">
+        <input type="file" id="menu-file-input" accept="image/*" capture="environment" style="position:absolute;width:1px;height:1px;opacity:0;">
         <div class="menu-upload-icon">&#9679;</div>
         <div class="menu-upload-label">Ta foto eller välj bild</div>
-      </div>
+      </label>
 
       <img id="menu-preview" class="menu-preview" style="display:none;" alt="Menyförhandsvisning">
 
@@ -3016,11 +3018,11 @@ function renderMenuGreen(week) {
       <div class="menu-page-title" style="padding:1.5rem 1.25rem .5rem;">Skanna livsmedel</div>
       <div style="padding:0 1.25rem 1rem;">
         <p style="font-size:.8rem;color:var(--muted);margin:0 0 .75rem;">Fotografera en produkt eller ingrediens — appen kontrollerar om det är tillåtet enligt Patriks protokoll.</p>
-        <div class="menu-upload-zone" id="scan-upload-zone" onclick="document.getElementById('scan-file-input').click()" style="cursor:pointer;">
-          <input type="file" id="scan-file-input" accept="image/*" capture="environment" style="display:none;" onchange="onScanFileSelect(this)">
+        <label class="menu-upload-zone" id="scan-upload-zone" for="scan-file-input" style="cursor:pointer;display:block;">
+          <input type="file" id="scan-file-input" accept="image/*" capture="environment" style="position:absolute;width:1px;height:1px;opacity:0;" onchange="onScanFileSelect(this)">
           <div class="menu-upload-icon">&#9679;</div>
           <div class="menu-upload-label">Ta foto eller välj bild</div>
-        </div>
+        </label>
         <img id="scan-preview" style="display:none;width:100%;max-height:180px;object-fit:contain;border-radius:3px;margin:.5rem 0;" alt="">
         <button class="menu-btn" id="scan-btn" disabled onclick="scanFood()">Kontrollera mot protokollet</button>
         <div id="scan-loading" class="menu-loading">Analyserar…</div>
