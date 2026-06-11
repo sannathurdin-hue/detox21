@@ -1052,6 +1052,40 @@ body {
 }
 .pre-start-body { font-size: .875rem; color: var(--muted); line-height: 1.6; }
 
+/* ── FOOD SCANNER ── */
+.scan-section {
+  border-bottom: 1px solid var(--border);
+}
+.scan-toggle-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .9rem 1.25rem;
+  background: var(--off-white);
+  border: none;
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--black);
+}
+.scan-inner { display: none; padding: .25rem 1.25rem 1.25rem; }
+.scan-inner.open { display: block; }
+.scan-status-badge {
+  display: inline-block;
+  padding: .3rem .7rem;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  margin-bottom: .5rem;
+}
+.scan-ok { background: #d4edda; color: #155724; }
+.scan-bad { background: #f8d7da; color: #721c24; }
+.scan-uncertain { background: #fff3cd; color: #856404; }
+
 /* ── PWA INSTALL BANNER ── */
 .pwa-banner {
   display: flex;
@@ -1432,7 +1466,7 @@ body {
     <button class="nav-tab" onclick="showPage('calendar')">Kalender</button>
     <button class="nav-tab" onclick="showPage('rules')">Regler</button>
     <button class="nav-tab" onclick="showPage('shop')">Inkop</button>
-    <button class="nav-tab" onclick="showPage('menu')">Meny</button>
+    <button class="nav-tab" onclick="showPage('menu')">Foto</button>
     <button class="nav-tab" onclick="showPage('guide')">Guide</button>
   </nav>
 </header>
@@ -1721,6 +1755,38 @@ const GP_RECIPES = {
     ing:['3–4 ägg','200 g grönkål (hackad)','1 dl bovete-gryn (kokta)','Ankfett','Celtic salt','Timjan (torkad)'],
     steps:['Koka bovete 12 min.','Stek grönkål i ankfett 3 min.','Vispa ägg med salt, tillaga som lös äggröra.','Servera med bovete och strö timjan över.'],
   },
+  H: {
+    title:'Kalkonfilé med grönsaker',
+    time:'30 min', portions:'2 portioner',
+    category:'middag',
+    note:'Rotera grönsakerna varje gång — broccoli, sparris, rödbetor, zucchini m.fl. Dubbel portion.',
+    ing:['2 kalkonfiléer','Valfri Green List-grönsak (broccoli, sparris, rödbetor, grönkål, zucchini…)','Quinoa eller bovete-gryn — 1,5 dl (valfritt)','2 msk olivolja extra virgin','Celtic salt','Citronsaft'],
+    steps:['Koka quinoa/bovete enligt förpackning om du använder det (ca 15 min).','Värm ugnen till 200°C.','Lägg kalkonfiléerna på bakplåtspapper, ringla olivolja och salta med Celtic salt.','Ugna 28–30 min tills genomstekta — kärnan ska nå 75°C.','Ångkoka eller ugna grönsaker parallellt 10–15 min.','Servera med grönsaker, stärkelse och citronsaft.'],
+  },
+  I: {
+    title:'Hjortkött med grönsaker',
+    time:'25 min', portions:'2 portioner',
+    category:'middag',
+    note:'Hjortkött är lean och proteinrikt — ett av de bästa proteinalternativen i Green Phase.',
+    ing:['400 g hjortkött','Sötpotatis — 2 st (ugnsbakad eller ångkokt)','Grönkål eller annan Green List-grönsak — 2 nävar','Ankfett','Celtic salt','Olivolja extra virgin'],
+    steps:['Ugnsbaka sötpotatis i 200°C i 40 min, eller ångkoka 20 min.','Ångkoka grönkål 5 min.','Stek hjortkött i ankfett på hög värme, 3–4 min per sida tills rosa inuti.','Salta med Celtic salt.','Låt vila 3 min innan servering.','Servera med sötpotatis och grönsaker, ringla olivolja.'],
+  },
+  J: {
+    title:'Ankbröst med grönsaker',
+    time:'35 min', portions:'2 portioner',
+    category:'middag',
+    note:'Rista skinnet djupt för bäst resultat. Spara det smälta ankfettet till nästa stekning.',
+    ing:['2 ankbröst','Butternutpumpa eller annan Green List-grönsak (grönkål, pak choi, rödbetor…)','Romansallad','Celtic salt','Olivolja extra virgin'],
+    steps:['Rista skinnet på ankbröstet i rutmönster utan att skära i köttet.','Lägg ankbröstet med skinnsidan ned i kall panna — höj till medelvärme.','Fettet smälter ut — stek 4–5 min tills skinnet är gyllenbrunt.','Vänd och stek 2 min på köttssidan.','Lägg i 200°C ugn 8–10 min.','Ångkoka grönsaker parallellt.','Servera med grönsaker och romansallad, ringla olivolja.'],
+  },
+  K: {
+    title:'Kycklingfilé med grönsaker',
+    time:'30 min', portions:'2 portioner',
+    category:'lunch',
+    note:'Välj valfria Green List-grönsaker och stärkelse. Dubbel portion — spara till middag.',
+    ing:['2 kycklingfiléer','Valfri Green List-grönsak (broccoli, sparris, rödbetor, aubergine, blomkål…)','Quinoa, bovete-gryn eller sötpotatis — valfri stärkelse','2 msk olivolja extra virgin','Celtic salt','Citronsaft'],
+    steps:['Koka stärkelse: quinoa/bovete 12–15 min, sötpotatis 40 min i 200°C ugn.','Värm ugnen till 200°C.','Lägg kycklingfiléerna på bakplåtspapper, ringla olivolja och salta.','Ugna 22–25 min tills genomstekta — kärnan ska nå 75°C.','Ångkoka grönsaker 5–7 min parallellt.','Servera med grönsaker, stärkelse och citronsaft.'],
+  },
 };
 
 const GP_FILTER_LABELS = {
@@ -1999,8 +2065,8 @@ function renderToday() {
 
     meals += `
       <div class="${cls}">
-        <div class="meal-check-box" onclick="toggleMeal('${key}', ${n})">${checked ? '✓' : ''}</div>
-        <div class="meal-body" onclick="showMealModal('${meal.key}', ${n})">
+        <div class="meal-check-box" onclick="toggleMeal('${key}',${n})">${checked ? '✓' : ''}</div>
+        <div class="meal-body" onclick="showMealModal('${meal.key}',${n})">
           <div class="meal-time-row">
             <span class="meal-time">${meal.time}</span>
           </div>
@@ -2008,6 +2074,7 @@ function renderToday() {
           <div class="meal-desc">${desc}</div>
           <div class="meal-recipe-hint">Visa recept →</div>
         </div>
+        <div class="cal-meal-chevron">›</div>
         ${badge}
       </div>`;
   });
@@ -2094,13 +2161,15 @@ function renderTodayGreen() {
     if (!checked && isCurrent) badge = '<div class="meal-badge">Nu</div>';
     else if (!checked && isNext) badge = '<div class="meal-badge">Nastan</div>';
     meals += `<div class="${cls}">
-      <div class="meal-check-box" onclick="toggleGPMeal('${key}', ${gpDay})">${checked ? '✓' : ''}</div>
-      <div class="meal-body" onclick="showGPMealModal(${i}, ${gpDay})">
+      <div class="meal-check-box" onclick="toggleGPMeal('${key}',${gpDay})">${checked ? '✓' : ''}</div>
+      <div class="meal-body" onclick="showGPMealModal(${i},${gpDay})">
         <div class="meal-time-row"><span class="meal-time">${meal.time}</span></div>
         <div class="meal-name">${meal.name}</div>
         <div class="meal-desc">${meal.desc}</div>
         <div class="meal-recipe-hint">Visa recept →</div>
-      </div>${badge}</div>`;
+      </div>
+      <div class="cal-meal-chevron">›</div>
+      ${badge}</div>`;
   });
 
   // WATER
@@ -2468,13 +2537,17 @@ window.toggleDayShopItem = function(key) {
 
 function findGPRecipeForMeal(desc) {
   const d = desc.toLowerCase();
-  if (d.includes('smoothieskål'))                          return GP_RECIPES.A;
-  if (d.includes('kycklingskål') && d.includes('bovete')) return GP_RECIPES.B;
-  if (d.includes('musslor'))                                 return GP_RECIPES.E;
-  if (d.includes('äggröra'))                               return GP_RECIPES.G;
-  if (d.includes('grönsaksplatta'))                        return GP_RECIPES.D;
-  if (d.includes('ugnskyckling') && d.includes('blomkål')) return GP_RECIPES.C;
-  if (d.includes('ugnskyckling'))                          return GP_RECIPES.F;
+  if (d.includes('smoothieskål'))                            return GP_RECIPES.A;
+  if (d.includes('kycklingskål'))                            return GP_RECIPES.B;
+  if (d.includes('kalkonfilé') || d.includes('kalkon'))      return GP_RECIPES.H;
+  if (d.includes('hjortkött'))                               return GP_RECIPES.I;
+  if (d.includes('ankbröst') || (d.includes('anka') && !d.includes('ankan'))) return GP_RECIPES.J;
+  if (d.includes('räkor'))                                   return GP_RECIPES.E;
+  if (d.includes('äggröra'))                                 return GP_RECIPES.G;
+  if (d.includes('grönsaksplatta'))                          return GP_RECIPES.D;
+  if (d.includes('ugnskyckling') && d.includes('rödbetor'))  return GP_RECIPES.C;
+  if (d.includes('ugnskyckling'))                            return GP_RECIPES.F;
+  if (d.includes('kycklingfilé'))                            return GP_RECIPES.K;
   return null;
 }
 
@@ -2557,7 +2630,9 @@ function getGPMealDetail(slotIdx, gpDay) {
              ing: rec.ing, steps: rec.steps, note: rec.note, meta: `${rec.time} · ${rec.portions}` };
   }
   return { name: slot.name, time: slot.time, label: `${slot.name} — ${slot.desc}`,
-           ing: buildGPIngFromDesc(slot.desc), steps: buildGPStepsFromDesc(slot.desc) };
+           ing: ['Recept saknas — kontakta MediBalans för komplettering'],
+           steps: ['Recept saknas — behöver kompletteras.'],
+           missing: true };
 }
 
 window.showGPMealModal = function(slotIdx, gpDay) {
@@ -2847,7 +2922,7 @@ function renderMenu() {
 
   el.innerHTML = `
     <div class="menu-page">
-      <div class="menu-page-title">Menyhjälp</div>
+      <div class="menu-page-title">Skanna restaurangmeny</div>
       <div class="menu-page-sub">Fotografera restaurangmenyn — AI:n väljer bästa rätt enligt dina detoxregler.</div>
 
       <div class="menu-upload-zone" id="menu-upload-zone">
@@ -2937,6 +3012,26 @@ function renderMenuGreen(week) {
   }).join('');
 
   el.innerHTML = `
+    <div class="scan-section">
+      <div class="menu-page-title" style="padding:1.5rem 1.25rem .5rem;">Skanna livsmedel</div>
+      <div style="padding:0 1.25rem 1rem;">
+        <p style="font-size:.8rem;color:var(--muted);margin:0 0 .75rem;">Fotografera en produkt eller ingrediens — appen kontrollerar om det är tillåtet enligt Patriks protokoll.</p>
+        <div class="menu-upload-zone" id="scan-upload-zone" onclick="document.getElementById('scan-file-input').click()" style="cursor:pointer;">
+          <input type="file" id="scan-file-input" accept="image/*" capture="environment" style="display:none;" onchange="onScanFileSelect(this)">
+          <div class="menu-upload-icon">&#9679;</div>
+          <div class="menu-upload-label">Ta foto eller välj bild</div>
+        </div>
+        <img id="scan-preview" style="display:none;width:100%;max-height:180px;object-fit:contain;border-radius:3px;margin:.5rem 0;" alt="">
+        <button class="menu-btn" id="scan-btn" disabled onclick="scanFood()">Kontrollera mot protokollet</button>
+        <div id="scan-loading" class="menu-loading">Analyserar…</div>
+        <div id="scan-result" style="display:none;padding:.5rem 0;">
+          <div id="scan-status-el"></div>
+          <div id="scan-found" style="font-size:.9rem;font-weight:500;margin:.35rem 0;"></div>
+          <div id="scan-motivering" style="font-size:.8rem;color:var(--muted);line-height:1.6;"></div>
+        </div>
+        <div id="scan-error" class="menu-error"></div>
+      </div>
+    </div>
     <div class="menu-page" style="padding:0 0 3rem;">
       <div style="padding:1.5rem 1.25rem 1rem;">
         <div class="menu-page-title">Veckomenyer</div>
@@ -3089,7 +3184,7 @@ function renderGuide() {
       <div class="guide-section-title">Rotationsprincipen</div>
       <div class="guide-body">
         <p>Målet är inte bara att äta "godkända" livsmedel — utan att variera dem.</p>
-        <p>Proteiner, grönsaker, frukt och stärkelse ska roteras så att samma livsmedel inte upprepas för ofta. Om du äter kyckling idag, välj musslor, ägg eller kalkon imorgon.</p>
+        <p>Proteiner, grönsaker, frukt och stärkelse ska roteras så att samma livsmedel inte upprepas för ofta. Om du äter kyckling idag, välj räkor, ägg eller kalkon imorgon.</p>
       </div>
       <div class="guide-callout">
         Appen visar automatisk rotationsvarning när samma protein planeras två dagar i rad. Lyssna på den varningen — det är inte detaljer, det är kärnan i Green Phase.
@@ -3167,6 +3262,65 @@ function tickTimer() {
     ? `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`
     : `${m}:${String(s).padStart(2,'0')}`;
 }
+
+// ─── FOOD SCANNER ────────────────────────────────────────────────────────────
+
+window.toggleFoodScanner = function() {
+  const inner = document.getElementById('scan-inner');
+  const ch = document.getElementById('scan-chevron');
+  if (!inner) return;
+  inner.classList.toggle('open');
+  if (ch) ch.textContent = inner.classList.contains('open') ? '▲' : '▼';
+};
+
+window.onScanFileSelect = function(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const prev = document.getElementById('scan-preview');
+  prev.src = URL.createObjectURL(file);
+  prev.style.display = 'block';
+  const zone = document.getElementById('scan-upload-zone');
+  if (zone) zone.style.display = 'none';
+  const btn = document.getElementById('scan-btn');
+  if (btn) btn.disabled = false;
+  const result = document.getElementById('scan-result');
+  if (result) result.style.display = 'none';
+  const errEl = document.getElementById('scan-error');
+  if (errEl) errEl.textContent = '';
+};
+
+window.scanFood = async function() {
+  const input = document.getElementById('scan-file-input');
+  if (!input || !input.files[0]) return;
+  const btn = document.getElementById('scan-btn');
+  const loading = document.getElementById('scan-loading');
+  const result = document.getElementById('scan-result');
+  const errEl = document.getElementById('scan-error');
+  if (btn) btn.disabled = true;
+  if (loading) loading.classList.add('visible');
+  if (result) result.style.display = 'none';
+  if (errEl) errEl.textContent = '';
+  try {
+    const image = await resizeImageToDataUrl(input.files[0], 1024, 0.85);
+    const res = await fetch('/.netlify/functions/scan-food', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image }),
+    });
+    const data = await res.json();
+    if (!res.ok || data.error) throw new Error(data.error || 'Okänt fel.');
+    const statusClass = { 'Tillåtet': 'scan-ok', 'Ej tillåtet': 'scan-bad', 'Osäkert': 'scan-uncertain' }[data.status] || 'scan-uncertain';
+    document.getElementById('scan-status-el').innerHTML = `<span class="scan-status-badge ${statusClass}">${data.status || 'Osäkert'}</span>`;
+    document.getElementById('scan-found').textContent = data.found || '';
+    document.getElementById('scan-motivering').textContent = data.motivering || '';
+    result.style.display = 'block';
+  } catch (err) {
+    if (errEl) errEl.textContent = err.message || 'Något gick fel. Försök igen.';
+  } finally {
+    if (loading) loading.classList.remove('visible');
+    if (btn) btn.disabled = false;
+  }
+};
 
 // ─── PWA ─────────────────────────────────────────────────────────────────────
 
