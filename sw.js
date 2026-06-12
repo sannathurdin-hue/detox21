@@ -1,4 +1,4 @@
-const CACHE = 'detox21-v3';
+const CACHE = 'detox21-v4';
 const ASSETS = [
   './',
   './index.html',
