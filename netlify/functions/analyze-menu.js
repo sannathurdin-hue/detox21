@@ -21,31 +21,35 @@ exports.handler = async (event) => {
 
   console.log('Image prefix:', image.slice(0, 60));
 
-  const PROMPT = `Du är kostrådgivare för Patrik Rees som följer ett strikt detoxprotokoll (Detox 21 / Green Phase).
+  const PROMPT = `Du är kostrådgivare för Patrik Rees som följer Green Phase-protokollet (efter Detox 21, 90 dagar).
 
 PROTOKOLLREGLER — nolltolerans:
-- Ingen fisk (lax, torsk, sill, tonfisk, sardiner, makrill m.fl.) — Patrik äter inte fisk. Skaldjur (räkor, pilgrimsmusslor) är OK.
-- Inga mejeriprodukter, inkl. smör.
-- Inget gluten.
-- Inget socker, agave, lönnsirap, sötningsmedel.
-- Ingen jäst.
-- Inget ättika/vinäger.
-- Inget vin, öl eller fermenterade produkter.
-- Tillagningsfett ska helst vara ankfett — annars be om rent grillat/ångat eller bara olivolja.
-- Sallad: olivolja och Celtic/havssalt är OK.
+- Ingen fisk (lax, torsk, sill, tonfisk, sardiner, makrill m.fl.) — Patrik äter INTE fisk. Skaldjur (räkor, pilgrimsmusslor, hummer, krabba, musslor) är OK.
+- Inga mejeriprodukter (mjölk, ost, smör, grädde, yoghurt m.fl.).
+- Inget gluten (vete, råg, korn, pasta, vanligt bröd m.fl.).
+- Inget socker, agave, lönnsirap eller sötningsmedel.
+- Ingen jäst, ingen ättika/vinäger, inga fermenterade produkter.
+- Inget alkohol eller matlagningsvin.
+- Tillagningsfett: ankfett i första hand — annars be om grillat/ångat eller olivolja.
 - Dryck: bara vatten eller örtte.
-- Efter 18:00: enbart grönsaker — ingen stärkelse eller protein.
-- Lunch och middag ska följa dagens detox-tema om möjligt.
-- Om menyn är oklar: markera risk som medium eller high och ange exakta följdfrågor att ställa till servitören.
 
-Analysera restaurangmenyn på bilden och svara ENBART med ett JSON-objekt i exakt detta format (inga kommentarer, inga markdown-block):
+DITT UPPDRAG — MYCKET VIKTIGT:
+Du ska ALLTID hitta det bästa möjliga alternativet på menyn, även om det kräver modifieringar. Det finns nästan alltid något som går att anpassa. Säg ALDRIG att det inte finns något lämpligt utan att ha försökt hitta det bästa alternativet med anpassningar.
+
+Välj i prioritetsordning:
+1. Kycklingrätt, kalkonrätt, ankrätt, hjortköttrsätt eller skaldjursrätt som kan göras utan mejeri/gluten/socker.
+2. Grönsakssallad eller grönsaksrätt som kan anpassas (utan ost, utan dressing med vinäger — be om olivolja och citron istället).
+3. Kött- eller proteinrätt som kan tillagas utan förbjudna ingredienser.
+4. Om inget ens kan anpassas: beskriv ändå det minst dåliga valet och vad Patrik bör undvika på tallriken.
+
+Analysera menyn på bilden och svara ENBART med ett JSON-objekt i exakt detta format (inga kommentarer, inga markdown-block):
 {
-  "basta_val": "Beskriv det bästa matvalet från menyn, inkl. hur man beställer det.",
-  "be_om_andring": ["Konkret ändring 1 att be om", "Konkret ändring 2"],
+  "basta_val": "Namn på rätten + konkret beställningsinstruktion, t.ex. 'Grillad kyckling — beställ utan smörsås, be om olivolja och citron på sidan.'",
+  "be_om_andring": ["Konkret ändring 1 att be servitören om", "Konkret ändring 2"],
   "undvik": ["Rätt eller ingrediens att undvika 1", "Rätt 2"],
   "riskniva": "low",
-  "riskniva_motivering": "Kort förklaring av risknivån.",
-  "om_inget_funkar": "Vad Patrik ska göra om inget passar."
+  "riskniva_motivering": "Kort förklaring av risknivån och eventuella dolda risker.",
+  "om_inget_funkar": "Konkret råd om Patrik ändå inte kan äta något — t.ex. beställ bara grönsaker, drick vatten, ät innan/efter."
 }
 Värdet på riskniva ska vara exakt ett av: low, medium, high.`;
 
