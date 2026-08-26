@@ -1673,18 +1673,37 @@ const FIXED_MEALS = {
 
 const FORCE_GREEN_PHASE = false; // Sätt till false för att visa Detox 21-fasen
 
+// Baserad på Patriks riktiga ALCAT-test (Lab ID 607518): alla RÖD (allvarlig),
+// ORANGE (måttlig) och GUL (mild*) reaktioner, plus gluten-sädesslag,
+// candida-kopplat socker och mejeriprodukter enligt testrapporten.
+// OBS: bara "vit potatis" är bannlyst — sötpotatis är ALCAT grönt och en
+// basingrediens i flera recept, så använd aldrig ett bart "potatis".
 const BANNED_INGREDIENTS_ALCAT = [
-  'nötkött','beef','lax','salmon','räka','shrimp','räkor','helgflundra','kakao','kokos',
-  'äpple','päron','hallon','rödbeta','paprika','brysselkål','shiitake','persilja','koriander',
-  'gurkmeja','kardemumma','nejlika','paranöt','jästextrakt','sparris','broccoli','morot',
-  'morötter','gurka','quinoa','lamm','fläsk','mandel','valnöt','blåbär','jordgubbe',
-  'björnbär','körsbär','tranbär','fikon','vitlök','ingefära','lök','purjolök','salladslök',
-  'gröna ärtor','vitkål','rödkål','spetskål','savoykål','brysselkål','endiv','mangold','zucchini','potatis','kålrabbi','halloween-pumpa','acorn squash','rabarber',
+  // RÖD — allvarlig reaktion
+  'paranöt',
+  // ORANGE — måttlig reaktion
+  'nötkött','beef','lax','salmon','räka','shrimp','räkor','helgflundra','hälleflundra','kakao','kokos',
+  'äpple','päron','hallon','rödbeta','rödbetor','paprika','brysselkål','shiitake','persilja','koriander',
+  'gurkmeja','kardemumma','nejlika','kryddpeppar','jästextrakt','bryggjäst','black eye-böna','bok choy',
+  'cikoria','dadel','jackfruit','limaböna','nori','pepparrot','stevia','svarta vinbär',
+  // GUL/MILD* — undviks tills efter dag 90
+  'sparris','broccoli','morot','morötter','gurka','quinoa','lamm','fläsk','mandel','valnöt','blåbär','jordgubbe',
+  'björnbär','körsbär','tranbär','fikon','vitlök','ingefära','lök','purjolök','salladslök','gräslök',
+  'gröna ärtor','vitkål','rödkål','spetskål','savoykål','endiv','mangold','zucchini','vit potatis','kålrabbi',
+  'halloween-pumpa','acorn squash','spagettipumpa','rabarber','adzukiböna','collard greens','trädkål',
+  'habanero','isbergssallad','litchi','majrova','red palm',
   'sorghum','tapioka','arrowroot','bison','kalvkött','krabba','pilgrimsmusslor','torsk',
   'kolja','mal','flundra','allulose','basilika','lagerblad','kummin','kamomill','kanel',
-  'fänkålsfrö','linfrö','grönt te','hampa','nutritional yeast','vallmofrö','rädisa','salvia',
-  'safflorolja','vanilj','svarta bönor','mungböna','adobibönor','hallon','rödbetor','pak choi',
-  'manuka honung','honung',
+  'fänkålsfrö','linfrö','grönt te','hampa','nutritional yeast','näringsjäst','vallmofrö','rädisa','salvia',
+  'safflor','vanilj','svarta bönor','mungböna','adobibönor','pak choi',
+  // Gluten — endast bovete tillåtet. OBS: aldrig bart "vete" — det matchar
+  // bovete (bovete är ALCAT grönt och huvudstärkelsen i hela protokollet).
+  'vetemjöl','vetekli','vetegroddar','vetebröd','veteflingor','fullkornsvete',
+  'durumvete','grahamsmjöl','skorpmjöl','speltvete','råg','korn','malt',
+  // Candida-kopplat socker
+  'agave','lönnsocker','melass','rörsocker','manuka honung','honung',
+  // Mejeri — inget mejeri, inte ens smör
+  'mjölk','grädde','smör','yoghurt','kasein','vassle','fårmjölk','getmjölk','komjölk',
 ];
 
 function validateRecipeIngredients(ingList) {
@@ -1759,9 +1778,9 @@ const GP_RECIPES = {
     title:'Kalkonfilé med grönsaker',
     time:'30 min', portions:'2 portioner',
     category:'middag',
-    note:'Rotera grönsakerna varje gång — broccoli, sparris, rödbetor, zucchini m.fl. Dubbel portion.',
-    ing:['2 kalkonfiléer','Valfri Green List-grönsak (broccoli, sparris, rödbetor, grönkål, zucchini…)','Quinoa eller bovete-gryn — 1,5 dl (valfritt)','2 msk olivolja extra virgin','Celtic salt','Citronsaft'],
-    steps:['Koka quinoa/bovete enligt förpackning om du använder det (ca 15 min).','Värm ugnen till 200°C.','Lägg kalkonfiléerna på bakplåtspapper, ringla olivolja och salta med Celtic salt.','Ugna 28–30 min tills genomstekta — kärnan ska nå 75°C.','Ångkoka eller ugna grönsaker parallellt 10–15 min.','Servera med grönsaker, stärkelse och citronsaft.'],
+    note:'Rotera grönsakerna varje gång — blomkål, sommarsquash, aubergine, selleri m.fl. Dubbel portion.',
+    ing:['2 kalkonfiléer','Valfri Green List-grönsak (blomkål, sommarsquash, aubergine, selleri, grönkål…)','Sötpotatis eller bovete-gryn — valfritt','2 msk olivolja extra virgin','Celtic salt','Citronsaft'],
+    steps:['Koka bovete-gryn (ca 15 min) eller ugnsbaka sötpotatis (ca 40 min i 200°C ugn) om du använder stärkelse.','Värm ugnen till 200°C.','Lägg kalkonfiléerna på bakplåtspapper, ringla olivolja och salta med Celtic salt.','Ugna 28–30 min tills genomstekta — kärnan ska nå 75°C.','Ångkoka eller ugna grönsaker parallellt 10–15 min.','Servera med grönsaker, stärkelse och citronsaft.'],
   },
   I: {
     title:'Hjortkött med grönsaker',
@@ -1776,7 +1795,7 @@ const GP_RECIPES = {
     time:'35 min', portions:'2 portioner',
     category:'middag',
     note:'Rista skinnet djupt för bäst resultat. Spara det smälta ankfettet till nästa stekning.',
-    ing:['2 ankbröst','Butternutpumpa eller annan Green List-grönsak (grönkål, pak choi, rödbetor…)','Romansallad','Celtic salt','Olivolja extra virgin'],
+    ing:['2 ankbröst','Butternutpumpa eller annan Green List-grönsak (grönkål, sommarsquash, selleri…)','Romansallad','Celtic salt','Olivolja extra virgin'],
     steps:['Rista skinnet på ankbröstet i rutmönster utan att skära i köttet.','Lägg ankbröstet med skinnsidan ned i kall panna — höj till medelvärme.','Fettet smälter ut — stek 4–5 min tills skinnet är gyllenbrunt.','Vänd och stek 2 min på köttssidan.','Lägg i 200°C ugn 8–10 min.','Ångkoka grönsaker parallellt.','Servera med grönsaker och romansallad, ringla olivolja.'],
   },
   K: {
@@ -1784,8 +1803,8 @@ const GP_RECIPES = {
     time:'30 min', portions:'2 portioner',
     category:'lunch',
     note:'Välj valfria Green List-grönsaker och stärkelse. Dubbel portion — spara till middag.',
-    ing:['2 kycklingfiléer','Valfri Green List-grönsak (broccoli, sparris, rödbetor, aubergine, blomkål…)','Quinoa, bovete-gryn eller sötpotatis — valfri stärkelse','2 msk olivolja extra virgin','Celtic salt','Citronsaft'],
-    steps:['Koka stärkelse: quinoa/bovete 12–15 min, sötpotatis 40 min i 200°C ugn.','Värm ugnen till 200°C.','Lägg kycklingfiléerna på bakplåtspapper, ringla olivolja och salta.','Ugna 22–25 min tills genomstekta — kärnan ska nå 75°C.','Ångkoka grönsaker 5–7 min parallellt.','Servera med grönsaker, stärkelse och citronsaft.'],
+    ing:['2 kycklingfiléer','Valfri Green List-grönsak (aubergine, blomkål, sommarsquash, selleri…)','Bovete-gryn eller sötpotatis — valfri stärkelse','2 msk olivolja extra virgin','Celtic salt','Citronsaft'],
+    steps:['Koka stärkelse: bovete-gryn 12–15 min, eller ugnsbaka sötpotatis 40 min i 200°C ugn.','Värm ugnen till 200°C.','Lägg kycklingfiléerna på bakplåtspapper, ringla olivolja och salta.','Ugna 22–25 min tills genomstekta — kärnan ska nå 75°C.','Ångkoka grönsaker 5–7 min parallellt.','Servera med grönsaker, stärkelse och citronsaft.'],
   },
 };
 
