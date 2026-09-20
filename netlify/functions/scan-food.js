@@ -21,23 +21,26 @@ exports.handler = async (event) => {
 
   const PROMPT = `Du är kostrådgivare för Patrik Rees som följer Green Phase-protokollet (efter Detox 21).
 
-GREEN LIST — TILLÅTNA LIVSMEDEL (ENDA TILLÅTNA LISTAN):
-Protein: Kyckling, kalkon, ägg, anka, hjortkött, räkor, pilgrimsmusslor, kikärtor, canellinibönor, linser, favabönor
-Grönsaker: Grönkål, spenat, romansallad, selleri, squash, aubergine, blomkål, broccoli, morötter, rödbetor, sparris, zucchini, pak choi, butternutpumpa
-Frukt: Banan, kiwi, ananas, apelsin, mandarin, mango, papaya, persika, vindruvor, granatäpple, melon, vattenmelon, blåbär, hallon, avokado, citron, lime
-Stärkelse: Sötpotatis, bovete-knäckebröd (Le Pain des Fleurs), quinoa, bovete, rött ris
-Fetter & Frön: Olivolja extra virgin, ankfett, tahini (ljus), chiafrön, hampafrön, pumpafrön, solrosfrön
-Kryddor & Övrigt: Celtic salt, citron, lime, ingefära, manuka honung, örtte, timjan
+GREEN LIST — TILLÅTNA LIVSMEDEL (ENDA TILLÅTNA LISTAN, baserad på Patriks
+riktiga ALCAT-test):
+Protein: Kyckling, kalkon, ägg, anka, hjortkött, musslor, ostron, hummer, vongole, kikärtor, canellinibönor, linser, favabönor
+Grönsaker: Grönkål, spenat, romansallad, selleri, sommarsquash, aubergine, blomkål, butternutpumpa, tomat
+Frukt: Banan, kiwi, ananas, apelsin, mandarin, mango, papaya, persika, vindruvor, granatäpple, melon, vattenmelon, avokado, citron, lime
+Stärkelse: Sötpotatis, bovete-knäckebröd (Le Pain des Fleurs), bovete, rött ris
+Fetter & Frön: Olivolja extra virgin, ankfett, tahini (ljus), chiafrön, pumpafrön, solrosfrön
+Kryddor & Övrigt: Celtic salt, citron, lime, manuka honung, örtte, timjan
 
 STRIKT FÖRBJUDET — nolltolerans:
 - ALL fisk (lax, torsk, sill, tonfisk, sardiner, makrill, röding m.fl.)
+- Räkor, krabba, pilgrimsmusslor/kammusslor (EJ tillåtna skaldjur — bara musslor, ostron, hummer och vongole är ALCAT grönt)
 - Alla mejeriprodukter (mjölk, ost, smör, yoghurt, grädde, kvarg m.fl.)
 - Allt gluten (vete, råg, korn, spelt, vanligt bröd, pasta m.fl.)
 - Allt socker (inkl. agave, lönnsirap, björksocker, alla sötningsmedel)
 - Jäst, fermenterade produkter, ättika/vinäger, pickles, soja, miso
 - Alkohol (även matlagningsvin)
 - Processade produkter, konserveringsmedel, tillsatser
-- Äpple och päron (ALCAT-reaktion)
+- Äpple, päron (ALCAT måttlig reaktion)
+- Broccoli, sparris, rödbetor, morötter, zucchini, pak choi, quinoa, blåbär, hallon, ingefära, hampafrön (ALCAT mild/måttlig reaktion — INTE på Green List trots att de ofta räknas som hälsosamma; undviks tills tidigast dag 90)
 
 INSTRUKTION:
 1. Identifiera EXAKT vad som visas på bilden (produkt, ingrediens, maträtt, förpackning).
@@ -109,7 +112,12 @@ Värdet på "status" ska vara EXAKT ett av: "Tillåtet", "Ej tillåtet", "Osäke
   }
 
   // Safety check: never allow "Tillåtet" if motivering mentions fish or forbidden items
-  const forbiddenKeywords = ['fisk', 'lax', 'torsk', 'sill', 'tonfisk', 'mejeri', 'gluten', 'socker', 'jäst'];
+  const forbiddenKeywords = [
+    'fisk', 'lax', 'torsk', 'sill', 'tonfisk', 'mejeri', 'gluten', 'socker', 'jäst',
+    'räka', 'räkor', 'krabba', 'pilgrimsmussla', 'kammussla', 'äpple', 'päron',
+    'broccoli', 'sparris', 'rödbeta', 'morot', 'zucchini', 'pak choi', 'quinoa',
+    'blåbär', 'hallon', 'ingefära', 'hampafrön',
+  ];
   const motivering = (parsed.motivering || '').toLowerCase();
   if (parsed.status === 'Tillåtet' && forbiddenKeywords.some(k => motivering.includes(k))) {
     parsed.status = 'Osäkert';
