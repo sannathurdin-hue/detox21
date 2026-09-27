@@ -1573,7 +1573,7 @@ const RECIPES = {
 };
 
 const MEALS = [
-  { time:'06:15', name:'Frukost',    desc:'Fruktsallad · tahini · bovete-knäckebröd', key:'breakfast' },
+  { time:'06:15', name:'Frukost',    desc:'Fruktsallad · tahini · manuka honung · bovete-knäckebröd', key:'breakfast' },
   { time:'09:00', name:'Frukt',      desc:'Valfri frukt från listan — en handfull', key:'snack1' },
   { time:'12:00', name:'Lunch',      desc:'Dagens recept — laga dubbel portion nu', key:'lunch', isRecipe:true },
   { time:'15:00', name:'Grönsaker',  desc:'Rå grönsaker: blomkål + selleri', key:'snack2' },
@@ -1583,7 +1583,7 @@ const MEALS = [
 
 const RULES = [
   { n:1,  t:'<strong>Ät exakt var 3:e timme:</strong> 06:15 · 09:00 · 12:00 · 15:00 · 18:00 · 21:00' },
-  { n:2,  t:'Frukost är <strong>alltid densamma</strong> — fruktsallad + tahini + knäckebröd' },
+  { n:2,  t:'Frukost är <strong>alltid densamma</strong> — fruktsallad + tahini + manuka honung + knäckebröd' },
   { n:3,  t:'Lunch = Middag — laga <strong>alltid dubbelt kl. 12:00</strong>' },
   { n:4,  t:'<strong>Inget mejeri</strong> — inte ens smör' },
   { n:5,  t:'<strong>Inget gluten</strong> — bara bovete-knäckebröd (Le Pain des Fleurs)' },
@@ -1608,7 +1608,7 @@ const SHOP_ONCE = [
   'Canellinibönor konserverade — 6 burkar','Favabönor konserverade — 3 burkar',
   'Röda linser — 1 påse (500 g)','Gröna linser — 1 påse (500 g)',
   'Butternutpumpa — 3 st','Krossad tomat konserverad — 3 burkar',
-  'Tahini ljus — 1 burk (300 g)',
+  'Tahini ljus — 1 burk (300 g)','Manuka honung — 1 liten burk',
   'Olivolja extra virgin — 1 flaska','Celtic salt — 1 förpackning',
   'Örtte — 1 förpackning','Glutenfria kycklingbuljongtärningar — 1 förp. (utan jäst & mejeri)',
 ];
@@ -1621,12 +1621,13 @@ const FIXED_MEALS = {
     category: 'Frukost · 06:15',
     ing: [
       'Valfri frukt från listan — en handfull (banan, kiwi, apelsin, mandarin, persika, ananas…)',
-      'Tahini ljus — 1–2 msk',
+      'Tahini ljus — 1 tsk',
+      'Manuka honung — 1 tsk',
       'Bovete-knäckebröd Le Pain des Fleurs — 1–2 st',
     ],
     steps: [
       'Skär frukten i bitar och lägg i skål.',
-      'Ringla tahini över.',
+      'Ringla tahini och manuka honung över.',
       'Servera med bovete-knäckebröd vid sidan.',
     ],
   },
