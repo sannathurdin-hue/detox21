@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { COMPARISON, ComparisonStatus, FOODS, byComparison, searchFoods } from '../lib/data';
 import { FoodQuickCard } from '../components/FoodCard';
-import { SearchInput, href } from '../components/ui';
+import { SearchInput, Wordmark, href } from '../components/ui';
 
 const EXAMPLES = ['kyckling', 'ris', 'tomat', 'avokado', 'lax', 'kaffe'];
 const MAIN: ComparisonStatus[] = ['BOTH_ALLOWED', 'LINN_ONLY', 'PATRIK_ONLY', 'BOTH_AVOID'];
@@ -14,9 +14,9 @@ export function Home() {
   return (
     <div className="home">
       <header className="hero">
-        <p className="hero-names">Re:Set by Sanna</p>
-        <h1>Linn + Patrik</h1>
-        <p className="hero-sub">Matguide · dag 1–21</p>
+        <p className="eyebrow">Matguide · dag 1–21</p>
+        <h1 className="display">Linn <span className="amp">+</span> Patrik</h1>
+        <p className="hero-sub">Två individuella underlag, ett svar per livsmedel.</p>
       </header>
 
       <SearchInput value={q} onChange={setQ} large />
@@ -53,33 +53,35 @@ export function Home() {
 
       {!q.trim() && (
         <>
-          <nav className="main-choices" aria-label="Huvudval">
+          <nav className="index-list" aria-label="Huvudval">
             {MAIN.map((s) => {
               const c = COMPARISON[s];
               const n = byComparison(s).length;
               return (
-                <a key={s} href={href(c.route)} className={`choice tone-${c.tone} ${s === 'BOTH_ALLOWED' ? 'choice-primary' : ''}`}>
-                  <span className="choice-sym" aria-hidden="true">{c.symbol}</span>
-                  <span className="choice-label">{c.label}</span>
-                  <span className="choice-count">{n} <span className="sr-only">livsmedel</span></span>
+                <a key={s} href={href(c.route)} className={`index-row tone-${c.tone} ${s === 'BOTH_ALLOWED' ? 'index-primary' : ''}`}>
+                  <span className="ix-count">{n} <span className="sr-only">livsmedel</span></span>
+                  <span className="ix-label">{c.label}</span>
+                  <span className="ix-sym" aria-hidden="true">{c.symbol}</span>
+                  <span className="ix-arrow" aria-hidden="true">→</span>
                 </a>
               );
             })}
           </nav>
 
           <a className="restore-entry" href={href('restore')}>
-            <span className="re-name">Re:store <span>by Sanna</span></span>
-            <span className="re-text">21-dagars kostprotokoll med matlista och färdiga måltider</span>
-            <span className="chev" aria-hidden="true">›</span>
+            <span className="re-kicker">Protokoll</span>
+            <Wordmark product="store" size="lg" />
+            <span className="re-text">21-dagars kostprotokoll. Plan, måltider, livsmedel.</span>
+            <span className="ix-arrow" aria-hidden="true">→</span>
           </a>
 
-          <nav className="secondary" aria-label="Fler verktyg">
-            <a href={href('kan-vi-ata')}><span aria-hidden="true">🍽</span> Kan vi äta detta?</a>
-            <a href={href('skillnader')}><span aria-hidden="true">⇄</span> Skillnader</a>
-            <a href={href('veckoschema')}><span aria-hidden="true">▦</span> Veckoschema</a>
-            <a href={href('tabell')}><span aria-hidden="true">≡</span> Alla livsmedel</a>
-            <a href={href('person', 'linn')}>Linn</a>
-            <a href={href('person', 'patrik')}>Patrik</a>
+          <nav className="link-list" aria-label="Fler verktyg">
+            <a href={href('kan-vi-ata')}>Kan vi äta detta?<span aria-hidden="true">→</span></a>
+            <a href={href('skillnader')}>Skillnader<span aria-hidden="true">→</span></a>
+            <a href={href('veckoschema')}>Veckoschema<span aria-hidden="true">→</span></a>
+            <a href={href('tabell')}>Alla livsmedel<span aria-hidden="true">→</span></a>
+            <a href={href('person', 'linn')}>Linn<span aria-hidden="true">→</span></a>
+            <a href={href('person', 'patrik')}>Patrik<span aria-hidden="true">→</span></a>
           </nav>
 
           <p className="footnote">

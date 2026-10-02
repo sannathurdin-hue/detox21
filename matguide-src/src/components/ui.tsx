@@ -21,6 +21,17 @@ export function useRoute(): string[] {
 export const href = (...parts: string[]) => `#/${parts.map(encodeURIComponent).join('/')}`;
 
 // ---------------------------------------------------------------------------
+/** Ordmärke för Re:-familjen: "Re" i sans, kolon i accent, produktnamnet i serif. */
+export function Wordmark({ product, size = 'md', by = true }: { product: string; size?: 'sm' | 'md' | 'lg' | 'xl'; by?: boolean }) {
+  return (
+    <span className={`wm wm-${size}`}>
+      <span className="wm-mark"><span className="wm-re">Re</span><span className="wm-colon">:</span><span className="wm-name">{product}</span></span>
+      {by && <span className="wm-by">by Sanna</span>}
+    </span>
+  );
+}
+
+// ---------------------------------------------------------------------------
 export function Badge({ tone, symbol, children, size = 'md' }: { tone: Tone; symbol: string; children: ReactNode; size?: 'sm' | 'md' | 'lg' }) {
   return (
     <span className={`badge tone-${tone} badge-${size}`}>

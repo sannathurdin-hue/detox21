@@ -1,6 +1,6 @@
 import { COMPARISON, ComparisonStatus, FOOD_BY_ID, PersonKey } from './lib/data';
 import { FoodDetail } from './components/FoodCard';
-import { Empty, PageHeader, href, useRoute } from './components/ui';
+import { Empty, PageHeader, Wordmark, href, useRoute } from './components/ui';
 import { Home } from './views/Home';
 import { ComparisonList, Differences } from './views/Lists';
 import { Table } from './views/Table';
@@ -17,12 +17,12 @@ const LIST_ROUTES = Object.fromEntries(
 ) as Record<string, ComparisonStatus>;
 
 const TABS = [
-  { route: '', label: 'Sök', icon: '⌕' },
-  { route: 'bada', label: 'Båda', icon: '✓' },
-  { route: 'skillnader', label: 'Skillnader', icon: '⇄' },
-  { route: 'veckoschema', label: 'Vecka', icon: '▦' },
-  { route: 'restore', label: 'Re:store', icon: '◎' },
-  { route: 'kan-vi-ata', label: 'Kan vi?', icon: '🍽' },
+  { route: '', label: 'Sök' },
+  { route: 'bada', label: 'Båda' },
+  { route: 'skillnader', label: 'Skillnad' },
+  { route: 'veckoschema', label: 'Vecka' },
+  { route: 'kan-vi-ata', label: 'Kan vi?' },
+  { route: 'restore', label: 'Re:store' },
 ];
 
 function NotFound() {
@@ -60,10 +60,10 @@ export function RestoreView({ route }: { route: string[] }) {
 }
 
 const RESTORE_TABS = [
-  { route: 'restore', label: 'Idag', icon: '◎' },
-  { route: 'restore/plan', label: 'Plan', icon: '▦' },
-  { route: 'restore/mat', label: 'Livsmedel', icon: '✓' },
-  { route: 'restore/fungerar', label: 'Fungerar?', icon: '🍽' },
+  { route: 'restore', label: 'Idag' },
+  { route: 'restore/plan', label: 'Plan' },
+  { route: 'restore/mat', label: 'Livsmedel' },
+  { route: 'restore/fungerar', label: 'Kontroll' },
 ];
 
 function RestoreShell({ route }: { route: string[] }) {
@@ -73,19 +73,20 @@ function RestoreShell({ route }: { route: string[] }) {
     <>
       <a className="skip" href="#main">Hoppa till innehåll</a>
       <header className="topbar">
-        <a className="brand brand-restore" href="#/restore">Re:store <span>by Sanna</span></a>
+        <a className="brand" href="#/restore" aria-label="Re:store by Sanna – start"><Wordmark product="store" /></a>
         <nav className="topnav" aria-label="Re:store-meny">
-          {RESTORE_TABS.map((t) => <a key={t.route} href={`#/${t.route}`} aria-current={cur === t.route ? 'page' : undefined}>{t.label === 'Idag' ? 'Start' : t.label === 'Fungerar?' ? 'Fungerar detta?' : t.label}</a>)}
-          <a href="#/restore/struktur" aria-current={cur === 'restore/struktur' ? 'page' : undefined}>Så är Re:store uppbyggt</a>
+          {RESTORE_TABS.map((t) => <a key={t.route} href={`#/${t.route}`} aria-current={cur === t.route ? 'page' : undefined}>{t.label}</a>)}
+          <a href="#/restore/struktur" aria-current={cur === 'restore/struktur' ? 'page' : undefined}>Struktur</a>
         </nav>
+        <a className="topbar-parent" href="#/">Re:Set</a>
       </header>
-      <main id="main" className="container">
+      <main id="main" className="container" key={route.join('/')}>
         <RestoreView route={route.slice(1)} />
       </main>
       <nav className="tabbar tabbar-restore" aria-label="Re:store snabbmeny">
         {RESTORE_TABS.map((t) => (
           <a key={t.route} href={`#/${t.route}`} aria-current={cur === t.route ? 'page' : undefined}>
-            <span aria-hidden="true" className="tab-icon">{t.icon}</span><span>{t.label}</span>
+            <span>{t.label}</span>
           </a>
         ))}
       </nav>
@@ -101,7 +102,7 @@ export default function App() {
     <>
       <a className="skip" href="#main">Hoppa till innehåll</a>
       <header className="topbar">
-        <a className="brand" href="#/">Re:Set <span>by Sanna</span></a>
+        <a className="brand" href="#/" aria-label="Re:Set by Sanna – start"><Wordmark product="Set" /></a>
         <nav className="topnav" aria-label="Huvudmeny">
           <a href={href('bada')} aria-current={current === 'bada' ? 'page' : undefined}>Båda kan äta</a>
           <a href={href('skillnader')} aria-current={current === 'skillnader' ? 'page' : undefined}>Skillnader</a>
@@ -110,16 +111,15 @@ export default function App() {
           <a href={href('kan-vi-ata')} aria-current={current === 'kan-vi-ata' ? 'page' : undefined}>Kan vi äta detta?</a>
           <a href={href('person', 'linn')} aria-current={route.join('/') === 'person/linn' ? 'page' : undefined}>Linn</a>
           <a href={href('person', 'patrik')} aria-current={route.join('/') === 'person/patrik' ? 'page' : undefined}>Patrik</a>
-          <a className="nav-restore" href={href('restore')} aria-current={current === 'restore' ? 'page' : undefined}>Re:store</a>
         </nav>
+        <a className="topbar-parent topbar-restore" href={href('restore')}>Re:store</a>
       </header>
-      <main id="main" className="container">
+      <main id="main" className="container" key={route.join('/')}>
         <View route={route} />
       </main>
       <nav className="tabbar" aria-label="Snabbmeny">
         {TABS.map((t) => (
           <a key={t.route} href={`#/${t.route}`} aria-current={current === t.route ? 'page' : undefined}>
-            <span aria-hidden="true" className="tab-icon">{t.icon}</span>
             <span>{t.label}</span>
           </a>
         ))}

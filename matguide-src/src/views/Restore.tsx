@@ -5,7 +5,7 @@ import {
   PublicDay, PublicFood, R_DAYS, R_FOOD, R_FOODS, R_INCLUDED, R_MEAL, R_RULES, R_SLOTS, R_STATUS, R_STRUCTURE,
   ROLE_LABEL, RestoreStatus, SLOT_LABEL, WEEKDAY, dateLabel, ingIds, ingName, planToday, rCheck, rGroup, rSearch,
 } from '../lib/restorePublic';
-import { Badge, Chips, Empty, SearchInput, href } from '../components/ui';
+import { Badge, Chips, Empty, SearchInput, Wordmark, href } from '../components/ui';
 
 const rHref = (...p: string[]) => href('restore', ...p);
 const foodHref = (id: string) => rHref('livsmedel', id);
@@ -49,16 +49,21 @@ function NotFound({ q }: { q: string }) {
 }
 
 const mainOf = (d: PublicDay) => R_MEAL[d.meals.lunch];
+const pad = (n: number) => String(n).padStart(2, '0');
+/** Måltidens nyckelingredienser som en kort, läsbar rad */
+const keyLine = (m: { ingredients: { id: string; role: string; alt: string[] }[] }) =>
+  m.ingredients.filter((i) => ['base', 'cooked', 'fruit', 'veg', 'spread'].includes(i.role)).map((i) => R_FOOD[i.id].name.toLowerCase()).join(' · ');
 
 function DayTile({ d }: { d: PublicDay }) {
+  const m = mainOf(d);
   return (
-    <a className={`day-tile ${d.status === 'VALIDATED' ? '' : 'day-tile-fail'}`} href={rHref('dag', String(d.day))}>
-      <span className="dt-top">
-        <span className="dt-day">Dag {d.day}</span>
-        <span className="dt-wd">{dateLabel(d.date)} · {R_STRUCTURE[d.weekday].theme}</span>
+    <a className={`plan-row ${d.status === 'VALIDATED' ? '' : 'plan-row-review'}`} href={rHref('dag', String(d.day))}>
+      <span className="pr-num">{pad(d.day)}</span>
+      <span className="pr-body">
+        <span className="pr-meta"><span>{WEEKDAY[d.weekday]}</span><span>{dateLabel(d.date).split(' ').slice(1).join(' ')}</span><span>{R_STRUCTURE[d.weekday].theme}</span></span>
+        <span className="pr-title">{m.title}</span>
+        <span className="pr-status">{d.status === 'VALIDATED' ? <><span aria-hidden="true">✓ </span>Verifierad</> : <><span aria-hidden="true">! </span>Under granskning</>}</span>
       </span>
-      <span className="dt-meal">{mainOf(d).title}</span>
-      {d.status !== 'VALIDATED' && <span className="dt-review">Under granskning</span>}
     </a>
   );
 }
@@ -71,9 +76,10 @@ export function RestoreHome() {
   return (
     <div className="home">
       <header className="hero hero-restore">
-        <p className="hero-names">Re:Set by Sanna</p>
-        <h1>Re:store <span className="by">by Sanna</span></h1>
-        <p className="hero-sub">21-dagars kostprotokoll</p>
+        <p className="eyebrow"><a href="#/">Re:Set by Sanna</a> / Protokoll</p>
+        <h1 className="sr-only">Re:store by Sanna</h1>
+        <Wordmark product="store" size="xl" />
+        <p className="hero-sub">21 dagar. Sex måltider om dagen. Endast validerade livsmedel.</p>
       </header>
 
       <div className="restore-search">
@@ -87,37 +93,42 @@ export function RestoreHome() {
 
       {!q.trim() && (
         <>
-          <section className="today-card">
+          <section className="today">
             {t.state === 'during' && t.day && (
-              <>
-                <h2>Idag · Dag {t.day.day}</h2>
-                <p className="note">{dateLabel(t.day.date)} · {R_STRUCTURE[t.day.weekday].theme}</p>
-                <div className="today-days">
-                  <a href={rHref('dag', String(t.day.day))} className="today-link"><span>Dagens lunch och middag</span><strong>{mainOf(t.day).title}</strong></a>
-                </div>
-              </>
+              <a className="today-link" href={rHref('dag', String(t.day.day))}>
+                <span className="today-num">{pad(t.day.day)}</span>
+                <span className="today-body">
+                  <span className="today-kicker">Idag · {dateLabel(t.day.date)} · {R_STRUCTURE[t.day.weekday].theme}</span>
+                  <span className="today-title">{mainOf(t.day).title}</span>
+                  <span className="today-sub">{keyLine(mainOf(t.day))}</span>
+                </span>
+              </a>
             )}
             {t.state === 'before' && (
-              <>
-                <h2>Startar {dateLabel(R_DAYS[0].date)}</h2>
-                <p className="note">{t.daysLeft === 1 ? 'I morgon' : `Om ${t.daysLeft} dagar`} · dag 1–21 pågår till {dateLabel(R_DAYS[20].date)}.</p>
-                <div className="today-days">
-                  <a href={rHref('dag', '1')} className="today-link"><span>Dag 1 · {R_STRUCTURE[R_DAYS[0].weekday].theme}</span><strong>{mainOf(R_DAYS[0]).title}</strong></a>
-                </div>
-              </>
+              <a className="today-link" href={rHref('dag', '1')}>
+                <span className="today-num">01</span>
+                <span className="today-body">
+                  <span className="today-kicker">Start {dateLabel(R_DAYS[0].date)} · {t.daysLeft === 1 ? 'i morgon' : `om ${t.daysLeft} dagar`}</span>
+                  <span className="today-title">{mainOf(R_DAYS[0]).title}</span>
+                  <span className="today-sub">Dag 1–21 pågår till {dateLabel(R_DAYS[20].date)}.</span>
+                </span>
+              </a>
             )}
             {t.state === 'after' && (
-              <>
-                <h2>21 dagar genomförda</h2>
-                <p className="note">Planen pågick {dateLabel(R_DAYS[0].date)} – {dateLabel(R_DAYS[20].date)}.</p>
-              </>
+              <div className="today-link">
+                <span className="today-num">21</span>
+                <span className="today-body">
+                  <span className="today-kicker">Genomfört</span>
+                  <span className="today-title">Protokollet avslutades {dateLabel(R_DAYS[20].date)}.</span>
+                </span>
+              </div>
             )}
           </section>
-          <nav className="secondary" aria-label="Re:store">
-            <a href={rHref('plan')}><span aria-hidden="true">▦</span> 21-dagarsplan</a>
-            <a href={rHref('mat')}><span aria-hidden="true">✓</span> Re:store Foods <span className="count">{R_INCLUDED.length}</span></a>
-            <a href={rHref('fungerar')}><span aria-hidden="true">🍽</span> Fungerar detta i Re:store?</a>
-            <a href={rHref('struktur')}><span aria-hidden="true">◎</span> Så är Re:store uppbyggt</a>
+          <nav className="link-list" aria-label="Re:store">
+            <a href={rHref('plan')}>21-dagarsplan<span aria-hidden="true">→</span></a>
+            <a href={rHref('mat')}>Livsmedel<span className="count">{R_INCLUDED.length}</span><span aria-hidden="true">→</span></a>
+            <a href={rHref('fungerar')}>Fungerar detta i Re:store?<span aria-hidden="true">→</span></a>
+            <a href={rHref('struktur')}>Så är Re:store uppbyggt<span aria-hidden="true">→</span></a>
           </nav>
         </>
       )}
@@ -208,11 +219,14 @@ export function RestorePlan() {
   return (
     <div>
       <RestoreHeader title="21-dagarsplan" lede="Ett strukturerat 21-dagars kostupplägg med noggrant utvalda livsmedel, tydlig veckorytm och färdiga måltider för varje dag." />
-      <p className="note">Dag 1 är {dateLabel(R_DAYS[0].date)}. Dag 21 är {dateLabel(R_DAYS[20].date)}.</p>
+      <p className="plan-range">{dateLabel(R_DAYS[0].date)} — {dateLabel(R_DAYS[20].date)}</p>
+      <nav className="week-jump" aria-label="Veckor">
+        {[1, 2, 3].map((w) => <a key={w} href={`#/restore/plan`} onClick={(e) => { e.preventDefault(); document.getElementById(`vecka-${w}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}>Vecka {w}</a>)}
+      </nav>
       {[1, 2, 3].map((w) => (
-        <section key={w} className="group">
-          <h2 className="group-title">Vecka {w} · dag {(w - 1) * 7 + 1}–{w * 7}</h2>
-          <div className="day-grid">{R_DAYS.filter((d) => d.week === w).map((d) => <DayTile key={d.day} d={d} />)}</div>
+        <section key={w} className="plan-week" id={`vecka-${w}`}>
+          <h2 className="plan-week-title"><span>Vecka {w}</span><span className="muted">Dag {(w - 1) * 7 + 1}–{w * 7}</span></h2>
+          <div className="plan-list">{R_DAYS.filter((d) => d.week === w).map((d) => <DayTile key={d.day} d={d} />)}</div>
         </section>
       ))}
       <details className="group">
@@ -233,7 +247,7 @@ export function RestoreDayView({ day }: { day: number }) {
       <header className="page-header">
         <a className="back" href={rHref('plan')}>‹ 21-dagarsplan</a>
         <p className="eyebrow">Re:store · Vecka {d.week}</p>
-        <h1>Dag {d.day}</h1>
+        <h1 className="day-heading"><span className="day-num">{pad(d.day)}</span><span className="sr-only">Dag {d.day}</span></h1>
         <p className="lede">{dateLabel(d.date).replace(/^./, (c) => c.toUpperCase())} · {R_STRUCTURE[d.weekday].theme}</p>
       </header>
       {!ok && (
@@ -287,7 +301,7 @@ export function RestoreMealView({ id }: { id: string }) {
       </header>
 
       <div className={`verdict verdict-${ok ? 'green' : 'amber'}`}>
-        <span className="verdict-label">{ok ? 'Samtliga ingredienser är verifierade för Re:store-protokollet.' : 'Rätten är under granskning och ännu inte validerad.'}</span>
+        <span className="verdict-text">{ok ? 'Samtliga ingredienser är verifierade för Re:store-protokollet.' : 'Rätten är under granskning och ännu inte validerad.'}</span>
         {ok ? <Badge tone="green" symbol="✓" size="lg">Re:store-validerad</Badge> : <Badge tone="amber" symbol="!" size="lg">Under granskning</Badge>}
       </div>
 

@@ -185,7 +185,7 @@ export const STATUS_SYMBOL: Record<FinalStatus, string> = {
   AVOID: '✕',
   RESTRICTED: '!',
   UNVERIFIED: '?',
-  DATA_CONFLICT: '⚠',
+  DATA_CONFLICT: '!',
 };
 export const STATUS_TONE: Record<FinalStatus, Tone> = {
   ALLOWED: 'green',
@@ -203,7 +203,7 @@ export const COMPARISON: Record<ComparisonStatus, { label: string; short: string
   BOTH_AVOID: { label: 'Båda ska undvika', short: 'Ingen', symbol: '✕', tone: 'red', route: 'undvik' },
   DIFFERENT_RESTRICTION: { label: 'Villkorat', short: 'Villkor', symbol: '!', tone: 'amber', route: 'villkorat' },
   UNVERIFIED: { label: 'Ej verifierat', short: '?', symbol: '?', tone: 'grey', route: 'ej-verifierat' },
-  DATA_CONFLICT: { label: 'Datakonflikt', short: 'Konflikt', symbol: '⚠', tone: 'amber', route: 'konflikt' },
+  DATA_CONFLICT: { label: 'Datakonflikt', short: 'Konflikt', symbol: '!', tone: 'amber', route: 'konflikt' },
 };
 export const COMPARISON_ORDER: ComparisonStatus[] = [
   'BOTH_ALLOWED', 'LINN_ONLY', 'PATRIK_ONLY', 'BOTH_AVOID', 'DIFFERENT_RESTRICTION', 'UNVERIFIED', 'DATA_CONFLICT',

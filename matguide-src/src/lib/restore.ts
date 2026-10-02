@@ -60,7 +60,7 @@ export const RESTORE_LABEL: Record<RestoreStatus, { label: string; symbol: strin
   ALLOWED_FOR_BOTH: { label: 'Tillåten för båda', symbol: '✓', tone: 'green' },
   NOT_ALLOWED_FOR_BOTH: { label: 'Ingår inte', symbol: '✕', tone: 'red' },
   UNVERIFIED: { label: 'Ej verifierat', symbol: '?', tone: 'grey' },
-  DATA_CONFLICT: { label: 'Datakonflikt', symbol: '⚠', tone: 'amber' },
+  DATA_CONFLICT: { label: 'Datakonflikt', symbol: '!', tone: 'amber' },
 };
 
 export const WEEKDAY_LABEL: Record<string, string> = {
