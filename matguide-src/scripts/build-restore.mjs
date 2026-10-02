@@ -62,15 +62,12 @@ if (unexpected.length) {
 
 // Dokumenterade luckor (komponenter i kostschemana som inte kan verifieras för båda)
 const gaps = [
-  {
-    id: 'olja', title: 'Olja till sallad utelämnad',
-    affects: 'Lunch och middag',
-    text: 'Patrik: "1 msk olivolja till sallad". Linn: "1 matsked oliv till sallad" (olivolja står inte). Olivolja är därför inte verifierad för Linn, och salladerna får pressad citron + salt som dressing.',
-    decision: 'Om ni bekräftar att Linns "oliv" betyder olivolja blir olivolja tillåten för båda.',
-  },
 ];
 
 const decisions = [
+  { id: 'olja', title: 'Ingen olja till salladerna',
+    text: 'Patrik: "1 msk olivolja till sallad". Linn: "1 matsked oliv till sallad" (olivolja står inte, ej verifierad för Linn). Salladerna får pressad citron + salt som dressing.',
+    resolution: 'Användarbeslut 2026-10-02: "nej lägg inte till" – olivolja läggs inte till.' },
   { id: 'fett', title: 'Stekfett: ankfett',
     text: 'Linns kostschema: kokosfett för stekning. Patriks: ankfett. Patrik har måttlig reaktion på kokosnöt; Linn har mild reaktion på anka. Ankfett valdes eftersom reaktionen på basråvaran är lägre.',
     resolution: 'Användarbeslut 2026-10-02: "välj kokosfett eller ankfett som fettkälla" → ankfett.' },

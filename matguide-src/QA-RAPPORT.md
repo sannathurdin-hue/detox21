@@ -63,7 +63,7 @@ Per person (slutstatus dag 1–21):
 | Dag 20 | sat | PASS |  |
 | Dag 21 | sun | PASS |  |
 
-- **Olja till sallad utelämnad:** Patrik: "1 msk olivolja till sallad". Linn: "1 matsked oliv till sallad" (olivolja står inte). Olivolja är därför inte verifierad för Linn, och salladerna får pressad citron + salt som dressing. *Beslut som löser det:* Om ni bekräftar att Linns "oliv" betyder olivolja blir olivolja tillåten för båda.
+
 
 ## Automatiska kontroller
 - ✅ linn: ALCAT-status för varje livsmedel stämmer mot originaltranskriberingen
