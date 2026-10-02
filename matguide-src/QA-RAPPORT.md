@@ -31,8 +31,6 @@ Per person (slutstatus dag 1–21):
 ## Automatiska kontroller
 - ✅ linn: ALCAT-status för varje livsmedel stämmer mot originaltranskriberingen
 - ✅ patrik: ALCAT-status för varje livsmedel stämmer mot originaltranskriberingen
-- ✅ linn: transkribering identisk med PDF-texten (alla nivåkolumner)
-- ✅ patrik: transkribering identisk med PDF-texten (alla nivåkolumner)
 - ✅ ALCAT-status och slutstatus dag 1–21 är separata fält med giltiga värden
 - ✅ 4. Kostschema-förbud överstyr grön ALCAT (t.ex. jäst, vindruva) — Bakjäst, Bryggjäst, Näringsjäst, Vindruva
 - ✅ 4b. Bakjäst: grön i Linns ALCAT men INTE tillåten dag 1–21
