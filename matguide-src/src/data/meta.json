@@ -749,6 +749,89 @@
    "duration": null
   }
  },
+ "conflicts": [
+  {
+   "status": "OPEN",
+   "foodId": "endiv",
+   "food": "Endiv",
+   "person": "linn",
+   "sourceA": {
+    "document": "01_Linn_Grant_ALCAT_svenska.pdf",
+    "page": 1,
+    "text": "Kolumn MILD*: \"ENDIV*\"",
+    "says": "Mild reaktion (gul*)"
+   },
+   "sourceB": {
+    "document": "01_Linn_Grant_ALCAT_svenska.pdf",
+    "page": 1,
+    "text": "Kolumn ACCEPTABEL/INGEN REAKTION – VEGETABLES / LEGUMES: \"ENDIV\"",
+    "says": "Acceptabel / ingen reaktion (grön)"
+   },
+   "effect": "Används inte i Re:store förrän konflikten är löst."
+  },
+  {
+   "status": "OPEN",
+   "foodId": "endiv",
+   "food": "Endiv",
+   "person": "patrik",
+   "sourceA": {
+    "document": "03_Patrik_Rees_ALCAT_svenska.pdf",
+    "page": 1,
+    "text": "Kolumn MILD*: \"ENDIV*\"",
+    "says": "Mild reaktion (gul*)"
+   },
+   "sourceB": {
+    "document": "03_Patrik_Rees_ALCAT_svenska.pdf",
+    "page": 1,
+    "text": "Kolumn ACCEPTABEL/INGEN REAKTION – VEGETABLES / LEGUMES: \"ENDIV\"",
+    "says": "Acceptabel / ingen reaktion (grön)"
+   },
+   "effect": "Används inte i Re:store förrän konflikten är löst."
+  },
+  {
+   "status": "OPEN",
+   "foodId": "havsabborre",
+   "food": "Havsabborre",
+   "person": "linn",
+   "sourceA": {
+    "document": "01_Linn_Grant_ALCAT_svenska.pdf",
+    "page": 1,
+    "text": "Kolumn MÅTTLIG: \"HAVSABBORRE\"",
+    "says": "Måttlig reaktion"
+   },
+   "sourceB": {
+    "document": "01_Linn_Grant_ALCAT_svenska.pdf",
+    "page": 1,
+    "text": "Kolumn ACCEPTABEL/INGEN REAKTION – SKALDJUR: \"HAVSABBORRE\"",
+    "says": "Acceptabel / ingen reaktion (grön)"
+   },
+   "effect": "Används inte i Re:store förrän konflikten är löst."
+  }
+ ],
+ "resolvedConflicts": [
+  {
+   "status": "RESOLVED",
+   "foodId": "manukahonung",
+   "food": "Manukahonung",
+   "person": "patrik",
+   "sourceA": {
+    "kind": "KOSTSCHEMA",
+    "document": "04_Patrik_Rees_kostschema_grona_listan_TRANSKRIBERAD.pdf",
+    "page": 1,
+    "text": "Fruktsallad + 1 tsk tahini (ljus sesampasta) + 1 tsk manuka honung + 1 st knäckebröd",
+    "says": "1 tsk manuka honung ingår i frukosten"
+   },
+   "sourceB": {
+    "kind": "ALCAT",
+    "document": "03_Patrik_Rees_ALCAT_svenska.pdf",
+    "page": 1,
+    "text": "Blå ruta CANDIDA ALBICANS (MÅTTLIG) – \"Also eliminate these foods: AGAVE, HONUNG, LÖNNSOCKER, MELASS, RÖRSOCKER\"",
+    "says": "Honung ska elimineras"
+   },
+   "resolution": "Användarbeslut 2026-10-02: \"Manukahonung är ok. det ska inte räknas som honung.\"",
+   "effect": "Manukahonung räknas som tillåten. Den används ändå inte i Re:store-planen eftersom Linns kostschema inte har den i frukosten."
+  }
+ ],
  "categories": [
   "Protein",
   "Fisk & skaldjur",

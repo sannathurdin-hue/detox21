@@ -29,6 +29,7 @@ export interface PersonFood {
   alcatStatus: string;
   alcatLabel: string;
   dietPlanStatusDay1To21: string;
+  protocolStatus: string;
   finalStatusDay1To21: FinalStatus;
   restriction: string | null;
   restrictionDuration: string | null;
@@ -52,7 +53,9 @@ export interface Food {
   linn: PersonFood;
   patrik: PersonFood;
   comparisonStatus: ComparisonStatus;
+  restoreStatus: RestoreStatus;
 }
+export type RestoreStatus = 'ALLOWED_FOR_BOTH' | 'NOT_ALLOWED_FOR_BOTH' | 'UNVERIFIED' | 'DATA_CONFLICT';
 
 export interface Meal { time: string; name: string; text: string; page: number }
 export interface DayRule { theme: string | null; text: string; page: number }

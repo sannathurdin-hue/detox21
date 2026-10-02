@@ -8,6 +8,7 @@ import { Person } from './views/Person';
 import { Week } from './views/Week';
 import { Check } from './views/Check';
 import { About } from './views/About';
+import { RestoreDayView, RestoreFoods, RestoreHome, RestoreIssues, RestoreMealView, RestorePlan } from './views/Restore';
 
 const LIST_ROUTES = Object.fromEntries(
   (Object.keys(COMPARISON) as ComparisonStatus[]).map((s) => [COMPARISON[s].route, s]),
@@ -18,6 +19,7 @@ const TABS = [
   { route: 'bada', label: 'Båda', icon: '✓' },
   { route: 'skillnader', label: 'Skillnader', icon: '⇄' },
   { route: 'veckoschema', label: 'Vecka', icon: '▦' },
+  { route: 'restore', label: 'Re:store', icon: '◎' },
   { route: 'kan-vi-ata', label: 'Kan vi?', icon: '🍽' },
 ];
 
@@ -34,6 +36,15 @@ export function View({ route }: { route: string[] }) {
   if (a === 'veckoschema') return <Week />;
   if (a === 'kan-vi-ata') return <Check />;
   if (a === 'underlag') return <About />;
+  if (a === 'restore') {
+    if (!b) return <RestoreHome />;
+    if (b === 'mat') return <RestoreFoods />;
+    if (b === 'plan') return <RestorePlan />;
+    if (b === 'kan-vi') return <Check key="restore" variant="restore" />;
+    if (b === 'kontroll') return <RestoreIssues />;
+    if (b === 'dag' && route[2] && /^\d+$/.test(route[2]) && +route[2] >= 1 && +route[2] <= 21) return <RestoreDayView key={route[2]} day={+route[2]} />;
+    if (b === 'maltid' && route[2]) return <RestoreMealView key={route[2]} id={route[2]} />;
+  }
   if (a === 'person' && (b === 'linn' || b === 'patrik')) return <Person key={b} who={b as PersonKey} />;
   if (a === 'livsmedel' && b && FOOD_BY_ID[b]) return <FoodDetail food={FOOD_BY_ID[b]} />;
   return <NotFound />;
@@ -46,7 +57,7 @@ export default function App() {
     <>
       <a className="skip" href="#main">Hoppa till innehåll</a>
       <header className="topbar">
-        <a className="brand" href="#/">RE-SET <span>by Sanna</span></a>
+        <a className="brand" href="#/">Re:Set <span>by Sanna</span></a>
         <nav className="topnav" aria-label="Huvudmeny">
           <a href={href('bada')} aria-current={current === 'bada' ? 'page' : undefined}>Båda kan äta</a>
           <a href={href('skillnader')} aria-current={current === 'skillnader' ? 'page' : undefined}>Skillnader</a>
@@ -55,6 +66,7 @@ export default function App() {
           <a href={href('kan-vi-ata')} aria-current={current === 'kan-vi-ata' ? 'page' : undefined}>Kan vi äta detta?</a>
           <a href={href('person', 'linn')} aria-current={route.join('/') === 'person/linn' ? 'page' : undefined}>Linn</a>
           <a href={href('person', 'patrik')} aria-current={route.join('/') === 'person/patrik' ? 'page' : undefined}>Patrik</a>
+          <a className="nav-restore" href={href('restore')} aria-current={current === 'restore' ? 'page' : undefined}>Re:store</a>
         </nav>
       </header>
       <main id="main" className="container">

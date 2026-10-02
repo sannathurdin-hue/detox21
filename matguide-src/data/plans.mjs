@@ -86,6 +86,8 @@ export const PLAN_RULES = {
     water: { effect: 'ALLOW', quote: '10-12 glas vatten dagligen. 2,5 liter', page: 2 },
     breakfast: { effect: 'ALLOW', quote: 'Fruktsallad + 1 tsk tahini (zeina) eller valnötssmör + 1 st knäckebröd', page: 1 },
     monday: { effect: 'ALLOW', quote: 'MÅNDAG (Spannmål / Stärkelse) … + ris / linser pasta', page: 1 },
+    wednesday: { effect: 'ALLOW', quote: 'ONSDAG (vitt kött) … + kalkon / kyckling', page: 1 },
+    sunday: { effect: 'ALLOW', quote: 'SÖNDAG (rött kött) … + kalvkött / fläskkött', page: 1 },
     oil: { effect: 'AMBIGUOUS', quote: '1 matsked oliv till sallad och grönsaksportion till lunch och middag.', page: 2 },
   },
   patrik: {
@@ -97,7 +99,9 @@ export const PLAN_RULES = {
     drinks: { effect: 'CONDITIONAL', quote: 'Tillåtna drycker och brygder: Herbal tea (örtte).', page: 2 },
     water: { effect: 'ALLOW', quote: '10-12 glas vatten dagligen.', page: 2 },
     breakfast: { effect: 'ALLOW', quote: 'Fruktsallad + 1 tsk tahini (ljus sesampasta) + 1 tsk manuka honung + 1 st knäckebröd', page: 1 },
+    monday: { effect: 'ALLOW', quote: 'MÅNDAG (Korn / Stärkelser) … + hirs / ris / majs / sötpotatis', page: 1 },
     wednesday: { effect: 'ALLOW', quote: 'ONSDAG (vit kött) … + kyckling / kalkon / ägg', page: 1 },
+    sunday: { effect: 'ALLOW', quote: 'SÖNDAG (rött kött) … + anka / hjortkött', page: 1 },
     oil: { effect: 'ALLOW', quote: '1 msk olivolja till sallad och grönsaksportion till lunch och middag.', page: 2 },
   },
 };

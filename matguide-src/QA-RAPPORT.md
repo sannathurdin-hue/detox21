@@ -28,9 +28,50 @@ Per person (slutstatus dag 1–21):
 | Linn | 131 | 112 | 2 | 9 | 2 |
 | Patrik | 126 | 119 | 1 | 9 | 1 |
 
+## Re:store by Sanna
+| | Antal |
+|---|---|
+| RE:STORE FOODS VERIFIED FOR BOTH | 77 |
+| LINN ONLY | 50 |
+| PATRIK ONLY | 46 |
+| NOT INCLUDED (ej tillåtet för båda) | 169 |
+| UNVERIFIED | 8 |
+| DATA CONFLICTS (livsmedel) | 2 |
+| 21-DAY PLAN | 18 / 21 DAYS PASS |
+
+| Dag | Veckodag | Resultat | Orsak |
+|---|---|---|---|
+| Dag 1 | mon | PASS |  |
+| Dag 2 | tue | PASS |  |
+| Dag 3 | wed | PASS |  |
+| Dag 4 | thu | PASS |  |
+| Dag 5 | fri | PASS |  |
+| Dag 6 | sat | PASS |  |
+| Dag 7 | sun | FAIL | Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda; Huvudkomponent passar inte dagens gemensamma regel: hjortkött |
+| Dag 8 | mon | PASS |  |
+| Dag 9 | tue | PASS |  |
+| Dag 10 | wed | PASS |  |
+| Dag 11 | thu | PASS |  |
+| Dag 12 | fri | PASS |  |
+| Dag 13 | sat | PASS |  |
+| Dag 14 | sun | FAIL | Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda; Huvudkomponent passar inte dagens gemensamma regel: hjortkött |
+| Dag 15 | mon | PASS |  |
+| Dag 16 | tue | PASS |  |
+| Dag 17 | wed | PASS |  |
+| Dag 18 | thu | PASS |  |
+| Dag 19 | fri | PASS |  |
+| Dag 20 | sat | PASS |  |
+| Dag 21 | sun | FAIL | Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda; Huvudkomponent passar inte dagens gemensamma regel: hjortkött |
+
+- **Knäckebröd utelämnat:** Båda scheman har "+ 1 st knäckebröd". Linn: endast majskakor anges. Patrik: sort anges inte, och majskakor är ej verifierade för honom. Inget gemensamt verifierat knäckebröd finns, så det ingår inte i planen. *Beslut som löser det:* Om ni godkänner majskakor (100 % majs) för Patrik kan de läggas till.
+- **Olja till sallad och stekfett utelämnat:** Patrik: "1 msk olivolja till sallad". Linn: "1 matsked oliv till sallad" (olivolja står inte). Stekfett: Linn kokosfett, Patrik ankfett. Inget av dessa är verifierat för båda. Planen tillagar därför utan fett (ugn, kokt, grillat, ångat) och använder pressad citron + salt som dressing. *Beslut som löser det:* Om ni bekräftar att Linns "oliv" betyder olivolja blir olivolja tillåten för båda.
+- **Söndag (dag 7, 14, 21): inget gemensamt rött kött:** Linns söndagsregel: kalvkött / fläskkött (Patrik: mild reaktion på båda). Patriks: anka / hjortkött (Linn: mild reaktion på anka). Hjortkött är tillåtet för båda enligt ALCAT, men står inte i Linns söndagsregel. Söndagen kan därför inte valideras mot båda strukturerna. *Beslut som löser det:* Godkänn hjortkött som Linns söndagskött, så valideras förslaget för dag 7, 14 och 21.
+
 ## Automatiska kontroller
 - ✅ linn: ALCAT-status för varje livsmedel stämmer mot originaltranskriberingen
 - ✅ patrik: ALCAT-status för varje livsmedel stämmer mot originaltranskriberingen
+- ✅ linn: transkribering identisk med PDF-texten (alla nivåkolumner)
+- ✅ patrik: transkribering identisk med PDF-texten (alla nivåkolumner)
 - ✅ ALCAT-status och slutstatus dag 1–21 är separata fält med giltiga värden
 - ✅ 4. Kostschema-förbud överstyr grön ALCAT (t.ex. jäst, vindruva) — Bakjäst, Bryggjäst, Näringsjäst, Vindruva
 - ✅ 4b. Bakjäst: grön i Linns ALCAT men INTE tillåten dag 1–21
@@ -49,10 +90,19 @@ Per person (slutstatus dag 1–21):
 - ✅ 12b. Blå markörer (Candida, gluten, kasein …) är inte egna livsmedel
 - ✅ 13. Varje "Undvik" har en angiven varaktighet (alla källregler ≥ 3 mån/120 dagar > 21 dagar)
 - ✅ Datakonflikter markeras och hamnar aldrig under "Båda kan äta"
+- ✅ R1. Re:store ALLOWED_FOR_BOTH ⇔ Linn ALLOWED och Patrik ALLOWED (inga undantag)
+- ✅ R2. Datakonflikt/ej verifierat hamnar aldrig i Re:store
+- ✅ R3. Varje öppen datakonflikt har person, källa A och källa B
+- ✅ R4. Varje ingrediens i varje måltid i 21-dagarsplanen är tillåten för båda
+- ✅ R5. Dryck i planen är tillåten för båda
+- ✅ R6. Planen har exakt 21 dagar, 6 måltider per dag, lunch = middag
+- ✅ R7. Dagar som fallerar gör det ENDAST p.g.a. dokumenterad lucka i källmaterialet
 
 ## Datakonflikter
-- **Endiv** – Linn: Motstridig (två olika nivåer) · Patrik: Motstridig (två olika nivåer)
-- **Havsabborre** – Linn: Motstridig (två olika nivåer) · Patrik: Acceptabel / ingen reaktion
+- **Endiv (Linn)** – Källa A: 01_Linn_Grant_ALCAT_svenska.pdf s. 1, Kolumn MILD*: "ENDIV*" → *Mild reaktion (gul*)*. Källa B: 01_Linn_Grant_ALCAT_svenska.pdf s. 1, Kolumn ACCEPTABEL/INGEN REAKTION – VEGETABLES / LEGUMES: "ENDIV" → *Acceptabel / ingen reaktion (grön)*.
+- **Endiv (Patrik)** – Källa A: 03_Patrik_Rees_ALCAT_svenska.pdf s. 1, Kolumn MILD*: "ENDIV*" → *Mild reaktion (gul*)*. Källa B: 03_Patrik_Rees_ALCAT_svenska.pdf s. 1, Kolumn ACCEPTABEL/INGEN REAKTION – VEGETABLES / LEGUMES: "ENDIV" → *Acceptabel / ingen reaktion (grön)*.
+- **Havsabborre (Linn)** – Källa A: 01_Linn_Grant_ALCAT_svenska.pdf s. 1, Kolumn MÅTTLIG: "HAVSABBORRE" → *Måttlig reaktion*. Källa B: 01_Linn_Grant_ALCAT_svenska.pdf s. 1, Kolumn ACCEPTABEL/INGEN REAKTION – SKALDJUR: "HAVSABBORRE" → *Acceptabel / ingen reaktion (grön)*.
+- **Manukahonung (Patrik) – LÖST:** Källa A: Fruktsallad + 1 tsk tahini (ljus sesampasta) + 1 tsk manuka honung + 1 st knäckebröd → *1 tsk manuka honung ingår i frukosten*. Källa B: Blå ruta CANDIDA ALBICANS (MÅTTLIG) – "Also eliminate these foods: AGAVE, HONUNG, LÖNNSOCKER, MELASS, RÖRSOCKER" → *Honung ska elimineras*. Användarbeslut 2026-10-02: "Manukahonung är ok. det ska inte räknas som honung."
 
 ## Tvetydigheter och tolkningsbeslut
 - **Endiv (båda):** ENDIV står både under MILD* och under ACCEPTABEL/INGEN REAKTION i båda rapporterna (och två gånger samma rotationsdag). Troligen två panelposter med samma svenska översättning. → Datakonflikt – kräver kontroll.

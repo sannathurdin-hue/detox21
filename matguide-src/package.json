@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "data": "node scripts/build-db.mjs",
+    "data": "node scripts/build-db.mjs && node scripts/build-restore.mjs",
     "qa": "node scripts/qa.mjs",
     "dev": "vite",
     "test": "vitest run",

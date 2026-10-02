@@ -131,6 +131,33 @@ const conflicts = foods.filter((f) => f.comparisonStatus === 'DATA_CONFLICT');
 check('Datakonflikter markeras och hamnar aldrig under "Båda kan äta"', conflicts.every((f) => PEOPLE.some((p) => f[p].finalStatusDay1To21 === 'DATA_CONFLICT')));
 
 // ---------------------------------------------------------------------------
+// Re:store by Sanna
+const restorePath = path.join(ROOT, 'src/data/restore.json');
+const restore = fs.existsSync(restorePath) ? JSON.parse(fs.readFileSync(restorePath, 'utf8')) : null;
+const metaJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/meta.json'), 'utf8'));
+check('R1. Re:store ALLOWED_FOR_BOTH ⇔ Linn ALLOWED och Patrik ALLOWED (inga undantag)',
+  foods.every((f) => (f.restoreStatus === 'ALLOWED_FOR_BOTH') === (f.linn.finalStatusDay1To21 === 'ALLOWED' && f.patrik.finalStatusDay1To21 === 'ALLOWED')));
+check('R2. Datakonflikt/ej verifierat hamnar aldrig i Re:store',
+  foods.filter((f) => PEOPLE.some((p) => ['DATA_CONFLICT', 'UNVERIFIED', 'RESTRICTED', 'AVOID'].includes(f[p].finalStatusDay1To21))).every((f) => f.restoreStatus !== 'ALLOWED_FOR_BOTH'));
+check('R3. Varje öppen datakonflikt har person, källa A och källa B',
+  metaJson.conflicts.length === foods.reduce((n, f) => n + PEOPLE.filter((p) => f[p].finalStatusDay1To21 === 'DATA_CONFLICT').length, 0)
+  && metaJson.conflicts.every((c) => c.person && c.sourceA && c.sourceB && c.sourceA.says && c.sourceB.says));
+let dayRows = [];
+if (restore) {
+  const byId = Object.fromEntries(foods.map((f) => [f.id, f]));
+  const usedMeals = restore.meals.filter((m) => m.usedOnDays.length);
+  const badIng = usedMeals.flatMap((m) => m.ingredients.filter((i) => byId[i.id]?.restoreStatus !== 'ALLOWED_FOR_BOTH').map((i) => `${m.id}: ${i.id}`));
+  check('R4. Varje ingrediens i varje måltid i 21-dagarsplanen är tillåten för båda', badIng.length === 0, badIng.join(', '));
+  const drinkBad = restore.days.flatMap((d) => d.drinks.flatMap((x) => x.ingredients)).filter((id) => byId[id]?.restoreStatus !== 'ALLOWED_FOR_BOTH');
+  check('R5. Dryck i planen är tillåten för båda', drinkBad.length === 0, drinkBad.join(', '));
+  check('R6. Planen har exakt 21 dagar, 6 måltider per dag, lunch = middag',
+    restore.days.length === 21 && restore.days.every((d) => Object.keys(d.meals).length === 6 && d.meals.lunch === d.meals.dinner));
+  const failed = restore.days.filter((d) => !d.validation.pass);
+  check('R7. Dagar som fallerar gör det ENDAST p.g.a. dokumenterad lucka i källmaterialet', failed.every((d) => d.validation.blockedBySource),
+    failed.filter((d) => !d.validation.blockedBySource).map((d) => d.day).join(', '));
+  dayRows = restore.days.map((d) => `| Dag ${d.day} | ${d.weekday} | ${d.validation.pass ? 'PASS' : 'FAIL'} | ${d.validation.pass ? '' : (d.validation.failReasons || []).join('; ')} |`);
+}
+
 const count = (s) => foods.filter((f) => f.comparisonStatus === s).length;
 const personCount = (p, s) => foods.filter((f) => f[p].finalStatusDay1To21 === s).length;
 const L = ALCAT.linn, P = ALCAT.patrik;
@@ -182,11 +209,29 @@ Per person (slutstatus dag 1–21):
 |---|---|---|---|---|---|
 ${['linn', 'patrik'].map((p) => `| ${p === 'linn' ? 'Linn' : 'Patrik'} | ${personCount(p, 'ALLOWED')} | ${personCount(p, 'AVOID')} | ${personCount(p, 'RESTRICTED')} | ${personCount(p, 'UNVERIFIED')} | ${personCount(p, 'DATA_CONFLICT')} |`).join('\n')}
 
+## Re:store by Sanna
+| | Antal |
+|---|---|
+| RE:STORE FOODS VERIFIED FOR BOTH | ${foods.filter((f) => f.restoreStatus === 'ALLOWED_FOR_BOTH').length} |
+| LINN ONLY | ${count('LINN_ONLY')} |
+| PATRIK ONLY | ${count('PATRIK_ONLY')} |
+| NOT INCLUDED (ej tillåtet för båda) | ${foods.filter((f) => f.restoreStatus === 'NOT_ALLOWED_FOR_BOTH').length} |
+| UNVERIFIED | ${foods.filter((f) => f.restoreStatus === 'UNVERIFIED').length} |
+| DATA CONFLICTS (livsmedel) | ${foods.filter((f) => f.restoreStatus === 'DATA_CONFLICT').length} |
+| 21-DAY PLAN | ${restore ? `${restore.summary.pass} / ${restore.summary.total} DAYS PASS` : '–'} |
+
+| Dag | Veckodag | Resultat | Orsak |
+|---|---|---|---|
+${dayRows.join('\n')}
+
+${restore ? restore.gaps.map((g) => `- **${g.title}:** ${g.text} *Beslut som löser det:* ${g.decision}`).join('\n') : ''}
+
 ## Automatiska kontroller
 ${results.map((r) => `- ${r.ok ? '✅' : '❌'} ${r.name}${r.detail ? ` — ${r.detail}` : ''}`).join('\n')}
 
 ## Datakonflikter
-${conflicts.map((f) => `- **${f.displayName}** – Linn: ${f.linn.alcatLabel} · Patrik: ${f.patrik.alcatLabel}`).join('\n')}
+${metaJson.conflicts.map((c) => `- **${c.food} (${c.person === 'linn' ? 'Linn' : 'Patrik'})** – Källa A: ${c.sourceA.document} s. ${c.sourceA.page}, ${c.sourceA.text} → *${c.sourceA.says}*. Källa B: ${c.sourceB.document} s. ${c.sourceB.page}, ${c.sourceB.text} → *${c.sourceB.says}*.`).join('\n')}
+${metaJson.resolvedConflicts.map((c) => `- **${c.food} (${c.person === 'linn' ? 'Linn' : 'Patrik'}) – LÖST:** Källa A: ${c.sourceA.text} → *${c.sourceA.says}*. Källa B: ${c.sourceB.text} → *${c.sourceB.says}*. ${c.resolution}`).join('\n')}
 
 ## Tvetydigheter och tolkningsbeslut
 ${ambiguous.map(([a, b]) => `- **${a}:** ${b}`).join('\n')}

@@ -1,4 +1,4 @@
-# RE-SET by Sanna – matguide Linn + Patrik, dag 1–21
+# Re:Set by Sanna – matguide Linn + Patrik, dag 1–21
 
 Svarar på: **Vad kan Linn och Patrik båda äta under de första 21 dagarna?**
 

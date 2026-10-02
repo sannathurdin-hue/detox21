@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { FOOD_BY_ID, Food, analyzeIngredients, searchFoods } from '../lib/data';
 import { PageHeader, SearchInput, StatusMark, href } from '../components/ui';
 
-export function Check() {
+export function Check({ variant = 'reset' }: { variant?: 'reset' | 'restore' }) {
+  const rs = variant === 'restore';
   const [q, setQ] = useState('');
   const [ids, setIds] = useState<string[]>([]);
   const [unknown, setUnknown] = useState<string[]>([]);
@@ -17,7 +18,15 @@ export function Check() {
 
   return (
     <div>
-      <PageHeader title="Kan vi äta detta?" subtitle="Lägg till ingredienserna i en rätt eller restaurangmaträtt. Alla måste vara tillåtna för båda." />
+      {rs ? (
+        <header className="page-header">
+          <a className="back" href="#/restore">‹ Re:store</a>
+          <h1>Kan vi laga detta?</h1>
+          <p className="lede">Lägg till varje ingrediens i rätten – även olja, salt, kryddor och sås. Alla måste vara verifierade för både Linn och Patrik.</p>
+        </header>
+      ) : (
+        <PageHeader title="Kan vi äta detta?" subtitle="Lägg till ingredienserna i en rätt eller restaurangmaträtt. Alla måste vara tillåtna för båda." />
+      )}
       <div className="toolbar">
         <SearchInput value={q} onChange={setQ} placeholder="Lägg till ingrediens…" label="Lägg till ingrediens" />
       </div>
@@ -59,8 +68,8 @@ export function Check() {
       {verdict !== 'EMPTY' && (
         <section className={`check-result cr-${verdict === 'BOTH' ? 'green' : verdict === 'NOT_SHARED' ? 'red' : 'grey'}`} aria-live="polite">
           <p className="cr-verdict">
-            {verdict === 'BOTH' && <><span aria-hidden="true">✓ </span>KAN ÄTAS AV BÅDA</>}
-            {verdict === 'NOT_SHARED' && <><span aria-hidden="true">✕ </span>INTE GEMENSAMT</>}
+            {verdict === 'BOTH' && <><span aria-hidden="true">✓ </span>{rs ? 'RE:STORE-KOMPATIBEL' : 'KAN ÄTAS AV BÅDA'}</>}
+            {verdict === 'NOT_SHARED' && <><span aria-hidden="true">✕ </span>{rs ? 'INTE RE:STORE-KOMPATIBEL' : 'INTE GEMENSAMT'}</>}
             {verdict === 'CANNOT_VERIFY' && <><span aria-hidden="true">? </span>Kan inte verifieras fullt ut</>}
           </p>
           {res.problems.length > 0 && (
@@ -78,6 +87,7 @@ export function Check() {
               </ul>
             </>
           )}
+          {verdict === 'BOTH' && rs && <p className="note"><strong>Alla ingredienser är verifierade för båda profilerna.</strong></p>}
           {verdict === 'BOTH' && <p className="note">Alla {selected.length} ingredienser är verifierat tillåtna för både Linn och Patrik dag 1–21. Tänk på att även tillagning, fett, salt och såser räknas som ingredienser.</p>}
         </section>
       )}

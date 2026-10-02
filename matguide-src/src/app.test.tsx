@@ -137,3 +137,73 @@ describe('Vyer renderar', () => {
     }
   });
 });
+
+// ---------------------------------------------------------------------------
+import { validateMeal, validateDay } from './lib/restoreRules.js';
+import { MEAL_BY_ID, RESTORE_DAYS, RESTORE_FOODS, RESTORE_MEALS, RESTORE_SUMMARY, CONFLICTS } from './lib/restore';
+
+describe('Re:store by Sanna', () => {
+  it('Re:store-listan = exakt de livsmedel båda har ALLOWED', () => {
+    const exp = FOODS.filter((f) => f.linn.finalStatusDay1To21 === 'ALLOWED' && f.patrik.finalStatusDay1To21 === 'ALLOWED');
+    expect(RESTORE_FOODS.map((f) => f.id).sort()).toEqual(exp.map((f) => f.id).sort());
+  });
+  it('ALCAT-grönt räcker inte: bakjäst och vindruva ingår inte', () => {
+    expect(FOOD_BY_ID['bakjast'].restoreStatus).toBe('NOT_ALLOWED_FOR_BOTH');
+    expect(FOOD_BY_ID['vindruva'].restoreStatus).toBe('NOT_ALLOWED_FOR_BOTH');
+  });
+  it('konflikter och ej verifierat ingår inte', () => {
+    expect(FOOD_BY_ID['endiv'].restoreStatus).toBe('DATA_CONFLICT');
+    expect(FOOD_BY_ID['olivolja'].restoreStatus).toBe('UNVERIFIED');
+    expect(CONFLICTS.every((c) => c.sourceA && c.sourceB)).toBe(true);
+  });
+  it('validatorn underkänner en otillåten ingrediens (avokado)', () => {
+    const meal = { ...MEAL_BY_ID['sat-1'], ingredients: [...MEAL_BY_ID['sat-1'].ingredients, { id: 'avokado', role: 'salad' }] };
+    const v = validateMeal(meal, 'lunch', 'sat', FOOD_BY_ID);
+    expect(v.ingredientsPass).toBe(false);
+    expect(v.pass).toBe(false);
+  });
+  it('validatorn underkänner fel struktur: kyckling på fiskdagen (lördag)', () => {
+    const v = validateMeal(MEAL_BY_ID['wed-1'], 'lunch', 'sat', FOOD_BY_ID);
+    expect(v.ingredientsPass).toBe(true);
+    expect(v.structurePass).toBe(false);
+  });
+  it('validatorn underkänner potatis i tisdagssoppan och okänd ingrediens', () => {
+    const soup = { ...MEAL_BY_ID['tue-1'], ingredients: [...MEAL_BY_ID['tue-1'].ingredients, { id: 'vit-potatis', role: 'cooked' }] };
+    expect(validateMeal(soup, 'lunch', 'tue', FOOD_BY_ID).pass).toBe(false);
+    const x = { ...MEAL_BY_ID['mon-1'], ingredients: [...MEAL_BY_ID['mon-1'].ingredients, { id: 'dressing', role: 'seasoning' }] };
+    expect(validateMeal(x, 'lunch', 'mon', FOOD_BY_ID).pass).toBe(false);
+  });
+  it('alla 21 dagar omvalideras i appen med samma resultat som bygget', () => {
+    for (const d of RESTORE_DAYS) {
+      const v = validateDay(d, MEAL_BY_ID, FOOD_BY_ID);
+      expect(v.pass).toBe(d.validation.pass);
+    }
+    expect(RESTORE_SUMMARY.pass).toBe(RESTORE_DAYS.filter((d) => d.validation.pass).length);
+  });
+  it('alla ingredienser i planen är tillåtna för båda', () => {
+    for (const m of RESTORE_MEALS.filter((x) => x.usedOnDays.length)) {
+      for (const i of m.ingredients) expect(FOOD_BY_ID[i.id].restoreStatus).toBe('ALLOWED_FOR_BOTH');
+    }
+  });
+  it('måndag–lördag passerar; söndag blockeras av källmaterialet', () => {
+    for (const d of RESTORE_DAYS) expect(d.validation.pass).toBe(d.weekday !== 'sun');
+  });
+
+  const rroutes = [['restore'], ['restore', 'mat'], ['restore', 'plan'], ['restore', 'kan-vi'], ['restore', 'kontroll'],
+    ...RESTORE_DAYS.map((d) => ['restore', 'dag', String(d.day)]), ...RESTORE_MEALS.map((m) => ['restore', 'maltid', m.id])];
+  it.each(rroutes.map((r) => [r.join('/'), r]))('renderar %s', (_n, r) => {
+    render(<View route={r as string[]} />);
+    expect(screen.queryByText('Sidan finns inte')).toBeNull();
+  });
+
+  it('räknaren på Re:store-startsidan kommer från databasen', () => {
+    render(<View route={['restore']} />);
+    const el = screen.getByText('livsmedel verifierade för båda').closest('a')!;
+    expect(el.textContent).toContain(String(RESTORE_FOODS.length));
+  });
+  it('sök i Re:store: avokado visar Linn / Patrik / Ingår inte', () => {
+    render(<View route={['restore']} />);
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'avokado' } });
+    expect(screen.getByText('Ingår inte')).toBeTruthy();
+  });
+});

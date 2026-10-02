@@ -1,5 +1,7 @@
 import { ALCAT_STATUS_TEXT, COMPARISON, Food, PERSON_NAME, PersonKey, sourceLabel } from '../lib/data';
 import { ComparisonBadge, StatusBadge, href, shortReason } from './ui';
+import { RestoreBadge } from '../views/Restore';
+import { mealsUsing } from '../lib/restore';
 
 const PLAN_TEXT: Record<string, string> = {
   NO_RULE: 'Ingen särskild regel',
@@ -97,7 +99,17 @@ export function FoodDetail({ food }: { food: Food }) {
         <span className="verdict-label">Slutsats dag 1–21</span>
         <ComparisonBadge status={food.comparisonStatus} size="lg" />
       </div>
+      <div className={`verdict verdict-restore verdict-${food.restoreStatus === 'ALLOWED_FOR_BOTH' ? 'green' : food.restoreStatus === 'NOT_ALLOWED_FOR_BOTH' ? 'red' : food.restoreStatus === 'DATA_CONFLICT' ? 'amber' : 'grey'}`}>
+        <span className="verdict-label">Re:store by Sanna</span>
+        <RestoreBadge status={food.restoreStatus} size="lg" />
+      </div>
+      {mealsUsing(food.id).length > 0 && (
+        <p className="note">Används i 21-dagarsplanen: {mealsUsing(food.id).map((m, i) => (
+          <span key={m.id}>{i ? ', ' : ''}<a href={href('restore', 'maltid', m.id)}>{m.title}</a></span>
+        ))}</p>
+      )}
       {food.notes.map((n, i) => <p key={i} className="note note-global">{n}</p>)}
+      <h2 className="why-title">Varför? Linn och Patrik var för sig</h2>
       <div className="detail-grid">
         <PersonDetail food={food} who="linn" />
         <PersonDetail food={food} who="patrik" />

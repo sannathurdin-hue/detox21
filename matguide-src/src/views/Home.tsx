@@ -14,7 +14,7 @@ export function Home() {
   return (
     <div className="home">
       <header className="hero">
-        <p className="hero-names">RE-SET by Sanna</p>
+        <p className="hero-names">Re:Set by Sanna</p>
         <h1>Linn + Patrik</h1>
         <p className="hero-sub">Matguide · dag 1–21</p>
       </header>
@@ -66,6 +66,12 @@ export function Home() {
               );
             })}
           </nav>
+
+          <a className="restore-entry" href={href('restore')}>
+            <span className="re-name">Re:store <span>by Sanna</span></span>
+            <span className="re-text">Gemensam matlista + 21-dagarsplan för Linn och Patrik</span>
+            <span className="chev" aria-hidden="true">›</span>
+          </a>
 
           <nav className="secondary" aria-label="Fler verktyg">
             <a href={href('kan-vi-ata')}><span aria-hidden="true">🍽</span> Kan vi äta detta?</a>

@@ -88,6 +88,12 @@ const RULE_TARGETS = {
 
 const YEAST_WORD = { BAKJÄST: 'jäst', BRYGGJÄST: 'jäst', NÄRINGSJÄST: 'jäst', VINDRUVA: 'vindruvor' };
 
+// ALCAT-livsmedel som kostschemat uttryckligen namnger i veckodagsreglerna (för källspårning)
+const PLAN_NAMED = {
+  linn: { RIS: 'monday', KALKON: 'wednesday', KYCKLING: 'wednesday', KALVKÖTT: 'sunday', GRISKÖTT: 'sunday' },
+  patrik: { HIRS: 'monday', RIS: 'monday', MAJS: 'monday', SÖTPOTATIS: 'monday', KYCKLING: 'wednesday', KALKON: 'wednesday', ANKA: 'sunday', HJORTKÖTT: 'sunday' },
+};
+
 // Globala anteckningar per ALCAT-namn
 const ITEM_NOTES = {
   KAPRIS: ['Kostschemana förbjuder vinäger och fermenterade produkter. Statusen gäller råvaran kapris – inte inlagd kapris.'],
@@ -195,6 +201,7 @@ function decide(who, item) {
     if (RULE_TARGETS.yeastEtc.includes(item.alcatName)) ruleKeys.push('yeastEtc');
     if (RULE_TARGETS.dairy.includes(item.alcatName)) ruleKeys.push('dairy');
     if (RULE_TARGETS.drinksNotListed.includes(item.alcatName)) ruleKeys.push('drinksNotListed');
+    if (PLAN_NAMED[who][item.alcatName]) ruleKeys.push(PLAN_NAMED[who][item.alcatName]);
   }
   const rules = ruleKeys.map((k) => {
     if (k === 'drinksNotListed') {
@@ -313,6 +320,7 @@ function decide(who, item) {
       ? `Härledd: ${alcat.comps.map((c) => `${c.name} – ${c.ev.label.toLowerCase()}`).join(', ')}`
       : alcat.label,
     dietPlanStatusDay1To21: dietPlanStatus,
+    protocolStatus: dietPlanStatus,
     finalStatusDay1To21: final,
     restriction,
     restrictionDuration: durations.length ? durations.join(' · ') : null,
@@ -324,6 +332,16 @@ function decide(who, item) {
     notes,
     rotationDays: item.alcatName ? rotationDay(who, item.alcatName) : null,
   };
+}
+
+// Re:store by Sanna: ALLOWED_FOR_BOTH endast om båda har ALLOWED. Inga undantag.
+function restore(l, p) {
+  const s = [l.finalStatusDay1To21, p.finalStatusDay1To21];
+  if (s.includes('DATA_CONFLICT')) return 'DATA_CONFLICT';
+  if (s[0] === 'ALLOWED' && s[1] === 'ALLOWED') return 'ALLOWED_FOR_BOTH';
+  if (s.includes('AVOID')) return 'NOT_ALLOWED_FOR_BOTH';
+  if (s.includes('UNVERIFIED')) return 'UNVERIFIED';
+  return 'NOT_ALLOWED_FOR_BOTH';
 }
 
 function compare(l, p) {
@@ -374,6 +392,7 @@ const foods = items.map((it) => {
     linn,
     patrik,
     comparisonStatus: compare(linn, patrik),
+    restoreStatus: restore(linn, patrik),
   };
 }).sort((a, b) => a.displayName.localeCompare(b.displayName, 'sv'));
 
@@ -383,6 +402,47 @@ for (const f of foods) {
   ids.add(f.id);
   if (!CATEGORIES.includes(f.category)) throw new Error(`Okänd kategori ${f.category}`);
 }
+
+// ---------------------------------------------------------------------------
+// Konfliktregister: person, livsmedel, källa A + vad den säger, källa B + vad den säger
+const LEVEL_SAYS = { SEVERE: 'Allvarlig reaktion', MODERATE: 'Måttlig reaktion', MILD: 'Mild reaktion (gul*)', NONE: 'Acceptabel / ingen reaktion (grön)' };
+const conflicts = [];
+for (const f of foods) {
+  for (const who of PEOPLE) {
+    if (f[who].finalStatusDay1To21 !== 'DATA_CONFLICT') continue;
+    const hits = IDX[who].idx[f.alcatName] || [];
+    const lv = [...new Set(hits.map((h) => h.level))];
+    if (lv.length > 1) {
+      const a = hits.find((h) => h.level === lv[0]);
+      const b = hits.find((h) => h.level === lv[1]);
+      conflicts.push({
+        status: 'OPEN', foodId: f.id, food: f.displayName, person: who,
+        sourceA: { document: ALCAT[who].document, page: 1, text: `Kolumn ${a.section}: "${f.alcatName}${a.level === 'MILD' ? '*' : ''}"`, says: LEVEL_SAYS[a.level] },
+        sourceB: { document: ALCAT[who].document, page: 1, text: `Kolumn ${b.section}: "${f.alcatName}${b.level === 'MILD' ? '*' : ''}"`, says: LEVEL_SAYS[b.level] },
+        effect: 'Används inte i Re:store förrän konflikten är löst.',
+      });
+    } else {
+      const plan = f[who].sources.find((x) => x.kind === 'KOSTSCHEMA');
+      const al = f[who].sources.find((x) => x.kind === 'ALCAT');
+      conflicts.push({
+        status: 'OPEN', foodId: f.id, food: f.displayName, person: who,
+        sourceA: plan ? { ...plan, says: 'Livsmedlet ingår i kostschemat' } : null,
+        sourceB: al ? { ...al, says: f[who].alcatLabel } : null,
+        effect: 'Används inte i Re:store förrän konflikten är löst.',
+      });
+    }
+  }
+}
+// Konflikter som användaren har avgjort (visas för spårbarhet)
+const resolvedConflicts = [
+  {
+    status: 'RESOLVED', foodId: 'manukahonung', food: 'Manukahonung', person: 'patrik',
+    sourceA: { kind: 'KOSTSCHEMA', document: PLANS.patrik.document, page: 1, text: PLANS.patrik.meals[0].text, says: '1 tsk manuka honung ingår i frukosten' },
+    sourceB: { kind: 'ALCAT', document: ALCAT.patrik.document, page: 1, text: `Blå ruta CANDIDA ALBICANS (MÅTTLIG) – "Also eliminate these foods: ${ALCAT.patrik.eliminate['CANDIDA ALBICANS'].join(', ')}"`, says: 'Honung ska elimineras' },
+    resolution: 'Användarbeslut 2026-10-02: "Manukahonung är ok. det ska inte räknas som honung."',
+    effect: 'Manukahonung räknas som tillåten. Den används ändå inte i Re:store-planen eftersom Linns kostschema inte har den i frukosten.',
+  },
+];
 
 const meta = {
   generatedFrom: DOCS,
@@ -401,6 +461,8 @@ const meta = {
     },
   },
   alcatLevels: ALCAT_LEVELS,
+  conflicts,
+  resolvedConflicts,
   categories: CATEGORIES,
 };
 
