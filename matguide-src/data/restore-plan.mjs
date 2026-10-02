@@ -10,6 +10,9 @@
 
 const I = (id, role, note) => ({ id, role, ...(note ? { note } : {}) });
 
+// Startdatum: dag 1 = måndag 5 oktober 2026 (användarens önskemål: "den ska börja på måndag")
+export const START_DATE = '2026-10-05';
+
 // ---------------------------------------------------------------------------
 // Frukost: fruktsallad + 1 tsk tahini
 const breakfast = (id, title, fruits) => ({
@@ -45,7 +48,7 @@ export const MEALS = [
   vegSnack('vs-champinjon-tomat', 'snack2', 'Champinjoner och tomat', ['tradgardschampinjon', 'tomat']),
   vegSnack('vs-romansallad-tomat', 'snack2', 'Romansalladsblad med tomat', ['romansallad', 'tomat']),
   vegSnack('ks-squash', 'snack3', 'Sommarsquashstavar', ['sommarsquash']),
-  vegSnack('ks-tomat-kallfrane', 'snack3', 'Tomat med källfräne', ['tomat', 'kallfrane']),
+  vegSnack('ks-tomat-kallfrane', 'snack3', 'Tomat med sallad', ['tomat', 'kallfrane']),
   vegSnack('ks-strangbona', 'snack3', 'Ångade strängbönor', ['strangbona'], 'Ånga strängbönorna 4–5 minuter.'),
   vegSnack('ks-spenat-tomat', 'snack3', 'Babyspenat och tomat', ['spenat', 'tomat']),
 
@@ -122,7 +125,7 @@ export const MEALS = [
 
   // TORSDAG – baljväxter + färsk sallad
   {
-    id: 'thu-1', slot: 'main', title: 'Kikärtssallad med tomat, källfräne och grönmynta',
+    id: 'thu-1', slot: 'main', title: 'Kikärtssallad med tomat och grönmynta',
     method: 'Blötlägg och koka kikärtorna i vatten med salt tills mjuka. Blanda med romansallad, tomat och källfräne. Smaka av med spiskummin, hackad grönmynta, pressad citron och salt.',
     ingredients: [I('kikarta', 'base'), I('vatten', 'liquid'), I('romansallad', 'salad'), I('tomat', 'salad'), I('kallfrane', 'salad'),
       I('spiskummin', 'seasoning'), I('gronmynta', 'seasoning'), I('citron', 'seasoning', 'pressad, som dressing'), I('keltiskt-salt-havssalt', 'seasoning')],
@@ -210,6 +213,20 @@ export const MEALS = [
   },
 ];
 
+// Källfräne ersätts (användarbeslut 2026-10-02): "skriv då spenat, romansallad eller rosé-/grönsallad".
+// Alternativ som redan finns i rätten tas bort så att samma sallad inte står två gånger. Varje alternativ valideras.
+const GREENS = ['spenat', 'romansallad', 'rose-gronsallad'];
+const GREEN_NAME = { spenat: 'spenat', romansallad: 'romansallad', 'rose-gronsallad': 'rosé-/grönsallad' };
+const orList = (ids) => (ids.length === 1 ? GREEN_NAME[ids[0]] : `${ids.slice(0, -1).map((x) => GREEN_NAME[x]).join(', ')} eller ${GREEN_NAME[ids[ids.length - 1]]}`);
+for (const m of MEALS) {
+  const k = m.ingredients.findIndex((i) => i.id === 'kallfrane');
+  if (k < 0) continue;
+  const opts = GREENS.filter((g) => !m.ingredients.some((i) => i.id === g));
+  m.ingredients[k] = { ...m.ingredients[k], id: opts[0], alt: opts.slice(1) };
+  m.method = m.method.replace(/källfräne/g, orList(opts));
+  if (m.slot === 'snack3' || m.slot === 'snack2') m.method = `Skär tomaten i bitar och servera med ${orList(opts)}.`;
+}
+
 // Stekfettet står i metoden → det ska också stå som ingrediens (inga dolda ingredienser)
 for (const m of MEALS) {
   if (/ankfett/.test(m.method) && !m.ingredients.some((i) => i.id === 'ankfett')) m.ingredients.push(I('ankfett', 'fat', '1 msk'));
@@ -251,8 +268,10 @@ export const DAYS = Array.from({ length: 21 }, (_, i) => {
   const week = Math.floor(i / 7);
   const weekday = WD[i % 7];
   const main = MAIN[weekday][week];
+  const [y, mo, dd] = START_DATE.split('-').map(Number);
+  const dt = new Date(Date.UTC(y, mo - 1, dd + i));
   return {
-    day, week: week + 1, weekday,
+    day, week: week + 1, weekday, date: dt.toISOString().slice(0, 10),
     meals: {
       breakfast: BREAKFASTS[(i + week * 2) % 7],
       snack1: pickFruit(i + week * 3, BREAKFASTS[(i + week * 2) % 7]),

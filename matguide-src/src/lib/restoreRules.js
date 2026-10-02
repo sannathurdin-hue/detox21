@@ -106,6 +106,9 @@ export function checkIngredient(id, foodsById) {
   return { id, name: f.displayName, ok, linn: l, patrik: p, reason: ok ? 'Tillåten för båda' : `Linn: ${l} · Patrik: ${p}` };
 }
 
+/** Ingredienser inklusive alternativ ("spenat eller romansallad") – varje alternativ valideras */
+export const expandIngredients = (meal) => meal.ingredients.flatMap((i) => [i, ...(i.alt || []).map((a) => ({ id: a, role: i.role, note: i.note, altOf: i.id }))]);
+
 const roleIds = (meal, role) => meal.ingredients.filter((i) => i.role === role).map((i) => i.id);
 
 /** TEST B – måltiden följer den gemensamma strukturen för måltid + veckodag. */
@@ -125,8 +128,8 @@ export function checkStructure(meal, slot, dayKey, foodsById) {
   const extra = [...roles].filter((r) => !allowedRoles.includes(r));
   add(extra.length === 0, extra.length ? `Otillåten komponent för ${slot}: ${extra.join(', ')}` : 'Endast komponenter som måltiden tillåter');
 
-  // Rollernas kategorier
-  for (const i of meal.ingredients) {
+  // Rollernas kategorier (även alternativ)
+  for (const i of expandIngredients(meal)) {
     const c = cat(i.id);
     if (i.role === 'fruit' && c !== 'Frukt') add(false, `${i.id} är inte frukt`);
     if (['veg', 'cooked', 'salad'].includes(i.role) && c !== 'Grönsaker') add(false, `${i.id} är inte en grönsak`);
@@ -165,9 +168,9 @@ export function checkStructure(meal, slot, dayKey, foodsById) {
 }
 
 export function validateMeal(meal, slot, dayKey, foodsById) {
-  const ingredients = meal.ingredients.map((i) => ({ ...checkIngredient(i.id, foodsById), role: i.role, note: i.note || null }));
+  const ingredients = expandIngredients(meal).map((i) => ({ ...checkIngredient(i.id, foodsById), role: i.role, note: i.note || null, altOf: i.altOf || null }));
   const structure = checkStructure(meal, slot, dayKey, foodsById);
-  const dup = meal.ingredients.map((i) => i.id).filter((id, k, a) => a.indexOf(id) !== k);
+  const dup = expandIngredients(meal).map((i) => i.id).filter((id, k, a) => a.indexOf(id) !== k);
   if (dup.length) structure.push({ ok: false, text: `Dubbel ingrediens: ${dup.join(', ')}` });
   return {
     ingredients,

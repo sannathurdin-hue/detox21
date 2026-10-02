@@ -4,8 +4,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { MEALS, DAYS, DAILY_DRINKS } from '../data/restore-plan.mjs';
-import { SLOTS, DAY_RULES, WEEKDAY_LABEL, validateDay, sharedBase } from '../src/lib/restoreRules.js';
+import { MEALS, DAYS, DAILY_DRINKS, START_DATE } from '../data/restore-plan.mjs';
+import { SLOTS, DAY_RULES, WEEKDAY_LABEL, validateDay, sharedBase, expandIngredients } from '../src/lib/restoreRules.js';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const foods = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/foods.json'), 'utf8'));
@@ -39,6 +39,15 @@ for (const m of MEALS) {
   }
 }
 if (hidden.length) { console.error('Dolda ingredienser:\n' + hidden.join('\n')); process.exit(1); }
+
+// Datum: varje dags datum ska ha samma veckodag som planens veckodag
+const WD_UTC = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+for (const d of DAYS) {
+  if (WD_UTC[new Date(d.date + 'T00:00:00Z').getUTCDay()] !== d.weekday) { console.error(`Dag ${d.day}: ${d.date} är inte ${d.weekday}`); process.exit(1); }
+}
+if (MEALS.some((m) => expandIngredients(m).some((i) => i.id === 'kallfrane') || /källfräne/i.test(m.method + m.title))) {
+  console.error('Källfräne finns kvar i planen'); process.exit(1);
+}
 
 const GAP_PREFIX = 'Ingen gemensam huvudkomponent';
 const results = DAYS.map((d) => validateDay(d, mealsById, byId));
@@ -83,6 +92,7 @@ const decisions = [
 ];
 
 const out = {
+  startDate: START_DATE,
   slots: SLOTS,
   dayRules: Object.fromEntries(Object.entries(DAY_RULES).map(([k, r]) => [k, { ...r, label: WEEKDAY_LABEL[k], sharedBase: sharedBase(k, byId) }])),
   meals: MEALS.map((m) => ({ ...m, usedOnDays: [...(usage[m.id] || [])].sort((a, b) => a - b) })),
@@ -129,9 +139,10 @@ const window_ = (a, b) => (toMin(a) <= toMin(b) ? `${a}–${b}` : `${b}–${a}`)
 const usedMeals = out.meals.filter((m) => m.usedOnDays.length);
 const usage2 = {};
 for (const d of out.days) for (const s of SLOTS) {
-  for (const i of mealsById[d.meals[s.key]].ingredients) ((usage2[i.id] ||= {})[s.key] ||= new Set()).add(d.day);
+  for (const i of expandIngredients(mealsById[d.meals[s.key]])) ((usage2[i.id] ||= {})[s.key] ||= new Set()).add(d.day);
 }
 const pub = {
+  startDate: START_DATE,
   slots: SLOTS.map((s) => ({ key: s.key, label: s.label, time: window_(s.linn, s.patrik), text: PUBLIC_SLOT_TEXT[s.key] })),
   structure: Object.fromEntries(Object.entries(PUBLIC_DAY).map(([k, v]) => [k, { ...v, label: WEEKDAY_LABEL[k] }])),
   rules: [
@@ -152,11 +163,11 @@ const pub = {
   })),
   meals: usedMeals.map((m) => ({
     id: m.id, title: m.title.replace(/^FÖRSLAG: /, ''), method: m.method, slot: m.slot, usedOnDays: m.usedOnDays,
-    ingredients: m.ingredients.map((i) => ({ id: i.id, role: i.role, note: i.note || null })),
+    ingredients: m.ingredients.map((i) => ({ id: i.id, role: i.role, note: i.note || null, alt: i.alt || [] })),
     status: m.proposal ? 'UNDER_REVIEW' : 'VALIDATED',
   })),
   days: out.days.map((d) => ({
-    day: d.day, week: d.week, weekday: d.weekday, meals: d.meals,
+    day: d.day, week: d.week, weekday: d.weekday, date: d.date, meals: d.meals,
     drinks: d.drinks.map((x) => x.title),
     status: d.validation.pass ? 'VALIDATED' : 'UNDER_REVIEW',
   })),

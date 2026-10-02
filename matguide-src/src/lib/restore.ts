@@ -1,7 +1,7 @@
 import restoreJson from '../data/restore.json';
 import { FOODS, FOOD_BY_ID, Food, META, RestoreStatus, Tone, analyzeIngredients } from './data';
 
-export interface RestoreIngredient { id: string; role: string; note?: string }
+export interface RestoreIngredient { id: string; role: string; note?: string; alt?: string[] }
 export interface RestoreMeal {
   id: string;
   slot: string;
@@ -79,7 +79,7 @@ export function mealFoods(m: RestoreMeal): Food[] {
 
 /** Måltider i planen som använder ett livsmedel */
 export function mealsUsing(foodId: string): RestoreMeal[] {
-  return RESTORE_MEALS.filter((m) => m.ingredients.some((i) => i.id === foodId) && m.usedOnDays.length);
+  return RESTORE_MEALS.filter((m) => m.ingredients.some((i) => i.id === foodId || (i.alt || []).includes(foodId)) && m.usedOnDays.length);
 }
 
 export { analyzeIngredients };

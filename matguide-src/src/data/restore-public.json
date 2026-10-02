@@ -1,4 +1,5 @@
 {
+ "startDate": "2026-10-05",
  "slots": [
   {
    "key": "breakfast",
@@ -1779,40 +1780,7 @@
    "category": "Grönsaker",
    "status": "ALLOWED_FOR_BOTH",
    "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
-   "use": [
-    {
-     "slot": "lunch",
-     "days": [
-      1,
-      4,
-      10,
-      12,
-      14,
-      15,
-      19
-     ]
-    },
-    {
-     "slot": "dinner",
-     "days": [
-      1,
-      4,
-      10,
-      12,
-      14,
-      15,
-      19
-     ]
-    },
-    {
-     "slot": "snack3",
-     "days": [
-      4,
-      11,
-      18
-     ]
-    }
-   ]
+   "use": []
   },
   {
    "id": "korsbar",
@@ -2802,7 +2770,11 @@
       4,
       7,
       9,
+      10,
+      12,
       13,
+      14,
+      15,
       16,
       18,
       19
@@ -2816,7 +2788,11 @@
       4,
       7,
       9,
+      10,
+      12,
       13,
+      14,
+      15,
       16,
       18,
       19
@@ -2824,6 +2800,14 @@
     },
     {
      "slot": "snack2",
+     "days": [
+      4,
+      11,
+      18
+     ]
+    },
+    {
+     "slot": "snack3",
      "days": [
       4,
       11,
@@ -2847,21 +2831,41 @@
     {
      "slot": "lunch",
      "days": [
+      1,
       2,
+      4,
       5,
+      10,
       12,
+      14,
+      15,
       17,
+      19,
       21
      ]
     },
     {
      "slot": "dinner",
      "days": [
+      1,
       2,
+      4,
       5,
+      10,
       12,
+      14,
+      15,
       17,
+      19,
       21
+     ]
+    },
+    {
+     "slot": "snack3",
+     "days": [
+      4,
+      11,
+      18
      ]
     }
    ]
@@ -3289,10 +3293,15 @@
     {
      "slot": "lunch",
      "days": [
+      1,
       2,
+      4,
       6,
       8,
+      10,
       11,
+      12,
+      14,
       15,
       19,
       20,
@@ -3302,10 +3311,15 @@
     {
      "slot": "dinner",
      "days": [
+      1,
       2,
+      4,
       6,
       8,
+      10,
       11,
+      12,
+      14,
       15,
       19,
       20,
@@ -3316,10 +3330,13 @@
      "slot": "snack3",
      "days": [
       2,
+      4,
       6,
       9,
+      11,
       13,
       16,
+      18,
       20
      ]
     }
@@ -4166,22 +4183,26 @@
     {
      "id": "mango",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "kiwi",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "granatapple",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tahini-sesampasta",
      "role": "spread",
-     "note": "1 tsk"
+     "note": "1 tsk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4200,22 +4221,26 @@
     {
      "id": "papaya",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "ananas",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tahini-sesampasta",
      "role": "spread",
-     "note": "1 tsk"
+     "note": "1 tsk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4234,17 +4259,20 @@
     {
      "id": "melon",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "persika",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tahini-sesampasta",
      "role": "spread",
-     "note": "1 tsk"
+     "note": "1 tsk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4263,22 +4291,26 @@
     {
      "id": "mandarin",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "kiwi",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "persimon",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tahini-sesampasta",
      "role": "spread",
-     "note": "1 tsk"
+     "note": "1 tsk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4297,17 +4329,20 @@
     {
      "id": "vattenmelon",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "mango",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tahini-sesampasta",
      "role": "spread",
-     "note": "1 tsk"
+     "note": "1 tsk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4326,22 +4361,26 @@
     {
      "id": "guava",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "papaya",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "granatapple",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tahini-sesampasta",
      "role": "spread",
-     "note": "1 tsk"
+     "note": "1 tsk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4360,22 +4399,26 @@
     {
      "id": "ananas",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "mandarin",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "kiwi",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tahini-sesampasta",
      "role": "spread",
-     "note": "1 tsk"
+     "note": "1 tsk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4395,7 +4438,8 @@
     {
      "id": "persimon",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4412,7 +4456,8 @@
     {
      "id": "kiwi",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4431,7 +4476,8 @@
     {
      "id": "mango",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4451,7 +4497,8 @@
     {
      "id": "mandarin",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4470,7 +4517,8 @@
     {
      "id": "melon",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4489,7 +4537,8 @@
     {
      "id": "persika",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4508,7 +4557,8 @@
     {
      "id": "guava",
      "role": "fruit",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4530,12 +4580,14 @@
     {
      "id": "tomat",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "sommarsquash",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4557,7 +4609,8 @@
     {
      "id": "strangbona",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4579,12 +4632,14 @@
     {
      "id": "tradgardschampinjon",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4603,12 +4658,14 @@
     {
      "id": "romansallad",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4630,15 +4687,16 @@
     {
      "id": "sommarsquash",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
   },
   {
    "id": "ks-tomat-kallfrane",
-   "title": "Tomat med källfräne",
-   "method": "Skär i stavar eller bitar och ät råa.",
+   "title": "Tomat med sallad",
+   "method": "Skär tomaten i bitar och servera med spenat, romansallad eller rosé-/grönsallad.",
    "slot": "snack3",
    "usedOnDays": [
     4,
@@ -4649,12 +4707,17 @@
     {
      "id": "tomat",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
-     "id": "kallfrane",
+     "id": "spenat",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": [
+      "romansallad",
+      "rose-gronsallad"
+     ]
     }
    ],
    "status": "VALIDATED"
@@ -4676,7 +4739,8 @@
     {
      "id": "strangbona",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4698,12 +4762,14 @@
     {
      "id": "spenat",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "veg",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4711,7 +4777,7 @@
   {
    "id": "mon-1",
    "title": "Ris med ugnsbakad aubergine, sommarsquash och tomat",
-   "method": "Koka riset i vatten med en nypa salt. Skär aubergine, sommarsquash och tomat i bitar, strö över oregano, timjan och salt och ugnsbaka i 200 °C ca 25 min med 1 msk smält ankfett. Sallad: romansallad och källfräne med pressad citron och en nypa salt.",
+   "method": "Koka riset i vatten med en nypa salt. Skär aubergine, sommarsquash och tomat i bitar, strö över oregano, timjan och salt och ugnsbaka i 200 °C ca 25 min med 1 msk smält ankfett. Sallad: romansallad och spenat eller rosé-/grönsallad med pressad citron och en nypa salt.",
    "slot": "main",
    "usedOnDays": [
     1
@@ -4720,62 +4786,76 @@
     {
      "id": "ris",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "aubergine",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "sommarsquash",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "oregano",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "timjan",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "romansallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
-     "id": "kallfrane",
+     "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": [
+      "rose-gronsallad"
+     ]
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4792,52 +4872,62 @@
     {
      "id": "ris",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "gronkal",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tradgardschampinjon",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "schalottenlok",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "saffran",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4845,7 +4935,7 @@
   {
    "id": "mon-3",
    "title": "Ris med ugnsbakad butternutpumpa, okra och tomat",
-   "method": "Koka riset i vatten med salt. Ugnsbaka butternutpumpa, okra och tomat med spiskummin, chilipeppar och salt i 200 °C ca 30 min med 1 msk smält ankfett. Sallad: spenat och källfräne med pressad citron.",
+   "method": "Koka riset i vatten med salt. Ugnsbaka butternutpumpa, okra och tomat med spiskummin, chilipeppar och salt i 200 °C ca 30 min med 1 msk smält ankfett. Sallad: spenat och romansallad eller rosé-/grönsallad med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     15
@@ -4854,62 +4944,76 @@
     {
      "id": "ris",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "butternutpumpa",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "okra",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spiskummin",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "chilipeppar",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
-     "id": "kallfrane",
+     "id": "romansallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": [
+      "rose-gronsallad"
+     ]
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4926,57 +5030,68 @@
     {
      "id": "butternutpumpa",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "schalottenlok",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "gronkal",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spiskummin",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "timjan",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "rose-gronsallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -4993,47 +5108,56 @@
     {
      "id": "snapper",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "schalottenlok",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "sommarsquash",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "saffran",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "romansallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5050,52 +5174,62 @@
     {
      "id": "tradgardschampinjon",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "portabellosvamp",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "schalottenlok",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "gronkal",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "timjan",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "romansallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5112,52 +5246,62 @@
     {
      "id": "kyckling",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "dragon",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "timjan",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "strangbona",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tradgardschampinjon",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "romansallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5165,7 +5309,7 @@
   {
    "id": "wed-2",
    "title": "Ugnsbakad kalkon med butternutpumpa och strängbönor",
-   "method": "Krydda kalkonen med timjan, oregano och salt och ugnsbaka med 1 msk smält ankfett i 175 °C tills genomstekt. Ugnsbaka butternutpumpa i bitar bredvid. Ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
+   "method": "Krydda kalkonen med timjan, oregano och salt och ugnsbaka med 1 msk smält ankfett i 175 °C tills genomstekt. Ugnsbaka butternutpumpa i bitar bredvid. Ånga strängbönorna. Sallad: spenat, romansallad eller rosé-/grönsallad och tomat med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     10
@@ -5174,52 +5318,65 @@
     {
      "id": "kalkon",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "timjan",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "oregano",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "butternutpumpa",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "strangbona",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
-     "id": "kallfrane",
+     "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": [
+      "romansallad",
+      "rose-gronsallad"
+     ]
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5236,60 +5393,70 @@
     {
      "id": "kyckling",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "oregano",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "chilipeppar",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "aubergine",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "sommarsquash",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "rose-gronsallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
   },
   {
    "id": "thu-1",
-   "title": "Kikärtssallad med tomat, källfräne och grönmynta",
-   "method": "Blötlägg och koka kikärtorna i vatten med salt tills mjuka. Blanda med romansallad, tomat och källfräne. Smaka av med spiskummin, hackad grönmynta, pressad citron och salt.",
+   "title": "Kikärtssallad med tomat och grönmynta",
+   "method": "Blötlägg och koka kikärtorna i vatten med salt tills mjuka. Blanda med romansallad, tomat och spenat eller rosé-/grönsallad. Smaka av med spiskummin, hackad grönmynta, pressad citron och salt.",
    "slot": "main",
    "usedOnDays": [
     4
@@ -5298,47 +5465,58 @@
     {
      "id": "kikarta",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "romansallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
-     "id": "kallfrane",
+     "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": [
+      "rose-gronsallad"
+     ]
     },
     {
      "id": "spiskummin",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "gronmynta",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5355,42 +5533,50 @@
     {
      "id": "linser",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "schalottenlok",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spiskummin",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5407,47 +5593,56 @@
     {
      "id": "kidneybona",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "pintobona",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "romansallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "jalapenopeppar",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spiskummin",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5464,62 +5659,74 @@
     {
      "id": "aubergine",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "sommarsquash",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "okra",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "schalottenlok",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "oregano",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "chilipeppar",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "rose-gronsallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5527,7 +5734,7 @@
   {
    "id": "fri-2",
    "title": "Grönsaksgryta med kronärtskocka, strängbönor och tomat",
-   "method": "Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i kronärtskockshjärtan, strängbönor och tomat och låt puttra i vatten med dragon och salt ca 20 min. Sallad: rosé-/grönsallad och källfräne med pressad citron.",
+   "method": "Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i kronärtskockshjärtan, strängbönor och tomat och låt puttra i vatten med dragon och salt ca 20 min. Sallad: rosé-/grönsallad och spenat eller romansallad med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     12
@@ -5536,57 +5743,70 @@
     {
      "id": "kronartskocka",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "strangbona",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "schalottenlok",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "dragon",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "rose-gronsallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
-     "id": "kallfrane",
+     "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": [
+      "romansallad"
+     ]
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5594,7 +5814,7 @@
   {
    "id": "fri-3",
    "title": "Pumpagryta med spenat och spiskummin",
-   "method": "Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i butternutpumpa och tomat och låt puttra i vatten med spiskummin, saffran och salt ca 20 min. Rör ner spenat sista minuten. Sallad: källfräne och romansallad med pressad citron.",
+   "method": "Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i butternutpumpa och tomat och låt puttra i vatten med spiskummin, saffran och salt ca 20 min. Rör ner spenat sista minuten. Sallad: rosé-/grönsallad och romansallad med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     19
@@ -5603,62 +5823,74 @@
     {
      "id": "butternutpumpa",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "schalottenlok",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spenat",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "vatten",
      "role": "liquid",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spiskummin",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "saffran",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
-     "id": "kallfrane",
+     "id": "rose-gronsallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "romansallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5675,47 +5907,56 @@
     {
      "id": "oring",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "timjan",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "strangbona",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "butternutpumpa",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5732,47 +5973,56 @@
     {
      "id": "makrill",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "timjan",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "oregano",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "senapskal",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "romansallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5789,42 +6039,50 @@
     {
      "id": "tilapia",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "dragon",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "strangbona",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "gronkal",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5841,52 +6099,62 @@
     {
      "id": "hjortkott",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "timjan",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "portabellosvamp",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "butternutpumpa",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "gronkal",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "romansallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5894,7 +6162,7 @@
   {
    "id": "sun-2",
    "title": "Grillat hjortkött med oregano, ugnsbakad aubergine och strängbönor",
-   "method": "Krydda hjortköttet med oregano, chilipeppar och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
+   "method": "Krydda hjortköttet med oregano, chilipeppar och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: spenat, romansallad eller rosé-/grönsallad och tomat med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     14
@@ -5903,52 +6171,65 @@
     {
      "id": "hjortkott",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "oregano",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "chilipeppar",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "aubergine",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "strangbona",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
-     "id": "kallfrane",
+     "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": [
+      "romansallad",
+      "rose-gronsallad"
+     ]
     },
     {
      "id": "tomat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -5965,57 +6246,68 @@
     {
      "id": "hjortkott",
      "role": "base",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "dragon",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "timjan",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "keltiskt-salt-havssalt",
      "role": "seasoning",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "tradgardschampinjon",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "schalottenlok",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "senapskal",
      "role": "cooked",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "rose-gronsallad",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "spenat",
      "role": "salad",
-     "note": null
+     "note": null,
+     "alt": []
     },
     {
      "id": "citron",
      "role": "seasoning",
-     "note": "pressad, som dressing"
+     "note": "pressad, som dressing",
+     "alt": []
     },
     {
      "id": "ankfett",
      "role": "fat",
-     "note": "1 msk"
+     "note": "1 msk",
+     "alt": []
     }
    ],
    "status": "VALIDATED"
@@ -6026,6 +6318,7 @@
    "day": 1,
    "week": 1,
    "weekday": "mon",
+   "date": "2026-10-05",
    "meals": {
     "breakfast": "fr-mango-kiwi",
     "snack1": "fs-persimon",
@@ -6044,6 +6337,7 @@
    "day": 2,
    "week": 1,
    "weekday": "tue",
+   "date": "2026-10-06",
    "meals": {
     "breakfast": "fr-papaya-ananas",
     "snack1": "fs-kiwi",
@@ -6062,6 +6356,7 @@
    "day": 3,
    "week": 1,
    "weekday": "wed",
+   "date": "2026-10-07",
    "meals": {
     "breakfast": "fr-melon-persika",
     "snack1": "fs-mango",
@@ -6080,6 +6375,7 @@
    "day": 4,
    "week": 1,
    "weekday": "thu",
+   "date": "2026-10-08",
    "meals": {
     "breakfast": "fr-mandarin-kiwi",
     "snack1": "fs-melon",
@@ -6098,6 +6394,7 @@
    "day": 5,
    "week": 1,
    "weekday": "fri",
+   "date": "2026-10-09",
    "meals": {
     "breakfast": "fr-vattenmelon-mango",
     "snack1": "fs-melon",
@@ -6116,6 +6413,7 @@
    "day": 6,
    "week": 1,
    "weekday": "sat",
+   "date": "2026-10-10",
    "meals": {
     "breakfast": "fr-guava-papaya",
     "snack1": "fs-persika",
@@ -6134,6 +6432,7 @@
    "day": 7,
    "week": 1,
    "weekday": "sun",
+   "date": "2026-10-11",
    "meals": {
     "breakfast": "fr-ananas-mandarin",
     "snack1": "fs-guava",
@@ -6152,6 +6451,7 @@
    "day": 8,
    "week": 2,
    "weekday": "mon",
+   "date": "2026-10-12",
    "meals": {
     "breakfast": "fr-melon-persika",
     "snack1": "fs-mandarin",
@@ -6170,6 +6470,7 @@
    "day": 9,
    "week": 2,
    "weekday": "tue",
+   "date": "2026-10-13",
    "meals": {
     "breakfast": "fr-mandarin-kiwi",
     "snack1": "fs-melon",
@@ -6188,6 +6489,7 @@
    "day": 10,
    "week": 2,
    "weekday": "wed",
+   "date": "2026-10-14",
    "meals": {
     "breakfast": "fr-vattenmelon-mango",
     "snack1": "fs-persika",
@@ -6206,6 +6508,7 @@
    "day": 11,
    "week": 2,
    "weekday": "thu",
+   "date": "2026-10-15",
    "meals": {
     "breakfast": "fr-guava-papaya",
     "snack1": "fs-persimon",
@@ -6224,6 +6527,7 @@
    "day": 12,
    "week": 2,
    "weekday": "fri",
+   "date": "2026-10-16",
    "meals": {
     "breakfast": "fr-ananas-mandarin",
     "snack1": "fs-persimon",
@@ -6242,6 +6546,7 @@
    "day": 13,
    "week": 2,
    "weekday": "sat",
+   "date": "2026-10-17",
    "meals": {
     "breakfast": "fr-mango-kiwi",
     "snack1": "fs-mandarin",
@@ -6260,6 +6565,7 @@
    "day": 14,
    "week": 2,
    "weekday": "sun",
+   "date": "2026-10-18",
    "meals": {
     "breakfast": "fr-papaya-ananas",
     "snack1": "fs-mango",
@@ -6278,6 +6584,7 @@
    "day": 15,
    "week": 3,
    "weekday": "mon",
+   "date": "2026-10-19",
    "meals": {
     "breakfast": "fr-vattenmelon-mango",
     "snack1": "fs-guava",
@@ -6296,6 +6603,7 @@
    "day": 16,
    "week": 3,
    "weekday": "tue",
+   "date": "2026-10-20",
    "meals": {
     "breakfast": "fr-guava-papaya",
     "snack1": "fs-persimon",
@@ -6314,6 +6622,7 @@
    "day": 17,
    "week": 3,
    "weekday": "wed",
+   "date": "2026-10-21",
    "meals": {
     "breakfast": "fr-ananas-mandarin",
     "snack1": "fs-mango",
@@ -6332,6 +6641,7 @@
    "day": 18,
    "week": 3,
    "weekday": "thu",
+   "date": "2026-10-22",
    "meals": {
     "breakfast": "fr-mango-kiwi",
     "snack1": "fs-mandarin",
@@ -6350,6 +6660,7 @@
    "day": 19,
    "week": 3,
    "weekday": "fri",
+   "date": "2026-10-23",
    "meals": {
     "breakfast": "fr-papaya-ananas",
     "snack1": "fs-mandarin",
@@ -6368,6 +6679,7 @@
    "day": 20,
    "week": 3,
    "weekday": "sat",
+   "date": "2026-10-24",
    "meals": {
     "breakfast": "fr-melon-persika",
     "snack1": "fs-guava",
@@ -6386,6 +6698,7 @@
    "day": 21,
    "week": 3,
    "weekday": "sun",
+   "date": "2026-10-25",
    "meals": {
     "breakfast": "fr-mandarin-kiwi",
     "snack1": "fs-persika",

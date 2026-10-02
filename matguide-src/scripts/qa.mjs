@@ -146,7 +146,7 @@ let dayRows = [];
 if (restore) {
   const byId = Object.fromEntries(foods.map((f) => [f.id, f]));
   const usedMeals = restore.meals.filter((m) => m.usedOnDays.length);
-  const badIng = usedMeals.flatMap((m) => m.ingredients.filter((i) => byId[i.id]?.restoreStatus !== 'ALLOWED_FOR_BOTH').map((i) => `${m.id}: ${i.id}`));
+  const badIng = usedMeals.flatMap((m) => m.ingredients.flatMap((i) => [i, ...(i.alt || []).map((a) => ({ id: a }))]).filter((i) => byId[i.id]?.restoreStatus !== 'ALLOWED_FOR_BOTH').map((i) => `${m.id}: ${i.id}`));
   check('R4. Varje ingrediens i varje måltid i 21-dagarsplanen är tillåten för båda', badIng.length === 0, badIng.join(', '));
   const drinkBad = restore.days.flatMap((d) => d.drinks.flatMap((x) => x.ingredients)).filter((id) => byId[id]?.restoreStatus !== 'ALLOWED_FOR_BOTH');
   check('R5. Dryck i planen är tillåten för båda', drinkBad.length === 0, drinkBad.join(', '));

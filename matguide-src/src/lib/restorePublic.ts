@@ -12,16 +12,18 @@ export interface PublicFood {
 }
 export interface PublicMeal {
   id: string; title: string; method: string; slot: string; usedOnDays: number[];
-  ingredients: { id: string; role: string; note: string | null }[];
+  ingredients: PublicIngredient[];
   status: 'VALIDATED' | 'UNDER_REVIEW';
 }
+export interface PublicIngredient { id: string; role: string; note: string | null; alt: string[] }
 export interface PublicDay {
-  day: number; week: number; weekday: string; meals: Record<string, string>; drinks: string[];
+  day: number; week: number; weekday: string; date: string; meals: Record<string, string>; drinks: string[];
   status: 'VALIDATED' | 'UNDER_REVIEW';
 }
 export interface PublicSlot { key: string; label: string; time: string; text: string }
 
 const P = pub as unknown as {
+  startDate: string;
   slots: PublicSlot[];
   structure: Record<string, { theme: string; text: string; label: string }>;
   rules: string[];
@@ -87,9 +89,35 @@ export function rCheck(foods: PublicFood[], unknown: string[] = []) {
   return { verdict, notIncluded, unclear };
 }
 
-export function daysForToday(date = new Date()): PublicDay[] {
-  const wd = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][date.getDay()];
-  return R_DAYS.filter((d) => d.weekday === wd);
+export const R_START = P.startDate;
+
+/** Alla livsmedels-id i en ingrediensrad (inklusive alternativ) */
+export const ingIds = (i: PublicIngredient): string[] => [i.id, ...i.alt];
+/** "Spenat eller rosé-/grönsallad" */
+export function ingName(i: PublicIngredient): string {
+  const n = ingIds(i).map((id, k) => (k === 0 ? R_FOOD[id].name : R_FOOD[id].name.toLowerCase()));
+  return n.length === 1 ? n[0] : `${n.slice(0, -1).join(', ')} eller ${n[n.length - 1]}`;
+}
+
+const MONTHS = ['januari', 'februari', 'mars', 'april', 'maj', 'juni', 'juli', 'augusti', 'september', 'oktober', 'november', 'december'];
+const parse = (iso: string) => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d); };
+/** "måndag 5 oktober" */
+export function dateLabel(iso: string): string {
+  const d = parse(iso);
+  return `${WEEKDAY[['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][d.getDay()]].toLowerCase()} ${d.getDate()} ${MONTHS[d.getMonth()]}`;
+}
+const iso = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+/** Var i planen är vi idag? */
+export function planToday(now = new Date()): { state: 'before' | 'during' | 'after'; day?: PublicDay; daysLeft?: number } {
+  const today = iso(now);
+  const d = R_DAYS.find((x) => x.date === today);
+  if (d) return { state: 'during', day: d };
+  if (today < R_DAYS[0].date) {
+    const ms = parse(R_DAYS[0].date).getTime() - parse(today).getTime();
+    return { state: 'before', daysLeft: Math.round(ms / 86400000) };
+  }
+  return { state: 'after' };
 }
 
 export const SLOT_LABEL: Record<string, string> = Object.fromEntries(R_SLOTS.map((s) => [s.key, s.label]));

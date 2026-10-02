@@ -141,7 +141,7 @@ describe('Vyer renderar', () => {
 // ---------------------------------------------------------------------------
 import { validateMeal, validateDay } from './lib/restoreRules.js';
 import { MEAL_BY_ID, RESTORE_DAYS, RESTORE_FOODS, RESTORE_MEALS, RESTORE_SUMMARY, CONFLICTS } from './lib/restore';
-import { R_DAYS, R_FOOD, R_FOODS, R_INCLUDED, R_MEALS, rCheck } from './lib/restorePublic';
+import { R_DAYS, R_FOOD, R_FOODS, R_INCLUDED, R_MEALS, rCheck, dateLabel, planToday } from './lib/restorePublic';
 import PUB from './data/restore-public.json';
 import App from './App';
 
@@ -187,7 +187,7 @@ describe('Re:store by Sanna', () => {
   });
   it('alla ingredienser i planen är tillåtna för båda', () => {
     for (const m of RESTORE_MEALS.filter((x) => x.usedOnDays.length)) {
-      for (const i of m.ingredients) expect(FOOD_BY_ID[i.id].restoreStatus).toBe('ALLOWED_FOR_BOTH');
+      for (const i of m.ingredients) for (const id of [i.id, ...(i.alt || [])]) expect(FOOD_BY_ID[id].restoreStatus).toBe('ALLOWED_FOR_BOTH');
     }
   });
   it('stekfett: ankfett ingår (användarbeslut), kokosfett ingår fortfarande inte', () => {
@@ -203,6 +203,22 @@ describe('Re:store by Sanna', () => {
   it('validatorn underkänner kokosfett som stekfett', () => {
     const m = { ...MEAL_BY_ID['sun-1'], ingredients: MEAL_BY_ID['sun-1'].ingredients.map((i) => (i.id === 'ankfett' ? { ...i, id: 'kokosfett' } : i)) };
     expect(validateMeal(m, 'lunch', 'sun', FOOD_BY_ID).pass).toBe(false);
+  });
+  it('källfräne används inte längre; alternativen valideras', () => {
+    for (const m of RESTORE_MEALS) for (const i of m.ingredients) expect([i.id, ...(i.alt || [])]).not.toContain('kallfrane');
+    const m = MEAL_BY_ID['mon-1'];
+    const bad = { ...m, ingredients: m.ingredients.map((i) => (i.alt && i.alt.length ? { ...i, alt: [...i.alt, 'avokado'] } : i)) };
+    expect(validateMeal(bad, 'lunch', 'mon', FOOD_BY_ID).pass).toBe(false);
+  });
+  it('startdatum: dag 1 = måndag 5 oktober 2026, dag 21 = söndag 25 oktober', () => {
+    expect(R_DAYS[0].date).toBe('2026-10-05');
+    expect(R_DAYS[20].date).toBe('2026-10-25');
+    expect(dateLabel(R_DAYS[0].date)).toBe('måndag 5 oktober');
+    for (const d of R_DAYS) expect(['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][new Date(d.date + 'T12:00:00').getDay()]).toBe(d.weekday);
+    expect(planToday(new Date(2026, 9, 2)).state).toBe('before');
+    expect(planToday(new Date(2026, 9, 2)).daysLeft).toBe(3);
+    expect(planToday(new Date(2026, 9, 13)).day!.day).toBe(9);
+    expect(planToday(new Date(2026, 9, 26)).state).toBe('after');
   });
   it('alla 21 dagar passerar (söndag via användarbeslut om hjortkött)', () => {
     for (const d of RESTORE_DAYS) expect(d.validation.pass).toBe(true);
