@@ -8,3 +8,10 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>,
 );
+
+// Installerbar app + offline: registrera service worker (endast i produktionsbygget på https/localhost)
+if (import.meta.env.PROD && 'serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(() => { /* t.ex. i inbäddad förhandsvisning – appen fungerar ändå */ });
+  });
+}

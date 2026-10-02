@@ -4,3 +4,47 @@
 
 [functions]
   node_bundler = "esbuild"
+
+# ---------------------------------------------------------------------------
+# Re:Set by Sanna (statisk app i /matguide/, byggs från matguide-src/)
+[[redirects]]
+  from = "/reset"
+  to = "/matguide/"
+  status = 301
+
+[[redirects]]
+  from = "/restore"
+  to = "/matguide/#/restore"
+  status = 301
+
+# Källkod och rådata ska inte kunna nås publikt
+[[redirects]]
+  from = "/matguide-src/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[headers]]
+  for = "/matguide/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/matguide/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/matguide/"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/matguide/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/matguide/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
