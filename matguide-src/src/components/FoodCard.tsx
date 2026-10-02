@@ -100,7 +100,7 @@ export function FoodDetail({ food }: { food: Food }) {
         <ComparisonBadge status={food.comparisonStatus} size="lg" />
       </div>
       <div className={`verdict verdict-restore verdict-${food.restoreStatus === 'ALLOWED_FOR_BOTH' ? 'green' : food.restoreStatus === 'NOT_ALLOWED_FOR_BOTH' ? 'red' : food.restoreStatus === 'DATA_CONFLICT' ? 'amber' : 'grey'}`}>
-        <span className="verdict-label">Re:store by Sanna</span>
+        <span className="verdict-label"><a href={href('restore', 'livsmedel', food.id)}>Re:store by Sanna</a></span>
         <RestoreBadge status={food.restoreStatus} size="lg" />
       </div>
       {mealsUsing(food.id).length > 0 && (

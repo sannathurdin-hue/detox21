@@ -69,7 +69,7 @@ export function Home() {
 
           <a className="restore-entry" href={href('restore')}>
             <span className="re-name">Re:store <span>by Sanna</span></span>
-            <span className="re-text">Gemensam matlista + 21-dagarsplan för Linn och Patrik</span>
+            <span className="re-text">21-dagars kostprotokoll med matlista och färdiga måltider</span>
             <span className="chev" aria-hidden="true">›</span>
           </a>
 

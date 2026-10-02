@@ -1,0 +1,6181 @@
+{
+ "slots": [
+  {
+   "key": "breakfast",
+   "label": "Frukost",
+   "time": "06:15–07:30",
+   "text": "Fruktsallad med 1 tsk tahini"
+  },
+  {
+   "key": "snack1",
+   "label": "Mellanmål",
+   "time": "09:00–10:00",
+   "text": "Frukt"
+  },
+  {
+   "key": "lunch",
+   "label": "Lunch",
+   "time": "12:00–13:00",
+   "text": "Dagens rätt enligt veckostrukturen"
+  },
+  {
+   "key": "snack2",
+   "label": "Mellanmål",
+   "time": "15:00–16:00",
+   "text": "Grönsaker"
+  },
+  {
+   "key": "dinner",
+   "label": "Middag",
+   "time": "18:00–19:00",
+   "text": "Samma rätt som till lunch"
+  },
+  {
+   "key": "snack3",
+   "label": "Kvällsmål",
+   "time": "21:00–22:00",
+   "text": "Grönsaker"
+  }
+ ],
+ "structure": {
+  "mon": {
+   "theme": "Spannmål / stärkelse",
+   "text": "Ugnsbakade, kokta, grillade eller ångade grönsaker + färsk sallad + ris",
+   "label": "Måndag"
+  },
+  "tue": {
+   "theme": "Soppa",
+   "text": "Grönsakssoppa eller fisksoppa – utan potatis och mejeriprodukter – med färsk sallad",
+   "label": "Tisdag"
+  },
+  "wed": {
+   "theme": "Vitt kött",
+   "text": "Ugnsbakade, kokta, grillade eller ångade grönsaker + färsk sallad + kyckling eller kalkon",
+   "label": "Onsdag"
+  },
+  "thu": {
+   "theme": "Baljväxter",
+   "text": "Färsk sallad + baljväxter",
+   "label": "Torsdag"
+  },
+  "fri": {
+   "theme": "Vegetariskt",
+   "text": "Grönsaksgryta + färsk sallad",
+   "label": "Fredag"
+  },
+  "sat": {
+   "theme": "Fisk",
+   "text": "Ugnsbakade, kokta, grillade eller ångade grönsaker + färsk sallad + fisk",
+   "label": "Lördag"
+  },
+  "sun": {
+   "theme": "Rött kött",
+   "text": "Ugnsbakade, kokta, grillade eller ångade grönsaker + färsk sallad + rött kött",
+   "label": "Söndag"
+  }
+ },
+ "rules": [
+  "Ät var tredje timme och hoppa inte över måltider.",
+  "Lunch och middag är samma rätt.",
+  "Restaurangportioner. Behöver du mer – ät lite mer till lunch eller middag, aldrig senare.",
+  "Maten tillagas utan fett: ugnsbakad, kokt, grillad eller ångad. Pressad citron och salt som dressing.",
+  "Endast keltiskt salt eller havssalt.",
+  "10–12 glas vatten om dagen. Örtte på färsk grönmynta som dryck.",
+  "Inga mejeriprodukter, ingen jäst, inget socker, inga fermenterade produkter, ingen vinäger, inget vin eller öl."
+ ],
+ "foods": [
+  {
+   "id": "acorn-squash",
+   "name": "Acorn squash",
+   "normalizedName": "acorn squash",
+   "aliases": [
+    "ekollonsquash"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "adzukibona",
+   "name": "Adzukiböna",
+   "normalizedName": "adzukiböna",
+   "aliases": [
+    "adzuki"
+   ],
+   "category": "Baljväxter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "agave",
+   "name": "Agave",
+   "normalizedName": "agave",
+   "aliases": [
+    "agavesirap"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "allulose",
+   "name": "Allulose",
+   "normalizedName": "allulose",
+   "aliases": [
+    "allulos"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "amarant",
+   "name": "Amarant",
+   "normalizedName": "amarant",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "ananas",
+   "name": "Ananas",
+   "normalizedName": "ananas",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      2,
+      7,
+      12,
+      14,
+      17,
+      19
+     ]
+    }
+   ]
+  },
+  {
+   "id": "anka",
+   "name": "Anka",
+   "normalizedName": "anka",
+   "aliases": [
+    "ankkött"
+   ],
+   "category": "Protein",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "ankfett",
+   "name": "Ankfett",
+   "normalizedName": "ankfett",
+   "aliases": [],
+   "category": "Fett & oljor",
+   "status": "UNVERIFIED",
+   "reason": "Underlaget räcker inte för att verifiera livsmedlet. Re:store gissar inte.",
+   "use": []
+  },
+  {
+   "id": "annat-salt",
+   "name": "Annat salt (t.ex. bordssalt)",
+   "normalizedName": "annat salt",
+   "aliases": [
+    "salt",
+    "bordssalt"
+   ],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "ansjovis",
+   "name": "Ansjovis",
+   "normalizedName": "ansjovis",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "apelsin",
+   "name": "Apelsin",
+   "normalizedName": "apelsin",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "aprikos",
+   "name": "Aprikos",
+   "normalizedName": "aprikos",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "arrowrot",
+   "name": "Arrowrot",
+   "normalizedName": "arrowrot",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "aubergine",
+   "name": "Aubergine",
+   "normalizedName": "aubergine",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      5,
+      17
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      5,
+      17
+     ]
+    }
+   ]
+  },
+  {
+   "id": "avokado",
+   "name": "Avokado",
+   "normalizedName": "avokado",
+   "aliases": [
+    "avocado"
+   ],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "bakjast",
+   "name": "Bakjäst",
+   "normalizedName": "bakjäst",
+   "aliases": [
+    "jäst"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "banan",
+   "name": "Banan",
+   "normalizedName": "banan",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "basilika",
+   "name": "Basilika",
+   "normalizedName": "basilika",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "bisonoxe",
+   "name": "Bisonoxe",
+   "normalizedName": "bisonoxe",
+   "aliases": [
+    "bison"
+   ],
+   "category": "Protein",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "bjornbar",
+   "name": "Björnbär",
+   "normalizedName": "björnbär",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "black-eye-bonor",
+   "name": "Black eye-bönor",
+   "normalizedName": "black eye-bönor",
+   "aliases": [
+    "svartögda bönor"
+   ],
+   "category": "Baljväxter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "blomkal",
+   "name": "Blomkål",
+   "normalizedName": "blomkål",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "blabar",
+   "name": "Blåbär",
+   "normalizedName": "blåbär",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "bok-choy",
+   "name": "Bok choy",
+   "normalizedName": "bok choy",
+   "aliases": [
+    "pak choi",
+    "pak choy"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "boston-bibb-sallad",
+   "name": "Boston bibb-sallad",
+   "normalizedName": "boston bibb-sallad",
+   "aliases": [
+    "sallad"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "bovete",
+   "name": "Bovete",
+   "normalizedName": "bovete",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "broccoli",
+   "name": "Broccoli",
+   "normalizedName": "broccoli",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "bryggjast",
+   "name": "Bryggjäst",
+   "normalizedName": "bryggjäst",
+   "aliases": [
+    "jäst"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "brysselkal",
+   "name": "Brysselkål",
+   "normalizedName": "brysselkål",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "butternutpumpa",
+   "name": "Butternutpumpa",
+   "normalizedName": "butternutpumpa",
+   "aliases": [
+    "butternut"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      2,
+      6,
+      7,
+      10,
+      14,
+      15,
+      19,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      2,
+      6,
+      7,
+      10,
+      14,
+      15,
+      19,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cannellinibona",
+   "name": "Cannelliniböna",
+   "normalizedName": "cannelliniböna",
+   "aliases": [
+    "cannellini"
+   ],
+   "category": "Baljväxter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "cashew",
+   "name": "Cashew",
+   "normalizedName": "cashew",
+   "aliases": [
+    "cashewnötter"
+   ],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "cayennepeppar",
+   "name": "Cayennepeppar",
+   "normalizedName": "cayennepeppar",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "chia",
+   "name": "Chia",
+   "normalizedName": "chia",
+   "aliases": [
+    "chiafrön"
+   ],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "chilipeppar",
+   "name": "Chilipeppar",
+   "normalizedName": "chilipeppar",
+   "aliases": [
+    "chili"
+   ],
+   "category": "Kryddor & örter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      5,
+      15,
+      17
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      5,
+      15,
+      17
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cikoria",
+   "name": "Cikoria",
+   "normalizedName": "cikoria",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "citron",
+   "name": "Citron",
+   "normalizedName": "citron",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+     ]
+    },
+    {
+     "slot": "breakfast",
+     "days": [
+      2,
+      14,
+      19
+     ]
+    }
+   ]
+  },
+  {
+   "id": "collard-greens-tradkal",
+   "name": "Collard greens / trädkål",
+   "normalizedName": "collard greens / trädkål",
+   "aliases": [
+    "trädkål",
+    "collard greens"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "dadel",
+   "name": "Dadel",
+   "normalizedName": "dadel",
+   "aliases": [
+    "dadlar"
+   ],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "dill",
+   "name": "Dill",
+   "normalizedName": "dill",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "dragon",
+   "name": "Dragon",
+   "normalizedName": "dragon",
+   "aliases": [
+    "dragonört"
+   ],
+   "category": "Kryddor & örter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      3,
+      12,
+      20
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      3,
+      12,
+      20
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dragon-fruit",
+   "name": "Dragon fruit",
+   "normalizedName": "dragon fruit",
+   "aliases": [
+    "drakfrukt",
+    "pitahaya"
+   ],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "durraslaktet",
+   "name": "Durrasläktet",
+   "normalizedName": "durrasläktet",
+   "aliases": [
+    "durra",
+    "sorghum"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "endiv",
+   "name": "Endiv",
+   "normalizedName": "endiv",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "DATA_CONFLICT",
+   "reason": "Underlaget innehåller motstridiga uppgifter. Livsmedlet används inte förrän det är utrett.",
+   "use": []
+  },
+  {
+   "id": "favabona",
+   "name": "Favaböna",
+   "normalizedName": "favaböna",
+   "aliases": [
+    "bondböna"
+   ],
+   "category": "Baljväxter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "fermenterade-produkter",
+   "name": "Fermenterade produkter",
+   "normalizedName": "fermenterade produkter",
+   "aliases": [
+    "surkål",
+    "kimchi",
+    "kombucha",
+    "fermenterat"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "fikon",
+   "name": "Fikon",
+   "normalizedName": "fikon",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "flundra",
+   "name": "Flundra",
+   "normalizedName": "flundra",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "farmjolk",
+   "name": "Fårmjölk",
+   "normalizedName": "fårmjölk",
+   "aliases": [
+    "mjölk"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "fankalsfro",
+   "name": "Fänkålsfrö",
+   "normalizedName": "fänkålsfrö",
+   "aliases": [
+    "fänkål"
+   ],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "getmjolk",
+   "name": "Getmjölk",
+   "normalizedName": "getmjölk",
+   "aliases": [
+    "mjölk"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "granatapple",
+   "name": "Granatäpple",
+   "normalizedName": "granatäpple",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      1,
+      6,
+      11,
+      13,
+      16,
+      18
+     ]
+    }
+   ]
+  },
+  {
+   "id": "grapefrukt",
+   "name": "Grapefrukt",
+   "normalizedName": "grapefrukt",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "griskott",
+   "name": "Griskött",
+   "normalizedName": "griskött",
+   "aliases": [
+    "fläskkött",
+    "fläsk"
+   ],
+   "category": "Protein",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "graslok",
+   "name": "Gräslök",
+   "normalizedName": "gräslök",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "gron-arta",
+   "name": "Grön ärta",
+   "normalizedName": "grön ärta",
+   "aliases": [
+    "ärtor",
+    "gröna ärtor"
+   ],
+   "category": "Baljväxter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "gronkal",
+   "name": "Grönkål",
+   "normalizedName": "grönkål",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      2,
+      7,
+      8,
+      14,
+      16,
+      20,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      2,
+      7,
+      8,
+      14,
+      16,
+      20,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gronmynta",
+   "name": "Grönmynta",
+   "normalizedName": "grönmynta",
+   "aliases": [
+    "mynta"
+   ],
+   "category": "Kryddor & örter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      4
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      4
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gront-te",
+   "name": "Grönt te",
+   "normalizedName": "grönt te",
+   "aliases": [
+    "te"
+   ],
+   "category": "Drycker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "guava",
+   "name": "Guava",
+   "normalizedName": "guava",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      6,
+      11,
+      16
+     ]
+    },
+    {
+     "slot": "snack1",
+     "days": [
+      7,
+      15,
+      20
+     ]
+    }
+   ]
+  },
+  {
+   "id": "guldmakrill",
+   "name": "Guldmakrill",
+   "normalizedName": "guldmakrill",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "gurka",
+   "name": "Gurka",
+   "normalizedName": "gurka",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "gurkmeja",
+   "name": "Gurkmeja",
+   "normalizedName": "gurkmeja",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "habanero-pepper",
+   "name": "Habanero pepper",
+   "normalizedName": "habanero pepper",
+   "aliases": [
+    "habanero"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "hallon",
+   "name": "Hallon",
+   "normalizedName": "hallon",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "hampa",
+   "name": "Hampa",
+   "normalizedName": "hampa",
+   "aliases": [
+    "hampafrö"
+   ],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "hasselnot",
+   "name": "Hasselnöt",
+   "normalizedName": "hasselnöt",
+   "aliases": [
+    "hasselnötter"
+   ],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "havre",
+   "name": "Havre",
+   "normalizedName": "havre",
+   "aliases": [
+    "havregryn"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "havsabborre",
+   "name": "Havsabborre",
+   "normalizedName": "havsabborre",
+   "aliases": [
+    "abborre"
+   ],
+   "category": "Fisk & skaldjur",
+   "status": "DATA_CONFLICT",
+   "reason": "Underlaget innehåller motstridiga uppgifter. Livsmedlet används inte förrän det är utrett.",
+   "use": []
+  },
+  {
+   "id": "hirs",
+   "name": "Hirs",
+   "normalizedName": "hirs",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "hjortkott",
+   "name": "Hjortkött",
+   "normalizedName": "hjortkött",
+   "aliases": [
+    "hjort"
+   ],
+   "category": "Protein",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      7,
+      14,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      7,
+      14,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "honung",
+   "name": "Honung",
+   "normalizedName": "honung",
+   "aliases": [],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "honungsmelon",
+   "name": "Honungsmelon",
+   "normalizedName": "honungsmelon",
+   "aliases": [
+    "melon"
+   ],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "humle",
+   "name": "Humle",
+   "normalizedName": "humle",
+   "aliases": [],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "hummer",
+   "name": "Hummer",
+   "normalizedName": "hummer",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "halleflundra",
+   "name": "Hälleflundra",
+   "normalizedName": "hälleflundra",
+   "aliases": [
+    "halibut"
+   ],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "ingefara",
+   "name": "Ingefära",
+   "normalizedName": "ingefära",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "isbergssallad",
+   "name": "Isbergssallad",
+   "normalizedName": "isbergssallad",
+   "aliases": [
+    "sallad"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "jackfruit",
+   "name": "Jackfruit",
+   "normalizedName": "jackfruit",
+   "aliases": [
+    "jackfrukt"
+   ],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "jalapenopeppar",
+   "name": "Jalapeñopeppar",
+   "normalizedName": "jalapeñopeppar",
+   "aliases": [
+    "jalapeno",
+    "jalapeño"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      18
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      18
+     ]
+    }
+   ]
+  },
+  {
+   "id": "johannesbrod",
+   "name": "Johannesbröd",
+   "normalizedName": "johannesbröd",
+   "aliases": [
+    "carob"
+   ],
+   "category": "Övrigt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "jordgubbe",
+   "name": "Jordgubbe",
+   "normalizedName": "jordgubbe",
+   "aliases": [
+    "jordgubbar"
+   ],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "jordnot",
+   "name": "Jordnöt",
+   "normalizedName": "jordnöt",
+   "aliases": [
+    "jordnötter"
+   ],
+   "category": "Nötter & frön",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kaffe",
+   "name": "Kaffe",
+   "normalizedName": "kaffe",
+   "aliases": [],
+   "category": "Drycker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kakao",
+   "name": "Kakao",
+   "normalizedName": "kakao",
+   "aliases": [],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kalkon",
+   "name": "Kalkon",
+   "normalizedName": "kalkon",
+   "aliases": [],
+   "category": "Protein",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      10
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      10
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kalvkott",
+   "name": "Kalvkött",
+   "normalizedName": "kalvkött",
+   "aliases": [
+    "kalv"
+   ],
+   "category": "Protein",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kammusslor",
+   "name": "Kammusslor",
+   "normalizedName": "kammusslor",
+   "aliases": [
+    "kammussla",
+    "pilgrimsmussla"
+   ],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kamomill",
+   "name": "Kamomill",
+   "normalizedName": "kamomill",
+   "aliases": [
+    "kamomillte"
+   ],
+   "category": "Drycker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kanel",
+   "name": "Kanel",
+   "normalizedName": "kanel",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kanolaolja",
+   "name": "Kanolaolja",
+   "normalizedName": "kanolaolja",
+   "aliases": [
+    "rapsolja",
+    "canola"
+   ],
+   "category": "Fett & oljor",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kapris",
+   "name": "Kapris",
+   "normalizedName": "kapris",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kardemumma",
+   "name": "Kardemumma",
+   "normalizedName": "kardemumma",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kelp",
+   "name": "Kelp",
+   "normalizedName": "kelp",
+   "aliases": [
+    "tång"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "keltiskt-salt-havssalt",
+   "name": "Keltiskt salt / havssalt",
+   "normalizedName": "keltiskt salt / havssalt",
+   "aliases": [
+    "salt",
+    "havssalt",
+    "celtic salt",
+    "keltiskt salt"
+   ],
+   "category": "Kryddor & örter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kidneybona",
+   "name": "Kidneyböna",
+   "normalizedName": "kidneyböna",
+   "aliases": [
+    "kidneybönor"
+   ],
+   "category": "Baljväxter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      18
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      18
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kikarta",
+   "name": "Kikärta",
+   "normalizedName": "kikärta",
+   "aliases": [
+    "kikärtor"
+   ],
+   "category": "Baljväxter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      4
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      4
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kiwi",
+   "name": "Kiwi",
+   "normalizedName": "kiwi",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      1,
+      4,
+      7,
+      9,
+      12,
+      13,
+      17,
+      18,
+      21
+     ]
+    },
+    {
+     "slot": "snack1",
+     "days": [
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "id": "knackebrod-sort-ej-angiven",
+   "name": "Knäckebröd (sort ej angiven)",
+   "normalizedName": "knäckebröd",
+   "aliases": [
+    "knäcke",
+    "knäckebröd"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "UNVERIFIED",
+   "reason": "Underlaget räcker inte för att verifiera livsmedlet. Re:store gissar inte.",
+   "use": []
+  },
+  {
+   "id": "kokosfett",
+   "name": "Kokosfett",
+   "normalizedName": "kokosfett",
+   "aliases": [
+    "kokosolja"
+   ],
+   "category": "Fett & oljor",
+   "status": "UNVERIFIED",
+   "reason": "Underlaget räcker inte för att verifiera livsmedlet. Re:store gissar inte.",
+   "use": []
+  },
+  {
+   "id": "kokosnot",
+   "name": "Kokosnöt",
+   "normalizedName": "kokosnöt",
+   "aliases": [
+    "kokos"
+   ],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kolja",
+   "name": "Kolja",
+   "normalizedName": "kolja",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "komjolk",
+   "name": "Komjölk",
+   "normalizedName": "komjölk",
+   "aliases": [
+    "mjölk"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "koriander",
+   "name": "Koriander",
+   "normalizedName": "koriander",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "korn-sadesslaget",
+   "name": "Korn (sädesslaget)",
+   "normalizedName": "korn",
+   "aliases": [
+    "korngryn"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "krabba",
+   "name": "Krabba",
+   "normalizedName": "krabba",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kronartskocka",
+   "name": "Kronärtskocka",
+   "normalizedName": "kronärtskocka",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      12
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      12
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kryddnejlika",
+   "name": "Kryddnejlika",
+   "normalizedName": "kryddnejlika",
+   "aliases": [
+    "nejlika"
+   ],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kryddpeppar",
+   "name": "Kryddpeppar",
+   "normalizedName": "kryddpeppar",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kummin",
+   "name": "Kummin",
+   "normalizedName": "kummin",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kyckling",
+   "name": "Kyckling",
+   "normalizedName": "kyckling",
+   "aliases": [
+    "chicken"
+   ],
+   "category": "Protein",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      3,
+      17
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      3,
+      17
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kal",
+   "name": "Kål",
+   "normalizedName": "kål",
+   "aliases": [
+    "vitkål"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "kallfrane",
+   "name": "Källfräne",
+   "normalizedName": "källfräne",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      4,
+      10,
+      12,
+      15,
+      19
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      4,
+      10,
+      12,
+      15,
+      19
+     ]
+    },
+    {
+     "slot": "snack3",
+     "days": [
+      4,
+      11,
+      18
+     ]
+    }
+   ]
+  },
+  {
+   "id": "korsbar",
+   "name": "Körsbär",
+   "normalizedName": "körsbär",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "lagerblad",
+   "name": "Lagerblad",
+   "normalizedName": "lagerblad",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "lakrits",
+   "name": "Lakrits",
+   "normalizedName": "lakrits",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "lamm",
+   "name": "Lamm",
+   "normalizedName": "lamm",
+   "aliases": [
+    "lammkött"
+   ],
+   "category": "Protein",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "lax",
+   "name": "Lax",
+   "normalizedName": "lax",
+   "aliases": [
+    "salmon"
+   ],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "limabona",
+   "name": "Limaböna",
+   "normalizedName": "limaböna",
+   "aliases": [],
+   "category": "Baljväxter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "lime",
+   "name": "Lime",
+   "normalizedName": "lime",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "linfron",
+   "name": "Linfrön",
+   "normalizedName": "linfrön",
+   "aliases": [],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "linser",
+   "name": "Linser",
+   "normalizedName": "linser",
+   "aliases": [],
+   "category": "Baljväxter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      11
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      11
+     ]
+    }
+   ]
+  },
+  {
+   "id": "linspasta",
+   "name": "Linspasta",
+   "normalizedName": "linspasta",
+   "aliases": [
+    "linser pasta",
+    "pasta"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "UNVERIFIED",
+   "reason": "Underlaget räcker inte för att verifiera livsmedlet. Re:store gissar inte.",
+   "use": []
+  },
+  {
+   "id": "litchi",
+   "name": "Litchi",
+   "normalizedName": "litchi",
+   "aliases": [
+    "lychee"
+   ],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "lo-han",
+   "name": "Lo han",
+   "normalizedName": "lo han",
+   "aliases": [
+    "munkfrukt",
+    "monk fruit"
+   ],
+   "category": "Övrigt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "lok",
+   "name": "Lök",
+   "normalizedName": "lök",
+   "aliases": [
+    "gul lök"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "lonnsocker",
+   "name": "Lönnsocker",
+   "normalizedName": "lönnsocker",
+   "aliases": [
+    "lönnsirap"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "macadamia",
+   "name": "Macadamia",
+   "normalizedName": "macadamia",
+   "aliases": [],
+   "category": "Nötter & frön",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "majrova",
+   "name": "Majrova",
+   "normalizedName": "majrova",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "majs",
+   "name": "Majs",
+   "normalizedName": "majs",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "majskakor-som-knackebrod",
+   "name": "Majskakor (som knäckebröd)",
+   "normalizedName": "majskakor",
+   "aliases": [
+    "majskaka",
+    "knäckebröd",
+    "majsknäcke"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "UNVERIFIED",
+   "reason": "Underlaget räcker inte för att verifiera livsmedlet. Re:store gissar inte.",
+   "use": []
+  },
+  {
+   "id": "makrill",
+   "name": "Makrill",
+   "normalizedName": "makrill",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      13
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      13
+     ]
+    }
+   ]
+  },
+  {
+   "id": "malartad-fisk",
+   "name": "Malartad fisk",
+   "normalizedName": "malartad fisk",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "malt",
+   "name": "Malt",
+   "normalizedName": "malt",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "mandarin",
+   "name": "Mandarin",
+   "normalizedName": "mandarin",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      4,
+      7,
+      9,
+      12,
+      17,
+      21
+     ]
+    },
+    {
+     "slot": "snack1",
+     "days": [
+      8,
+      13,
+      18,
+      19
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mandel",
+   "name": "Mandel",
+   "normalizedName": "mandel",
+   "aliases": [
+    "mandlar"
+   ],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "mango",
+   "name": "Mango",
+   "normalizedName": "mango",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      1,
+      5,
+      10,
+      13,
+      15,
+      18
+     ]
+    },
+    {
+     "slot": "snack1",
+     "days": [
+      3,
+      14,
+      17
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mangold",
+   "name": "Mangold",
+   "normalizedName": "mangold",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "manukahonung",
+   "name": "Manukahonung",
+   "normalizedName": "manukahonung",
+   "aliases": [
+    "manuka",
+    "honung"
+   ],
+   "category": "Övrigt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "maskrosblad",
+   "name": "Maskrosblad",
+   "normalizedName": "maskrosblad",
+   "aliases": [
+    "maskros"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "mejeriprodukter-alla",
+   "name": "Mejeriprodukter (alla)",
+   "normalizedName": "mejeriprodukter",
+   "aliases": [
+    "mejeri",
+    "mjölk",
+    "ost",
+    "smör",
+    "grädde",
+    "yoghurt",
+    "fil",
+    "kvarg",
+    "crème fraiche"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "melass",
+   "name": "Melass",
+   "normalizedName": "melass",
+   "aliases": [],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "melon",
+   "name": "Melon",
+   "normalizedName": "melon",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      3,
+      8,
+      20
+     ]
+    },
+    {
+     "slot": "snack1",
+     "days": [
+      4,
+      5,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "id": "morot",
+   "name": "Morot",
+   "normalizedName": "morot",
+   "aliases": [
+    "morötter"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "mullbar",
+   "name": "Mullbär",
+   "normalizedName": "mullbär",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "mungbona",
+   "name": "Mungböna",
+   "normalizedName": "mungböna",
+   "aliases": [],
+   "category": "Baljväxter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "muskot",
+   "name": "Muskot",
+   "normalizedName": "muskot",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "mussla",
+   "name": "Mussla",
+   "normalizedName": "mussla",
+   "aliases": [
+    "musslor",
+    "blåmussla"
+   ],
+   "category": "Fisk & skaldjur",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "nektarin",
+   "name": "Nektarin",
+   "normalizedName": "nektarin",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "nori",
+   "name": "Nori",
+   "normalizedName": "nori",
+   "aliases": [
+    "tång"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "naringsjast",
+   "name": "Näringsjäst",
+   "normalizedName": "näringsjäst",
+   "aliases": [
+    "jäst"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "not-notkott",
+   "name": "Nöt (nötkött)",
+   "normalizedName": "nöt",
+   "aliases": [
+    "nötkött",
+    "biff"
+   ],
+   "category": "Protein",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "okra",
+   "name": "Okra",
+   "normalizedName": "okra",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      5,
+      15
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      5,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": "oliv",
+   "name": "Oliv",
+   "normalizedName": "oliv",
+   "aliases": [
+    "oliver"
+   ],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "olivolja",
+   "name": "Olivolja",
+   "normalizedName": "olivolja",
+   "aliases": [
+    "olja"
+   ],
+   "category": "Fett & oljor",
+   "status": "UNVERIFIED",
+   "reason": "Underlaget räcker inte för att verifiera livsmedlet. Re:store gissar inte.",
+   "use": []
+  },
+  {
+   "id": "oregano",
+   "name": "Oregano",
+   "normalizedName": "oregano",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      5,
+      10,
+      13,
+      17
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      5,
+      10,
+      13,
+      17
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ostron",
+   "name": "Ostron",
+   "normalizedName": "ostron",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "palsternacka",
+   "name": "Palsternacka",
+   "normalizedName": "palsternacka",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "papaya",
+   "name": "Papaya",
+   "normalizedName": "papaya",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      2,
+      6,
+      11,
+      14,
+      16,
+      19
+     ]
+    }
+   ]
+  },
+  {
+   "id": "paprika",
+   "name": "Paprika",
+   "normalizedName": "paprika",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "paprikapulver",
+   "name": "Paprikapulver",
+   "normalizedName": "paprikapulver",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "paranot",
+   "name": "Paranöt",
+   "normalizedName": "paranöt",
+   "aliases": [
+    "paranötter"
+   ],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "pekan",
+   "name": "Pekan",
+   "normalizedName": "pekan",
+   "aliases": [
+    "pekannötter"
+   ],
+   "category": "Nötter & frön",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "pepparmint",
+   "name": "Pepparmint",
+   "normalizedName": "pepparmint",
+   "aliases": [
+    "mynta"
+   ],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "pepparrot",
+   "name": "Pepparrot",
+   "normalizedName": "pepparrot",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "persika",
+   "name": "Persika",
+   "normalizedName": "persika",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      3,
+      8,
+      20
+     ]
+    },
+    {
+     "slot": "snack1",
+     "days": [
+      6,
+      10,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "persilja",
+   "name": "Persilja",
+   "normalizedName": "persilja",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "persimon",
+   "name": "Persimon",
+   "normalizedName": "persimon",
+   "aliases": [
+    "sharon",
+    "kaki"
+   ],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "snack1",
+     "days": [
+      1,
+      11,
+      12,
+      16
+     ]
+    },
+    {
+     "slot": "breakfast",
+     "days": [
+      4,
+      9,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pinjenot",
+   "name": "Pinjenöt",
+   "normalizedName": "pinjenöt",
+   "aliases": [
+    "pinjenötter"
+   ],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "pintobona",
+   "name": "Pintoböna",
+   "normalizedName": "pintoböna",
+   "aliases": [],
+   "category": "Baljväxter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      18
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      18
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pistasch",
+   "name": "Pistasch",
+   "normalizedName": "pistasch",
+   "aliases": [
+    "pistaschnötter"
+   ],
+   "category": "Nötter & frön",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "plommon",
+   "name": "Plommon",
+   "normalizedName": "plommon",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "poppy-seed",
+   "name": "Poppy seed",
+   "normalizedName": "poppy seed",
+   "aliases": [
+    "vallmofrö"
+   ],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "portabellosvamp",
+   "name": "Portabellosvamp",
+   "normalizedName": "portabellosvamp",
+   "aliases": [
+    "portobello",
+    "svamp"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      7,
+      14,
+      16,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      7,
+      14,
+      16,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pumpa",
+   "name": "Pumpa",
+   "normalizedName": "pumpa",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "purjolok",
+   "name": "Purjolök",
+   "normalizedName": "purjolök",
+   "aliases": [
+    "purjo"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "paron",
+   "name": "Päron",
+   "normalizedName": "päron",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "quinoa",
+   "name": "Quinoa",
+   "normalizedName": "quinoa",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "rabarber",
+   "name": "Rabarber",
+   "normalizedName": "rabarber",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "red-palm-fruit",
+   "name": "Red palm fruit",
+   "normalizedName": "red palm fruit",
+   "aliases": [
+    "röd palmfrukt"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "ris",
+   "name": "Ris",
+   "normalizedName": "ris",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      8,
+      15
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      8,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": "romansallad",
+   "name": "Romansallad",
+   "normalizedName": "romansallad",
+   "aliases": [
+    "sallad"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      3,
+      4,
+      7,
+      9,
+      13,
+      14,
+      16,
+      18,
+      19,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      3,
+      4,
+      7,
+      9,
+      13,
+      14,
+      16,
+      18,
+      19,
+      21
+     ]
+    },
+    {
+     "slot": "snack2",
+     "days": [
+      4,
+      11,
+      18
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rose-gronsallad",
+   "name": "Rosé-/grönsallad",
+   "normalizedName": "rosé-/grönsallad",
+   "aliases": [
+    "sallad",
+    "grönsallad"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      2,
+      5,
+      12,
+      17
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      2,
+      5,
+      12,
+      17
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rosmarin",
+   "name": "Rosmarin",
+   "normalizedName": "rosmarin",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "rag",
+   "name": "Råg",
+   "normalizedName": "råg",
+   "aliases": [
+    "rågbröd"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "radisa",
+   "name": "Rädisa",
+   "normalizedName": "rädisa",
+   "aliases": [
+    "rädisor"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "raka",
+   "name": "Räka",
+   "normalizedName": "räka",
+   "aliases": [
+    "räkor"
+   ],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "rodbeta",
+   "name": "Rödbeta",
+   "normalizedName": "rödbeta",
+   "aliases": [
+    "rödbetor"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "rorsocker",
+   "name": "Rörsocker",
+   "normalizedName": "rörsocker",
+   "aliases": [],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "safflor",
+   "name": "Safflor",
+   "normalizedName": "safflor",
+   "aliases": [],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "saffran",
+   "name": "Saffran",
+   "normalizedName": "saffran",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      8,
+      9,
+      19
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      8,
+      9,
+      19
+     ]
+    }
+   ]
+  },
+  {
+   "id": "salladslok",
+   "name": "Salladslök",
+   "normalizedName": "salladslök",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "salvia",
+   "name": "Salvia",
+   "normalizedName": "salvia",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "sardin",
+   "name": "Sardin",
+   "normalizedName": "sardin",
+   "aliases": [
+    "sardiner"
+   ],
+   "category": "Fisk & skaldjur",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "sareptasenap",
+   "name": "Sareptasenap",
+   "normalizedName": "sareptasenap",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "schalottenlok",
+   "name": "Schalottenlök",
+   "normalizedName": "schalottenlök",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      2,
+      5,
+      8,
+      9,
+      11,
+      12,
+      16,
+      19
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      2,
+      5,
+      8,
+      9,
+      11,
+      12,
+      16,
+      19
+     ]
+    }
+   ]
+  },
+  {
+   "id": "selleri",
+   "name": "Selleri",
+   "normalizedName": "selleri",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "senapsfro",
+   "name": "Senapsfrö",
+   "normalizedName": "senapsfrö",
+   "aliases": [
+    "senap"
+   ],
+   "category": "Kryddor & örter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "senapskal",
+   "name": "Senapskål",
+   "normalizedName": "senapskål",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      13
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      13
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sesam",
+   "name": "Sesam",
+   "normalizedName": "sesam",
+   "aliases": [
+    "sesamfrö"
+   ],
+   "category": "Nötter & frön",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "shiitakesvamp",
+   "name": "Shiitakesvamp",
+   "normalizedName": "shiitakesvamp",
+   "aliases": [
+    "shiitake",
+    "svamp"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "sjotunga",
+   "name": "Sjötunga",
+   "normalizedName": "sjötunga",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "snapper",
+   "name": "Snapper",
+   "normalizedName": "snapper",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      9
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "id": "socker",
+   "name": "Socker",
+   "normalizedName": "socker",
+   "aliases": [],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "sojabona",
+   "name": "Sojaböna",
+   "normalizedName": "sojaböna",
+   "aliases": [
+    "soja"
+   ],
+   "category": "Baljväxter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "solros",
+   "name": "Solros",
+   "normalizedName": "solros",
+   "aliases": [
+    "solrosfrön"
+   ],
+   "category": "Nötter & frön",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "sommarsquash",
+   "name": "Sommarsquash",
+   "normalizedName": "sommarsquash",
+   "aliases": [
+    "squash"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      5,
+      9,
+      17
+     ]
+    },
+    {
+     "slot": "snack2",
+     "days": [
+      1,
+      5,
+      8,
+      12,
+      15,
+      19
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      5,
+      9,
+      17
+     ]
+    },
+    {
+     "slot": "snack3",
+     "days": [
+      3,
+      7,
+      10,
+      14,
+      17,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "spagettipumpa",
+   "name": "Spagettipumpa",
+   "normalizedName": "spagettipumpa",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "sparris",
+   "name": "Sparris",
+   "normalizedName": "sparris",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "speltvete",
+   "name": "Speltvete",
+   "normalizedName": "speltvete",
+   "aliases": [
+    "spelt",
+    "dinkel"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "spenat",
+   "name": "Spenat",
+   "normalizedName": "spenat",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      2,
+      6,
+      8,
+      11,
+      15,
+      19,
+      20
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      2,
+      6,
+      8,
+      11,
+      15,
+      19,
+      20
+     ]
+    },
+    {
+     "slot": "snack3",
+     "days": [
+      2,
+      6,
+      9,
+      13,
+      16,
+      20
+     ]
+    }
+   ]
+  },
+  {
+   "id": "spiskummin",
+   "name": "Spiskummin",
+   "normalizedName": "spiskummin",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      2,
+      4,
+      11,
+      15,
+      18,
+      19
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      2,
+      4,
+      11,
+      15,
+      18,
+      19
+     ]
+    }
+   ]
+  },
+  {
+   "id": "steviablad",
+   "name": "Steviablad",
+   "normalizedName": "steviablad",
+   "aliases": [
+    "stevia"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "stjarnfrukt",
+   "name": "Stjärnfrukt",
+   "normalizedName": "stjärnfrukt",
+   "aliases": [
+    "carambola"
+   ],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "strangbona",
+   "name": "Strängböna",
+   "normalizedName": "strängböna",
+   "aliases": [
+    "haricots verts",
+    "gröna bönor"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "snack3",
+     "days": [
+      1,
+      5,
+      8,
+      12,
+      15,
+      19
+     ]
+    },
+    {
+     "slot": "snack2",
+     "days": [
+      2,
+      6,
+      9,
+      13,
+      16,
+      20
+     ]
+    },
+    {
+     "slot": "lunch",
+     "days": [
+      3,
+      6,
+      10,
+      12,
+      20
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      3,
+      6,
+      10,
+      12,
+      20
+     ]
+    }
+   ]
+  },
+  {
+   "id": "svart-te",
+   "name": "Svart te",
+   "normalizedName": "svart te",
+   "aliases": [
+    "te"
+   ],
+   "category": "Drycker",
+   "status": "UNVERIFIED",
+   "reason": "Underlaget räcker inte för att verifiera livsmedlet. Re:store gissar inte.",
+   "use": []
+  },
+  {
+   "id": "svarta-bonor",
+   "name": "Svarta bönor",
+   "normalizedName": "svarta bönor",
+   "aliases": [],
+   "category": "Baljväxter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "svarta-vinbar",
+   "name": "Svarta vinbär",
+   "normalizedName": "svarta vinbär",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "svartpeppar",
+   "name": "Svartpeppar",
+   "normalizedName": "svartpeppar",
+   "aliases": [
+    "peppar"
+   ],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "svardfisk",
+   "name": "Svärdfisk",
+   "normalizedName": "svärdfisk",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "sotpotatis",
+   "name": "Sötpotatis",
+   "normalizedName": "sötpotatis",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "tahini-sesampasta",
+   "name": "Tahini (sesampasta)",
+   "normalizedName": "tahini",
+   "aliases": [
+    "sesampasta",
+    "zeina"
+   ],
+   "category": "Nötter & frön",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tapioca",
+   "name": "Tapioca",
+   "normalizedName": "tapioca",
+   "aliases": [
+    "tapioka",
+    "kassava"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "tarorot",
+   "name": "Tarorot",
+   "normalizedName": "tarorot",
+   "aliases": [
+    "taro"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "teff",
+   "name": "Teff",
+   "normalizedName": "teff",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "tilapia",
+   "name": "Tilapia",
+   "normalizedName": "tilapia",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      20
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      20
+     ]
+    }
+   ]
+  },
+  {
+   "id": "timjan",
+   "name": "Timjan",
+   "normalizedName": "timjan",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      2,
+      3,
+      6,
+      7,
+      10,
+      13,
+      14,
+      16,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      2,
+      3,
+      6,
+      7,
+      10,
+      13,
+      14,
+      16,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tomat",
+   "name": "Tomat",
+   "normalizedName": "tomat",
+   "aliases": [
+    "tomater"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+     ]
+    },
+    {
+     "slot": "snack2",
+     "days": [
+      1,
+      3,
+      4,
+      5,
+      7,
+      8,
+      10,
+      11,
+      12,
+      14,
+      15,
+      17,
+      18,
+      19,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+     ]
+    },
+    {
+     "slot": "snack3",
+     "days": [
+      2,
+      4,
+      6,
+      9,
+      11,
+      13,
+      16,
+      18,
+      20
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tonfisk",
+   "name": "Tonfisk",
+   "normalizedName": "tonfisk",
+   "aliases": [
+    "tuna"
+   ],
+   "category": "Fisk & skaldjur",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "torsk",
+   "name": "Torsk",
+   "normalizedName": "torsk",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "tranbar",
+   "name": "Tranbär",
+   "normalizedName": "tranbär",
+   "aliases": [],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "tradgardschampinjon",
+   "name": "Trädgårdschampinjon",
+   "normalizedName": "trädgårdschampinjon",
+   "aliases": [
+    "champinjon",
+    "svamp"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      3,
+      8,
+      16
+     ]
+    },
+    {
+     "slot": "snack2",
+     "days": [
+      3,
+      7,
+      10,
+      14,
+      17,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      3,
+      8,
+      16
+     ]
+    }
+   ]
+  },
+  {
+   "id": "valnot",
+   "name": "Valnöt",
+   "normalizedName": "valnöt",
+   "aliases": [
+    "valnötter"
+   ],
+   "category": "Nötter & frön",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "valnotssmor",
+   "name": "Valnötssmör",
+   "normalizedName": "valnötssmör",
+   "aliases": [],
+   "category": "Nötter & frön",
+   "status": "UNVERIFIED",
+   "reason": "Underlaget räcker inte för att verifiera livsmedlet. Re:store gissar inte.",
+   "use": []
+  },
+  {
+   "id": "vanilj",
+   "name": "Vanilj",
+   "normalizedName": "vanilj",
+   "aliases": [],
+   "category": "Kryddor & örter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "vatten",
+   "name": "Vatten",
+   "normalizedName": "vatten",
+   "aliases": [],
+   "category": "Drycker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      2,
+      4,
+      5,
+      8,
+      9,
+      11,
+      12,
+      15,
+      16,
+      18,
+      19
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      2,
+      4,
+      5,
+      8,
+      9,
+      11,
+      12,
+      15,
+      16,
+      18,
+      19
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vattenkastanj",
+   "name": "Vattenkastanj",
+   "normalizedName": "vattenkastanj",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "vattenmelon",
+   "name": "Vattenmelon",
+   "normalizedName": "vattenmelon",
+   "aliases": [
+    "melon"
+   ],
+   "category": "Frukt",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "breakfast",
+     "days": [
+      5,
+      10,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vete",
+   "name": "Vete",
+   "normalizedName": "vete",
+   "aliases": [
+    "vetemjöl"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "vildris",
+   "name": "Vildris",
+   "normalizedName": "vildris",
+   "aliases": [],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "vin",
+   "name": "Vin",
+   "normalizedName": "vin",
+   "aliases": [
+    "alkohol"
+   ],
+   "category": "Drycker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "vindruva",
+   "name": "Vindruva",
+   "normalizedName": "vindruva",
+   "aliases": [
+    "vindruvor",
+    "druvor"
+   ],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "vinager",
+   "name": "Vinäger",
+   "normalizedName": "vinäger",
+   "aliases": [
+    "ättika"
+   ],
+   "category": "Övrigt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "vit-bona",
+   "name": "Vit böna",
+   "normalizedName": "vit böna",
+   "aliases": [
+    "vita bönor"
+   ],
+   "category": "Baljväxter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "vit-potatis",
+   "name": "Vit potatis",
+   "normalizedName": "vit potatis",
+   "aliases": [
+    "potatis"
+   ],
+   "category": "Spannmål & stärkelse",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "vitlok",
+   "name": "Vitlök",
+   "normalizedName": "vitlök",
+   "aliases": [],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "wakame-sjogras",
+   "name": "Wakame-sjögräs",
+   "normalizedName": "wakame-sjögräs",
+   "aliases": [
+    "wakame",
+    "tång"
+   ],
+   "category": "Grönsaker",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "yellow-pea",
+   "name": "Yellow pea",
+   "normalizedName": "yellow pea",
+   "aliases": [
+    "gul ärta",
+    "gula ärtor"
+   ],
+   "category": "Baljväxter",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "zucchini-squash",
+   "name": "Zucchini squash",
+   "normalizedName": "zucchini squash",
+   "aliases": [
+    "zucchini",
+    "squash"
+   ],
+   "category": "Grönsaker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "agg-helt",
+   "name": "Ägg (helt)",
+   "normalizedName": "ägg",
+   "aliases": [
+    "ägg",
+    "hela ägg"
+   ],
+   "category": "Protein",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "aggula",
+   "name": "Äggula",
+   "normalizedName": "äggula",
+   "aliases": [
+    "ägg"
+   ],
+   "category": "Protein",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "aggvita",
+   "name": "Äggvita",
+   "normalizedName": "äggvita",
+   "aliases": [
+    "ägg"
+   ],
+   "category": "Protein",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "apple",
+   "name": "Äpple",
+   "normalizedName": "äpple",
+   "aliases": [
+    "äpplen"
+   ],
+   "category": "Frukt",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "ol",
+   "name": "Öl",
+   "normalizedName": "öl",
+   "aliases": [
+    "alkohol"
+   ],
+   "category": "Drycker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  },
+  {
+   "id": "oring",
+   "name": "Öring",
+   "normalizedName": "öring",
+   "aliases": [],
+   "category": "Fisk & skaldjur",
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      6
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      6
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ortte",
+   "name": "Örtte",
+   "normalizedName": "örtte",
+   "aliases": [
+    "herbal tea",
+    "te"
+   ],
+   "category": "Drycker",
+   "status": "NOT_ALLOWED_FOR_BOTH",
+   "reason": "Ingår inte i Re:store under dag 1–21.",
+   "use": []
+  }
+ ],
+ "meals": [
+  {
+   "id": "fr-mango-kiwi",
+   "title": "Fruktsallad med mango, kiwi och granatäpple + tahini",
+   "method": "Skär frukterna i bitar och blanda till en fruktsallad. Toppa med 1 tsk tahini.",
+   "slot": "breakfast",
+   "usedOnDays": [
+    1,
+    13,
+    18
+   ],
+   "ingredients": [
+    {
+     "id": "mango",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "kiwi",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "granatapple",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "tahini-sesampasta",
+     "role": "spread",
+     "note": "1 tsk"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fr-papaya-ananas",
+   "title": "Fruktsallad med papaya och ananas, pressad citron + tahini",
+   "method": "Skär frukterna i bitar och blanda till en fruktsallad. Toppa med 1 tsk tahini.",
+   "slot": "breakfast",
+   "usedOnDays": [
+    2,
+    14,
+    19
+   ],
+   "ingredients": [
+    {
+     "id": "papaya",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "ananas",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "tahini-sesampasta",
+     "role": "spread",
+     "note": "1 tsk"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fr-melon-persika",
+   "title": "Fruktsallad med melon och persika + tahini",
+   "method": "Skär frukterna i bitar och blanda till en fruktsallad. Toppa med 1 tsk tahini.",
+   "slot": "breakfast",
+   "usedOnDays": [
+    3,
+    8,
+    20
+   ],
+   "ingredients": [
+    {
+     "id": "melon",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "persika",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "tahini-sesampasta",
+     "role": "spread",
+     "note": "1 tsk"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fr-mandarin-kiwi",
+   "title": "Fruktsallad med mandarin, kiwi och persimon + tahini",
+   "method": "Skär frukterna i bitar och blanda till en fruktsallad. Toppa med 1 tsk tahini.",
+   "slot": "breakfast",
+   "usedOnDays": [
+    4,
+    9,
+    21
+   ],
+   "ingredients": [
+    {
+     "id": "mandarin",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "kiwi",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "persimon",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "tahini-sesampasta",
+     "role": "spread",
+     "note": "1 tsk"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fr-vattenmelon-mango",
+   "title": "Fruktsallad med vattenmelon och mango + tahini",
+   "method": "Skär frukterna i bitar och blanda till en fruktsallad. Toppa med 1 tsk tahini.",
+   "slot": "breakfast",
+   "usedOnDays": [
+    5,
+    10,
+    15
+   ],
+   "ingredients": [
+    {
+     "id": "vattenmelon",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "mango",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "tahini-sesampasta",
+     "role": "spread",
+     "note": "1 tsk"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fr-guava-papaya",
+   "title": "Fruktsallad med guava, papaya och granatäpple + tahini",
+   "method": "Skär frukterna i bitar och blanda till en fruktsallad. Toppa med 1 tsk tahini.",
+   "slot": "breakfast",
+   "usedOnDays": [
+    6,
+    11,
+    16
+   ],
+   "ingredients": [
+    {
+     "id": "guava",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "papaya",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "granatapple",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "tahini-sesampasta",
+     "role": "spread",
+     "note": "1 tsk"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fr-ananas-mandarin",
+   "title": "Fruktsallad med ananas, mandarin och kiwi + tahini",
+   "method": "Skär frukterna i bitar och blanda till en fruktsallad. Toppa med 1 tsk tahini.",
+   "slot": "breakfast",
+   "usedOnDays": [
+    7,
+    12,
+    17
+   ],
+   "ingredients": [
+    {
+     "id": "ananas",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "mandarin",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "kiwi",
+     "role": "fruit",
+     "note": null
+    },
+    {
+     "id": "tahini-sesampasta",
+     "role": "spread",
+     "note": "1 tsk"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fs-persimon",
+   "title": "Persimon",
+   "method": "Ät som den är, skuren i bitar.",
+   "slot": "snack1",
+   "usedOnDays": [
+    1,
+    11,
+    12,
+    16
+   ],
+   "ingredients": [
+    {
+     "id": "persimon",
+     "role": "fruit",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fs-kiwi",
+   "title": "Två kiwi",
+   "method": "Ät som den är, skuren i bitar.",
+   "slot": "snack1",
+   "usedOnDays": [
+    2
+   ],
+   "ingredients": [
+    {
+     "id": "kiwi",
+     "role": "fruit",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fs-mango",
+   "title": "Mango i bitar",
+   "method": "Ät som den är, skuren i bitar.",
+   "slot": "snack1",
+   "usedOnDays": [
+    3,
+    14,
+    17
+   ],
+   "ingredients": [
+    {
+     "id": "mango",
+     "role": "fruit",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fs-mandarin",
+   "title": "Mandariner",
+   "method": "Ät som den är, skuren i bitar.",
+   "slot": "snack1",
+   "usedOnDays": [
+    8,
+    13,
+    18,
+    19
+   ],
+   "ingredients": [
+    {
+     "id": "mandarin",
+     "role": "fruit",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fs-melon",
+   "title": "Melon i skivor",
+   "method": "Ät som den är, skuren i bitar.",
+   "slot": "snack1",
+   "usedOnDays": [
+    4,
+    5,
+    9
+   ],
+   "ingredients": [
+    {
+     "id": "melon",
+     "role": "fruit",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fs-persika",
+   "title": "Persika",
+   "method": "Ät som den är, skuren i bitar.",
+   "slot": "snack1",
+   "usedOnDays": [
+    6,
+    10,
+    21
+   ],
+   "ingredients": [
+    {
+     "id": "persika",
+     "role": "fruit",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fs-guava",
+   "title": "Guava",
+   "method": "Ät som den är, skuren i bitar.",
+   "slot": "snack1",
+   "usedOnDays": [
+    7,
+    15,
+    20
+   ],
+   "ingredients": [
+    {
+     "id": "guava",
+     "role": "fruit",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "vs-tomat-squash",
+   "title": "Tomat och sommarsquashstavar",
+   "method": "Skär i stavar eller bitar och ät råa.",
+   "slot": "snack2",
+   "usedOnDays": [
+    1,
+    5,
+    8,
+    12,
+    15,
+    19
+   ],
+   "ingredients": [
+    {
+     "id": "tomat",
+     "role": "veg",
+     "note": null
+    },
+    {
+     "id": "sommarsquash",
+     "role": "veg",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "vs-strangbona",
+   "title": "Ångade strängbönor",
+   "method": "Ånga strängbönorna 4–5 minuter. Ät ljumna eller kalla.",
+   "slot": "snack2",
+   "usedOnDays": [
+    2,
+    6,
+    9,
+    13,
+    16,
+    20
+   ],
+   "ingredients": [
+    {
+     "id": "strangbona",
+     "role": "veg",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "vs-champinjon-tomat",
+   "title": "Champinjoner och tomat",
+   "method": "Skär i stavar eller bitar och ät råa.",
+   "slot": "snack2",
+   "usedOnDays": [
+    3,
+    7,
+    10,
+    14,
+    17,
+    21
+   ],
+   "ingredients": [
+    {
+     "id": "tradgardschampinjon",
+     "role": "veg",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "veg",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "vs-romansallad-tomat",
+   "title": "Romansalladsblad med tomat",
+   "method": "Skär i stavar eller bitar och ät råa.",
+   "slot": "snack2",
+   "usedOnDays": [
+    4,
+    11,
+    18
+   ],
+   "ingredients": [
+    {
+     "id": "romansallad",
+     "role": "veg",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "veg",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "ks-squash",
+   "title": "Sommarsquashstavar",
+   "method": "Skär i stavar eller bitar och ät råa.",
+   "slot": "snack3",
+   "usedOnDays": [
+    3,
+    7,
+    10,
+    14,
+    17,
+    21
+   ],
+   "ingredients": [
+    {
+     "id": "sommarsquash",
+     "role": "veg",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "ks-tomat-kallfrane",
+   "title": "Tomat med källfräne",
+   "method": "Skär i stavar eller bitar och ät råa.",
+   "slot": "snack3",
+   "usedOnDays": [
+    4,
+    11,
+    18
+   ],
+   "ingredients": [
+    {
+     "id": "tomat",
+     "role": "veg",
+     "note": null
+    },
+    {
+     "id": "kallfrane",
+     "role": "veg",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "ks-strangbona",
+   "title": "Ångade strängbönor",
+   "method": "Ånga strängbönorna 4–5 minuter.",
+   "slot": "snack3",
+   "usedOnDays": [
+    1,
+    5,
+    8,
+    12,
+    15,
+    19
+   ],
+   "ingredients": [
+    {
+     "id": "strangbona",
+     "role": "veg",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "ks-spenat-tomat",
+   "title": "Babyspenat och tomat",
+   "method": "Skär i stavar eller bitar och ät råa.",
+   "slot": "snack3",
+   "usedOnDays": [
+    2,
+    6,
+    9,
+    13,
+    16,
+    20
+   ],
+   "ingredients": [
+    {
+     "id": "spenat",
+     "role": "veg",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "veg",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "mon-1",
+   "title": "Ris med ugnsbakad aubergine, sommarsquash och tomat",
+   "method": "Koka riset i vatten med en nypa salt. Skär aubergine, sommarsquash och tomat i bitar, strö över oregano, timjan och salt och ugnsbaka i 200 °C ca 25 min (utan fett). Sallad: romansallad och källfräne med pressad citron och en nypa salt.",
+   "slot": "main",
+   "usedOnDays": [
+    1
+   ],
+   "ingredients": [
+    {
+     "id": "ris",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "aubergine",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "sommarsquash",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "oregano",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "timjan",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "romansallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "kallfrane",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "mon-2",
+   "title": "Ris med ångad grönkål, champinjoner och schalottenlök",
+   "method": "Koka riset i vatten med salt. Ånga grönkål, champinjoner och schalottenlök tills mjuka och smaka av med saffran och salt. Sallad: spenat och tomat med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    8
+   ],
+   "ingredients": [
+    {
+     "id": "ris",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "gronkal",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "tradgardschampinjon",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "schalottenlok",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "saffran",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "spenat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "mon-3",
+   "title": "Ris med ugnsbakad butternutpumpa, okra och tomat",
+   "method": "Koka riset i vatten med salt. Ugnsbaka butternutpumpa, okra och tomat med spiskummin, chilipeppar och salt i 200 °C ca 30 min (utan fett). Sallad: spenat och källfräne med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    15
+   ],
+   "ingredients": [
+    {
+     "id": "ris",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "butternutpumpa",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "okra",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "spiskummin",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "chilipeppar",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "spenat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "kallfrane",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "tue-1",
+   "title": "Grönsakssoppa med butternutpumpa, tomat och grönkål",
+   "method": "Koka butternutpumpa, schalottenlök och tomat i vatten med spiskummin, timjan och salt ca 20 min. Mixa slätt, rör ner strimlad grönkål och koka 3 min. Sallad: rosé-/grönsallad och spenat med pressad citron och salt.",
+   "slot": "main",
+   "usedOnDays": [
+    2
+   ],
+   "ingredients": [
+    {
+     "id": "butternutpumpa",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "schalottenlok",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "gronkal",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "spiskummin",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "timjan",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "rose-gronsallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "spenat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "tue-2",
+   "title": "Fisksoppa med snapper, tomat och saffran",
+   "method": "Koka schalottenlök, tomat och sommarsquash i vatten med saffran och salt ca 15 min. Lägg i snapper i bitar och sjud 5–6 min tills fisken är genomkokt. Sallad: romansallad med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    9
+   ],
+   "ingredients": [
+    {
+     "id": "snapper",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "schalottenlok",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "sommarsquash",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "saffran",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "romansallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "tue-3",
+   "title": "Svampsoppa med champinjoner, portabello och grönkål",
+   "method": "Koka champinjoner, portabellosvamp och schalottenlök i vatten med timjan och salt ca 15 min. Mixa hälften, rör ner strimlad grönkål och koka 3 min. Sallad: romansallad och tomat med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    16
+   ],
+   "ingredients": [
+    {
+     "id": "tradgardschampinjon",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "portabellosvamp",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "schalottenlok",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "gronkal",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "timjan",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "romansallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "wed-1",
+   "title": "Grillad kyckling med dragon, ångade strängbönor och champinjoner",
+   "method": "Krydda kycklingen med dragon, timjan och salt och grilla/ugnsbaka utan fett tills genomstekt. Ånga strängbönor och champinjoner. Sallad: romansallad och tomat med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    3
+   ],
+   "ingredients": [
+    {
+     "id": "kyckling",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "dragon",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "timjan",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "strangbona",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "tradgardschampinjon",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "romansallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "wed-2",
+   "title": "Ugnsbakad kalkon med butternutpumpa och strängbönor",
+   "method": "Krydda kalkonen med timjan, oregano och salt och ugnsbaka utan fett i 175 °C tills genomstekt. Ugnsbaka butternutpumpa i bitar bredvid. Ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    10
+   ],
+   "ingredients": [
+    {
+     "id": "kalkon",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "timjan",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "oregano",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "butternutpumpa",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "strangbona",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "kallfrane",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "wed-3",
+   "title": "Grillad kyckling med oregano, ugnsbakad aubergine och sommarsquash",
+   "method": "Krydda kycklingen med oregano, chilipeppar och salt och grilla utan fett. Ugnsbaka aubergine och sommarsquash i 200 °C ca 25 min. Sallad: rosé-/grönsallad och tomat med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    17
+   ],
+   "ingredients": [
+    {
+     "id": "kyckling",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "oregano",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "chilipeppar",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "aubergine",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "sommarsquash",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "rose-gronsallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "thu-1",
+   "title": "Kikärtssallad med tomat, källfräne och grönmynta",
+   "method": "Blötlägg och koka kikärtorna i vatten med salt tills mjuka. Blanda med romansallad, tomat och källfräne. Smaka av med spiskummin, hackad grönmynta, pressad citron och salt.",
+   "slot": "main",
+   "usedOnDays": [
+    4
+   ],
+   "ingredients": [
+    {
+     "id": "kikarta",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "romansallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "kallfrane",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "spiskummin",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "gronmynta",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "thu-2",
+   "title": "Linssallad med spenat, tomat och schalottenlök",
+   "method": "Koka linserna i vatten med salt ca 20 min, låt svalna. Blanda med spenat, tomat och finhackad schalottenlök. Smaka av med spiskummin, pressad citron och salt.",
+   "slot": "main",
+   "usedOnDays": [
+    11
+   ],
+   "ingredients": [
+    {
+     "id": "linser",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "spenat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "schalottenlok",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "spiskummin",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "thu-3",
+   "title": "Bönsallad med kidneybönor, pintobönor och jalapeño",
+   "method": "Koka kidney- och pintobönorna i vatten med salt tills mjuka. Blanda med romansallad, tomat och tunt skivad jalapeñopeppar. Smaka av med spiskummin, pressad citron och salt.",
+   "slot": "main",
+   "usedOnDays": [
+    18
+   ],
+   "ingredients": [
+    {
+     "id": "kidneybona",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "pintobona",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "romansallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "jalapenopeppar",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "spiskummin",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fri-1",
+   "title": "Grönsaksgryta med aubergine, okra och tomat",
+   "method": "Skär aubergine, sommarsquash, okra, tomat och schalottenlök i bitar. Låt puttra i lite vatten med oregano, chilipeppar och salt ca 25 min tills mjukt. Sallad: rosé-/grönsallad med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    5
+   ],
+   "ingredients": [
+    {
+     "id": "aubergine",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "sommarsquash",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "okra",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "schalottenlok",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "oregano",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "chilipeppar",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "rose-gronsallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fri-2",
+   "title": "Grönsaksgryta med kronärtskocka, strängbönor och tomat",
+   "method": "Låt kronärtskockshjärtan, strängbönor, tomat och schalottenlök puttra i vatten med dragon och salt ca 20 min. Sallad: rosé-/grönsallad och källfräne med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    12
+   ],
+   "ingredients": [
+    {
+     "id": "kronartskocka",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "strangbona",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "schalottenlok",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "dragon",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "rose-gronsallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "kallfrane",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "fri-3",
+   "title": "Pumpagryta med spenat och spiskummin",
+   "method": "Låt butternutpumpa, tomat och schalottenlök puttra i vatten med spiskummin, saffran och salt ca 20 min. Rör ner spenat sista minuten. Sallad: källfräne och romansallad med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    19
+   ],
+   "ingredients": [
+    {
+     "id": "butternutpumpa",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "schalottenlok",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "spenat",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "vatten",
+     "role": "liquid",
+     "note": null
+    },
+    {
+     "id": "spiskummin",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "saffran",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "kallfrane",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "romansallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "sat-1",
+   "title": "Ugnsbakad öring med citron och timjan, strängbönor och butternutpumpa",
+   "method": "Lägg öringen i en form, strö över timjan och salt och pressa över citron. Ugnsbaka i 200 °C ca 15 min (utan fett). Ugnsbaka butternutpumpa i bitar och ånga strängbönorna. Sallad: spenat och tomat.",
+   "slot": "main",
+   "usedOnDays": [
+    6
+   ],
+   "ingredients": [
+    {
+     "id": "oring",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "timjan",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "strangbona",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "butternutpumpa",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "spenat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "sat-2",
+   "title": "Grillad makrill med ugnsbakad tomat och ångad senapskål",
+   "method": "Krydda makrillen med timjan och salt och grilla utan fett. Ugnsbaka tomathalvor med oregano. Ånga senapskålen. Sallad: romansallad med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    13
+   ],
+   "ingredients": [
+    {
+     "id": "makrill",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "timjan",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "oregano",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "senapskal",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "romansallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "sat-3",
+   "title": "Ångad tilapia med dragon, strängbönor och grönkål",
+   "method": "Krydda tilapian med dragon och salt och ånga ca 8 min. Ånga strängbönor och grönkål. Pressa citron över fisken. Sallad: spenat och tomat.",
+   "slot": "main",
+   "usedOnDays": [
+    20
+   ],
+   "ingredients": [
+    {
+     "id": "tilapia",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "dragon",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "strangbona",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "gronkal",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "spenat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "sun-proposal",
+   "title": "Ugnsbakat hjortkött med portabello, butternutpumpa och grönkål",
+   "method": "Krydda hjortköttet med timjan och salt och ugnsbaka utan fett. Ugnsbaka portabellosvamp och butternutpumpa, ånga grönkålen. Sallad: romansallad och tomat med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    7,
+    14,
+    21
+   ],
+   "ingredients": [
+    {
+     "id": "hjortkott",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "timjan",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "portabellosvamp",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "butternutpumpa",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "gronkal",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "romansallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "UNDER_REVIEW"
+  }
+ ],
+ "days": [
+  {
+   "day": 1,
+   "week": 1,
+   "weekday": "mon",
+   "meals": {
+    "breakfast": "fr-mango-kiwi",
+    "snack1": "fs-persimon",
+    "lunch": "mon-1",
+    "snack2": "vs-tomat-squash",
+    "dinner": "mon-1",
+    "snack3": "ks-strangbona"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 2,
+   "week": 1,
+   "weekday": "tue",
+   "meals": {
+    "breakfast": "fr-papaya-ananas",
+    "snack1": "fs-kiwi",
+    "lunch": "tue-1",
+    "snack2": "vs-strangbona",
+    "dinner": "tue-1",
+    "snack3": "ks-spenat-tomat"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 3,
+   "week": 1,
+   "weekday": "wed",
+   "meals": {
+    "breakfast": "fr-melon-persika",
+    "snack1": "fs-mango",
+    "lunch": "wed-1",
+    "snack2": "vs-champinjon-tomat",
+    "dinner": "wed-1",
+    "snack3": "ks-squash"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 4,
+   "week": 1,
+   "weekday": "thu",
+   "meals": {
+    "breakfast": "fr-mandarin-kiwi",
+    "snack1": "fs-melon",
+    "lunch": "thu-1",
+    "snack2": "vs-romansallad-tomat",
+    "dinner": "thu-1",
+    "snack3": "ks-tomat-kallfrane"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 5,
+   "week": 1,
+   "weekday": "fri",
+   "meals": {
+    "breakfast": "fr-vattenmelon-mango",
+    "snack1": "fs-melon",
+    "lunch": "fri-1",
+    "snack2": "vs-tomat-squash",
+    "dinner": "fri-1",
+    "snack3": "ks-strangbona"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 6,
+   "week": 1,
+   "weekday": "sat",
+   "meals": {
+    "breakfast": "fr-guava-papaya",
+    "snack1": "fs-persika",
+    "lunch": "sat-1",
+    "snack2": "vs-strangbona",
+    "dinner": "sat-1",
+    "snack3": "ks-spenat-tomat"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 7,
+   "week": 1,
+   "weekday": "sun",
+   "meals": {
+    "breakfast": "fr-ananas-mandarin",
+    "snack1": "fs-guava",
+    "lunch": "sun-proposal",
+    "snack2": "vs-champinjon-tomat",
+    "dinner": "sun-proposal",
+    "snack3": "ks-squash"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "UNDER_REVIEW"
+  },
+  {
+   "day": 8,
+   "week": 2,
+   "weekday": "mon",
+   "meals": {
+    "breakfast": "fr-melon-persika",
+    "snack1": "fs-mandarin",
+    "lunch": "mon-2",
+    "snack2": "vs-tomat-squash",
+    "dinner": "mon-2",
+    "snack3": "ks-strangbona"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 9,
+   "week": 2,
+   "weekday": "tue",
+   "meals": {
+    "breakfast": "fr-mandarin-kiwi",
+    "snack1": "fs-melon",
+    "lunch": "tue-2",
+    "snack2": "vs-strangbona",
+    "dinner": "tue-2",
+    "snack3": "ks-spenat-tomat"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 10,
+   "week": 2,
+   "weekday": "wed",
+   "meals": {
+    "breakfast": "fr-vattenmelon-mango",
+    "snack1": "fs-persika",
+    "lunch": "wed-2",
+    "snack2": "vs-champinjon-tomat",
+    "dinner": "wed-2",
+    "snack3": "ks-squash"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 11,
+   "week": 2,
+   "weekday": "thu",
+   "meals": {
+    "breakfast": "fr-guava-papaya",
+    "snack1": "fs-persimon",
+    "lunch": "thu-2",
+    "snack2": "vs-romansallad-tomat",
+    "dinner": "thu-2",
+    "snack3": "ks-tomat-kallfrane"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 12,
+   "week": 2,
+   "weekday": "fri",
+   "meals": {
+    "breakfast": "fr-ananas-mandarin",
+    "snack1": "fs-persimon",
+    "lunch": "fri-2",
+    "snack2": "vs-tomat-squash",
+    "dinner": "fri-2",
+    "snack3": "ks-strangbona"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 13,
+   "week": 2,
+   "weekday": "sat",
+   "meals": {
+    "breakfast": "fr-mango-kiwi",
+    "snack1": "fs-mandarin",
+    "lunch": "sat-2",
+    "snack2": "vs-strangbona",
+    "dinner": "sat-2",
+    "snack3": "ks-spenat-tomat"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 14,
+   "week": 2,
+   "weekday": "sun",
+   "meals": {
+    "breakfast": "fr-papaya-ananas",
+    "snack1": "fs-mango",
+    "lunch": "sun-proposal",
+    "snack2": "vs-champinjon-tomat",
+    "dinner": "sun-proposal",
+    "snack3": "ks-squash"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "UNDER_REVIEW"
+  },
+  {
+   "day": 15,
+   "week": 3,
+   "weekday": "mon",
+   "meals": {
+    "breakfast": "fr-vattenmelon-mango",
+    "snack1": "fs-guava",
+    "lunch": "mon-3",
+    "snack2": "vs-tomat-squash",
+    "dinner": "mon-3",
+    "snack3": "ks-strangbona"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 16,
+   "week": 3,
+   "weekday": "tue",
+   "meals": {
+    "breakfast": "fr-guava-papaya",
+    "snack1": "fs-persimon",
+    "lunch": "tue-3",
+    "snack2": "vs-strangbona",
+    "dinner": "tue-3",
+    "snack3": "ks-spenat-tomat"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 17,
+   "week": 3,
+   "weekday": "wed",
+   "meals": {
+    "breakfast": "fr-ananas-mandarin",
+    "snack1": "fs-mango",
+    "lunch": "wed-3",
+    "snack2": "vs-champinjon-tomat",
+    "dinner": "wed-3",
+    "snack3": "ks-squash"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 18,
+   "week": 3,
+   "weekday": "thu",
+   "meals": {
+    "breakfast": "fr-mango-kiwi",
+    "snack1": "fs-mandarin",
+    "lunch": "thu-3",
+    "snack2": "vs-romansallad-tomat",
+    "dinner": "thu-3",
+    "snack3": "ks-tomat-kallfrane"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 19,
+   "week": 3,
+   "weekday": "fri",
+   "meals": {
+    "breakfast": "fr-papaya-ananas",
+    "snack1": "fs-mandarin",
+    "lunch": "fri-3",
+    "snack2": "vs-tomat-squash",
+    "dinner": "fri-3",
+    "snack3": "ks-strangbona"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 20,
+   "week": 3,
+   "weekday": "sat",
+   "meals": {
+    "breakfast": "fr-melon-persika",
+    "snack1": "fs-guava",
+    "lunch": "sat-3",
+    "snack2": "vs-strangbona",
+    "dinner": "sat-3",
+    "snack3": "ks-spenat-tomat"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "day": 21,
+   "week": 3,
+   "weekday": "sun",
+   "meals": {
+    "breakfast": "fr-mandarin-kiwi",
+    "snack1": "fs-persika",
+    "lunch": "sun-proposal",
+    "snack2": "vs-champinjon-tomat",
+    "dinner": "sun-proposal",
+    "snack3": "ks-squash"
+   },
+   "drinks": [
+    "Vatten, 10–12 glas",
+    "Örtte på färsk grönmynta"
+   ],
+   "status": "UNDER_REVIEW"
+  }
+ ]
+}

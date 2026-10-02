@@ -1,21 +1,24 @@
-import { useState } from 'react';
-import { FOOD_BY_ID, Food, PERSON_NAME, PersonKey, RestoreStatus, groupByCategory, searchFoods, sourceLabel } from '../lib/data';
+// PUBLIC PRODUCT – Re:store by Sanna
+// Renderar endast data från lib/restorePublic (restore-public.json). Inga källprofiler visas här.
+import { ReactNode, useState } from 'react';
 import {
-  CONFLICTS, DAY_RULES, MEAL_BY_ID, RESOLVED_CONFLICTS, RESTORE_DAYS, RESTORE_FOODS, RESTORE_GAPS, RESTORE_LABEL,
-  RESTORE_SUMMARY, RestoreDay, RestoreMeal, SLOTS, WEEKDAY_LABEL, byRestore, daysForToday,
-} from '../lib/restore';
-import { Badge, Chips, Empty, SearchInput, StatusBadge, href, shortReason } from '../components/ui';
+  PublicDay, PublicFood, R_DAYS, R_FOOD, R_FOODS, R_INCLUDED, R_MEAL, R_RULES, R_SLOTS, R_STATUS, R_STRUCTURE,
+  ROLE_LABEL, RestoreStatus, SLOT_LABEL, WEEKDAY, daysForToday, rCheck, rGroup, rSearch,
+} from '../lib/restorePublic';
+import { Badge, Chips, Empty, SearchInput, href } from '../components/ui';
 
-// ---------------------------------------------------------------------------
-export function RestoreBadge({ status, size }: { status: RestoreStatus; size?: 'sm' | 'md' | 'lg' }) {
-  const r = RESTORE_LABEL[status];
-  return <Badge tone={r.tone} symbol={r.symbol} size={size}>{r.label}</Badge>;
+const rHref = (...p: string[]) => href('restore', ...p);
+const foodHref = (id: string) => rHref('livsmedel', id);
+
+export function RestoreBadge({ status, size, long }: { status: RestoreStatus; size?: 'sm' | 'md' | 'lg'; long?: boolean }) {
+  const r = R_STATUS[status];
+  return <Badge tone={r.tone} symbol={r.symbol} size={size}>{long ? r.long : r.label}</Badge>;
 }
 
-function RestoreHeader({ title, lede, back = true }: { title: string; lede?: React.ReactNode; back?: boolean }) {
+function RestoreHeader({ title, lede, back = rHref(), backLabel = 'Re:store' }: { title: string; lede?: ReactNode; back?: string; backLabel?: string }) {
   return (
     <header className="page-header">
-      {back && <a className="back" href="#/restore">‹ Re:store</a>}
+      <a className="back" href={back}>‹ {backLabel}</a>
       <p className="eyebrow">Re:store by Sanna</p>
       <h1>{title}</h1>
       {lede && <p className="lede">{lede}</p>}
@@ -23,40 +26,39 @@ function RestoreHeader({ title, lede, back = true }: { title: string; lede?: Rea
   );
 }
 
-/** Sökresultat: Linn / Patrik / Re:store */
-export function RestoreQuickCard({ food }: { food: Food }) {
-  const tone = RESTORE_LABEL[food.restoreStatus].tone;
+/** Sökresultat – endast Re:store-status */
+function RestoreResult({ food }: { food: PublicFood }) {
+  const s = R_STATUS[food.status];
   return (
-    <a className={`quick-card qc-${tone}`} href={href('livsmedel', food.id)}>
-      <div className="qc-head"><h3>{food.displayName}</h3><span className="qc-cat">{food.category}</span></div>
-      <dl className="qc-people">
-        {(['linn', 'patrik'] as PersonKey[]).map((w) => (
-          <div key={w} className="qc-person">
-            <dt>{PERSON_NAME[w]}</dt>
-            <dd><StatusBadge status={food[w].finalStatusDay1To21} size="sm" /><span className="qc-reason">{shortReason(food, w)}</span></dd>
-          </div>
-        ))}
-        <div className="qc-person qc-restore">
-          <dt>Re:store</dt>
-          <dd><RestoreBadge status={food.restoreStatus} /></dd>
-        </div>
-      </dl>
+    <a className={`quick-card qc-${s.tone}`} href={foodHref(food.id)}>
+      <div className="qc-head"><h3>{food.name}</h3><span className="qc-cat">{food.category}</span></div>
+      <p className="qc-verdict-line"><RestoreBadge status={food.status} long /></p>
+      <p className="qc-reason">{food.reason}</p>
     </a>
   );
 }
 
-function DayLink({ d }: { d: RestoreDay }) {
-  const main = MEAL_BY_ID[d.meals.lunch];
+function NotFound({ q }: { q: string }) {
   return (
-    <a className={`day-tile ${d.validation.pass ? '' : 'day-tile-fail'}`} href={href('restore', 'dag', String(d.day))}>
+    <div className="quick-card qc-grey">
+      <h3>{q}</h3>
+      <p className="qc-verdict-line"><Badge tone="grey" symbol="?">EJ VERIFIERAT</Badge></p>
+      <p className="qc-reason">Livsmedlet finns inte i Re:store-underlaget. Re:store gissar inte.</p>
+    </div>
+  );
+}
+
+const mainOf = (d: PublicDay) => R_MEAL[d.meals.lunch];
+
+function DayTile({ d }: { d: PublicDay }) {
+  return (
+    <a className={`day-tile ${d.status === 'VALIDATED' ? '' : 'day-tile-fail'}`} href={rHref('dag', String(d.day))}>
       <span className="dt-top">
         <span className="dt-day">Dag {d.day}</span>
-        <span className="dt-wd">{WEEKDAY_LABEL[d.weekday]} · {DAY_RULES[d.weekday].theme}</span>
+        <span className="dt-wd">{WEEKDAY[d.weekday]} · {R_STRUCTURE[d.weekday].theme}</span>
       </span>
-      <span className="dt-meal">{main.title}</span>
-      {d.validation.pass
-        ? <Badge tone="green" symbol="✓" size="sm">Validerad</Badge>
-        : <Badge tone="amber" symbol="!" size="sm">Kräver beslut</Badge>}
+      <span className="dt-meal">{mainOf(d).title}</span>
+      {d.status !== 'VALIDATED' && <span className="dt-review">Under granskning</span>}
     </a>
   );
 }
@@ -64,7 +66,7 @@ function DayLink({ d }: { d: RestoreDay }) {
 // ---------------------------------------------------------------------------
 export function RestoreHome() {
   const [q, setQ] = useState('');
-  const results = q.trim() ? searchFoods(q).slice(0, 6) : [];
+  const results = q.trim() ? rSearch(q).slice(0, 6) : [];
   const today = daysForToday();
   const wd = today[0]?.weekday;
   return (
@@ -72,27 +74,15 @@ export function RestoreHome() {
       <header className="hero hero-restore">
         <p className="hero-names">Re:Set by Sanna</p>
         <h1>Re:store <span className="by">by Sanna</span></h1>
-        <p className="hero-sub">Linn + Patrik · 21 dagar</p>
+        <p className="hero-sub">21-dagars kostprotokoll</p>
       </header>
 
-      <a className="choice tone-green choice-primary restore-count" href={href('restore', 'mat')}>
-        <span className="choice-sym" aria-hidden="true">✓</span>
-        <span className="choice-label">livsmedel verifierade för båda</span>
-        <span className="choice-count">{RESTORE_FOODS.length}</span>
-      </a>
-
       <div className="restore-search">
-        <SearchInput value={q} onChange={setQ} large placeholder="Kan båda äta …?" label="Sök livsmedel i Re:store" />
+        <SearchInput value={q} onChange={setQ} large placeholder="Ingår … i Re:store?" label="Sök livsmedel i Re:store" />
       </div>
       {q.trim() && (
         <section aria-live="polite" className="search-results">
-          {results.length === 0 ? (
-            <div className="quick-card qc-grey">
-              <h3>{q}</h3>
-              <p><strong>? Ej verifierat</strong></p>
-              <p className="note">Finns inte i Linns eller Patriks underlag. Re:store gissar inte.</p>
-            </div>
-          ) : results.map((f) => <RestoreQuickCard key={f.id} food={f} />)}
+          {results.length === 0 ? <NotFound q={q} /> : results.map((f) => <RestoreResult key={f.id} food={f} />)}
         </section>
       )}
 
@@ -100,25 +90,24 @@ export function RestoreHome() {
         <>
           {wd && (
             <section className="today-card">
-              <h2>Idag · {WEEKDAY_LABEL[wd]}</h2>
-              <p className="note">{DAY_RULES[wd].theme}. Dag 1 i planen är en måndag.</p>
+              <h2>Idag · {WEEKDAY[wd]}</h2>
+              <p className="note">{R_STRUCTURE[wd].theme}</p>
               <div className="today-days">
                 {today.map((d) => (
-                  <a key={d.day} href={href('restore', 'dag', String(d.day))} className="today-link">
+                  <a key={d.day} href={rHref('dag', String(d.day))} className="today-link">
                     <span>Dag {d.day}</span>
-                    <strong>{MEAL_BY_ID[d.meals.lunch].title}</strong>
+                    <strong>{mainOf(d).title}</strong>
                   </a>
                 ))}
               </div>
             </section>
           )}
           <nav className="secondary" aria-label="Re:store">
-            <a href={href('restore', 'plan')}><span aria-hidden="true">▦</span> 21-dagarsplan <span className="count">{RESTORE_SUMMARY.pass}/{RESTORE_SUMMARY.total} validerade</span></a>
-            <a href={href('restore', 'mat')}><span aria-hidden="true">✓</span> Gemensam matlista</a>
-            <a href={href('restore', 'kan-vi')}><span aria-hidden="true">🍽</span> Kan vi laga detta?</a>
-            <a href={href('restore', 'kontroll')}><span aria-hidden="true">⚠</span> Konflikter &amp; QA <span className="count">{CONFLICTS.length + RESTORE_GAPS.length}</span></a>
+            <a href={rHref('plan')}><span aria-hidden="true">▦</span> 21-dagarsplan</a>
+            <a href={rHref('mat')}><span aria-hidden="true">✓</span> Re:store Foods <span className="count">{R_INCLUDED.length}</span></a>
+            <a href={rHref('fungerar')}><span aria-hidden="true">🍽</span> Fungerar detta i Re:store?</a>
+            <a href={rHref('struktur')}><span aria-hidden="true">◎</span> Så är Re:store uppbyggt</a>
           </nav>
-          <p className="footnote">Re:store innehåller endast livsmedel där både Linns och Patriks slutstatus dag 1–21 är Tillåten. <a href="#/">‹ Tillbaka till Re:Set</a></p>
         </>
       )}
     </div>
@@ -127,40 +116,38 @@ export function RestoreHome() {
 
 // ---------------------------------------------------------------------------
 const STATUS_FILTERS: { value: RestoreStatus; label: string }[] = [
-  { value: 'ALLOWED_FOR_BOTH', label: 'Tillåtet för båda' },
+  { value: 'ALLOWED_FOR_BOTH', label: 'Ingår i Re:store' },
   { value: 'NOT_ALLOWED_FOR_BOTH', label: 'Ingår inte' },
   { value: 'UNVERIFIED', label: 'Ej verifierat' },
-  { value: 'DATA_CONFLICT', label: 'Datakonflikt' },
 ];
+const statusPool = (s: RestoreStatus) =>
+  R_FOODS.filter((f) => (s === 'UNVERIFIED' ? f.status === 'UNVERIFIED' || f.status === 'DATA_CONFLICT' : f.status === s));
 
 export function RestoreFoods() {
   const [q, setQ] = useState('');
   const [status, setStatus] = useState<RestoreStatus>('ALLOWED_FOR_BOTH');
   const [cat, setCat] = useState('Alla');
-  const pool = byRestore(status);
-  const groups = groupByCategory(pool);
-  const filtered = searchFoods(q, pool).filter((f) => cat === 'Alla' || f.category === cat);
-  const tone = RESTORE_LABEL[status].tone;
+  const pool = statusPool(status);
+  const filtered = rSearch(q, pool).filter((f) => cat === 'Alla' || f.category === cat);
+  const tone = R_STATUS[status].tone;
   return (
     <div>
-      <RestoreHeader title="Gemensam matlista" lede={<><strong>{RESTORE_FOODS.length} livsmedel verifierade för båda.</strong> Bara det som både Linn och Patrik får äta under dag 1–21.</>} />
+      <RestoreHeader title="Re:store Foods" lede={<><strong>{R_INCLUDED.length} validerade livsmedel.</strong> Allt som ingår i 21-dagarsprotokollet, sorterat efter kategori.</>} />
       <div className="toolbar">
-        <SearchInput value={q} onChange={setQ} placeholder="Sök i matlistan…" />
-        <Chips label="Re:store-status" value={status} onChange={(v) => { setStatus(v); setCat('Alla'); }}
-          options={STATUS_FILTERS.map((s) => ({ ...s, count: byRestore(s.value).length }))} />
+        <SearchInput value={q} onChange={setQ} placeholder="Sök livsmedel i Re:store…" label="Sök livsmedel i Re:store" />
+        <Chips label="Status" value={status} onChange={(v) => { setStatus(v); setCat('Alla'); }}
+          options={STATUS_FILTERS.map((s) => ({ ...s, count: statusPool(s.value).length }))} />
         <Chips label="Kategori" value={cat} onChange={setCat}
-          options={[{ value: 'Alla', label: 'Alla', count: pool.length }, ...groups.map(([g, l]) => ({ value: g, label: g, count: l.length }))]} />
+          options={[{ value: 'Alla', label: 'Alla', count: pool.length }, ...rGroup(pool).map(([g, l]) => ({ value: g, label: g, count: l.length }))]} />
       </div>
       {filtered.length === 0 && <Empty>Inga träffar.</Empty>}
-      {groupByCategory(filtered).map(([g, list]) => (
+      {rGroup(filtered).map(([g, list]) => (
         <section key={g} className="group">
           <h2 className="group-title">{g} <span className="count">{list.length}</span></h2>
           <ul className="pill-list">
             {list.map((f) => (
               <li key={f.id}>
-                <a className={`pill tone-${tone}`} href={href('livsmedel', f.id)}>
-                  <span aria-hidden="true">{RESTORE_LABEL[status].symbol}</span> {f.displayName}
-                </a>
+                <a className={`pill tone-${tone}`} href={foodHref(f.id)}><span aria-hidden="true">{R_STATUS[status].symbol}</span> {f.name}</a>
               </li>
             ))}
           </ul>
@@ -171,34 +158,55 @@ export function RestoreFoods() {
 }
 
 // ---------------------------------------------------------------------------
+function Structure() {
+  return (
+    <>
+      <section className="group">
+        <h2 className="group-title">Veckorytmen</h2>
+        <ul className="meal-list">
+          {Object.entries(R_STRUCTURE).map(([k, r]) => (
+            <li key={k}><span className="meal-time">{r.label}</span><span><strong>{r.theme}</strong><br /><span className="note">{r.text}</span></span></li>
+          ))}
+        </ul>
+        <p className="note">Veckan upprepas tre gånger. Dag 1 är en måndag.</p>
+      </section>
+      <section className="group">
+        <h2 className="group-title">Måltidsrytmen</h2>
+        <ul className="meal-list">
+          {R_SLOTS.map((s) => <li key={s.key}><span className="meal-time">{s.time}</span><span><strong>{s.label}</strong> · {s.text}</span></li>)}
+        </ul>
+      </section>
+      <section className="group">
+        <h2 className="group-title">Protokollets regler</h2>
+        <ul className="rule-list">{R_RULES.map((r) => <li key={r}>{r}</li>)}</ul>
+      </section>
+    </>
+  );
+}
+
+export function RestoreStructure() {
+  return (
+    <div>
+      <RestoreHeader title="Så är Re:store uppbyggt" lede="Re:store följer en fast veckorytm med sex måltider om dagen. Varje måltid består enbart av validerade livsmedel." />
+      <Structure />
+    </div>
+  );
+}
+
 export function RestorePlan() {
   return (
     <div>
-      <RestoreHeader title="21-dagarsplan" lede={<>Linns och Patriks gemensamma veckostruktur, upprepad i tre veckor. Dag 1 = måndag. <strong>{RESTORE_SUMMARY.pass} av {RESTORE_SUMMARY.total} dagar validerade.</strong></>} />
-      {RESTORE_SUMMARY.blocked.length > 0 && (
-        <p className="diff-flag"><span aria-hidden="true">! </span>Dag {RESTORE_SUMMARY.blocked.join(', ')} kräver ett beslut från er – se <a href={href('restore', 'kontroll')}>Konflikter &amp; QA</a>.</p>
-      )}
+      <RestoreHeader title="21-dagarsplan" lede="Ett strukturerat 21-dagars kostupplägg med noggrant utvalda livsmedel, tydlig veckorytm och färdiga måltider för varje dag." />
+      <p className="note">Dag 1 är en måndag.</p>
       {[1, 2, 3].map((w) => (
         <section key={w} className="group">
           <h2 className="group-title">Vecka {w} · dag {(w - 1) * 7 + 1}–{w * 7}</h2>
-          <div className="day-grid">
-            {RESTORE_DAYS.filter((d) => d.week === w).map((d) => <DayLink key={d.day} d={d} />)}
-          </div>
+          <div className="day-grid">{R_DAYS.filter((d) => d.week === w).map((d) => <DayTile key={d.day} d={d} />)}</div>
         </section>
       ))}
       <details className="group">
-        <summary>Gemensam struktur – så är planen uppbyggd</summary>
-        <ul className="meal-list">
-          {SLOTS.map((s) => (
-            <li key={s.key}><span className="meal-time">{s.label}</span><span>{s.shared}<br /><span className="note">Linn {s.linn}: {s.linnText} · Patrik {s.patrik}: {s.patrikText}</span></span></li>
-          ))}
-        </ul>
-        <ul className="meal-list">
-          {Object.entries(DAY_RULES).map(([k, r]) => (
-            <li key={k}><span className="meal-time">{r.label}</span><span><strong>{r.theme}</strong>{r.sharedBase.length ? ` · gemensamt: ${r.sharedBase.map((id) => FOOD_BY_ID[id]?.displayName ?? id).join(', ')}` : ''}<br /><span className="note">Linn: {r.linn}<br />Patrik: {r.patrik}</span></span></li>
-          ))}
-        </ul>
-        <p className="note">Restaurangportioner. Ät var tredje timme och hoppa inte över måltider. Endast keltiskt salt / havssalt. 10–12 glas vatten dagligen.</p>
+        <summary>Så är Re:store uppbyggt</summary>
+        <Structure />
       </details>
     </div>
   );
@@ -206,41 +214,33 @@ export function RestorePlan() {
 
 // ---------------------------------------------------------------------------
 export function RestoreDayView({ day }: { day: number }) {
-  const d = RESTORE_DAYS.find((x) => x.day === day);
+  const d = R_DAYS.find((x) => x.day === day);
   if (!d) return <Empty>Dagen finns inte.</Empty>;
-  const v = d.validation;
-  const rule = DAY_RULES[d.weekday];
+  const ok = d.status === 'VALIDATED';
   return (
     <div>
       <header className="page-header">
-        <a className="back" href={href('restore', 'plan')}>‹ 21-dagarsplan</a>
+        <a className="back" href={rHref('plan')}>‹ 21-dagarsplan</a>
         <p className="eyebrow">Re:store · Vecka {d.week}</p>
         <h1>Dag {d.day}</h1>
-        <p className="lede">{WEEKDAY_LABEL[d.weekday]} · {rule.theme}</p>
+        <p className="lede">{WEEKDAY[d.weekday]} · {R_STRUCTURE[d.weekday].theme}</p>
       </header>
-      <div className={`verdict verdict-${v.pass ? 'green' : 'amber'}`}>
-        <span className="verdict-label">{v.pass ? 'Alla måltider validerade för Linn och Patrik' : 'Dagen kan inte valideras – kräver beslut'}</span>
-        {v.pass ? <Badge tone="green" symbol="✓" size="lg">PASS</Badge> : <Badge tone="amber" symbol="!" size="lg">FAIL</Badge>}
-      </div>
-      {!v.pass && (
-        <div className="note-global note">
-          {(v.failReasons ?? []).map((r) => <p key={r}>{r}</p>)}
-          <p><a href={href('restore', 'kontroll')}>Läs mer och ta ställning ›</a></p>
-        </div>
+      {!ok && (
+        <p className="diff-flag"><span aria-hidden="true">! </span>Dagens huvudrätt är under granskning och ännu inte validerad. Frukost och mellanmål är validerade.</p>
       )}
 
       <ol className="schedule">
-        {SLOTS.map((s) => {
-          const m = MEAL_BY_ID[d.meals[s.key]];
-          const mv = v.meals.find((x) => x.slot === s.key)!;
+        {R_SLOTS.map((s) => {
+          const m = R_MEAL[d.meals[s.key]];
+          const mOk = m.status === 'VALIDATED';
           return (
             <li key={s.key} className="sched-item">
-              <div className="sched-time"><span>Linn {s.linn}</span><span>Patrik {s.patrik}</span></div>
-              <a className={`sched-meal ${mv.pass ? '' : 'sched-fail'}`} href={href('restore', 'maltid', m.id)}>
+              <div className="sched-time"><span>{s.time}</span></div>
+              <a className={`sched-meal ${mOk ? '' : 'sched-fail'}`} href={rHref('maltid', m.id)}>
                 <span className="sched-label">{s.label}{s.key === 'dinner' ? ' · samma som lunch' : ''}</span>
                 <strong>{m.title}</strong>
-                <span className="sched-ing">{m.ingredients.map((i) => FOOD_BY_ID[i.id].displayName + (i.note && i.note.startsWith('1 ') ? ` (${i.note})` : '')).join(' · ')}</span>
-                <span className="sched-status">{mv.pass ? <span className="ok">✓ Verifierad för båda</span> : <span className="warn">! Ej validerad</span>}</span>
+                <span className="sched-ing">{m.ingredients.map((i) => R_FOOD[i.id].name + (i.note && i.note.startsWith('1 ') ? ` (${i.note})` : '')).join(' · ')}</span>
+                <span className="sched-status">{mOk ? <span className="ok">✓ Re:store-validerad</span> : <span className="warn">Under granskning</span>}</span>
               </a>
             </li>
           );
@@ -249,14 +249,12 @@ export function RestoreDayView({ day }: { day: number }) {
 
       <section className="group">
         <h2 className="group-title">Dryck</h2>
-        <ul className="pill-list">
-          {d.drinks.map((x) => <li key={x.title}><span className="pill tone-green"><span aria-hidden="true">✓</span> {x.title}</span></li>)}
-        </ul>
+        <ul className="pill-list">{d.drinks.map((x) => <li key={x}><span className="pill tone-green"><span aria-hidden="true">✓</span> {x}</span></li>)}</ul>
       </section>
 
       <nav className="day-nav" aria-label="Bläddra dagar">
-        {d.day > 1 ? <a href={href('restore', 'dag', String(d.day - 1))}>‹ Dag {d.day - 1}</a> : <span />}
-        {d.day < 21 ? <a href={href('restore', 'dag', String(d.day + 1))}>Dag {d.day + 1} ›</a> : <span />}
+        {d.day > 1 ? <a href={rHref('dag', String(d.day - 1))}>‹ Dag {d.day - 1}</a> : <span />}
+        {d.day < 21 ? <a href={rHref('dag', String(d.day + 1))}>Dag {d.day + 1} ›</a> : <span />}
       </nav>
     </div>
   );
@@ -264,41 +262,37 @@ export function RestoreDayView({ day }: { day: number }) {
 
 // ---------------------------------------------------------------------------
 export function RestoreMealView({ id }: { id: string }) {
-  const m: RestoreMeal | undefined = MEAL_BY_ID[id];
+  const m = R_MEAL[id];
   if (!m) return <Empty>Måltiden finns inte.</Empty>;
-  const day = RESTORE_DAYS.find((d) => Object.values(d.meals).includes(m.id));
-  const v = day?.validation.meals.find((x) => x.mealId === m.id);
-  const allOk = v ? v.ingredientsPass : false;
-  const ROLE: Record<string, string> = {
-    base: 'Huvudkomponent', cooked: 'Tillagad grönsak', salad: 'Färsk sallad', seasoning: 'Smaksättning', liquid: 'Vätska',
-    fruit: 'Frukt', spread: 'Pålägg', veg: 'Grönsak',
-  };
+  const ok = m.status === 'VALIDATED';
+  const firstDay = R_DAYS.find((d) => Object.values(d.meals).includes(m.id));
   return (
     <div>
       <header className="page-header">
-        <a className="back" href={day ? href('restore', 'dag', String(day.day)) : href('restore', 'plan')} onClick={(e) => { if (history.length > 1) { e.preventDefault(); history.back(); } }}>‹ Tillbaka</a>
+        <a className="back" href={firstDay ? rHref('dag', String(firstDay.day)) : rHref('plan')} onClick={(e) => { if (history.length > 1) { e.preventDefault(); history.back(); } }}>‹ Tillbaka</a>
         <p className="eyebrow">Re:store · måltid</p>
         <h1>{m.title}</h1>
-        {m.usedOnDays.length > 0 && <p className="lede">Dag {m.usedOnDays.join(', ')}</p>}
+        <p className="lede">Dag {m.usedOnDays.join(', ')}</p>
       </header>
 
-      {m.proposal && (
-        <p className="diff-flag"><span aria-hidden="true">! </span>Förslag – inte validerat. Söndagens regel har inget rött kött som står i båda personernas schema. Se <a href={href('restore', 'kontroll')}>Konflikter &amp; QA</a>.</p>
-      )}
+      <div className={`verdict verdict-${ok ? 'green' : 'amber'}`}>
+        <span className="verdict-label">{ok ? 'Samtliga ingredienser är verifierade för Re:store-protokollet.' : 'Rätten är under granskning och ännu inte validerad.'}</span>
+        {ok ? <Badge tone="green" symbol="✓" size="lg">Re:store-validerad</Badge> : <Badge tone="amber" symbol="!" size="lg">Under granskning</Badge>}
+      </div>
 
       <section className="group">
         <h2 className="group-title">Ingredienser <span className="count">{m.ingredients.length}</span></h2>
         <ul className="ing-list">
           {m.ingredients.map((i) => {
-            const f = FOOD_BY_ID[i.id];
-            const ok = f.linn.finalStatusDay1To21 === 'ALLOWED' && f.patrik.finalStatusDay1To21 === 'ALLOWED';
+            const f = R_FOOD[i.id];
+            const inc = f.status === 'ALLOWED_FOR_BOTH';
             return (
               <li key={i.id}>
-                <a href={href('livsmedel', f.id)} className="ing-row">
-                  <span className={`mark tone-${ok ? 'green' : 'red'}`} aria-hidden="true">{ok ? '✓' : '✕'}</span>
-                  <span className="ing-name">{f.displayName}{i.note ? <span className="muted"> · {i.note}</span> : null}</span>
-                  <span className="ing-role">{ROLE[i.role] ?? i.role}</span>
-                  <span className="sr-only">{ok ? 'Tillåten för båda' : 'Inte tillåten för båda'}</span>
+                <a href={foodHref(f.id)} className="ing-row">
+                  <span className={`mark tone-${inc ? 'green' : 'red'}`} aria-hidden="true">{inc ? '✓' : '✕'}</span>
+                  <span className="ing-name">{f.name}{i.note ? <span className="muted"> · {i.note}</span> : null}</span>
+                  <span className="ing-role">{ROLE_LABEL[i.role] ?? i.role}</span>
+                  <span className="sr-only">{R_STATUS[f.status].label}</span>
                 </a>
               </li>
             );
@@ -306,116 +300,118 @@ export function RestoreMealView({ id }: { id: string }) {
         </ul>
       </section>
 
-      <section className={`check-result cr-${allOk ? 'green' : 'red'}`}>
-        <h2 className="group-title">Verifierad för</h2>
-        <p className="cr-people">
-          {(['linn', 'patrik'] as PersonKey[]).map((w) => {
-            const ok = m.ingredients.every((i) => FOOD_BY_ID[i.id][w].finalStatusDay1To21 === 'ALLOWED');
-            return <span key={w} className={ok ? 'ok' : 'warn'}><span aria-hidden="true">{ok ? '✓' : '✕'} </span>{PERSON_NAME[w]}</span>;
-          })}
-        </p>
-        <p className="note"><strong>{allOk ? 'Alla ingredienser är verifierade för båda profilerna.' : 'Minst en ingrediens är inte verifierad för båda.'}</strong></p>
-        {v && (
-          <>
-            <h3>Dagens struktur ({day ? `${WEEKDAY_LABEL[day.weekday]}, ${DAY_RULES[day.weekday].theme.toLowerCase()}` : ''})</h3>
-            <ul>{v.structure.map((s, k) => <li key={k} className={s.ok ? 'ok' : 'warn'}>{s.ok ? '✓' : '✕'} {s.text}</li>)}</ul>
-          </>
-        )}
-      </section>
-
       <section className="group">
         <h2 className="group-title">Så gör du</h2>
         <p>{m.method}</p>
-        <p className="note">Inga andra ingredienser än de som står ovan. Tillagas utan fett – inget stekfett eller salladsolja är verifierat för båda.</p>
+        <p className="note">Inga andra ingredienser än de som står ovan. Maten tillagas utan fett.</p>
       </section>
     </div>
   );
 }
 
 // ---------------------------------------------------------------------------
-function SourceBox({ label, s }: { label: string; s: { document: string; page: number | null; text: string; says: string } | null }) {
-  if (!s) return null;
+export function RestoreFoodView({ id }: { id: string }) {
+  const f = R_FOOD[id];
+  if (!f) return <Empty>Livsmedlet finns inte.</Empty>;
+  const inc = f.status === 'ALLOWED_FOR_BOTH';
+  const s = R_STATUS[f.status];
+  const mealsWith = Object.values(R_MEAL).filter((m) => m.ingredients.some((i) => i.id === f.id));
   return (
-    <div className="src-box">
-      <span className="src-kind">{label}</span>
-      <span className="src-doc">{sourceLabel({ kind: 'ALCAT', document: s.document, page: s.page, text: s.text })}</span>
-      <q>{s.text}</q>
-      <strong>Säger: {s.says}</strong>
-    </div>
+    <article className="detail">
+      <header className="page-header">
+        <a className="back" href={rHref('mat')} onClick={(e) => { if (history.length > 1) { e.preventDefault(); history.back(); } }}>‹ Tillbaka</a>
+        <p className="eyebrow">{f.category}</p>
+        <h1>{f.name}</h1>
+      </header>
+      <div className={`verdict verdict-${s.tone}`}>
+        <span className="verdict-label">Re:store-status</span>
+        <RestoreBadge status={f.status} size="lg" long />
+      </div>
+      <dl className="facts facts-card">
+        <div><dt>Period</dt><dd>{inc ? '✓ Tillåtet under dag 1–21' : f.status === 'NOT_ALLOWED_FOR_BOTH' ? '✕ Ingår inte under dag 1–21' : '? Kan inte verifieras för dag 1–21'}</dd></div>
+        <div><dt>Kategori</dt><dd>{f.category}</dd></div>
+        <div><dt>Underlag</dt><dd>{f.reason}</dd></div>
+        {inc && (
+          <div><dt>Används i protokollet</dt><dd>{f.use.length
+            ? f.use.map((u) => `${SLOT_LABEL[u.slot]}: dag ${u.days.join(', ')}`).join(' · ')
+            : 'Ingår i Re:store men används inte i 21-dagarsplanens måltider. Kan användas fritt inom dagens struktur.'}</dd></div>
+        )}
+      </dl>
+      {mealsWith.length > 0 && (
+        <section className="group">
+          <h2 className="group-title">Måltider med {f.name.toLowerCase()}</h2>
+          <ul className="reason-list">
+            {mealsWith.map((m) => (
+              <li key={m.id}><a className="reason-item" href={rHref('maltid', m.id)}><span>{m.title}</span><span className="note">Dag {m.usedOnDays.join(', ')}</span></a></li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </article>
   );
 }
 
-export function RestoreIssues() {
-  const unverified = byRestore('UNVERIFIED');
+// ---------------------------------------------------------------------------
+export function RestoreCheck() {
+  const [q, setQ] = useState('');
+  const [ids, setIds] = useState<string[]>([]);
+  const [unknown, setUnknown] = useState<string[]>([]);
+  const selected = ids.map((id) => R_FOOD[id]);
+  const suggestions = q.trim() ? rSearch(q).filter((f) => !ids.includes(f.id)).slice(0, 6) : [];
+  const res = rCheck(selected, unknown);
+  const add = (f: PublicFood) => { setIds((x) => [...x, f.id]); setQ(''); };
+  const addUnknown = () => { const t = q.trim(); if (t && !unknown.includes(t)) setUnknown((u) => [...u, t]); setQ(''); };
+
   return (
     <div>
-      <RestoreHeader title="Konflikter & QA" lede="Allt som hindrar ett livsmedel eller en dag från att ingå i Re:store – och vad som behövs för att lösa det." />
-
-      <section className="group">
-        <h2 className="group-title">21-dagarsvalidering · {RESTORE_SUMMARY.pass}/{RESTORE_SUMMARY.total} PASS</h2>
-        <div className="qa-grid">
-          {RESTORE_DAYS.map((d) => (
-            <a key={d.day} href={href('restore', 'dag', String(d.day))} className={`qa-cell tone-${d.validation.pass ? 'green' : 'amber'}`}>
-              <span>Dag {d.day}</span><strong>{d.validation.pass ? 'PASS' : 'FAIL'}</strong>
-            </a>
-          ))}
-        </div>
-        <p className="note">PASS = alla ingredienser tillåtna för Linn och Patrik dag 1–21, inga ej verifierade eller konfliktlivsmedel, och dagens gemensamma struktur följs.</p>
-      </section>
-
-      <section className="group">
-        <h2 className="group-title">Datakonflikter <span className="count">{CONFLICTS.length}</span></h2>
-        {CONFLICTS.map((c, k) => (
-          <article key={k} className="conflict">
-            <h3><a href={href('livsmedel', c.foodId)}>{c.food}</a> · {PERSON_NAME[c.person]}</h3>
-            <div className="two-col">
-              <SourceBox label="Källa A" s={c.sourceA} />
-              <SourceBox label="Källa B" s={c.sourceB} />
-            </div>
-            <p className="note">{c.effect}</p>
-          </article>
-        ))}
-        {RESOLVED_CONFLICTS.map((c, k) => (
-          <article key={`r${k}`} className="conflict conflict-resolved">
-            <h3><a href={href('livsmedel', c.foodId)}>{c.food}</a> · {PERSON_NAME[c.person]} · <span className="ok">Löst</span></h3>
-            <div className="two-col">
-              <SourceBox label="Källa A" s={c.sourceA} />
-              <SourceBox label="Källa B" s={c.sourceB} />
-            </div>
-            <p className="note"><strong>{c.resolution}</strong> {c.effect}</p>
-          </article>
-        ))}
-      </section>
-
-      <section className="group">
-        <h2 className="group-title">Luckor i underlaget som påverkar planen <span className="count">{RESTORE_GAPS.length}</span></h2>
-        {RESTORE_GAPS.map((g) => (
-          <article key={g.id} className="conflict">
-            <h3>{g.title}</h3>
-            <p className="note"><strong>Påverkar:</strong> {g.affects}</p>
-            <p>{g.text}</p>
-            <p className="note"><strong>Beslut som löser det:</strong> {g.decision}</p>
-          </article>
-        ))}
-      </section>
-
-      <section className="group">
-        <h2 className="group-title">Ej verifierat – kan inte ingå i Re:store <span className="count">{unverified.length}</span></h2>
-        <ul className="reason-list">
-          {unverified.map((f) => (
+      <RestoreHeader title="Fungerar detta i Re:store?" lede="Lägg till varje ingrediens i rätten – även olja, salt, kryddor, sås och dryck." />
+      <div className="toolbar"><SearchInput value={q} onChange={setQ} placeholder="Lägg till ingrediens…" label="Lägg till ingrediens" /></div>
+      {q.trim() && (
+        <ul className="suggest" aria-label="Förslag">
+          {suggestions.map((f) => (
             <li key={f.id}>
-              <a className="reason-item" href={href('livsmedel', f.id)}>
-                <span className="ri-name">{f.displayName}</span>
-                <span className="ri-people">
-                  {(['linn', 'patrik'] as PersonKey[]).map((w) => (
-                    <span key={w} className="ri-p"><span className="ri-who">{PERSON_NAME[w]}</span><StatusBadge status={f[w].finalStatusDay1To21} size="sm" /><span className="ri-why">{shortReason(f, w)}</span></span>
-                  ))}
-                </span>
-              </a>
+              <button type="button" onClick={() => add(f)}>
+                <span>{f.name}</span>
+                <span className={`mark tone-${R_STATUS[f.status].tone}`} title={R_STATUS[f.status].label}><span aria-hidden="true">{R_STATUS[f.status].symbol}</span><span className="sr-only">{R_STATUS[f.status].label}</span></span>
+                <span className="suggest-add" aria-hidden="true">+</span>
+              </button>
             </li>
           ))}
+          {suggestions.length === 0 && (
+            <li><button type="button" onClick={addUnknown}><span>Lägg till "{q.trim()}" – finns inte i underlaget</span><span /><span className="suggest-add" aria-hidden="true">+</span></button></li>
+          )}
         </ul>
-      </section>
+      )}
+      {(selected.length > 0 || unknown.length > 0) && (
+        <ul className="selected" aria-label="Valda ingredienser">
+          {selected.map((f) => (
+            <li key={f.id} className="sel-chip"><span>{f.name}</span><button type="button" aria-label={`Ta bort ${f.name}`} onClick={() => setIds((x) => x.filter((i) => i !== f.id))}>×</button></li>
+          ))}
+          {unknown.map((u) => (
+            <li key={u} className="sel-chip sel-unknown"><span>{u} ?</span><button type="button" aria-label={`Ta bort ${u}`} onClick={() => setUnknown((x) => x.filter((i) => i !== u))}>×</button></li>
+          ))}
+          <li><button type="button" className="link" onClick={() => { setIds([]); setUnknown([]); }}>Rensa</button></li>
+        </ul>
+      )}
+      {res.verdict !== 'EMPTY' ? (
+        <section className={`check-result cr-${res.verdict === 'YES' ? 'green' : res.verdict === 'NO' ? 'red' : 'grey'}`} aria-live="polite">
+          <p className="cr-verdict">
+            {res.verdict === 'YES' && <><span aria-hidden="true">✓ </span>RE:STORE-KOMPATIBEL</>}
+            {res.verdict === 'NO' && <><span aria-hidden="true">✕ </span>INTE RE:STORE-KOMPATIBEL</>}
+            {res.verdict === 'UNCLEAR' && <><span aria-hidden="true">? </span>KAN INTE VERIFIERAS FULLT UT</>}
+          </p>
+          {res.verdict === 'YES' && <p className="note"><strong>Samtliga ingredienser ingår i Re:store.</strong></p>}
+          {res.notIncluded.length > 0 && (
+            <><h3>Ingår inte i Re:store</h3><ul>{res.notIncluded.map((f) => <li key={f.id}><a href={foodHref(f.id)}>{f.name}</a></li>)}</ul></>
+          )}
+          {(res.unclear.length > 0 || unknown.length > 0) && (
+            <><h3>Kan inte verifieras</h3><ul>
+              {res.unclear.map((f) => <li key={f.id}><a href={foodHref(f.id)}>{f.name}</a> – {R_STATUS[f.status].label.toLowerCase()}</li>)}
+              {unknown.map((u) => <li key={u}>{u} – finns inte i underlaget</li>)}
+            </ul></>
+          )}
+        </section>
+      ) : <p className="empty">Inga ingredienser valda än. Prova till exempel kyckling, ris och tomat.</p>}
     </div>
   );
 }

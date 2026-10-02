@@ -90,3 +90,77 @@ const out = {
 fs.writeFileSync(path.join(ROOT, 'src/data/restore.json'), JSON.stringify(out, null, 1) + '\n');
 for (const r of results) console.log(`DAY ${String(r.day).padStart(2)} ${WEEKDAY_LABEL[r.weekday].padEnd(8)} ${r.pass ? 'PASS' : 'FAIL'}${r.pass ? '' : ' – ' + r.failReasons.join('; ')}`);
 console.log(`\n21-DAY VALIDATION: ${out.summary.pass}/${out.summary.total} PASS`);
+
+// ---------------------------------------------------------------------------
+// PUBLIC PRODUCT DATA – Re:store by Sanna
+// Allt som renderas i den publika Re:store-vyn kommer härifrån. Inga källprofiler, namn,
+// individuella statusar eller källdokument. Den interna datan ovan är oförändrad.
+const PUBLIC_REASON = {
+  ALLOWED_FOR_BOTH: 'Verifierad mot Re:store-underlaget och tillåten under dag 1–21.',
+  NOT_ALLOWED_FOR_BOTH: 'Ingår inte i Re:store under dag 1–21.',
+  UNVERIFIED: 'Underlaget räcker inte för att verifiera livsmedlet. Re:store gissar inte.',
+  DATA_CONFLICT: 'Underlaget innehåller motstridiga uppgifter. Livsmedlet används inte förrän det är utrett.',
+};
+const PUBLIC_DAY = {
+  mon: { theme: 'Spannmål / stärkelse', text: 'Ugnsbakade, kokta, grillade eller ångade grönsaker + färsk sallad + ris' },
+  tue: { theme: 'Soppa', text: 'Grönsakssoppa eller fisksoppa – utan potatis och mejeriprodukter – med färsk sallad' },
+  wed: { theme: 'Vitt kött', text: 'Ugnsbakade, kokta, grillade eller ångade grönsaker + färsk sallad + kyckling eller kalkon' },
+  thu: { theme: 'Baljväxter', text: 'Färsk sallad + baljväxter' },
+  fri: { theme: 'Vegetariskt', text: 'Grönsaksgryta + färsk sallad' },
+  sat: { theme: 'Fisk', text: 'Ugnsbakade, kokta, grillade eller ångade grönsaker + färsk sallad + fisk' },
+  sun: { theme: 'Rött kött', text: 'Ugnsbakade, kokta, grillade eller ångade grönsaker + färsk sallad + rött kött' },
+};
+const PUBLIC_SLOT_TEXT = {
+  breakfast: 'Fruktsallad med 1 tsk tahini', snack1: 'Frukt', lunch: 'Dagens rätt enligt veckostrukturen',
+  snack2: 'Grönsaker', dinner: 'Samma rätt som till lunch', snack3: 'Grönsaker',
+};
+const toMin = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+const window_ = (a, b) => (toMin(a) <= toMin(b) ? `${a}–${b}` : `${b}–${a}`);
+
+const usedMeals = out.meals.filter((m) => m.usedOnDays.length);
+const usage2 = {};
+for (const d of out.days) for (const s of SLOTS) {
+  for (const i of mealsById[d.meals[s.key]].ingredients) ((usage2[i.id] ||= {})[s.key] ||= new Set()).add(d.day);
+}
+const pub = {
+  slots: SLOTS.map((s) => ({ key: s.key, label: s.label, time: window_(s.linn, s.patrik), text: PUBLIC_SLOT_TEXT[s.key] })),
+  structure: Object.fromEntries(Object.entries(PUBLIC_DAY).map(([k, v]) => [k, { ...v, label: WEEKDAY_LABEL[k] }])),
+  rules: [
+    'Ät var tredje timme och hoppa inte över måltider.',
+    'Lunch och middag är samma rätt.',
+    'Restaurangportioner. Behöver du mer – ät lite mer till lunch eller middag, aldrig senare.',
+    'Maten tillagas utan fett: ugnsbakad, kokt, grillad eller ångad. Pressad citron och salt som dressing.',
+    'Endast keltiskt salt eller havssalt.',
+    '10–12 glas vatten om dagen. Örtte på färsk grönmynta som dryck.',
+    'Inga mejeriprodukter, ingen jäst, inget socker, inga fermenterade produkter, ingen vinäger, inget vin eller öl.',
+  ],
+  foods: foods.map((f) => ({
+    id: f.id, name: f.displayName, normalizedName: f.normalizedName, aliases: f.aliases, category: f.category,
+    status: f.restoreStatus, reason: PUBLIC_REASON[f.restoreStatus],
+    use: f.restoreStatus === 'ALLOWED_FOR_BOTH' && usage2[f.id]
+      ? Object.entries(usage2[f.id]).map(([slot, days]) => ({ slot, days: [...days].sort((a, b) => a - b) }))
+      : [],
+  })),
+  meals: usedMeals.map((m) => ({
+    id: m.id, title: m.title.replace(/^FÖRSLAG: /, ''), method: m.method, slot: m.slot, usedOnDays: m.usedOnDays,
+    ingredients: m.ingredients.map((i) => ({ id: i.id, role: i.role, note: i.note || null })),
+    status: m.proposal ? 'UNDER_REVIEW' : 'VALIDATED',
+  })),
+  days: out.days.map((d) => ({
+    day: d.day, week: d.week, weekday: d.weekday, meals: d.meals,
+    drinks: d.drinks.map((x) => x.title),
+    status: d.validation.pass ? 'VALIDATED' : 'UNDER_REVIEW',
+  })),
+};
+// Meal-status måste spegla den interna valideringen exakt
+for (const m of pub.meals) {
+  const days = out.days.filter((d) => Object.values(d.meals).includes(m.id));
+  const allPass = days.every((d) => d.validation.meals.filter((x) => x.mealId === m.id).every((x) => x.pass));
+  if ((m.status === 'VALIDATED') !== allPass) throw new Error(`Publik status för ${m.id} matchar inte valideringen`);
+}
+const PRIVATE = /linn|patrik|\bgrant\b|\brees\b|båda|profil|gemensam/i;
+const pubStr = JSON.stringify(pub);
+const leak = pubStr.match(PRIVATE);
+if (leak) { console.error(`Privat information i publik Re:store-data: "${leak[0]}" … ${pubStr.slice(Math.max(0, leak.index - 60), leak.index + 60)}`); process.exit(1); }
+fs.writeFileSync(path.join(ROOT, 'src/data/restore-public.json'), JSON.stringify(pub, null, 1) + '\n');
+console.log(`Publik Re:store-data: ${pub.foods.length} livsmedel, ${pub.meals.length} måltider, ${pub.days.length} dagar – inga privata fält.`);

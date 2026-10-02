@@ -49,6 +49,9 @@ export function About() {
         <li>Panelerna skiljer sig: Dragon fruit och Yellow pea finns bara i Linns; Allulose, Habanero pepper, Jackfruit, Poppy seed och Red palm fruit bara i Patriks.</li>
       </ul>
 
+      <h2>Re:store by Sanna – intern granskning</h2>
+      <p>Re:store byggs från underlaget ovan men visar inga källprofiler. Källgranskning, konflikter och valideringen av alla 21 dagar finns här: <a href={href('underlag', 'restore')}>Re:store – källgranskning &amp; QA</a>.</p>
+
       <p className="footnote">Detta verktyg ersätter inte råd från behandlande klinik. Vid tveksamhet gäller originaldokumenten.</p>
     </div>
   );

@@ -141,6 +141,11 @@ describe('Vyer renderar', () => {
 // ---------------------------------------------------------------------------
 import { validateMeal, validateDay } from './lib/restoreRules.js';
 import { MEAL_BY_ID, RESTORE_DAYS, RESTORE_FOODS, RESTORE_MEALS, RESTORE_SUMMARY, CONFLICTS } from './lib/restore';
+import { R_DAYS, R_FOOD, R_FOODS, R_INCLUDED, R_MEALS, rCheck } from './lib/restorePublic';
+import PUB from './data/restore-public.json';
+import App from './App';
+
+const PRIVATE = /linn|patrik|\bgrant\b|\brees\b|båda|profil|gemensam/i;
 
 describe('Re:store by Sanna', () => {
   it('Re:store-listan = exakt de livsmedel båda har ALLOWED', () => {
@@ -189,21 +194,66 @@ describe('Re:store by Sanna', () => {
     for (const d of RESTORE_DAYS) expect(d.validation.pass).toBe(d.weekday !== 'sun');
   });
 
-  const rroutes = [['restore'], ['restore', 'mat'], ['restore', 'plan'], ['restore', 'kan-vi'], ['restore', 'kontroll'],
-    ...RESTORE_DAYS.map((d) => ['restore', 'dag', String(d.day)]), ...RESTORE_MEALS.map((m) => ['restore', 'maltid', m.id])];
-  it.each(rroutes.map((r) => [r.join('/'), r]))('renderar %s', (_n, r) => {
-    render(<View route={r as string[]} />);
-    expect(screen.queryByText('Sidan finns inte')).toBeNull();
+  it('publik Re:store-data innehåller inga källprofiler', () => {
+    const raw = JSON.stringify(PUB);
+    expect(raw).not.toMatch(PRIVATE);
+    expect(R_INCLUDED.length).toBe(RESTORE_FOODS.length);
+    for (const f of R_FOODS) expect(f.status).toBe(FOOD_BY_ID[f.id].restoreStatus);
+    for (const d of R_DAYS) expect(d.status === 'VALIDATED').toBe(RESTORE_DAYS.find((x) => x.day === d.day)!.validation.pass);
   });
 
-  it('räknaren på Re:store-startsidan kommer från databasen', () => {
-    render(<View route={['restore']} />);
-    const el = screen.getByText('livsmedel verifierade för båda').closest('a')!;
-    expect(el.textContent).toContain(String(RESTORE_FOODS.length));
+  const rroutes = [[], ['mat'], ['plan'], ['struktur'], ['fungerar'],
+    ...R_DAYS.map((d) => ['dag', String(d.day)]), ...R_MEALS.map((m) => ['maltid', m.id]), ...R_FOODS.map((f) => ['livsmedel', f.id])];
+
+  it.each(rroutes.map((r) => ['restore/' + r.join('/'), r]))('PRIVACY: %s exponerar inga personnamn', (n, r) => {
+    window.location.hash = '#/' + n;
+    const { container } = render(<App />);
+    expect(screen.queryByText('Sidan finns inte')).toBeNull();
+    expect(container.innerHTML).not.toMatch(PRIVATE);
+    expect(document.title).toBe('Re:store by Sanna');
   });
-  it('sök i Re:store: avokado visar Linn / Patrik / Ingår inte', () => {
-    render(<View route={['restore']} />);
+
+  it('PRIVACY: sökning och ingredienskontroll exponerar inga personnamn', () => {
+    window.location.hash = '#/restore';
+    const { container, unmount } = render(<App />);
+    for (const q of ['avokado', 'lax', 'endiv', 'olivolja', 'kyckling', 'quorn', 'kaffe', 'manuka']) {
+      fireEvent.change(screen.getByRole('searchbox'), { target: { value: q } });
+      expect(container.innerHTML).not.toMatch(PRIVATE);
+    }
+    unmount();
+    window.location.hash = '#/restore/fungerar';
+    const c2 = render(<App />);
+    for (const q of ['kyckling', 'avokado', 'endiv', 'olivolja', 'quorn']) {
+      fireEvent.change(screen.getByRole('searchbox'), { target: { value: q } });
+      fireEvent.click(c2.container.querySelector('.suggest button')!);
+    }
+    expect(c2.container.textContent).toContain('INTE RE:STORE-KOMPATIBEL');
+    expect(c2.container.innerHTML).not.toMatch(PRIVATE);
+  });
+
+  it('räknaren i Re:store Foods kommer från databasen', () => {
+    window.location.hash = '#/restore/mat';
+    render(<App />);
+    expect(screen.getByText(`${RESTORE_FOODS.length} validerade livsmedel.`)).toBeTruthy();
+  });
+
+  it('sök i Re:store: avokado ingår inte, kyckling ingår', () => {
+    window.location.hash = '#/restore';
+    const { container } = render(<App />);
     fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'avokado' } });
-    expect(screen.getByText('Ingår inte')).toBeTruthy();
+    expect(container.textContent).toContain('INGÅR INTE I RE:STORE');
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'kyckling' } });
+    expect(container.textContent).toContain('INGÅR I RE:STORE');
+  });
+
+  it('Re:store-kontrollen: kyckling + ris + tomat är kompatibelt', () => {
+    expect(rCheck(['kyckling', 'ris', 'tomat'].map((i) => R_FOOD[i])).verdict).toBe('YES');
+    expect(rCheck(['kyckling', 'avokado'].map((i) => R_FOOD[i])).verdict).toBe('NO');
+    expect(rCheck(['kyckling', 'olivolja'].map((i) => R_FOOD[i])).verdict).toBe('UNCLEAR');
+  });
+
+  it('intern granskning finns kvar på Re:Set-sidan', () => {
+    render(<View route={['underlag', 'restore']} />);
+    expect(screen.getByText('Re:store – källgranskning & QA')).toBeTruthy();
   });
 });

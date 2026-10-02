@@ -8,7 +8,9 @@ import { Person } from './views/Person';
 import { Week } from './views/Week';
 import { Check } from './views/Check';
 import { About } from './views/About';
-import { RestoreDayView, RestoreFoods, RestoreHome, RestoreIssues, RestoreMealView, RestorePlan } from './views/Restore';
+import { useEffect } from 'react';
+import { RestoreCheck, RestoreDayView, RestoreFoodView, RestoreFoods, RestoreHome, RestoreMealView, RestorePlan, RestoreStructure } from './views/Restore';
+import { RestoreInternal } from './views/RestoreInternal';
 
 const LIST_ROUTES = Object.fromEntries(
   (Object.keys(COMPARISON) as ComparisonStatus[]).map((s) => [COMPARISON[s].route, s]),
@@ -35,24 +37,66 @@ export function View({ route }: { route: string[] }) {
   if (a === 'tabell') return <Table />;
   if (a === 'veckoschema') return <Week />;
   if (a === 'kan-vi-ata') return <Check />;
-  if (a === 'underlag') return <About />;
-  if (a === 'restore') {
-    if (!b) return <RestoreHome />;
-    if (b === 'mat') return <RestoreFoods />;
-    if (b === 'plan') return <RestorePlan />;
-    if (b === 'kan-vi') return <Check key="restore" variant="restore" />;
-    if (b === 'kontroll') return <RestoreIssues />;
-    if (b === 'dag' && route[2] && /^\d+$/.test(route[2]) && +route[2] >= 1 && +route[2] <= 21) return <RestoreDayView key={route[2]} day={+route[2]} />;
-    if (b === 'maltid' && route[2]) return <RestoreMealView key={route[2]} id={route[2]} />;
-  }
+  if (a === 'underlag' && !b) return <About />;
+  if (a === 'underlag' && b === 'restore') return <RestoreInternal />;
+  if (a === 'restore') return <RestoreView route={route.slice(1)} />;
   if (a === 'person' && (b === 'linn' || b === 'patrik')) return <Person key={b} who={b as PersonKey} />;
   if (a === 'livsmedel' && b && FOOD_BY_ID[b]) return <FoodDetail food={FOOD_BY_ID[b]} />;
   return <NotFound />;
 }
 
+// PUBLIC: Re:store by Sanna – egen navigation, inga Re:Set-länkar till källprofiler
+export function RestoreView({ route }: { route: string[] }) {
+  const [b, c] = route;
+  if (!b) return <RestoreHome />;
+  if (b === 'mat') return <RestoreFoods />;
+  if (b === 'plan') return <RestorePlan />;
+  if (b === 'struktur') return <RestoreStructure />;
+  if (b === 'fungerar') return <RestoreCheck />;
+  if (b === 'dag' && c && /^\d+$/.test(c) && +c >= 1 && +c <= 21) return <RestoreDayView key={c} day={+c} />;
+  if (b === 'maltid' && c) return <RestoreMealView key={c} id={c} />;
+  if (b === 'livsmedel' && c) return <RestoreFoodView key={c} id={c} />;
+  return <div><PageHeader title="Sidan finns inte" back={false} /><Empty>Gå till <a href="#/restore">Re:store</a>.</Empty></div>;
+}
+
+const RESTORE_TABS = [
+  { route: 'restore', label: 'Idag', icon: '◎' },
+  { route: 'restore/plan', label: 'Plan', icon: '▦' },
+  { route: 'restore/mat', label: 'Livsmedel', icon: '✓' },
+  { route: 'restore/fungerar', label: 'Fungerar?', icon: '🍽' },
+];
+
+function RestoreShell({ route }: { route: string[] }) {
+  const cur = ['restore', route[1]].filter(Boolean).join('/');
+  useEffect(() => { document.title = 'Re:store by Sanna'; return () => { document.title = 'Re:Set by Sanna'; }; }, []);
+  return (
+    <>
+      <a className="skip" href="#main">Hoppa till innehåll</a>
+      <header className="topbar">
+        <a className="brand brand-restore" href="#/restore">Re:store <span>by Sanna</span></a>
+        <nav className="topnav" aria-label="Re:store-meny">
+          {RESTORE_TABS.map((t) => <a key={t.route} href={`#/${t.route}`} aria-current={cur === t.route ? 'page' : undefined}>{t.label === 'Idag' ? 'Start' : t.label === 'Fungerar?' ? 'Fungerar detta?' : t.label}</a>)}
+          <a href="#/restore/struktur" aria-current={cur === 'restore/struktur' ? 'page' : undefined}>Så är Re:store uppbyggt</a>
+        </nav>
+      </header>
+      <main id="main" className="container">
+        <RestoreView route={route.slice(1)} />
+      </main>
+      <nav className="tabbar tabbar-restore" aria-label="Re:store snabbmeny">
+        {RESTORE_TABS.map((t) => (
+          <a key={t.route} href={`#/${t.route}`} aria-current={cur === t.route ? 'page' : undefined}>
+            <span aria-hidden="true" className="tab-icon">{t.icon}</span><span>{t.label}</span>
+          </a>
+        ))}
+      </nav>
+    </>
+  );
+}
+
 export default function App() {
   const route = useRoute();
   const current = route[0] ?? '';
+  if (current === 'restore') return <RestoreShell route={route} />;
   return (
     <>
       <a className="skip" href="#main">Hoppa till innehåll</a>
