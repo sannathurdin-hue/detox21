@@ -31,6 +31,23 @@ export function Wordmark({ product, size = 'md', by = true }: { product: string;
   );
 }
 
+/** Produktväxlare: två fasta knappar, aktiv produkt markerad */
+export function ProductSwitch({ active }: { active: 'set' | 'store' }) {
+  const items = [
+    { key: 'set', href: '#/', name: 'Set' },
+    { key: 'store', href: '#/restore', name: 'store' },
+  ] as const;
+  return (
+    <nav className="product-switch" aria-label="Välj produkt">
+      {items.map((i) => (
+        <a key={i.key} href={i.href} aria-current={active === i.key ? 'page' : undefined} className={active === i.key ? 'ps-on' : ''}>
+          <span className="ps-re">Re<span className="ps-colon">:</span></span><span className="ps-name">{i.name}</span>
+        </a>
+      ))}
+    </nav>
+  );
+}
+
 // ---------------------------------------------------------------------------
 export function Badge({ tone, symbol, children, size = 'md' }: { tone: Tone; symbol: string; children: ReactNode; size?: 'sm' | 'md' | 'lg' }) {
   return (

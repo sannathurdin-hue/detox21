@@ -1,6 +1,6 @@
 import { COMPARISON, ComparisonStatus, FOOD_BY_ID, PersonKey } from './lib/data';
 import { FoodDetail } from './components/FoodCard';
-import { Empty, PageHeader, Wordmark, href, useRoute } from './components/ui';
+import { Empty, PageHeader, ProductSwitch, Wordmark, href, useRoute } from './components/ui';
 import { Home } from './views/Home';
 import { ComparisonList, Differences } from './views/Lists';
 import { Table } from './views/Table';
@@ -22,7 +22,6 @@ const TABS = [
   { route: 'skillnader', label: 'Skillnad' },
   { route: 'veckoschema', label: 'Vecka' },
   { route: 'kan-vi-ata', label: 'Kan vi?' },
-  { route: 'restore', label: 'Re:store' },
 ];
 
 function NotFound() {
@@ -78,7 +77,7 @@ function RestoreShell({ route }: { route: string[] }) {
           {RESTORE_TABS.map((t) => <a key={t.route} href={`#/${t.route}`} aria-current={cur === t.route ? 'page' : undefined}>{t.label}</a>)}
           <a href="#/restore/struktur" aria-current={cur === 'restore/struktur' ? 'page' : undefined}>Struktur</a>
         </nav>
-        <a className="topbar-parent" href="#/">Re:Set</a>
+        <ProductSwitch active="store" />
       </header>
       <main id="main" className="container" key={route.join('/')}>
         <RestoreView route={route.slice(1)} />
@@ -112,7 +111,7 @@ export default function App() {
           <a href={href('person', 'linn')} aria-current={route.join('/') === 'person/linn' ? 'page' : undefined}>Linn</a>
           <a href={href('person', 'patrik')} aria-current={route.join('/') === 'person/patrik' ? 'page' : undefined}>Patrik</a>
         </nav>
-        <a className="topbar-parent topbar-restore" href={href('restore')}>Re:store</a>
+        <ProductSwitch active="set" />
       </header>
       <main id="main" className="container" key={route.join('/')}>
         <View route={route} />
