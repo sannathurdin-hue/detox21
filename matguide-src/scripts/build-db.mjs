@@ -41,8 +41,8 @@ const EXTRA_ITEMS = [
     rules: { linn: ['monday'] } },
   { key: 'KOKOSFETT', name: 'Kokosfett', category: 'Fett & oljor', aliases: ['kokosolja'], components: ['KOKOSNÖT'], composition: 'derived',
     rules: { linn: ['fryingFat'] } },
-  { key: 'ANKFETT', name: 'Ankfett', category: 'Fett & oljor', aliases: [], components: ['ANKA'], composition: 'derived',
-    rules: { patrik: ['fryingFat'] } },
+  { key: 'ANKFETT', name: 'Ankfett', category: 'Fett & oljor', aliases: ['stekfett'], components: ['ANKA'], composition: 'derived',
+    rules: { patrik: ['fryingFat'], linn: ['userFat'] } },
   { key: 'OLIVOLJA', name: 'Olivolja', category: 'Fett & oljor', aliases: ['olja'], components: ['OLIV'], composition: 'derived',
     rules: { linn: ['oil'], patrik: ['oil'] } },
   { key: 'SALT', name: 'Keltiskt salt / havssalt', category: 'Kryddor & örter', aliases: ['salt', 'havssalt', 'celtic salt', 'keltiskt salt'], components: [], composition: 'whole',
@@ -70,6 +70,10 @@ const INLINE_RULES = {
   linn: {
     userManuka: USER_MANUKA,
     // Användarbeslut 2026-10-02: "godkänns hjortkött för söndag"
+    // Användarbeslut 2026-10-02: "välj kokosfett eller ankfett som fettkälla" → ankfett valt
+    // (lägre ALCAT-reaktion på basråvaran: anka mild hos Linn, kokosnöt måttlig hos Patrik)
+    userFat: { effect: 'ALLOW', kind: 'ANVÄNDARBESLUT', override: true, document: 'Användarens beslut (2026-10-02)', page: null,
+      quote: 'välj kokosfett eller ankfett som fettkälla → ankfett valt som gemensamt stekfett' },
     userSundayDeer: { effect: 'ALLOW', kind: 'ANVÄNDARBESLUT', document: 'Användarens beslut (2026-10-02)', page: null,
       quote: 'godkänns hjortkött för söndag' },
     crispbreadOnlyCorn: { effect: 'CONDITIONAL', quote: 'Tillåtna drycker och brygder: … -Majskakor som knäckebröd', page: 2,
@@ -259,6 +263,11 @@ function decide(who, item) {
     final = 'DATA_CONFLICT';
     notes.push(`"${item.alcatName}" förekommer två gånger i ${NAME[who]}s ALCAT-rapport med olika nivåer (${alcat.hits.map((h) => h.section.split(' – ')[0]).join(' och ')}). Troligen två olika panelposter med samma svenska översättning – det går inte att avgöra vilken som avses.`);
     restriction = 'Datakonflikt – kräver kontroll';
+  } else if (allow.some((r) => r.override) && !forbid.length && !isReaction(alcat.status) && alcat.status !== 'ELIMINATE' && compReacting.length) {
+    final = 'ALLOWED';
+    for (const r of reasons) if (r.type === 'avoid') r.type = 'info';
+    for (const a of allow) reasons.push({ type: 'allow', text: `${a.kind === 'ANVÄNDARBESLUT' ? 'Användarbeslut' : 'Kostschema'}: "${a.quote}"` });
+    notes.push('Godkänt genom användarbeslut trots reaktion på ingående råvara (se ovan).');
   } else if (allow.length && (isReaction(alcat.status) || alcat.status === 'ELIMINATE' || compReacting.length)) {
     final = 'DATA_CONFLICT';
     notes.push('Kostschemat anger uttryckligen livsmedlet, men ALCAT-rapporten anger att det ska undvikas/elimineras.');

@@ -190,6 +190,20 @@ describe('Re:store by Sanna', () => {
       for (const i of m.ingredients) expect(FOOD_BY_ID[i.id].restoreStatus).toBe('ALLOWED_FOR_BOTH');
     }
   });
+  it('stekfett: ankfett ingår (användarbeslut), kokosfett ingår fortfarande inte', () => {
+    expect(FOOD_BY_ID['ankfett'].restoreStatus).toBe('ALLOWED_FOR_BOTH');
+    expect(FOOD_BY_ID['ankfett'].linn.sources.some((x) => x.kind === 'ANVÄNDARBESLUT')).toBe(true);
+    expect(FOOD_BY_ID['kokosfett'].restoreStatus).not.toBe('ALLOWED_FOR_BOTH');
+    expect(FOOD_BY_ID['olivolja'].restoreStatus).toBe('UNVERIFIED');
+  });
+  it('varje måltid som nämner ankfett har det som ingrediens', () => {
+    for (const m of RESTORE_MEALS) expect(/ankfett/.test(m.method)).toBe(m.ingredients.some((i) => i.id === 'ankfett'));
+    expect(RESTORE_MEALS.filter((m) => m.ingredients.some((i) => i.id === 'ankfett')).length).toBeGreaterThan(0);
+  });
+  it('validatorn underkänner kokosfett som stekfett', () => {
+    const m = { ...MEAL_BY_ID['sun-1'], ingredients: MEAL_BY_ID['sun-1'].ingredients.map((i) => (i.id === 'ankfett' ? { ...i, id: 'kokosfett' } : i)) };
+    expect(validateMeal(m, 'lunch', 'sun', FOOD_BY_ID).pass).toBe(false);
+  });
   it('alla 21 dagar passerar (söndag via användarbeslut om hjortkött)', () => {
     for (const d of RESTORE_DAYS) expect(d.validation.pass).toBe(true);
     expect(RESTORE_SUMMARY.pass).toBe(21);

@@ -303,7 +303,7 @@ export function RestoreMealView({ id }: { id: string }) {
       <section className="group">
         <h2 className="group-title">Så gör du</h2>
         <p>{m.method}</p>
-        <p className="note">Inga andra ingredienser än de som står ovan. Maten tillagas utan fett.</p>
+        <p className="note">Inga andra ingredienser än de som står ovan.</p>
       </section>
     </div>
   );

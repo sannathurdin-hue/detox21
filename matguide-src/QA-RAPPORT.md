@@ -13,11 +13,11 @@ Genererad automatiskt av `scripts/qa.mjs` från `src/data/foods.json`.
 | | Antal |
 |---|---|
 | A. Unika livsmedel i databasen | 256 |
-| B. Båda kan äta (verifierat) | 77 |
+| B. Båda kan äta (verifierat) | 78 |
 | C. Endast Linn | 50 |
 | D. Endast Patrik | 46 |
 | E. Båda undviker | 63 |
-| F. Ej verifierade | 17 |
+| F. Ej verifierade | 16 |
 | G. Datakonflikter | 2 |
 | Villkorat (restriktion för båda) | 1 |
 
@@ -25,17 +25,17 @@ Per person (slutstatus dag 1–21):
 
 | | Tillåten | Undvik | Villkorad | Ej verifierad | Datakonflikt |
 |---|---|---|---|---|---|
-| Linn | 131 | 112 | 2 | 9 | 2 |
+| Linn | 132 | 112 | 2 | 8 | 2 |
 | Patrik | 126 | 119 | 1 | 9 | 1 |
 
 ## Re:store by Sanna
 | | Antal |
 |---|---|
-| RE:STORE FOODS VERIFIED FOR BOTH | 77 |
+| RE:STORE FOODS VERIFIED FOR BOTH | 78 |
 | LINN ONLY | 50 |
 | PATRIK ONLY | 46 |
 | NOT INCLUDED (ej tillåtet för båda) | 169 |
-| UNVERIFIED | 8 |
+| UNVERIFIED | 7 |
 | DATA CONFLICTS (livsmedel) | 2 |
 | 21-DAY PLAN | 21 / 21 DAYS PASS |
 
@@ -63,8 +63,7 @@ Per person (slutstatus dag 1–21):
 | Dag 20 | sat | PASS |  |
 | Dag 21 | sun | PASS |  |
 
-- **Knäckebröd utelämnat:** Båda scheman har "+ 1 st knäckebröd". Linn: endast majskakor anges. Patrik: sort anges inte, och majskakor är ej verifierade för honom. Inget gemensamt verifierat knäckebröd finns, så det ingår inte i planen. *Beslut som löser det:* Om ni godkänner majskakor (100 % majs) för Patrik kan de läggas till.
-- **Olja till sallad och stekfett utelämnat:** Patrik: "1 msk olivolja till sallad". Linn: "1 matsked oliv till sallad" (olivolja står inte). Stekfett: Linn kokosfett, Patrik ankfett. Inget av dessa är verifierat för båda. Planen tillagar därför utan fett (ugn, kokt, grillat, ångat) och använder pressad citron + salt som dressing. *Beslut som löser det:* Om ni bekräftar att Linns "oliv" betyder olivolja blir olivolja tillåten för båda.
+- **Olja till sallad utelämnad:** Patrik: "1 msk olivolja till sallad". Linn: "1 matsked oliv till sallad" (olivolja står inte). Olivolja är därför inte verifierad för Linn, och salladerna får pressad citron + salt som dressing. *Beslut som löser det:* Om ni bekräftar att Linns "oliv" betyder olivolja blir olivolja tillåten för båda.
 
 ## Automatiska kontroller
 - ✅ linn: ALCAT-status för varje livsmedel stämmer mot originaltranskriberingen

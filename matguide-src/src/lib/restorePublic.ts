@@ -95,5 +95,5 @@ export function daysForToday(date = new Date()): PublicDay[] {
 export const SLOT_LABEL: Record<string, string> = Object.fromEntries(R_SLOTS.map((s) => [s.key, s.label]));
 export const ROLE_LABEL: Record<string, string> = {
   base: 'Huvudkomponent', cooked: 'Tillagad grönsak', salad: 'Färsk sallad', seasoning: 'Smaksättning', liquid: 'Vätska',
-  fruit: 'Frukt', spread: 'Pålägg', veg: 'Grönsak',
+  fruit: 'Frukt', spread: 'Pålägg', veg: 'Grönsak', fat: 'Stekfett',
 };

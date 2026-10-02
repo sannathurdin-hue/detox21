@@ -78,7 +78,7 @@
   "Ät var tredje timme och hoppa inte över måltider.",
   "Lunch och middag är samma rätt.",
   "Restaurangportioner. Behöver du mer – ät lite mer till lunch eller middag, aldrig senare.",
-  "Maten tillagas utan fett: ugnsbakad, kokt, grillad eller ångad. Pressad citron och salt som dressing.",
+  "Stekfett: ankfett. Maten ugnsbakas, kokas, grillas, steks eller ångas. Pressad citron och salt som dressing.",
   "Endast keltiskt salt eller havssalt.",
   "10–12 glas vatten om dagen. Örtte på färsk grönmynta som dryck.",
   "Inga mejeriprodukter, ingen jäst, inget socker, inga fermenterade produkter, ingen vinäger, inget vin eller öl."
@@ -180,11 +180,50 @@
    "id": "ankfett",
    "name": "Ankfett",
    "normalizedName": "ankfett",
-   "aliases": [],
+   "aliases": [
+    "stekfett"
+   ],
    "category": "Fett & oljor",
-   "status": "UNVERIFIED",
-   "reason": "Underlaget räcker inte för att verifiera livsmedlet. Re:store gissar inte.",
-   "use": []
+   "status": "ALLOWED_FOR_BOTH",
+   "reason": "Verifierad mot Re:store-underlaget och tillåten under dag 1–21.",
+   "use": [
+    {
+     "slot": "lunch",
+     "days": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      10,
+      12,
+      13,
+      14,
+      15,
+      17,
+      19,
+      21
+     ]
+    },
+    {
+     "slot": "dinner",
+     "days": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      10,
+      12,
+      13,
+      14,
+      15,
+      17,
+      19,
+      21
+     ]
+    }
+   ]
   },
   {
    "id": "annat-salt",
@@ -4672,7 +4711,7 @@
   {
    "id": "mon-1",
    "title": "Ris med ugnsbakad aubergine, sommarsquash och tomat",
-   "method": "Koka riset i vatten med en nypa salt. Skär aubergine, sommarsquash och tomat i bitar, strö över oregano, timjan och salt och ugnsbaka i 200 °C ca 25 min (utan fett). Sallad: romansallad och källfräne med pressad citron och en nypa salt.",
+   "method": "Koka riset i vatten med en nypa salt. Skär aubergine, sommarsquash och tomat i bitar, strö över oregano, timjan och salt och ugnsbaka i 200 °C ca 25 min med 1 msk smält ankfett. Sallad: romansallad och källfräne med pressad citron och en nypa salt.",
    "slot": "main",
    "usedOnDays": [
     1
@@ -4732,6 +4771,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -4801,7 +4845,7 @@
   {
    "id": "mon-3",
    "title": "Ris med ugnsbakad butternutpumpa, okra och tomat",
-   "method": "Koka riset i vatten med salt. Ugnsbaka butternutpumpa, okra och tomat med spiskummin, chilipeppar och salt i 200 °C ca 30 min (utan fett). Sallad: spenat och källfräne med pressad citron.",
+   "method": "Koka riset i vatten med salt. Ugnsbaka butternutpumpa, okra och tomat med spiskummin, chilipeppar och salt i 200 °C ca 30 min med 1 msk smält ankfett. Sallad: spenat och källfräne med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     15
@@ -4861,6 +4905,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5054,7 +5103,7 @@
   {
    "id": "wed-1",
    "title": "Grillad kyckling med dragon, ångade strängbönor och champinjoner",
-   "method": "Krydda kycklingen med dragon, timjan och salt och grilla/ugnsbaka utan fett tills genomstekt. Ånga strängbönor och champinjoner. Sallad: romansallad och tomat med pressad citron.",
+   "method": "Krydda kycklingen med dragon, timjan och salt och stek i 1 msk ankfett eller ugnsbaka tills genomstekt. Ånga strängbönor och champinjoner. Sallad: romansallad och tomat med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     3
@@ -5104,6 +5153,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5111,7 +5165,7 @@
   {
    "id": "wed-2",
    "title": "Ugnsbakad kalkon med butternutpumpa och strängbönor",
-   "method": "Krydda kalkonen med timjan, oregano och salt och ugnsbaka utan fett i 175 °C tills genomstekt. Ugnsbaka butternutpumpa i bitar bredvid. Ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
+   "method": "Krydda kalkonen med timjan, oregano och salt och ugnsbaka med 1 msk smält ankfett i 175 °C tills genomstekt. Ugnsbaka butternutpumpa i bitar bredvid. Ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     10
@@ -5161,6 +5215,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5168,7 +5227,7 @@
   {
    "id": "wed-3",
    "title": "Grillad kyckling med oregano, ugnsbakad aubergine och sommarsquash",
-   "method": "Krydda kycklingen med oregano, chilipeppar och salt och grilla utan fett. Ugnsbaka aubergine och sommarsquash i 200 °C ca 25 min. Sallad: rosé-/grönsallad och tomat med pressad citron.",
+   "method": "Krydda kycklingen med oregano, chilipeppar och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka aubergine och sommarsquash i 200 °C ca 25 min. Sallad: rosé-/grönsallad och tomat med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     17
@@ -5218,6 +5277,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5391,7 +5455,7 @@
   {
    "id": "fri-1",
    "title": "Grönsaksgryta med aubergine, okra och tomat",
-   "method": "Skär aubergine, sommarsquash, okra, tomat och schalottenlök i bitar. Låt puttra i lite vatten med oregano, chilipeppar och salt ca 25 min tills mjukt. Sallad: rosé-/grönsallad med pressad citron.",
+   "method": "Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i aubergine, sommarsquash, okra och tomat i bitar och låt puttra i lite vatten med oregano, chilipeppar och salt ca 25 min tills mjukt. Sallad: rosé-/grönsallad med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     5
@@ -5451,6 +5515,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5458,7 +5527,7 @@
   {
    "id": "fri-2",
    "title": "Grönsaksgryta med kronärtskocka, strängbönor och tomat",
-   "method": "Låt kronärtskockshjärtan, strängbönor, tomat och schalottenlök puttra i vatten med dragon och salt ca 20 min. Sallad: rosé-/grönsallad och källfräne med pressad citron.",
+   "method": "Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i kronärtskockshjärtan, strängbönor och tomat och låt puttra i vatten med dragon och salt ca 20 min. Sallad: rosé-/grönsallad och källfräne med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     12
@@ -5513,6 +5582,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5520,7 +5594,7 @@
   {
    "id": "fri-3",
    "title": "Pumpagryta med spenat och spiskummin",
-   "method": "Låt butternutpumpa, tomat och schalottenlök puttra i vatten med spiskummin, saffran och salt ca 20 min. Rör ner spenat sista minuten. Sallad: källfräne och romansallad med pressad citron.",
+   "method": "Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i butternutpumpa och tomat och låt puttra i vatten med spiskummin, saffran och salt ca 20 min. Rör ner spenat sista minuten. Sallad: källfräne och romansallad med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     19
@@ -5580,6 +5654,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5587,7 +5666,7 @@
   {
    "id": "sat-1",
    "title": "Ugnsbakad öring med citron och timjan, strängbönor och butternutpumpa",
-   "method": "Lägg öringen i en form, strö över timjan och salt och pressa över citron. Ugnsbaka i 200 °C ca 15 min (utan fett). Ugnsbaka butternutpumpa i bitar och ånga strängbönorna. Sallad: spenat och tomat.",
+   "method": "Lägg öringen i en form, strö över timjan och salt och pressa över citron. Ugnsbaka i 200 °C ca 15 min med 1 msk smält ankfett. Ugnsbaka butternutpumpa i bitar och ånga strängbönorna. Sallad: spenat och tomat.",
    "slot": "main",
    "usedOnDays": [
     6
@@ -5632,6 +5711,11 @@
      "id": "tomat",
      "role": "salad",
      "note": null
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5639,7 +5723,7 @@
   {
    "id": "sat-2",
    "title": "Grillad makrill med ugnsbakad tomat och ångad senapskål",
-   "method": "Krydda makrillen med timjan och salt och grilla utan fett. Ugnsbaka tomathalvor med oregano. Ånga senapskålen. Sallad: romansallad med pressad citron.",
+   "method": "Krydda makrillen med timjan och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka tomathalvor med oregano. Ånga senapskålen. Sallad: romansallad med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     13
@@ -5684,6 +5768,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5743,7 +5832,7 @@
   {
    "id": "sun-1",
    "title": "Ugnsbakat hjortkött med portabello, butternutpumpa och grönkål",
-   "method": "Krydda hjortköttet med timjan och salt och ugnsbaka utan fett. Ugnsbaka portabellosvamp och butternutpumpa, ånga grönkålen. Sallad: romansallad och tomat med pressad citron.",
+   "method": "Krydda hjortköttet med timjan och salt och ugnsbaka med 1 msk smält ankfett. Ugnsbaka portabellosvamp och butternutpumpa, ånga grönkålen. Sallad: romansallad och tomat med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     7
@@ -5793,6 +5882,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5800,7 +5894,7 @@
   {
    "id": "sun-2",
    "title": "Grillat hjortkött med oregano, ugnsbakad aubergine och strängbönor",
-   "method": "Krydda hjortköttet med oregano, chilipeppar och salt och grilla utan fett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
+   "method": "Krydda hjortköttet med oregano, chilipeppar och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     14
@@ -5850,6 +5944,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"
@@ -5857,7 +5956,7 @@
   {
    "id": "sun-3",
    "title": "Hjortkött i ugn med dragon, champinjoner och senapskål",
-   "method": "Krydda hjortköttet med dragon, timjan och salt och ugnsbaka utan fett. Ugnsbaka champinjoner och schalottenlök, ånga senapskålen. Sallad: rosé-/grönsallad och spenat med pressad citron.",
+   "method": "Krydda hjortköttet med dragon, timjan och salt och ugnsbaka med 1 msk smält ankfett. Ugnsbaka champinjoner och schalottenlök, ånga senapskålen. Sallad: rosé-/grönsallad och spenat med pressad citron.",
    "slot": "main",
    "usedOnDays": [
     21
@@ -5912,6 +6011,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "status": "VALIDATED"

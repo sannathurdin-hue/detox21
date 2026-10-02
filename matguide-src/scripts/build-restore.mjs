@@ -32,6 +32,14 @@ for (const d of DAYS) {
 }
 if (variation.length) { console.error('Variationsfel:\n' + variation.join('\n')); process.exit(1); }
 
+const hidden = [];
+for (const m of MEALS) {
+  for (const [re, id] of [[/ankfett/i, 'ankfett'], [/olivolja|olja\b/i, 'olivolja'], [/kokosfett/i, 'kokosfett'], [/smör/i, 'smör'], [/buljong/i, 'buljong']]) {
+    if (re.test(m.method) && !m.ingredients.some((i) => i.id === id)) hidden.push(`${m.id}: metoden nämner ${id} som inte är ingrediens`);
+  }
+}
+if (hidden.length) { console.error('Dolda ingredienser:\n' + hidden.join('\n')); process.exit(1); }
+
 const GAP_PREFIX = 'Ingen gemensam huvudkomponent';
 const results = DAYS.map((d) => validateDay(d, mealsById, byId));
 const unexpected = [];
@@ -55,20 +63,20 @@ if (unexpected.length) {
 // Dokumenterade luckor (komponenter i kostschemana som inte kan verifieras för båda)
 const gaps = [
   {
-    id: 'knackebrod', title: 'Knäckebröd utelämnat',
-    affects: 'Frukost varje dag samt lunch/middag tisdag, torsdag och fredag',
-    text: 'Båda scheman har "+ 1 st knäckebröd". Linn: endast majskakor anges. Patrik: sort anges inte, och majskakor är ej verifierade för honom. Inget gemensamt verifierat knäckebröd finns, så det ingår inte i planen.',
-    decision: 'Om ni godkänner majskakor (100 % majs) för Patrik kan de läggas till.',
-  },
-  {
-    id: 'olja', title: 'Olja till sallad och stekfett utelämnat',
+    id: 'olja', title: 'Olja till sallad utelämnad',
     affects: 'Lunch och middag',
-    text: 'Patrik: "1 msk olivolja till sallad". Linn: "1 matsked oliv till sallad" (olivolja står inte). Stekfett: Linn kokosfett, Patrik ankfett. Inget av dessa är verifierat för båda. Planen tillagar därför utan fett (ugn, kokt, grillat, ångat) och använder pressad citron + salt som dressing.',
+    text: 'Patrik: "1 msk olivolja till sallad". Linn: "1 matsked oliv till sallad" (olivolja står inte). Olivolja är därför inte verifierad för Linn, och salladerna får pressad citron + salt som dressing.',
     decision: 'Om ni bekräftar att Linns "oliv" betyder olivolja blir olivolja tillåten för båda.',
   },
 ];
 
 const decisions = [
+  { id: 'fett', title: 'Stekfett: ankfett',
+    text: 'Linns kostschema: kokosfett för stekning. Patriks: ankfett. Patrik har måttlig reaktion på kokosnöt; Linn har mild reaktion på anka. Ankfett valdes eftersom reaktionen på basråvaran är lägre.',
+    resolution: 'Användarbeslut 2026-10-02: "välj kokosfett eller ankfett som fettkälla" → ankfett.' },
+  { id: 'knackebrod', title: 'Knäckebröd utesluts ur Re:store',
+    text: 'Båda kostschemana har "+ 1 st knäckebröd", men inget knäckebröd är verifierat för båda (Linn: majskakor; Patrik: sort ej angiven).',
+    resolution: 'Användarbeslut 2026-10-02: "skit i knäckbröd".' },
   { id: 'sondag', title: 'Söndag (dag 7, 14, 21): hjortkött godkänt för Linns söndagsregel',
     text: 'Linns kostschema anger kalvkött / fläskkött (mild reaktion hos Patrik). Patriks anger anka / hjortkött (mild reaktion på anka hos Linn). Hjortkött är grönt i båda ALCAT-rapporterna.',
     resolution: 'Användarbeslut 2026-10-02: "godkänns hjortkött för söndag".' },
@@ -133,7 +141,7 @@ const pub = {
     'Ät var tredje timme och hoppa inte över måltider.',
     'Lunch och middag är samma rätt.',
     'Restaurangportioner. Behöver du mer – ät lite mer till lunch eller middag, aldrig senare.',
-    'Maten tillagas utan fett: ugnsbakad, kokt, grillad eller ångad. Pressad citron och salt som dressing.',
+    'Stekfett: ankfett. Maten ugnsbakas, kokas, grillas, steks eller ångas. Pressad citron och salt som dressing.',
     'Endast keltiskt salt eller havssalt.',
     '10–12 glas vatten om dagen. Örtte på färsk grönmynta som dryck.',
     'Inga mejeriprodukter, ingen jäst, inget socker, inga fermenterade produkter, ingen vinäger, inget vin eller öl.',

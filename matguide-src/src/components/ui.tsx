@@ -55,6 +55,9 @@ export function shortReason(f: Food, who: PersonKey): string {
   switch (p.finalStatusDay1To21) {
     case 'ALLOWED':
       if (p.alcatStatus === 'NONE' && p.dietPlanStatusDay1To21 === 'NO_RULE') return 'Grön i ALCAT';
+      if (!p.sources.some((x) => x.kind === 'KOSTSCHEMA') && p.sources.some((x) => x.kind === 'ANVÄNDARBESLUT')) {
+        return p.alcatStatus === 'NONE' ? 'Grön i ALCAT' : 'Godkänt genom användarbeslut';
+      }
       return p.dietPlanStatusDay1To21 === 'EXPLICITLY_ALLOWED' ? 'Står i kostschemat' : 'Grön i ALCAT';
     case 'AVOID': {
       if (['SEVERE', 'MODERATE', 'MILD'].includes(p.alcatStatus)) {

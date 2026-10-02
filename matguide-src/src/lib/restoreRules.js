@@ -119,8 +119,8 @@ export function checkStructure(meal, slot, dayKey, foodsById) {
     snack1: ['fruit'],
     snack2: ['veg'],
     snack3: ['veg'],
-    lunch: ['base', 'cooked', 'salad', 'seasoning', 'liquid'],
-    dinner: ['base', 'cooked', 'salad', 'seasoning', 'liquid'],
+    lunch: ['base', 'cooked', 'salad', 'seasoning', 'liquid', 'fat'],
+    dinner: ['base', 'cooked', 'salad', 'seasoning', 'liquid', 'fat'],
   }[slot];
   const extra = [...roles].filter((r) => !allowedRoles.includes(r));
   add(extra.length === 0, extra.length ? `Otillåten komponent för ${slot}: ${extra.join(', ')}` : 'Endast komponenter som måltiden tillåter');
@@ -132,6 +132,7 @@ export function checkStructure(meal, slot, dayKey, foodsById) {
     if (['veg', 'cooked', 'salad'].includes(i.role) && c !== 'Grönsaker') add(false, `${i.id} är inte en grönsak`);
     if (i.role === 'seasoning' && c !== 'Kryddor & örter' && !SEASONING_EXTRA.includes(i.id)) add(false, `${i.id} är inte krydda/ört/citron/salt`);
     if (i.role === 'liquid' && !LIQUID.includes(i.id)) add(false, `${i.id} är inte vatten`);
+    if (i.role === 'fat' && c !== 'Fett & oljor') add(false, `${i.id} är inte ett fett`);
     if (i.role === 'spread' && i.id !== 'tahini-sesampasta') add(false, `${i.id}: frukostens pålägg ska vara tahini (finns i båda scheman)`);
   }
 

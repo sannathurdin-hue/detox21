@@ -1,9 +1,10 @@
 // Re:store by Sanna – 21-dagarsplan för Linn + Patrik.
 // Varje ingrediens är ett id i databasen (src/data/foods.json) och valideras i scripts/build-restore.mjs.
 // Inga dolda ingredienser: vatten, salt, citron, örter och kryddor står alltid uttryckligen.
-// Tillagning utan fett: kostschemanas metoder ugnsbakat/kokt/grillat/ångkokt används, eftersom
-// inget stekfett eller salladsolja är verifierat för båda (Linn: kokosfett, Patrik: ankfett;
-// olivolja ej verifierad för Linn).
+// Stekfett: ankfett (användarbeslut 2026-10-02: "välj kokosfett eller ankfett som fettkälla";
+// ankfett valt eftersom ALCAT-reaktionen på basråvaran är lägre – anka mild hos Linn, kokosnöt måttlig hos Patrik).
+// Salladsolja: ingen (olivolja ej verifierad för Linn) – pressad citron + salt som dressing.
+// Knäckebröd: utesluts (användarbeslut 2026-10-02: "skit i knäckbröd").
 //
 // Dag 1 = måndag. Kostschemana bygger på en återkommande veckocykel (måndag–söndag), som upprepas i tre veckor.
 
@@ -53,7 +54,7 @@ export const MEALS = [
   // MÅNDAG – spannmål/stärkelse (gemensamt: ris)
   {
     id: 'mon-1', slot: 'main', title: 'Ris med ugnsbakad aubergine, sommarsquash och tomat',
-    method: 'Koka riset i vatten med en nypa salt. Skär aubergine, sommarsquash och tomat i bitar, strö över oregano, timjan och salt och ugnsbaka i 200 °C ca 25 min (utan fett). Sallad: romansallad och källfräne med pressad citron och en nypa salt.',
+    method: 'Koka riset i vatten med en nypa salt. Skär aubergine, sommarsquash och tomat i bitar, strö över oregano, timjan och salt och ugnsbaka i 200 °C ca 25 min med 1 msk smält ankfett. Sallad: romansallad och källfräne med pressad citron och en nypa salt.',
     ingredients: [I('ris', 'base'), I('vatten', 'liquid'), I('aubergine', 'cooked'), I('sommarsquash', 'cooked'), I('tomat', 'cooked'),
       I('oregano', 'seasoning'), I('timjan', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('romansallad', 'salad'), I('kallfrane', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
@@ -67,7 +68,7 @@ export const MEALS = [
   },
   {
     id: 'mon-3', slot: 'main', title: 'Ris med ugnsbakad butternutpumpa, okra och tomat',
-    method: 'Koka riset i vatten med salt. Ugnsbaka butternutpumpa, okra och tomat med spiskummin, chilipeppar och salt i 200 °C ca 30 min (utan fett). Sallad: spenat och källfräne med pressad citron.',
+    method: 'Koka riset i vatten med salt. Ugnsbaka butternutpumpa, okra och tomat med spiskummin, chilipeppar och salt i 200 °C ca 30 min med 1 msk smält ankfett. Sallad: spenat och källfräne med pressad citron.',
     ingredients: [I('ris', 'base'), I('vatten', 'liquid'), I('butternutpumpa', 'cooked'), I('okra', 'cooked'), I('tomat', 'cooked'),
       I('spiskummin', 'seasoning'), I('chilipeppar', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('spenat', 'salad'), I('kallfrane', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
@@ -99,21 +100,21 @@ export const MEALS = [
   // ONSDAG – vitt kött (gemensamt: kyckling, kalkon)
   {
     id: 'wed-1', slot: 'main', title: 'Grillad kyckling med dragon, ångade strängbönor och champinjoner',
-    method: 'Krydda kycklingen med dragon, timjan och salt och grilla/ugnsbaka utan fett tills genomstekt. Ånga strängbönor och champinjoner. Sallad: romansallad och tomat med pressad citron.',
+    method: 'Krydda kycklingen med dragon, timjan och salt och stek i 1 msk ankfett eller ugnsbaka tills genomstekt. Ånga strängbönor och champinjoner. Sallad: romansallad och tomat med pressad citron.',
     ingredients: [I('kyckling', 'base'), I('dragon', 'seasoning'), I('timjan', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('strangbona', 'cooked'), I('tradgardschampinjon', 'cooked'),
       I('romansallad', 'salad'), I('tomat', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
   },
   {
     id: 'wed-2', slot: 'main', title: 'Ugnsbakad kalkon med butternutpumpa och strängbönor',
-    method: 'Krydda kalkonen med timjan, oregano och salt och ugnsbaka utan fett i 175 °C tills genomstekt. Ugnsbaka butternutpumpa i bitar bredvid. Ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.',
+    method: 'Krydda kalkonen med timjan, oregano och salt och ugnsbaka med 1 msk smält ankfett i 175 °C tills genomstekt. Ugnsbaka butternutpumpa i bitar bredvid. Ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.',
     ingredients: [I('kalkon', 'base'), I('timjan', 'seasoning'), I('oregano', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('butternutpumpa', 'cooked'), I('strangbona', 'cooked'),
       I('kallfrane', 'salad'), I('tomat', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
   },
   {
     id: 'wed-3', slot: 'main', title: 'Grillad kyckling med oregano, ugnsbakad aubergine och sommarsquash',
-    method: 'Krydda kycklingen med oregano, chilipeppar och salt och grilla utan fett. Ugnsbaka aubergine och sommarsquash i 200 °C ca 25 min. Sallad: rosé-/grönsallad och tomat med pressad citron.',
+    method: 'Krydda kycklingen med oregano, chilipeppar och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka aubergine och sommarsquash i 200 °C ca 25 min. Sallad: rosé-/grönsallad och tomat med pressad citron.',
     ingredients: [I('kyckling', 'base'), I('oregano', 'seasoning'), I('chilipeppar', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('aubergine', 'cooked'), I('sommarsquash', 'cooked'),
       I('rose-gronsallad', 'salad'), I('tomat', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
@@ -142,21 +143,21 @@ export const MEALS = [
   // FREDAG – vegetarisk grönsaksgryta + färsk sallad
   {
     id: 'fri-1', slot: 'main', title: 'Grönsaksgryta med aubergine, okra och tomat',
-    method: 'Skär aubergine, sommarsquash, okra, tomat och schalottenlök i bitar. Låt puttra i lite vatten med oregano, chilipeppar och salt ca 25 min tills mjukt. Sallad: rosé-/grönsallad med pressad citron.',
+    method: 'Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i aubergine, sommarsquash, okra och tomat i bitar och låt puttra i lite vatten med oregano, chilipeppar och salt ca 25 min tills mjukt. Sallad: rosé-/grönsallad med pressad citron.',
     ingredients: [I('aubergine', 'cooked'), I('sommarsquash', 'cooked'), I('okra', 'cooked'), I('tomat', 'cooked'), I('schalottenlok', 'cooked'), I('vatten', 'liquid'),
       I('oregano', 'seasoning'), I('chilipeppar', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('rose-gronsallad', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
   },
   {
     id: 'fri-2', slot: 'main', title: 'Grönsaksgryta med kronärtskocka, strängbönor och tomat',
-    method: 'Låt kronärtskockshjärtan, strängbönor, tomat och schalottenlök puttra i vatten med dragon och salt ca 20 min. Sallad: rosé-/grönsallad och källfräne med pressad citron.',
+    method: 'Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i kronärtskockshjärtan, strängbönor och tomat och låt puttra i vatten med dragon och salt ca 20 min. Sallad: rosé-/grönsallad och källfräne med pressad citron.',
     ingredients: [I('kronartskocka', 'cooked'), I('strangbona', 'cooked'), I('tomat', 'cooked'), I('schalottenlok', 'cooked'), I('vatten', 'liquid'),
       I('dragon', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('rose-gronsallad', 'salad'), I('kallfrane', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
   },
   {
     id: 'fri-3', slot: 'main', title: 'Pumpagryta med spenat och spiskummin',
-    method: 'Låt butternutpumpa, tomat och schalottenlök puttra i vatten med spiskummin, saffran och salt ca 20 min. Rör ner spenat sista minuten. Sallad: källfräne och romansallad med pressad citron.',
+    method: 'Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i butternutpumpa och tomat och låt puttra i vatten med spiskummin, saffran och salt ca 20 min. Rör ner spenat sista minuten. Sallad: källfräne och romansallad med pressad citron.',
     ingredients: [I('butternutpumpa', 'cooked'), I('tomat', 'cooked'), I('schalottenlok', 'cooked'), I('spenat', 'cooked'), I('vatten', 'liquid'),
       I('spiskummin', 'seasoning'), I('saffran', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('kallfrane', 'salad'), I('romansallad', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
@@ -165,14 +166,14 @@ export const MEALS = [
   // LÖRDAG – fisk
   {
     id: 'sat-1', slot: 'main', title: 'Ugnsbakad öring med citron och timjan, strängbönor och butternutpumpa',
-    method: 'Lägg öringen i en form, strö över timjan och salt och pressa över citron. Ugnsbaka i 200 °C ca 15 min (utan fett). Ugnsbaka butternutpumpa i bitar och ånga strängbönorna. Sallad: spenat och tomat.',
+    method: 'Lägg öringen i en form, strö över timjan och salt och pressa över citron. Ugnsbaka i 200 °C ca 15 min med 1 msk smält ankfett. Ugnsbaka butternutpumpa i bitar och ånga strängbönorna. Sallad: spenat och tomat.',
     ingredients: [I('oring', 'base'), I('timjan', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'), I('citron', 'seasoning'),
       I('strangbona', 'cooked'), I('butternutpumpa', 'cooked'),
       I('spenat', 'salad'), I('tomat', 'salad')],
   },
   {
     id: 'sat-2', slot: 'main', title: 'Grillad makrill med ugnsbakad tomat och ångad senapskål',
-    method: 'Krydda makrillen med timjan och salt och grilla utan fett. Ugnsbaka tomathalvor med oregano. Ånga senapskålen. Sallad: romansallad med pressad citron.',
+    method: 'Krydda makrillen med timjan och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka tomathalvor med oregano. Ånga senapskålen. Sallad: romansallad med pressad citron.',
     ingredients: [I('makrill', 'base'), I('timjan', 'seasoning'), I('oregano', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('tomat', 'cooked'), I('senapskal', 'cooked'),
       I('romansallad', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
@@ -188,26 +189,31 @@ export const MEALS = [
   // SÖNDAG – rött kött. Gemensamt: hjortkött (Patriks regel + användarbeslut 2026-10-02 för Linns regel)
   {
     id: 'sun-1', slot: 'main', title: 'Ugnsbakat hjortkött med portabello, butternutpumpa och grönkål',
-    method: 'Krydda hjortköttet med timjan och salt och ugnsbaka utan fett. Ugnsbaka portabellosvamp och butternutpumpa, ånga grönkålen. Sallad: romansallad och tomat med pressad citron.',
+    method: 'Krydda hjortköttet med timjan och salt och ugnsbaka med 1 msk smält ankfett. Ugnsbaka portabellosvamp och butternutpumpa, ånga grönkålen. Sallad: romansallad och tomat med pressad citron.',
     ingredients: [I('hjortkott', 'base'), I('timjan', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('portabellosvamp', 'cooked'), I('butternutpumpa', 'cooked'), I('gronkal', 'cooked'),
       I('romansallad', 'salad'), I('tomat', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
   },
   {
     id: 'sun-2', slot: 'main', title: 'Grillat hjortkött med oregano, ugnsbakad aubergine och strängbönor',
-    method: 'Krydda hjortköttet med oregano, chilipeppar och salt och grilla utan fett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.',
+    method: 'Krydda hjortköttet med oregano, chilipeppar och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.',
     ingredients: [I('hjortkott', 'base'), I('oregano', 'seasoning'), I('chilipeppar', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('aubergine', 'cooked'), I('strangbona', 'cooked'),
       I('kallfrane', 'salad'), I('tomat', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
   },
   {
     id: 'sun-3', slot: 'main', title: 'Hjortkött i ugn med dragon, champinjoner och senapskål',
-    method: 'Krydda hjortköttet med dragon, timjan och salt och ugnsbaka utan fett. Ugnsbaka champinjoner och schalottenlök, ånga senapskålen. Sallad: rosé-/grönsallad och spenat med pressad citron.',
+    method: 'Krydda hjortköttet med dragon, timjan och salt och ugnsbaka med 1 msk smält ankfett. Ugnsbaka champinjoner och schalottenlök, ånga senapskålen. Sallad: rosé-/grönsallad och spenat med pressad citron.',
     ingredients: [I('hjortkott', 'base'), I('dragon', 'seasoning'), I('timjan', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('tradgardschampinjon', 'cooked'), I('schalottenlok', 'cooked'), I('senapskal', 'cooked'),
       I('rose-gronsallad', 'salad'), I('spenat', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
   },
 ];
+
+// Stekfettet står i metoden → det ska också stå som ingrediens (inga dolda ingredienser)
+for (const m of MEALS) {
+  if (/ankfett/.test(m.method) && !m.ingredients.some((i) => i.id === 'ankfett')) m.ingredients.push(I('ankfett', 'fat', '1 msk'));
+}
 
 // Dryck varje dag (kostschemana: 10–12 glas vatten; örtte är tillåten dryck)
 export const DAILY_DRINKS = [

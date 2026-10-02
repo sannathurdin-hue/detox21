@@ -719,7 +719,7 @@
    "id": "mon-1",
    "slot": "main",
    "title": "Ris med ugnsbakad aubergine, sommarsquash och tomat",
-   "method": "Koka riset i vatten med en nypa salt. Skär aubergine, sommarsquash och tomat i bitar, strö över oregano, timjan och salt och ugnsbaka i 200 °C ca 25 min (utan fett). Sallad: romansallad och källfräne med pressad citron och en nypa salt.",
+   "method": "Koka riset i vatten med en nypa salt. Skär aubergine, sommarsquash och tomat i bitar, strö över oregano, timjan och salt och ugnsbaka i 200 °C ca 25 min med 1 msk smält ankfett. Sallad: romansallad och källfräne med pressad citron och en nypa salt.",
    "ingredients": [
     {
      "id": "ris",
@@ -765,6 +765,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -827,7 +832,7 @@
    "id": "mon-3",
    "slot": "main",
    "title": "Ris med ugnsbakad butternutpumpa, okra och tomat",
-   "method": "Koka riset i vatten med salt. Ugnsbaka butternutpumpa, okra och tomat med spiskummin, chilipeppar och salt i 200 °C ca 30 min (utan fett). Sallad: spenat och källfräne med pressad citron.",
+   "method": "Koka riset i vatten med salt. Ugnsbaka butternutpumpa, okra och tomat med spiskummin, chilipeppar och salt i 200 °C ca 30 min med 1 msk smält ankfett. Sallad: spenat och källfräne med pressad citron.",
    "ingredients": [
     {
      "id": "ris",
@@ -873,6 +878,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1039,7 +1049,7 @@
    "id": "wed-1",
    "slot": "main",
    "title": "Grillad kyckling med dragon, ångade strängbönor och champinjoner",
-   "method": "Krydda kycklingen med dragon, timjan och salt och grilla/ugnsbaka utan fett tills genomstekt. Ånga strängbönor och champinjoner. Sallad: romansallad och tomat med pressad citron.",
+   "method": "Krydda kycklingen med dragon, timjan och salt och stek i 1 msk ankfett eller ugnsbaka tills genomstekt. Ånga strängbönor och champinjoner. Sallad: romansallad och tomat med pressad citron.",
    "ingredients": [
     {
      "id": "kyckling",
@@ -1077,6 +1087,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1087,7 +1102,7 @@
    "id": "wed-2",
    "slot": "main",
    "title": "Ugnsbakad kalkon med butternutpumpa och strängbönor",
-   "method": "Krydda kalkonen med timjan, oregano och salt och ugnsbaka utan fett i 175 °C tills genomstekt. Ugnsbaka butternutpumpa i bitar bredvid. Ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
+   "method": "Krydda kalkonen med timjan, oregano och salt och ugnsbaka med 1 msk smält ankfett i 175 °C tills genomstekt. Ugnsbaka butternutpumpa i bitar bredvid. Ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
    "ingredients": [
     {
      "id": "kalkon",
@@ -1125,6 +1140,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1135,7 +1155,7 @@
    "id": "wed-3",
    "slot": "main",
    "title": "Grillad kyckling med oregano, ugnsbakad aubergine och sommarsquash",
-   "method": "Krydda kycklingen med oregano, chilipeppar och salt och grilla utan fett. Ugnsbaka aubergine och sommarsquash i 200 °C ca 25 min. Sallad: rosé-/grönsallad och tomat med pressad citron.",
+   "method": "Krydda kycklingen med oregano, chilipeppar och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka aubergine och sommarsquash i 200 °C ca 25 min. Sallad: rosé-/grönsallad och tomat med pressad citron.",
    "ingredients": [
     {
      "id": "kyckling",
@@ -1173,6 +1193,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1323,7 +1348,7 @@
    "id": "fri-1",
    "slot": "main",
    "title": "Grönsaksgryta med aubergine, okra och tomat",
-   "method": "Skär aubergine, sommarsquash, okra, tomat och schalottenlök i bitar. Låt puttra i lite vatten med oregano, chilipeppar och salt ca 25 min tills mjukt. Sallad: rosé-/grönsallad med pressad citron.",
+   "method": "Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i aubergine, sommarsquash, okra och tomat i bitar och låt puttra i lite vatten med oregano, chilipeppar och salt ca 25 min tills mjukt. Sallad: rosé-/grönsallad med pressad citron.",
    "ingredients": [
     {
      "id": "aubergine",
@@ -1369,6 +1394,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1379,7 +1409,7 @@
    "id": "fri-2",
    "slot": "main",
    "title": "Grönsaksgryta med kronärtskocka, strängbönor och tomat",
-   "method": "Låt kronärtskockshjärtan, strängbönor, tomat och schalottenlök puttra i vatten med dragon och salt ca 20 min. Sallad: rosé-/grönsallad och källfräne med pressad citron.",
+   "method": "Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i kronärtskockshjärtan, strängbönor och tomat och låt puttra i vatten med dragon och salt ca 20 min. Sallad: rosé-/grönsallad och källfräne med pressad citron.",
    "ingredients": [
     {
      "id": "kronartskocka",
@@ -1421,6 +1451,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1431,7 +1466,7 @@
    "id": "fri-3",
    "slot": "main",
    "title": "Pumpagryta med spenat och spiskummin",
-   "method": "Låt butternutpumpa, tomat och schalottenlök puttra i vatten med spiskummin, saffran och salt ca 20 min. Rör ner spenat sista minuten. Sallad: källfräne och romansallad med pressad citron.",
+   "method": "Fräs schalottenlöken mjuk i 1 msk ankfett. Lägg i butternutpumpa och tomat och låt puttra i vatten med spiskummin, saffran och salt ca 20 min. Rör ner spenat sista minuten. Sallad: källfräne och romansallad med pressad citron.",
    "ingredients": [
     {
      "id": "butternutpumpa",
@@ -1477,6 +1512,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1487,7 +1527,7 @@
    "id": "sat-1",
    "slot": "main",
    "title": "Ugnsbakad öring med citron och timjan, strängbönor och butternutpumpa",
-   "method": "Lägg öringen i en form, strö över timjan och salt och pressa över citron. Ugnsbaka i 200 °C ca 15 min (utan fett). Ugnsbaka butternutpumpa i bitar och ånga strängbönorna. Sallad: spenat och tomat.",
+   "method": "Lägg öringen i en form, strö över timjan och salt och pressa över citron. Ugnsbaka i 200 °C ca 15 min med 1 msk smält ankfett. Ugnsbaka butternutpumpa i bitar och ånga strängbönorna. Sallad: spenat och tomat.",
    "ingredients": [
     {
      "id": "oring",
@@ -1520,6 +1560,11 @@
     {
      "id": "tomat",
      "role": "salad"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1530,7 +1575,7 @@
    "id": "sat-2",
    "slot": "main",
    "title": "Grillad makrill med ugnsbakad tomat och ångad senapskål",
-   "method": "Krydda makrillen med timjan och salt och grilla utan fett. Ugnsbaka tomathalvor med oregano. Ånga senapskålen. Sallad: romansallad med pressad citron.",
+   "method": "Krydda makrillen med timjan och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka tomathalvor med oregano. Ånga senapskålen. Sallad: romansallad med pressad citron.",
    "ingredients": [
     {
      "id": "makrill",
@@ -1564,6 +1609,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1617,7 +1667,7 @@
    "id": "sun-1",
    "slot": "main",
    "title": "Ugnsbakat hjortkött med portabello, butternutpumpa och grönkål",
-   "method": "Krydda hjortköttet med timjan och salt och ugnsbaka utan fett. Ugnsbaka portabellosvamp och butternutpumpa, ånga grönkålen. Sallad: romansallad och tomat med pressad citron.",
+   "method": "Krydda hjortköttet med timjan och salt och ugnsbaka med 1 msk smält ankfett. Ugnsbaka portabellosvamp och butternutpumpa, ånga grönkålen. Sallad: romansallad och tomat med pressad citron.",
    "ingredients": [
     {
      "id": "hjortkott",
@@ -1655,6 +1705,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1665,7 +1720,7 @@
    "id": "sun-2",
    "slot": "main",
    "title": "Grillat hjortkött med oregano, ugnsbakad aubergine och strängbönor",
-   "method": "Krydda hjortköttet med oregano, chilipeppar och salt och grilla utan fett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
+   "method": "Krydda hjortköttet med oregano, chilipeppar och salt och stek eller grilla i 1 msk ankfett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
    "ingredients": [
     {
      "id": "hjortkott",
@@ -1703,6 +1758,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -1713,7 +1773,7 @@
    "id": "sun-3",
    "slot": "main",
    "title": "Hjortkött i ugn med dragon, champinjoner och senapskål",
-   "method": "Krydda hjortköttet med dragon, timjan och salt och ugnsbaka utan fett. Ugnsbaka champinjoner och schalottenlök, ånga senapskålen. Sallad: rosé-/grönsallad och spenat med pressad citron.",
+   "method": "Krydda hjortköttet med dragon, timjan och salt och ugnsbaka med 1 msk smält ankfett. Ugnsbaka champinjoner och schalottenlök, ånga senapskålen. Sallad: rosé-/grönsallad och spenat med pressad citron.",
    "ingredients": [
     {
      "id": "hjortkott",
@@ -1755,6 +1815,11 @@
      "id": "citron",
      "role": "seasoning",
      "note": "pressad, som dressing"
+    },
+    {
+     "id": "ankfett",
+     "role": "fat",
+     "note": "1 msk"
     }
    ],
    "usedOnDays": [
@@ -2015,6 +2080,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -2195,6 +2270,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -3061,6 +3146,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -3221,6 +3316,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -4069,6 +4174,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -4253,6 +4368,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -4577,6 +4702,16 @@
         "reason": "Tillåten för båda",
         "role": "salad",
         "note": null
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -4717,6 +4852,16 @@
         "reason": "Tillåten för båda",
         "role": "salad",
         "note": null
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -5057,6 +5202,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -5217,6 +5372,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -6543,6 +6708,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -6703,6 +6878,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -7531,6 +7716,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -7705,6 +7900,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -8029,6 +8234,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -8169,6 +8384,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -8509,6 +8734,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -8669,6 +8904,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -9009,6 +9254,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -9189,6 +9444,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -10045,6 +10310,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -10205,6 +10480,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -11063,6 +11348,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -11247,6 +11542,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -12051,6 +12356,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -12221,6 +12536,16 @@
         "reason": "Tillåten för båda",
         "role": "seasoning",
         "note": "pressad, som dressing"
+       },
+       {
+        "id": "ankfett",
+        "name": "Ankfett",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "fat",
+        "note": "1 msk"
        }
       ],
       "structure": [
@@ -12337,21 +12662,26 @@
  ],
  "gaps": [
   {
-   "id": "knackebrod",
-   "title": "Knäckebröd utelämnat",
-   "affects": "Frukost varje dag samt lunch/middag tisdag, torsdag och fredag",
-   "text": "Båda scheman har \"+ 1 st knäckebröd\". Linn: endast majskakor anges. Patrik: sort anges inte, och majskakor är ej verifierade för honom. Inget gemensamt verifierat knäckebröd finns, så det ingår inte i planen.",
-   "decision": "Om ni godkänner majskakor (100 % majs) för Patrik kan de läggas till."
-  },
-  {
    "id": "olja",
-   "title": "Olja till sallad och stekfett utelämnat",
+   "title": "Olja till sallad utelämnad",
    "affects": "Lunch och middag",
-   "text": "Patrik: \"1 msk olivolja till sallad\". Linn: \"1 matsked oliv till sallad\" (olivolja står inte). Stekfett: Linn kokosfett, Patrik ankfett. Inget av dessa är verifierat för båda. Planen tillagar därför utan fett (ugn, kokt, grillat, ångat) och använder pressad citron + salt som dressing.",
+   "text": "Patrik: \"1 msk olivolja till sallad\". Linn: \"1 matsked oliv till sallad\" (olivolja står inte). Olivolja är därför inte verifierad för Linn, och salladerna får pressad citron + salt som dressing.",
    "decision": "Om ni bekräftar att Linns \"oliv\" betyder olivolja blir olivolja tillåten för båda."
   }
  ],
  "decisions": [
+  {
+   "id": "fett",
+   "title": "Stekfett: ankfett",
+   "text": "Linns kostschema: kokosfett för stekning. Patriks: ankfett. Patrik har måttlig reaktion på kokosnöt; Linn har mild reaktion på anka. Ankfett valdes eftersom reaktionen på basråvaran är lägre.",
+   "resolution": "Användarbeslut 2026-10-02: \"välj kokosfett eller ankfett som fettkälla\" → ankfett."
+  },
+  {
+   "id": "knackebrod",
+   "title": "Knäckebröd utesluts ur Re:store",
+   "text": "Båda kostschemana har \"+ 1 st knäckebröd\", men inget knäckebröd är verifierat för båda (Linn: majskakor; Patrik: sort ej angiven).",
+   "resolution": "Användarbeslut 2026-10-02: \"skit i knäckbröd\"."
+  },
   {
    "id": "sondag",
    "title": "Söndag (dag 7, 14, 21): hjortkött godkänt för Linns söndagsregel",

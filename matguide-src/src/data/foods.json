@@ -530,7 +530,9 @@
   "displayName": "Ankfett",
   "normalizedName": "ankfett",
   "category": "Fett & oljor",
-  "aliases": [],
+  "aliases": [
+   "stekfett"
+  ],
   "alcatName": null,
   "components": [
    "ANKA"
@@ -539,11 +541,11 @@
   "linn": {
    "alcatStatus": "DERIVED",
    "alcatLabel": "Härledd: ANKA – mild reaktion",
-   "dietPlanStatusDay1To21": "NO_RULE",
-   "protocolStatus": "NO_RULE",
-   "finalStatusDay1To21": "UNVERIFIED",
+   "dietPlanStatusDay1To21": "EXPLICITLY_ALLOWED",
+   "protocolStatus": "EXPLICITLY_ALLOWED",
+   "finalStatusDay1To21": "ALLOWED",
    "restriction": null,
-   "restrictionDuration": "3 månader (alternativt rotation var 4:e dag enligt rapporten)",
+   "restrictionDuration": null,
    "sourceDocument": "01_Linn_Grant_ALCAT_svenska.pdf",
    "sourcePage": 1,
    "sourceText": "Kolumn MILD*: \"ANKA*\"",
@@ -553,17 +555,27 @@
      "document": "01_Linn_Grant_ALCAT_svenska.pdf",
      "page": 1,
      "text": "Kolumn MILD*: \"ANKA*\""
+    },
+    {
+     "kind": "ANVÄNDARBESLUT",
+     "document": "Användarens beslut (2026-10-02)",
+     "page": null,
+     "text": "välj kokosfett eller ankfett som fettkälla → ankfett valt som gemensamt stekfett"
     }
    ],
    "reasons": [
     {
-     "type": "avoid",
+     "type": "info",
      "text": "Ingående råvara ANKA: mild reaktion i ALCAT.",
      "duration": "3 månader (alternativt rotation var 4:e dag enligt rapporten)"
+    },
+    {
+     "type": "allow",
+     "text": "Användarbeslut: \"välj kokosfett eller ankfett som fettkälla → ankfett valt som gemensamt stekfett\""
     }
    ],
    "notes": [
-    "Ankfett testas inte separat och nämns inte i Linns kostschema. Ingående råvara har reaktion i ALCAT (se ovan) – statusen kan inte verifieras."
+    "Godkänt genom användarbeslut trots reaktion på ingående råvara (se ovan)."
    ],
    "rotationDays": null
   },
@@ -605,8 +617,8 @@
    "notes": [],
    "rotationDays": null
   },
-  "comparisonStatus": "UNVERIFIED",
-  "restoreStatus": "UNVERIFIED"
+  "comparisonStatus": "BOTH_ALLOWED",
+  "restoreStatus": "ALLOWED_FOR_BOTH"
  },
  {
   "id": "annat-salt",
