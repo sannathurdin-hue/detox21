@@ -185,14 +185,27 @@ export const MEALS = [
       I('spenat', 'salad'), I('tomat', 'salad')],
   },
 
-  // SÖNDAG – rött kött: INGET gemensamt alternativ i båda personernas regel.
-  // Förslag (kräver beslut): hjortkött är tillåtet för båda, men står bara i Patriks söndagsregel.
+  // SÖNDAG – rött kött. Gemensamt: hjortkött (Patriks regel + användarbeslut 2026-10-02 för Linns regel)
   {
-    id: 'sun-proposal', slot: 'main', proposal: true, title: 'FÖRSLAG: Ugnsbakat hjortkött med portabello, butternutpumpa och grönkål',
+    id: 'sun-1', slot: 'main', title: 'Ugnsbakat hjortkött med portabello, butternutpumpa och grönkål',
     method: 'Krydda hjortköttet med timjan och salt och ugnsbaka utan fett. Ugnsbaka portabellosvamp och butternutpumpa, ånga grönkålen. Sallad: romansallad och tomat med pressad citron.',
     ingredients: [I('hjortkott', 'base'), I('timjan', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
       I('portabellosvamp', 'cooked'), I('butternutpumpa', 'cooked'), I('gronkal', 'cooked'),
       I('romansallad', 'salad'), I('tomat', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
+  },
+  {
+    id: 'sun-2', slot: 'main', title: 'Grillat hjortkött med oregano, ugnsbakad aubergine och strängbönor',
+    method: 'Krydda hjortköttet med oregano, chilipeppar och salt och grilla utan fett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.',
+    ingredients: [I('hjortkott', 'base'), I('oregano', 'seasoning'), I('chilipeppar', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
+      I('aubergine', 'cooked'), I('strangbona', 'cooked'),
+      I('kallfrane', 'salad'), I('tomat', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
+  },
+  {
+    id: 'sun-3', slot: 'main', title: 'Hjortkött i ugn med dragon, champinjoner och senapskål',
+    method: 'Krydda hjortköttet med dragon, timjan och salt och ugnsbaka utan fett. Ugnsbaka champinjoner och schalottenlök, ånga senapskålen. Sallad: rosé-/grönsallad och spenat med pressad citron.',
+    ingredients: [I('hjortkott', 'base'), I('dragon', 'seasoning'), I('timjan', 'seasoning'), I('keltiskt-salt-havssalt', 'seasoning'),
+      I('tradgardschampinjon', 'cooked'), I('schalottenlok', 'cooked'), I('senapskal', 'cooked'),
+      I('rose-gronsallad', 'salad'), I('spenat', 'salad'), I('citron', 'seasoning', 'pressad, som dressing')],
   },
 ];
 
@@ -209,7 +222,7 @@ const MAIN = {
   thu: ['thu-1', 'thu-2', 'thu-3'],
   fri: ['fri-1', 'fri-2', 'fri-3'],
   sat: ['sat-1', 'sat-2', 'sat-3'],
-  sun: ['sun-proposal', 'sun-proposal', 'sun-proposal'],
+  sun: ['sun-1', 'sun-2', 'sun-3'],
 };
 const BREAKFASTS = ['fr-mango-kiwi', 'fr-papaya-ananas', 'fr-melon-persika', 'fr-mandarin-kiwi', 'fr-vattenmelon-mango', 'fr-guava-papaya', 'fr-ananas-mandarin'];
 const FRUIT = ['fs-persimon', 'fs-kiwi', 'fs-mango', 'fs-mandarin', 'fs-melon', 'fs-persika', 'fs-guava'];

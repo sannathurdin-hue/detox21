@@ -253,6 +253,7 @@
      "days": [
       1,
       5,
+      14,
       17
      ]
     },
@@ -261,6 +262,7 @@
      "days": [
       1,
       5,
+      14,
       17
      ]
     }
@@ -449,10 +451,8 @@
       6,
       7,
       10,
-      14,
       15,
-      19,
-      21
+      19
      ]
     },
     {
@@ -462,10 +462,8 @@
       6,
       7,
       10,
-      14,
       15,
-      19,
-      21
+      19
      ]
     }
    ]
@@ -531,6 +529,7 @@
      "slot": "lunch",
      "days": [
       5,
+      14,
       15,
       17
      ]
@@ -539,6 +538,7 @@
      "slot": "dinner",
      "days": [
       5,
+      14,
       15,
       17
      ]
@@ -677,7 +677,8 @@
      "days": [
       3,
       12,
-      20
+      20,
+      21
      ]
     },
     {
@@ -685,7 +686,8 @@
      "days": [
       3,
       12,
-      20
+      20,
+      21
      ]
     }
    ]
@@ -892,10 +894,8 @@
       2,
       7,
       8,
-      14,
       16,
-      20,
-      21
+      20
      ]
     },
     {
@@ -904,10 +904,8 @@
       2,
       7,
       8,
-      14,
       16,
-      20,
-      21
+      20
      ]
     }
    ]
@@ -1750,6 +1748,7 @@
       4,
       10,
       12,
+      14,
       15,
       19
      ]
@@ -1761,6 +1760,7 @@
       4,
       10,
       12,
+      14,
       15,
       19
      ]
@@ -2363,6 +2363,7 @@
       5,
       10,
       13,
+      14,
       17
      ]
     },
@@ -2373,6 +2374,7 @@
       5,
       10,
       13,
+      14,
       17
      ]
     }
@@ -2639,18 +2641,14 @@
      "slot": "lunch",
      "days": [
       7,
-      14,
-      16,
-      21
+      16
      ]
     },
     {
      "slot": "dinner",
      "days": [
       7,
-      14,
-      16,
-      21
+      16
      ]
     }
    ]
@@ -2766,11 +2764,9 @@
       7,
       9,
       13,
-      14,
       16,
       18,
-      19,
-      21
+      19
      ]
     },
     {
@@ -2782,11 +2778,9 @@
       7,
       9,
       13,
-      14,
       16,
       18,
-      19,
-      21
+      19
      ]
     },
     {
@@ -2817,7 +2811,8 @@
       2,
       5,
       12,
-      17
+      17,
+      21
      ]
     },
     {
@@ -2826,7 +2821,8 @@
       2,
       5,
       12,
-      17
+      17,
+      21
      ]
     }
    ]
@@ -2997,7 +2993,8 @@
       11,
       12,
       16,
-      19
+      19,
+      21
      ]
     },
     {
@@ -3010,7 +3007,8 @@
       11,
       12,
       16,
-      19
+      19,
+      21
      ]
     }
    ]
@@ -3049,13 +3047,15 @@
     {
      "slot": "lunch",
      "days": [
-      13
+      13,
+      21
      ]
     },
     {
      "slot": "dinner",
      "days": [
-      13
+      13,
+      21
      ]
     }
    ]
@@ -3256,7 +3256,8 @@
       11,
       15,
       19,
-      20
+      20,
+      21
      ]
     },
     {
@@ -3268,7 +3269,8 @@
       11,
       15,
       19,
-      20
+      20,
+      21
      ]
     },
     {
@@ -3382,6 +3384,7 @@
       6,
       10,
       12,
+      14,
       20
      ]
     },
@@ -3392,6 +3395,7 @@
       6,
       10,
       12,
+      14,
       20
      ]
     }
@@ -3578,7 +3582,6 @@
       7,
       10,
       13,
-      14,
       16,
       21
      ]
@@ -3593,7 +3596,6 @@
       7,
       10,
       13,
-      14,
       16,
       21
      ]
@@ -3633,8 +3635,7 @@
       17,
       18,
       19,
-      20,
-      21
+      20
      ]
     },
     {
@@ -3679,8 +3680,7 @@
       17,
       18,
       19,
-      20,
-      21
+      20
      ]
     },
     {
@@ -3748,7 +3748,8 @@
      "days": [
       3,
       8,
-      16
+      16,
+      21
      ]
     },
     {
@@ -3767,7 +3768,8 @@
      "days": [
       3,
       8,
-      16
+      16,
+      21
      ]
     }
    ]
@@ -5739,14 +5741,12 @@
    "status": "VALIDATED"
   },
   {
-   "id": "sun-proposal",
+   "id": "sun-1",
    "title": "Ugnsbakat hjortkött med portabello, butternutpumpa och grönkål",
    "method": "Krydda hjortköttet med timjan och salt och ugnsbaka utan fett. Ugnsbaka portabellosvamp och butternutpumpa, ånga grönkålen. Sallad: romansallad och tomat med pressad citron.",
    "slot": "main",
    "usedOnDays": [
-    7,
-    14,
-    21
+    7
    ],
    "ingredients": [
     {
@@ -5795,7 +5795,126 @@
      "note": "pressad, som dressing"
     }
    ],
-   "status": "UNDER_REVIEW"
+   "status": "VALIDATED"
+  },
+  {
+   "id": "sun-2",
+   "title": "Grillat hjortkött med oregano, ugnsbakad aubergine och strängbönor",
+   "method": "Krydda hjortköttet med oregano, chilipeppar och salt och grilla utan fett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    14
+   ],
+   "ingredients": [
+    {
+     "id": "hjortkott",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "oregano",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "chilipeppar",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "aubergine",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "strangbona",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "kallfrane",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "tomat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
+  },
+  {
+   "id": "sun-3",
+   "title": "Hjortkött i ugn med dragon, champinjoner och senapskål",
+   "method": "Krydda hjortköttet med dragon, timjan och salt och ugnsbaka utan fett. Ugnsbaka champinjoner och schalottenlök, ånga senapskålen. Sallad: rosé-/grönsallad och spenat med pressad citron.",
+   "slot": "main",
+   "usedOnDays": [
+    21
+   ],
+   "ingredients": [
+    {
+     "id": "hjortkott",
+     "role": "base",
+     "note": null
+    },
+    {
+     "id": "dragon",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "timjan",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning",
+     "note": null
+    },
+    {
+     "id": "tradgardschampinjon",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "schalottenlok",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "senapskal",
+     "role": "cooked",
+     "note": null
+    },
+    {
+     "id": "rose-gronsallad",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "spenat",
+     "role": "salad",
+     "note": null
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "status": "VALIDATED"
   }
  ],
  "days": [
@@ -5914,16 +6033,16 @@
    "meals": {
     "breakfast": "fr-ananas-mandarin",
     "snack1": "fs-guava",
-    "lunch": "sun-proposal",
+    "lunch": "sun-1",
     "snack2": "vs-champinjon-tomat",
-    "dinner": "sun-proposal",
+    "dinner": "sun-1",
     "snack3": "ks-squash"
    },
    "drinks": [
     "Vatten, 10–12 glas",
     "Örtte på färsk grönmynta"
    ],
-   "status": "UNDER_REVIEW"
+   "status": "VALIDATED"
   },
   {
    "day": 8,
@@ -6040,16 +6159,16 @@
    "meals": {
     "breakfast": "fr-papaya-ananas",
     "snack1": "fs-mango",
-    "lunch": "sun-proposal",
+    "lunch": "sun-2",
     "snack2": "vs-champinjon-tomat",
-    "dinner": "sun-proposal",
+    "dinner": "sun-2",
     "snack3": "ks-squash"
    },
    "drinks": [
     "Vatten, 10–12 glas",
     "Örtte på färsk grönmynta"
    ],
-   "status": "UNDER_REVIEW"
+   "status": "VALIDATED"
   },
   {
    "day": 15,
@@ -6166,16 +6285,16 @@
    "meals": {
     "breakfast": "fr-mandarin-kiwi",
     "snack1": "fs-persika",
-    "lunch": "sun-proposal",
+    "lunch": "sun-3",
     "snack2": "vs-champinjon-tomat",
-    "dinner": "sun-proposal",
+    "dinner": "sun-3",
     "snack3": "ks-squash"
    },
    "drinks": [
     "Vatten, 10–12 glas",
     "Örtte på färsk grönmynta"
    ],
-   "status": "UNDER_REVIEW"
+   "status": "VALIDATED"
   }
  ]
 }

@@ -1,7 +1,7 @@
 // INTERN granskning (Re:Set-sidan) – källprofiler, konflikter och 21-dagars-QA.
 // Får aldrig länkas från den publika Re:store-vyn.
 import { PERSON_NAME, PersonKey, sourceLabel } from '../lib/data';
-import { CONFLICTS, RESOLVED_CONFLICTS, RESTORE_DAYS, RESTORE_GAPS, RESTORE_SUMMARY, byRestore } from '../lib/restore';
+import { CONFLICTS, RESOLVED_CONFLICTS, RESTORE_DAYS, RESTORE_DECISIONS, RESTORE_GAPS, RESTORE_SUMMARY, byRestore } from '../lib/restore';
 import { Badge, StatusBadge, href, shortReason } from '../components/ui';
 
 // ---------------------------------------------------------------------------
@@ -60,6 +60,17 @@ export function RestoreInternal() {
               <SourceBox label="Källa B" s={c.sourceB} />
             </div>
             <p className="note"><strong>{c.resolution}</strong> {c.effect}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="group">
+        <h2 className="group-title">Användarbeslut <span className="count">{RESTORE_DECISIONS.length}</span></h2>
+        {RESTORE_DECISIONS.map((d) => (
+          <article key={d.id} className="conflict conflict-resolved">
+            <h3>{d.title} · <span className="ok">Beslutat</span></h3>
+            <p>{d.text}</p>
+            <p className="note"><strong>{d.resolution}</strong></p>
           </article>
         ))}
       </section>

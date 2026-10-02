@@ -78,6 +78,8 @@ export const DAY_RULES = {
     linn: 'Ugnsbakade/kokta/grillade/ångkokta grönsaker + färsk sallad + kalvkött / fläskkött',
     patrik: 'Bakade/kokta/grillade/ångkokta grönsaker + Färsk sallad + anka / hjortkött',
     linnBase: ['kalvkott', 'griskott'], patrikBase: ['anka', 'hjortkott'],
+    // Användarbeslut 2026-10-02: "godkänns hjortkött för söndag" (Linns söndagsregel)
+    decisions: { linnBase: { add: ['hjortkott'], source: 'Användarens beslut (2026-10-02)', quote: 'godkänns hjortkött för söndag' } },
     baseMin: 1, cookedMin: 2, saladMin: 1, liquid: 'optional',
   },
 };
@@ -86,7 +88,11 @@ export const DAY_RULES = {
 export function sharedBase(dayKey, foodsById) {
   const r = DAY_RULES[dayKey];
   const ok = (id) => foodsById[id] && foodsById[id].restoreStatus === 'ALLOWED_FOR_BOTH';
-  if (r.linnBase) return r.linnBase.filter((id) => r.patrikBase.includes(id) && ok(id));
+  if (r.linnBase) {
+    const linn = [...r.linnBase, ...((r.decisions && r.decisions.linnBase && r.decisions.linnBase.add) || [])];
+    const patrik = [...r.patrikBase, ...((r.decisions && r.decisions.patrikBase && r.decisions.patrikBase.add) || [])];
+    return linn.filter((id) => patrik.includes(id) && ok(id));
+  }
   if (r.baseCategory) return Object.values(foodsById).filter((f) => f.category === r.baseCategory && ok(f.id)).map((f) => f.id);
   return [];
 }

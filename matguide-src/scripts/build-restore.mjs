@@ -66,12 +66,15 @@ const gaps = [
     text: 'Patrik: "1 msk olivolja till sallad". Linn: "1 matsked oliv till sallad" (olivolja står inte). Stekfett: Linn kokosfett, Patrik ankfett. Inget av dessa är verifierat för båda. Planen tillagar därför utan fett (ugn, kokt, grillat, ångat) och använder pressad citron + salt som dressing.',
     decision: 'Om ni bekräftar att Linns "oliv" betyder olivolja blir olivolja tillåten för båda.',
   },
-  {
-    id: 'sondag', title: 'Söndag (dag 7, 14, 21): inget gemensamt rött kött',
-    affects: 'Lunch och middag dag 7, 14 och 21',
-    text: `Linns söndagsregel: kalvkött / fläskkött (Patrik: mild reaktion på båda). Patriks: anka / hjortkött (Linn: mild reaktion på anka). Hjortkött är tillåtet för båda enligt ALCAT, men står inte i Linns söndagsregel. Söndagen kan därför inte valideras mot båda strukturerna.`,
-    decision: 'Godkänn hjortkött som Linns söndagskött, så valideras förslaget för dag 7, 14 och 21.',
-  },
+];
+
+const decisions = [
+  { id: 'sondag', title: 'Söndag (dag 7, 14, 21): hjortkött godkänt för Linns söndagsregel',
+    text: 'Linns kostschema anger kalvkött / fläskkött (mild reaktion hos Patrik). Patriks anger anka / hjortkött (mild reaktion på anka hos Linn). Hjortkött är grönt i båda ALCAT-rapporterna.',
+    resolution: 'Användarbeslut 2026-10-02: "godkänns hjortkött för söndag".' },
+  { id: 'manuka', title: 'Manukahonung räknas inte som honung',
+    text: 'Patriks kostschema har manuka honung i frukosten; ALCAT:s Candida-ruta säger att honung ska elimineras.',
+    resolution: 'Användarbeslut 2026-10-02: "Manukahonung är ok. det ska inte räknas som honung."' },
 ];
 
 const out = {
@@ -81,6 +84,7 @@ const out = {
   drinks: DAILY_DRINKS,
   days: DAYS.map((d, i) => ({ ...d, validation: results[i] })),
   gaps,
+  decisions,
   summary: {
     pass: results.filter((r) => r.pass).length,
     total: results.length,

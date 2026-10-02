@@ -5358,8 +5358,8 @@
   "linn": {
    "alcatStatus": "NONE",
    "alcatLabel": "Acceptabel / ingen reaktion",
-   "dietPlanStatusDay1To21": "NO_RULE",
-   "protocolStatus": "NO_RULE",
+   "dietPlanStatusDay1To21": "EXPLICITLY_ALLOWED",
+   "protocolStatus": "EXPLICITLY_ALLOWED",
    "finalStatusDay1To21": "ALLOWED",
    "restriction": null,
    "restrictionDuration": null,
@@ -5372,12 +5372,22 @@
      "document": "01_Linn_Grant_ALCAT_svenska.pdf",
      "page": 1,
      "text": "Kolumn ACCEPTABEL/INGEN REAKTION – KÖTT: \"HJORTKÖTT\""
+    },
+    {
+     "kind": "ANVÄNDARBESLUT",
+     "document": "Användarens beslut (2026-10-02)",
+     "page": null,
+     "text": "godkänns hjortkött för söndag"
     }
    ],
    "reasons": [
     {
      "type": "allow",
-     "text": "ALCAT: acceptabel / ingen reaktion (grön). Ingen regel i kostschemat begränsar livsmedlet under dag 1–21."
+     "text": "Användarbeslut: \"godkänns hjortkött för söndag\""
+    },
+    {
+     "type": "allow",
+     "text": "ALCAT: acceptabel / ingen reaktion."
     }
    ],
    "notes": [],

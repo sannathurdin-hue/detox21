@@ -37,7 +37,7 @@ Per person (slutstatus dag 1–21):
 | NOT INCLUDED (ej tillåtet för båda) | 169 |
 | UNVERIFIED | 8 |
 | DATA CONFLICTS (livsmedel) | 2 |
-| 21-DAY PLAN | 18 / 21 DAYS PASS |
+| 21-DAY PLAN | 21 / 21 DAYS PASS |
 
 | Dag | Veckodag | Resultat | Orsak |
 |---|---|---|---|
@@ -47,25 +47,24 @@ Per person (slutstatus dag 1–21):
 | Dag 4 | thu | PASS |  |
 | Dag 5 | fri | PASS |  |
 | Dag 6 | sat | PASS |  |
-| Dag 7 | sun | FAIL | Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda; Huvudkomponent passar inte dagens gemensamma regel: hjortkött |
+| Dag 7 | sun | PASS |  |
 | Dag 8 | mon | PASS |  |
 | Dag 9 | tue | PASS |  |
 | Dag 10 | wed | PASS |  |
 | Dag 11 | thu | PASS |  |
 | Dag 12 | fri | PASS |  |
 | Dag 13 | sat | PASS |  |
-| Dag 14 | sun | FAIL | Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda; Huvudkomponent passar inte dagens gemensamma regel: hjortkött |
+| Dag 14 | sun | PASS |  |
 | Dag 15 | mon | PASS |  |
 | Dag 16 | tue | PASS |  |
 | Dag 17 | wed | PASS |  |
 | Dag 18 | thu | PASS |  |
 | Dag 19 | fri | PASS |  |
 | Dag 20 | sat | PASS |  |
-| Dag 21 | sun | FAIL | Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda; Huvudkomponent passar inte dagens gemensamma regel: hjortkött |
+| Dag 21 | sun | PASS |  |
 
 - **Knäckebröd utelämnat:** Båda scheman har "+ 1 st knäckebröd". Linn: endast majskakor anges. Patrik: sort anges inte, och majskakor är ej verifierade för honom. Inget gemensamt verifierat knäckebröd finns, så det ingår inte i planen. *Beslut som löser det:* Om ni godkänner majskakor (100 % majs) för Patrik kan de läggas till.
 - **Olja till sallad och stekfett utelämnat:** Patrik: "1 msk olivolja till sallad". Linn: "1 matsked oliv till sallad" (olivolja står inte). Stekfett: Linn kokosfett, Patrik ankfett. Inget av dessa är verifierat för båda. Planen tillagar därför utan fett (ugn, kokt, grillat, ångat) och använder pressad citron + salt som dressing. *Beslut som löser det:* Om ni bekräftar att Linns "oliv" betyder olivolja blir olivolja tillåten för båda.
-- **Söndag (dag 7, 14, 21): inget gemensamt rött kött:** Linns söndagsregel: kalvkött / fläskkött (Patrik: mild reaktion på båda). Patriks: anka / hjortkött (Linn: mild reaktion på anka). Hjortkött är tillåtet för båda enligt ALCAT, men står inte i Linns söndagsregel. Söndagen kan därför inte valideras mot båda strukturerna. *Beslut som löser det:* Godkänn hjortkött som Linns söndagskött, så valideras förslaget för dag 7, 14 och 21.
 
 ## Automatiska kontroller
 - ✅ linn: ALCAT-status för varje livsmedel stämmer mot originaltranskriberingen

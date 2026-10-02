@@ -200,12 +200,23 @@
     "anka",
     "hjortkott"
    ],
+   "decisions": {
+    "linnBase": {
+     "add": [
+      "hjortkott"
+     ],
+     "source": "Användarens beslut (2026-10-02)",
+     "quote": "godkänns hjortkött för söndag"
+    }
+   },
    "baseMin": 1,
    "cookedMin": 2,
    "saladMin": 1,
    "liquid": "optional",
    "label": "Söndag",
-   "sharedBase": []
+   "sharedBase": [
+    "hjortkott"
+   ]
   }
  },
  "meals": [
@@ -1603,10 +1614,9 @@
    ]
   },
   {
-   "id": "sun-proposal",
+   "id": "sun-1",
    "slot": "main",
-   "proposal": true,
-   "title": "FÖRSLAG: Ugnsbakat hjortkött med portabello, butternutpumpa och grönkål",
+   "title": "Ugnsbakat hjortkött med portabello, butternutpumpa och grönkål",
    "method": "Krydda hjortköttet med timjan och salt och ugnsbaka utan fett. Ugnsbaka portabellosvamp och butternutpumpa, ånga grönkålen. Sallad: romansallad och tomat med pressad citron.",
    "ingredients": [
     {
@@ -1648,8 +1658,106 @@
     }
    ],
    "usedOnDays": [
-    7,
-    14,
+    7
+   ]
+  },
+  {
+   "id": "sun-2",
+   "slot": "main",
+   "title": "Grillat hjortkött med oregano, ugnsbakad aubergine och strängbönor",
+   "method": "Krydda hjortköttet med oregano, chilipeppar och salt och grilla utan fett. Ugnsbaka aubergine i 200 °C ca 25 min och ånga strängbönorna. Sallad: källfräne och tomat med pressad citron.",
+   "ingredients": [
+    {
+     "id": "hjortkott",
+     "role": "base"
+    },
+    {
+     "id": "oregano",
+     "role": "seasoning"
+    },
+    {
+     "id": "chilipeppar",
+     "role": "seasoning"
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning"
+    },
+    {
+     "id": "aubergine",
+     "role": "cooked"
+    },
+    {
+     "id": "strangbona",
+     "role": "cooked"
+    },
+    {
+     "id": "kallfrane",
+     "role": "salad"
+    },
+    {
+     "id": "tomat",
+     "role": "salad"
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "usedOnDays": [
+    14
+   ]
+  },
+  {
+   "id": "sun-3",
+   "slot": "main",
+   "title": "Hjortkött i ugn med dragon, champinjoner och senapskål",
+   "method": "Krydda hjortköttet med dragon, timjan och salt och ugnsbaka utan fett. Ugnsbaka champinjoner och schalottenlök, ånga senapskålen. Sallad: rosé-/grönsallad och spenat med pressad citron.",
+   "ingredients": [
+    {
+     "id": "hjortkott",
+     "role": "base"
+    },
+    {
+     "id": "dragon",
+     "role": "seasoning"
+    },
+    {
+     "id": "timjan",
+     "role": "seasoning"
+    },
+    {
+     "id": "keltiskt-salt-havssalt",
+     "role": "seasoning"
+    },
+    {
+     "id": "tradgardschampinjon",
+     "role": "cooked"
+    },
+    {
+     "id": "schalottenlok",
+     "role": "cooked"
+    },
+    {
+     "id": "senapskal",
+     "role": "cooked"
+    },
+    {
+     "id": "rose-gronsallad",
+     "role": "salad"
+    },
+    {
+     "id": "spenat",
+     "role": "salad"
+    },
+    {
+     "id": "citron",
+     "role": "seasoning",
+     "note": "pressad, som dressing"
+    }
+   ],
+   "usedOnDays": [
     21
    ]
   }
@@ -4739,9 +4847,9 @@
    "meals": {
     "breakfast": "fr-ananas-mandarin",
     "snack1": "fs-guava",
-    "lunch": "sun-proposal",
+    "lunch": "sun-1",
     "snack2": "vs-champinjon-tomat",
-    "dinner": "sun-proposal",
+    "dinner": "sun-1",
     "snack3": "ks-squash"
    },
    "drinks": [
@@ -4762,7 +4870,7 @@
    "validation": {
     "day": 7,
     "weekday": "sun",
-    "pass": false,
+    "pass": true,
     "meals": [
      {
       "slot": "breakfast",
@@ -4858,7 +4966,7 @@
      },
      {
       "slot": "lunch",
-      "mealId": "sun-proposal",
+      "mealId": "sun-1",
       "ingredients": [
        {
         "id": "hjortkott",
@@ -4957,12 +5065,8 @@
         "text": "Endast komponenter som måltiden tillåter"
        },
        {
-        "ok": false,
-        "text": "Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda"
-       },
-       {
-        "ok": false,
-        "text": "Huvudkomponent passar inte dagens gemensamma regel: hjortkött"
+        "ok": true,
+        "text": "Huvudkomponent enligt dagens regel (Rött kött)"
        },
        {
         "ok": true,
@@ -4978,8 +5082,8 @@
        }
       ],
       "ingredientsPass": true,
-      "structurePass": false,
-      "pass": false
+      "structurePass": true,
+      "pass": true
      },
      {
       "slot": "snack2",
@@ -5022,7 +5126,7 @@
      },
      {
       "slot": "dinner",
-      "mealId": "sun-proposal",
+      "mealId": "sun-1",
       "ingredients": [
        {
         "id": "hjortkott",
@@ -5121,12 +5225,8 @@
         "text": "Endast komponenter som måltiden tillåter"
        },
        {
-        "ok": false,
-        "text": "Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda"
-       },
-       {
-        "ok": false,
-        "text": "Huvudkomponent passar inte dagens gemensamma regel: hjortkött"
+        "ok": true,
+        "text": "Huvudkomponent enligt dagens regel (Rött kött)"
        },
        {
         "ok": true,
@@ -5142,8 +5242,8 @@
        }
       ],
       "ingredientsPass": true,
-      "structurePass": false,
-      "pass": false
+      "structurePass": true,
+      "pass": true
      },
      {
       "slot": "snack3",
@@ -5227,12 +5327,7 @@
        }
       ]
      }
-    ],
-    "failReasons": [
-     "Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda",
-     "Huvudkomponent passar inte dagens gemensamma regel: hjortkött"
-    ],
-    "blockedBySource": true
+    ]
    }
   },
   {
@@ -8204,9 +8299,9 @@
    "meals": {
     "breakfast": "fr-papaya-ananas",
     "snack1": "fs-mango",
-    "lunch": "sun-proposal",
+    "lunch": "sun-2",
     "snack2": "vs-champinjon-tomat",
-    "dinner": "sun-proposal",
+    "dinner": "sun-2",
     "snack3": "ks-squash"
    },
    "drinks": [
@@ -8227,7 +8322,7 @@
    "validation": {
     "day": 14,
     "weekday": "sun",
-    "pass": false,
+    "pass": true,
     "meals": [
      {
       "slot": "breakfast",
@@ -8323,7 +8418,7 @@
      },
      {
       "slot": "lunch",
-      "mealId": "sun-proposal",
+      "mealId": "sun-2",
       "ingredients": [
        {
         "id": "hjortkott",
@@ -8336,8 +8431,18 @@
         "note": null
        },
        {
-        "id": "timjan",
-        "name": "Timjan",
+        "id": "oregano",
+        "name": "Oregano",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "seasoning",
+        "note": null
+       },
+       {
+        "id": "chilipeppar",
+        "name": "Chilipeppar",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -8356,8 +8461,8 @@
         "note": null
        },
        {
-        "id": "portabellosvamp",
-        "name": "Portabellosvamp",
+        "id": "aubergine",
+        "name": "Aubergine",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -8366,8 +8471,8 @@
         "note": null
        },
        {
-        "id": "butternutpumpa",
-        "name": "Butternutpumpa",
+        "id": "strangbona",
+        "name": "Strängböna",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -8376,18 +8481,8 @@
         "note": null
        },
        {
-        "id": "gronkal",
-        "name": "Grönkål",
-        "ok": true,
-        "linn": "ALLOWED",
-        "patrik": "ALLOWED",
-        "reason": "Tillåten för båda",
-        "role": "cooked",
-        "note": null
-       },
-       {
-        "id": "romansallad",
-        "name": "Romansallad",
+        "id": "kallfrane",
+        "name": "Källfräne",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -8422,12 +8517,8 @@
         "text": "Endast komponenter som måltiden tillåter"
        },
        {
-        "ok": false,
-        "text": "Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda"
-       },
-       {
-        "ok": false,
-        "text": "Huvudkomponent passar inte dagens gemensamma regel: hjortkött"
+        "ok": true,
+        "text": "Huvudkomponent enligt dagens regel (Rött kött)"
        },
        {
         "ok": true,
@@ -8443,8 +8534,8 @@
        }
       ],
       "ingredientsPass": true,
-      "structurePass": false,
-      "pass": false
+      "structurePass": true,
+      "pass": true
      },
      {
       "slot": "snack2",
@@ -8487,7 +8578,7 @@
      },
      {
       "slot": "dinner",
-      "mealId": "sun-proposal",
+      "mealId": "sun-2",
       "ingredients": [
        {
         "id": "hjortkott",
@@ -8500,8 +8591,18 @@
         "note": null
        },
        {
-        "id": "timjan",
-        "name": "Timjan",
+        "id": "oregano",
+        "name": "Oregano",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "seasoning",
+        "note": null
+       },
+       {
+        "id": "chilipeppar",
+        "name": "Chilipeppar",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -8520,8 +8621,8 @@
         "note": null
        },
        {
-        "id": "portabellosvamp",
-        "name": "Portabellosvamp",
+        "id": "aubergine",
+        "name": "Aubergine",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -8530,8 +8631,8 @@
         "note": null
        },
        {
-        "id": "butternutpumpa",
-        "name": "Butternutpumpa",
+        "id": "strangbona",
+        "name": "Strängböna",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -8540,18 +8641,8 @@
         "note": null
        },
        {
-        "id": "gronkal",
-        "name": "Grönkål",
-        "ok": true,
-        "linn": "ALLOWED",
-        "patrik": "ALLOWED",
-        "reason": "Tillåten för båda",
-        "role": "cooked",
-        "note": null
-       },
-       {
-        "id": "romansallad",
-        "name": "Romansallad",
+        "id": "kallfrane",
+        "name": "Källfräne",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -8586,12 +8677,8 @@
         "text": "Endast komponenter som måltiden tillåter"
        },
        {
-        "ok": false,
-        "text": "Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda"
-       },
-       {
-        "ok": false,
-        "text": "Huvudkomponent passar inte dagens gemensamma regel: hjortkött"
+        "ok": true,
+        "text": "Huvudkomponent enligt dagens regel (Rött kött)"
        },
        {
         "ok": true,
@@ -8607,8 +8694,8 @@
        }
       ],
       "ingredientsPass": true,
-      "structurePass": false,
-      "pass": false
+      "structurePass": true,
+      "pass": true
      },
      {
       "slot": "snack3",
@@ -8692,12 +8779,7 @@
        }
       ]
      }
-    ],
-    "failReasons": [
-     "Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda",
-     "Huvudkomponent passar inte dagens gemensamma regel: hjortkött"
-    ],
-    "blockedBySource": true
+    ]
    }
   },
   {
@@ -11749,9 +11831,9 @@
    "meals": {
     "breakfast": "fr-mandarin-kiwi",
     "snack1": "fs-persika",
-    "lunch": "sun-proposal",
+    "lunch": "sun-3",
     "snack2": "vs-champinjon-tomat",
-    "dinner": "sun-proposal",
+    "dinner": "sun-3",
     "snack3": "ks-squash"
    },
    "drinks": [
@@ -11772,7 +11854,7 @@
    "validation": {
     "day": 21,
     "weekday": "sun",
-    "pass": false,
+    "pass": true,
     "meals": [
      {
       "slot": "breakfast",
@@ -11868,7 +11950,7 @@
      },
      {
       "slot": "lunch",
-      "mealId": "sun-proposal",
+      "mealId": "sun-3",
       "ingredients": [
        {
         "id": "hjortkott",
@@ -11878,6 +11960,16 @@
         "patrik": "ALLOWED",
         "reason": "Tillåten för båda",
         "role": "base",
+        "note": null
+       },
+       {
+        "id": "dragon",
+        "name": "Dragon",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "seasoning",
         "note": null
        },
        {
@@ -11901,8 +11993,8 @@
         "note": null
        },
        {
-        "id": "portabellosvamp",
-        "name": "Portabellosvamp",
+        "id": "tradgardschampinjon",
+        "name": "Trädgårdschampinjon",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -11911,8 +12003,8 @@
         "note": null
        },
        {
-        "id": "butternutpumpa",
-        "name": "Butternutpumpa",
+        "id": "schalottenlok",
+        "name": "Schalottenlök",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -11921,8 +12013,8 @@
         "note": null
        },
        {
-        "id": "gronkal",
-        "name": "Grönkål",
+        "id": "senapskal",
+        "name": "Senapskål",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -11931,8 +12023,8 @@
         "note": null
        },
        {
-        "id": "romansallad",
-        "name": "Romansallad",
+        "id": "rose-gronsallad",
+        "name": "Rosé-/grönsallad",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -11941,8 +12033,8 @@
         "note": null
        },
        {
-        "id": "tomat",
-        "name": "Tomat",
+        "id": "spenat",
+        "name": "Spenat",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -11967,12 +12059,8 @@
         "text": "Endast komponenter som måltiden tillåter"
        },
        {
-        "ok": false,
-        "text": "Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda"
-       },
-       {
-        "ok": false,
-        "text": "Huvudkomponent passar inte dagens gemensamma regel: hjortkött"
+        "ok": true,
+        "text": "Huvudkomponent enligt dagens regel (Rött kött)"
        },
        {
         "ok": true,
@@ -11988,8 +12076,8 @@
        }
       ],
       "ingredientsPass": true,
-      "structurePass": false,
-      "pass": false
+      "structurePass": true,
+      "pass": true
      },
      {
       "slot": "snack2",
@@ -12032,7 +12120,7 @@
      },
      {
       "slot": "dinner",
-      "mealId": "sun-proposal",
+      "mealId": "sun-3",
       "ingredients": [
        {
         "id": "hjortkott",
@@ -12042,6 +12130,16 @@
         "patrik": "ALLOWED",
         "reason": "Tillåten för båda",
         "role": "base",
+        "note": null
+       },
+       {
+        "id": "dragon",
+        "name": "Dragon",
+        "ok": true,
+        "linn": "ALLOWED",
+        "patrik": "ALLOWED",
+        "reason": "Tillåten för båda",
+        "role": "seasoning",
         "note": null
        },
        {
@@ -12065,8 +12163,8 @@
         "note": null
        },
        {
-        "id": "portabellosvamp",
-        "name": "Portabellosvamp",
+        "id": "tradgardschampinjon",
+        "name": "Trädgårdschampinjon",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -12075,8 +12173,8 @@
         "note": null
        },
        {
-        "id": "butternutpumpa",
-        "name": "Butternutpumpa",
+        "id": "schalottenlok",
+        "name": "Schalottenlök",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -12085,8 +12183,8 @@
         "note": null
        },
        {
-        "id": "gronkal",
-        "name": "Grönkål",
+        "id": "senapskal",
+        "name": "Senapskål",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -12095,8 +12193,8 @@
         "note": null
        },
        {
-        "id": "romansallad",
-        "name": "Romansallad",
+        "id": "rose-gronsallad",
+        "name": "Rosé-/grönsallad",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -12105,8 +12203,8 @@
         "note": null
        },
        {
-        "id": "tomat",
-        "name": "Tomat",
+        "id": "spenat",
+        "name": "Spenat",
         "ok": true,
         "linn": "ALLOWED",
         "patrik": "ALLOWED",
@@ -12131,12 +12229,8 @@
         "text": "Endast komponenter som måltiden tillåter"
        },
        {
-        "ok": false,
-        "text": "Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda"
-       },
-       {
-        "ok": false,
-        "text": "Huvudkomponent passar inte dagens gemensamma regel: hjortkött"
+        "ok": true,
+        "text": "Huvudkomponent enligt dagens regel (Rött kött)"
        },
        {
         "ok": true,
@@ -12152,8 +12246,8 @@
        }
       ],
       "ingredientsPass": true,
-      "structurePass": false,
-      "pass": false
+      "structurePass": true,
+      "pass": true
      },
      {
       "slot": "snack3",
@@ -12237,12 +12331,7 @@
        }
       ]
      }
-    ],
-    "failReasons": [
-     "Ingen gemensam huvudkomponent: Linns regel anger kalvkött / griskött, Patriks anka / hjortkött – inget av dem står i båda reglerna och är tillåtet för båda",
-     "Huvudkomponent passar inte dagens gemensamma regel: hjortkött"
-    ],
-    "blockedBySource": true
+    ]
    }
   }
  ],
@@ -12260,22 +12349,25 @@
    "affects": "Lunch och middag",
    "text": "Patrik: \"1 msk olivolja till sallad\". Linn: \"1 matsked oliv till sallad\" (olivolja står inte). Stekfett: Linn kokosfett, Patrik ankfett. Inget av dessa är verifierat för båda. Planen tillagar därför utan fett (ugn, kokt, grillat, ångat) och använder pressad citron + salt som dressing.",
    "decision": "Om ni bekräftar att Linns \"oliv\" betyder olivolja blir olivolja tillåten för båda."
-  },
+  }
+ ],
+ "decisions": [
   {
    "id": "sondag",
-   "title": "Söndag (dag 7, 14, 21): inget gemensamt rött kött",
-   "affects": "Lunch och middag dag 7, 14 och 21",
-   "text": "Linns söndagsregel: kalvkött / fläskkött (Patrik: mild reaktion på båda). Patriks: anka / hjortkött (Linn: mild reaktion på anka). Hjortkött är tillåtet för båda enligt ALCAT, men står inte i Linns söndagsregel. Söndagen kan därför inte valideras mot båda strukturerna.",
-   "decision": "Godkänn hjortkött som Linns söndagskött, så valideras förslaget för dag 7, 14 och 21."
+   "title": "Söndag (dag 7, 14, 21): hjortkött godkänt för Linns söndagsregel",
+   "text": "Linns kostschema anger kalvkött / fläskkött (mild reaktion hos Patrik). Patriks anger anka / hjortkött (mild reaktion på anka hos Linn). Hjortkött är grönt i båda ALCAT-rapporterna.",
+   "resolution": "Användarbeslut 2026-10-02: \"godkänns hjortkött för söndag\"."
+  },
+  {
+   "id": "manuka",
+   "title": "Manukahonung räknas inte som honung",
+   "text": "Patriks kostschema har manuka honung i frukosten; ALCAT:s Candida-ruta säger att honung ska elimineras.",
+   "resolution": "Användarbeslut 2026-10-02: \"Manukahonung är ok. det ska inte räknas som honung.\""
   }
  ],
  "summary": {
-  "pass": 18,
+  "pass": 21,
   "total": 21,
-  "blocked": [
-   7,
-   14,
-   21
-  ]
+  "blocked": []
  }
 }

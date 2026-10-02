@@ -190,8 +190,17 @@ describe('Re:store by Sanna', () => {
       for (const i of m.ingredients) expect(FOOD_BY_ID[i.id].restoreStatus).toBe('ALLOWED_FOR_BOTH');
     }
   });
-  it('måndag–lördag passerar; söndag blockeras av källmaterialet', () => {
-    for (const d of RESTORE_DAYS) expect(d.validation.pass).toBe(d.weekday !== 'sun');
+  it('alla 21 dagar passerar (söndag via användarbeslut om hjortkött)', () => {
+    for (const d of RESTORE_DAYS) expect(d.validation.pass).toBe(true);
+    expect(RESTORE_SUMMARY.pass).toBe(21);
+  });
+  it('söndag: hjortkött är enda gemensamma kött; kalvkött/anka underkänns fortfarande', () => {
+    const sun = MEAL_BY_ID['sun-1'];
+    expect(validateMeal(sun, 'lunch', 'sun', FOOD_BY_ID).pass).toBe(true);
+    const veal = { ...sun, ingredients: sun.ingredients.map((i) => (i.id === 'hjortkott' ? { ...i, id: 'kalvkott' } : i)) };
+    expect(validateMeal(veal, 'lunch', 'sun', FOOD_BY_ID).pass).toBe(false);
+    const duck = { ...sun, ingredients: sun.ingredients.map((i) => (i.id === 'hjortkott' ? { ...i, id: 'anka' } : i)) };
+    expect(validateMeal(duck, 'lunch', 'sun', FOOD_BY_ID).pass).toBe(false);
   });
 
   it('publik Re:store-data innehåller inga källprofiler', () => {

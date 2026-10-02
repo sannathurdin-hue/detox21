@@ -69,6 +69,9 @@ const USER_MANUKA = { effect: 'ALLOW', kind: 'ANVÄNDARBESLUT', document: 'Anvä
 const INLINE_RULES = {
   linn: {
     userManuka: USER_MANUKA,
+    // Användarbeslut 2026-10-02: "godkänns hjortkött för söndag"
+    userSundayDeer: { effect: 'ALLOW', kind: 'ANVÄNDARBESLUT', document: 'Användarens beslut (2026-10-02)', page: null,
+      quote: 'godkänns hjortkött för söndag' },
     crispbreadOnlyCorn: { effect: 'CONDITIONAL', quote: 'Tillåtna drycker och brygder: … -Majskakor som knäckebröd', page: 2,
       restriction: 'Endast majskakor anges som knäckebröd i Linns kostschema.' },
   },
@@ -90,7 +93,7 @@ const YEAST_WORD = { BAKJÄST: 'jäst', BRYGGJÄST: 'jäst', NÄRINGSJÄST: 'jä
 
 // ALCAT-livsmedel som kostschemat uttryckligen namnger i veckodagsreglerna (för källspårning)
 const PLAN_NAMED = {
-  linn: { RIS: 'monday', KALKON: 'wednesday', KYCKLING: 'wednesday', KALVKÖTT: 'sunday', GRISKÖTT: 'sunday' },
+  linn: { RIS: 'monday', KALKON: 'wednesday', KYCKLING: 'wednesday', KALVKÖTT: 'sunday', GRISKÖTT: 'sunday', HJORTKÖTT: 'userSundayDeer' },
   patrik: { HIRS: 'monday', RIS: 'monday', MAJS: 'monday', SÖTPOTATIS: 'monday', KYCKLING: 'wednesday', KALKON: 'wednesday', ANKA: 'sunday', HJORTKÖTT: 'sunday' },
 };
 

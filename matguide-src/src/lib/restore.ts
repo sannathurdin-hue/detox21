@@ -32,6 +32,7 @@ const R = restoreJson as unknown as {
   drinks: { title: string; ingredients: string[] }[];
   days: RestoreDay[];
   gaps: Gap[];
+  decisions: { id: string; title: string; text: string; resolution: string }[];
   summary: { pass: number; total: number; blocked: number[] };
 };
 
@@ -41,6 +42,7 @@ export const RESTORE_MEALS = R.meals;
 export const MEAL_BY_ID: Record<string, RestoreMeal> = Object.fromEntries(R.meals.map((m) => [m.id, m]));
 export const RESTORE_DAYS = R.days;
 export const RESTORE_GAPS = R.gaps;
+export const RESTORE_DECISIONS = R.decisions;
 export const RESTORE_SUMMARY = R.summary;
 
 export interface ConflictSource { document: string; page: number | null; text: string; says: string }
