@@ -46,7 +46,7 @@ export default function App() {
     <>
       <a className="skip" href="#main">Hoppa till innehåll</a>
       <header className="topbar">
-        <a className="brand" href="#/">Linn + Patrik <span>· dag 1–21</span></a>
+        <a className="brand" href="#/">RE-SET <span>by Sanna</span></a>
         <nav className="topnav" aria-label="Huvudmeny">
           <a href={href('bada')} aria-current={current === 'bada' ? 'page' : undefined}>Båda kan äta</a>
           <a href={href('skillnader')} aria-current={current === 'skillnader' ? 'page' : undefined}>Skillnader</a>

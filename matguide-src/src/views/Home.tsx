@@ -14,8 +14,9 @@ export function Home() {
   return (
     <div className="home">
       <header className="hero">
-        <p className="hero-names">Linn + Patrik</p>
-        <h1>Matguide – dag 1–21</h1>
+        <p className="hero-names">RE-SET by Sanna</p>
+        <h1>Linn + Patrik</h1>
+        <p className="hero-sub">Matguide · dag 1–21</p>
       </header>
 
       <SearchInput value={q} onChange={setQ} large />
